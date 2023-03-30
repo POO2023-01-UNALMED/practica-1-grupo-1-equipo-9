@@ -4,7 +4,6 @@ public class Trabajadores extends Personas{
 	double salario;
 	String banco;
 	long cuentaBanco;
-	int numeroVentas=0;
 	
 	
 	public Trabajadores(String nombre, long cedula, long telefono, String correo, String direccion,double salario,String banco,long cuentaBanco) {
