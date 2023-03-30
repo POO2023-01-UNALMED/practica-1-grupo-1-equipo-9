@@ -9,5 +9,9 @@ public class Vendedor extends Trabajadores {
 			String banco, long cuentaBanco) {
 		super(nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco);
 	}
+	public Vendedor(String nombre, long cedula, long telefono, String correo, double salario,
+			String banco, long cuentaBanco) {
+		super(nombre, cedula, telefono, correo,salario, banco, cuentaBanco);
+	}
 	
 }

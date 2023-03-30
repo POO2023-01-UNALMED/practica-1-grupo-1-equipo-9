@@ -12,6 +12,13 @@ public class Trabajadores extends Personas{
 		this.banco=banco;
 		this.cuentaBanco=cuentaBanco;
 	}
+	public Trabajadores(String nombre, long cedula, long telefono, String correo,double salario,String banco,long cuentaBanco) {
+		super(nombre, cedula, telefono, correo);
+		this.salario=salario;
+		this.banco=banco;
+		this.cuentaBanco=cuentaBanco;
+	}
+	
     public double getSalario() {
         return salario;
     }
