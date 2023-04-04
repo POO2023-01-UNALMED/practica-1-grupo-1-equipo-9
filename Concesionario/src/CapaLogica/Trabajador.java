@@ -1,6 +1,6 @@
 package CapaLogica;
 
-public class Trabajador extends Persona {
+public abstract class Trabajador extends Persona {
 	double salario;
 	String banco;
 	long cuentaBanco;
@@ -44,4 +44,5 @@ public class Trabajador extends Persona {
 	public void setCuentaBanco(long cuentaBanco) {
 		this.cuentaBanco = cuentaBanco;
 	}
+	abstract int calcularSalario();
 }

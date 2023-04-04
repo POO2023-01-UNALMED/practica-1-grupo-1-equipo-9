@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Vendedor extends Trabajador {
 	static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
-	int numeroVentas = 0;
+	int ventas = 0;
 	final static double comision = 0.02;
 
 	public Vendedor(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
@@ -30,4 +30,11 @@ public class Vendedor extends Trabajador {
 	public static void removeVendedor(Vendedor vendedor) {
 		vendedores.remove(vendedor);
 	}
+
+	@Override
+	int calcularSalario() {
+		return (int) (getSalario()+(ventas*comision));
+	}
+
+
 }
