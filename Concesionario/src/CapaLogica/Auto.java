@@ -15,7 +15,7 @@ public class Auto {
         this.color = color;
         this.fullEquipo = fullEquipo;
         this.disponible=disponible;
-        Inventario.autos.add(this);
+        InventarioAuto.autos.add(this);
     }
 
     public String getMarca() {
