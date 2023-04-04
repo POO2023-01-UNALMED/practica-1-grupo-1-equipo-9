@@ -5,5 +5,5 @@
  * @author felip
  *
  */
-module Conce {
+module Concesionario {
 }
