@@ -1,5 +1,5 @@
 package CapaLogica;
-/*claseVendedor*/
+
 import java.util.ArrayList;
 
 public class Vendedor extends Trabajador {

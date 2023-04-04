@@ -1,5 +1,5 @@
 package CapaLogica;
-/*Clase auto*/
+
 public class Auto {
 	private String marca;
 	private int precio;
