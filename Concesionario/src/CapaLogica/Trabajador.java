@@ -1,18 +1,18 @@
 package CapaLogica;
 
-public class Trabajadores extends Personas{
+public class Trabajador extends Persona{
 	double salario;
 	String banco;
 	long cuentaBanco;
 	
 	
-	public Trabajadores(String nombre, long cedula, long telefono, String correo, String direccion,double salario,String banco,long cuentaBanco) {
+	public Trabajador(String nombre, long cedula, long telefono, String correo, String direccion,double salario,String banco,long cuentaBanco) {
 		super(nombre, cedula, telefono, correo, direccion);
 		this.salario=salario;
 		this.banco=banco;
 		this.cuentaBanco=cuentaBanco;
 	}
-	public Trabajadores(String nombre, long cedula, long telefono, String correo,double salario,String banco,long cuentaBanco) {
+	public Trabajador(String nombre, long cedula, long telefono, String correo,double salario,String banco,long cuentaBanco) {
 		super(nombre, cedula, telefono, correo);
 		this.salario=salario;
 		this.banco=banco;

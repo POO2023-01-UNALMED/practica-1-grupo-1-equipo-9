@@ -1,6 +1,6 @@
 package CapaLogica;
 
-public class Cliente extends Personas {
+public class Cliente extends Persona {
     String modeloInteres;
     int presupuesto;
 

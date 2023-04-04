@@ -1,7 +1,7 @@
 package CapaLogica;
 import java.util.ArrayList;
 
-public class Mecanico extends Trabajadores {
+public class Mecanico extends Trabajador {
 	ArrayList<Auto> autos;
 	public Mecanico(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
 			String banco, long cuentaBanco,ArrayList<Auto> autos) {

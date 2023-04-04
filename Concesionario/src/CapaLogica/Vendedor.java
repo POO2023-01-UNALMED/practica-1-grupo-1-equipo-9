@@ -2,7 +2,7 @@ package CapaLogica;
 
 import java.util.ArrayList;
 
-public class Vendedor extends Trabajadores {
+public class Vendedor extends Trabajador {
 	static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
 	int numeroVentas=0;
 	final static double comision=0.02;
