@@ -10,6 +10,7 @@ public class main {
 		System.out.print(c1.getNombre());
 		System.out.print(c1.getCedula());
 		System.out.print(c1.getPresupuesto());
+		System.out.print(c1.getPresupuesto());
 
 	}
 
