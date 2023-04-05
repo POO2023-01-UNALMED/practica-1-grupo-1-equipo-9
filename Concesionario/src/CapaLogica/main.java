@@ -9,7 +9,15 @@ public class main {
 		Vendedor vendedor1 = new Vendedor("Juan", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321);
 		Vendedor vendedor2 = new Vendedor("Pedro", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789);
 
-		System.out.print(InventarioAuto.autosDisponibles());
+		System.out.print(a1.isDisponible());
+		System.out.println();
+		System.out.print(c1.getCorreo());
+		System.out.println();
+		System.out.print(mecanico.getBanco());
+		System.out.println();
+		System.out.print(vendedor1.getDireccion());
+		System.out.println();
+		System.out.print(vendedor2.getCuentaBanco());
 
 
 	}
