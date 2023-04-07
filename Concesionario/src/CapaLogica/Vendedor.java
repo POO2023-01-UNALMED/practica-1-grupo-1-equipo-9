@@ -22,6 +22,16 @@ public class Vendedor extends Trabajador {
 	public static ArrayList<Vendedor> getVendedores() {
 		return vendedores;
 	}
+	
+	public static Vendedor getVendedorPorCedula(long cedula){
+		Vendedor finder = null;
+		for(Vendedor vendedor: vendedores) {
+			if(vendedor.getCedula()==cedula) {
+				finder = vendedor;
+			} 
+		
+		}return finder;
+	}
 
 	public static void addVendedor(Vendedor vendedor) {
 		vendedores.add(vendedor);
@@ -35,6 +45,10 @@ public class Vendedor extends Trabajador {
 	int calcularSalario() {
 		return (int) (getSalario()+(ventas*comision));
 	}
-
+	
+	public String toString() {
+		String texto = "Nombre del Vendedor: " + super.getNombre() + "\n";
+		return texto;
+	}
 
 }
