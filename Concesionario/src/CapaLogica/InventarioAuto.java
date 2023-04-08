@@ -38,4 +38,21 @@ public class InventarioAuto {
 		}
 		return disponibles;
 	}
+	
+	public static String autosMarca(String marca) {
+		/*Falta validar cuando no hay carros disponibles del modelo*/
+		System.out.println("Tenemos los siguientes carros de la marca " + marca + ":\n");
+	    String result = String.format("%-10s%-10s%-10s\n", "   Marca", "   Precio", "   Color");
+	    int i = 0;
+	    for (Auto auto : getAutosDisponibles()) {
+	        if (marca.equals(auto.getMarca())) {
+	            i++;
+	            String carInfo = String.format("%-10s%-10s%-10s\n", auto.getMarca(), auto.getPrecio(), auto.getColor());
+	            result += String.format("%-3d%s", i, carInfo);
+	        }
+	    }
+	    return result;
+	}
+
+
 }
