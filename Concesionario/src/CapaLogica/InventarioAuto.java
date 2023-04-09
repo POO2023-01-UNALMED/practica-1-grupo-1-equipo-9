@@ -39,6 +39,17 @@ public class InventarioAuto {
 		return disponibles;
 	}
 	
+	public static Auto getAutoporModelo(String modelo) {
+		Auto finder = null;
+		for (Auto auto : getAutosDisponibles()) {
+			if(modelo==auto.getModelo()) {
+				finder = auto;
+			}else {
+				return finder;
+			}
+		}return finder;
+	}
+	
 	public static String autosMarca(String marca) {
 		/*Falta validar cuando no hay carros disponibles del modelo*/
 		System.out.println("Tenemos los siguientes carros de la marca " + marca + ":\n");

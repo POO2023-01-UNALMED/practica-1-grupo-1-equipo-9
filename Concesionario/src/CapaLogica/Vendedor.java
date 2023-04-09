@@ -47,8 +47,12 @@ public class Vendedor extends Trabajador {
 	}
 	
 	public String toString() {
-		String texto = "Nombre del Vendedor: " + super.getNombre() + "\n";
+		String texto = "Nombre del Vendedor: " + getNombre() + "\n";
 		return texto;
+	}
+	
+	public void confirmarVenta() {
+		ventas++;
 	}
 
 }

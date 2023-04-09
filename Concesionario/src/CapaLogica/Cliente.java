@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Cliente extends Persona {
 	static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-	String modeloInteres;
-	int presupuesto;
+	private String modeloInteres;
+	private int presupuesto;
+	private Auto auto;
 
 	public Cliente(String nombre, long cedula, long telefono, String correo, String direccion, String modeloInteres,
 			int presupuesto) {
@@ -38,6 +39,14 @@ public class Cliente extends Persona {
 		this.presupuesto = presupuesto;
 	}
 	
+	public void setAuto(Auto auto) {
+		this.auto = auto;
+	}
+	
+	public Auto getAuto() {
+		return auto;
+	}
+	
 	public static ArrayList<Cliente> getClientes() {
 		return clientes;
 	}
@@ -57,7 +66,7 @@ public class Cliente extends Persona {
 	}
 	
 	public String toString() {
-		String texto = "Nombre del cliente: " + super.getNombre() + "\n";
+		String texto = "Nombre del cliente: " + getNombre() + "\n";
 		return texto;
 	}
 }
