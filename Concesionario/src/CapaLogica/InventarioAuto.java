@@ -1,6 +1,7 @@
 package CapaLogica;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class InventarioAuto {
 	static ArrayList<Auto> autos = new ArrayList<Auto>();
@@ -50,20 +51,51 @@ public class InventarioAuto {
 		}return finder;
 	}
 	
-	public static String autosMarca(String marca) {
-		/*Falta validar cuando no hay carros disponibles del modelo*/
-		System.out.println("Tenemos los siguientes carros de la marca " + marca + ":\n");
-	    String result = String.format("%-10s%-10s%-10s\n", "   Marca", "   Precio", "   Color");
+	public static Auto autosModelo(String modelo) {
+		Scanner sc = new Scanner(System.in);
+		ArrayList<Auto> autosMod = new ArrayList<Auto>();
+	    String result = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
 	    int i = 0;
 	    for (Auto auto : getAutosDisponibles()) {
-	        if (marca.equals(auto.getMarca())) {
+	        if (modelo.equals(auto.getModelo())) {
 	            i++;
-	            String carInfo = String.format("%-10s%-10s%-10s\n", auto.getMarca(), auto.getPrecio(), auto.getColor());
+	            autosMod.add(auto);
+	            String carInfo = String.format("%-10s%-10s%-10s\n", auto.getModelo(), auto.getPrecio(), auto.getColor());
 	            result += String.format("%-3d%s", i, carInfo);
 	        }
 	    }
-	    return result;
+	    Auto auto = null;
+	    if (autosMod.size()>1){
+		    System.out.println("Los carros de modelo " + modelo + " disponibles son:\n");
+		    System.out.println(result);
+		    /*falta hacer control de errores cuando se ingresa una opcion no valida*/
+		    System.out.println("Seleccione el numero del carro" + "[1-" + autosMod.size() + "]: ");
+		    byte num = readByte();
+		    auto=autosMod.get(num-1);
+		    auto.setDisponible(false);
+	    } else if (autosMod.size()==1) {
+	    	System.out.println("El unico carro de modelo " + modelo + " disponible es:\n");
+		    System.out.println(result);
+		    System.out.println("Lo desea seleccionar? (y/n): ");
+		    String resp = sc.nextLine();
+		    if (resp.equals("y")) {
+		    	auto=autosMod.get(0);
+		    } else {
+		    	auto=null;
+		    }
+	    } else if (autosMod.size()==0) {
+	    	System.out.println("No hay carros disponibles del modelo seleccionado");
+	    	auto=null;
+	    }
+	    return auto;
 	}
+	
+	public static byte readByte() {
+	    Scanner scanner = new Scanner(System.in);
+	    byte num = scanner.nextByte();
+	    return num;
+	}
+
 
 
 }

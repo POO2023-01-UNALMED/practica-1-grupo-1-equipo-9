@@ -12,9 +12,12 @@ public class Financiero {
 		InventarioAuto.autosDisponibles();
 		System.out.print("Escriba el modelo del carro a escoger: ");
 		String modelo = sc.nextLine();
-		auto = InventarioAuto.getAutoporModelo(modelo);
-		System.out.println(InventarioAuto.autosMarca(modelo));
+		/*auto = InventarioAuto.getAutoporModelo(modelo);*/
+		auto=InventarioAuto.autosModelo(modelo);
+		
+		System.out.println(auto);
 		String confirmarCliente = null;
+		
 		while(confirmarCliente=="no") {
 			System.out.print("Introduzca la cédula del comprador: ");
 			long cedula = sc.nextLong();
