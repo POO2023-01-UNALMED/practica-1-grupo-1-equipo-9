@@ -12,7 +12,6 @@ public class Financiero {
 		InventarioAuto.autosDisponibles();
 		System.out.print("Escriba el modelo del carro a escoger: ");
 		String modelo = sc.nextLine();
-		/*auto = InventarioAuto.getAutoporModelo(modelo);*/
 		auto=InventarioAuto.autosModelo(modelo);
 		
 		System.out.println(auto);

@@ -9,7 +9,7 @@ public class main {
 		Auto a2= new Auto("Corolla", "Toyota", 456, 5, "negro", false, true);
 		Auto a3= new Auto("Hybrid", "Mazda", 111, 6, "azul", true, true);
 		Auto a4= new Auto("Highlander", "Toyota", 789, 10, "blanco", false, true);
-		Auto a5= new Auto("Hybrid", "Mazda", 122, 6, "cafe", true, true);
+		Auto a5= new Auto("Hybrid", "Mazda", 222, 6, "cafe", true, true);
 		Auto a6= new Auto("Hybrid", "Mazda", 333, 6, "verde", false, true);
 		Auto a7= new Auto("Hybrid", "Mazda", 444, 6, "rosa", false, false);
 		Cliente c1= new Cliente("Ernesto",123443222,556655,"trtr","avenida siempreviva","cupra",23000000);
