@@ -1,6 +1,7 @@
 package CapaLogica;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Cliente extends Persona {
 	static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
@@ -54,12 +55,46 @@ public class Cliente extends Persona {
 	public static Cliente getClientePorCedula(long cedula){
 		Cliente finder = null;
 		for(Cliente cliente: clientes) {
-			if(cliente.getCedula()==cedula) {
+			if(cliente.getCedula() == cedula) {
 				finder = cliente;
-			} 
-		
-		}return finder;
+				break;
+			}
+		}
+		if(finder == null) {
+			Scanner sc = new Scanner(System.in);
+			String confirmar = "no";
+			while(confirmar.equals("no")) {
+				System.out.println("Eres un cliente nuevo, procederemos a crear tu usuario ");
+				System.out.print("Introduzca su Nombre: ");
+				String nombre = sc.nextLine(); 
+				System.out.print("Introduzca su Cedula: ");
+				Long cedula1 = sc.nextLong(); 
+				sc.nextLine();
+				System.out.print("Introduzca su Telefono: ");
+				Long telefono = sc.nextLong(); 
+				System.out.print("Introduzca su Correo: ");
+				String correo = sc.nextLine(); 
+				sc.nextLine();
+				System.out.print("Introduzca su Dirección: ");
+				String direccion = sc.nextLine(); 
+				
+				System.out.print("Introduzca su Modelo de Interes: ");
+				String modelo = sc.nextLine(); 
+			
+				System.out.print("Introduzca su Presupuesto: ");
+				int presupuesto = sc.nextInt(); 
+				sc.nextLine();
+				Cliente cli = new Cliente(nombre, cedula1, telefono, correo, direccion, modelo, presupuesto);
+				System.out.print(cli.toString());
+				System.out.print("Confirmar cliente (si/no): ");
+				confirmar = sc.nextLine(); 
+				finder = cli;
+				break;
+			}
+		}
+		return finder;
 	}
+
 
 	public static void setClientes(ArrayList<Cliente> clientes) {
 		Cliente.clientes = clientes;
