@@ -6,7 +6,7 @@ public class InventarioArticulo {
     static ArrayList<Articulo> articulos = new ArrayList<>();
     
     // Método para agregar un artículo al inventario
-    public void agregarArticulo(Articulo articulo) {
+    public static void agregarArticulo(Articulo articulo) {
         articulos.add(articulo);
     }
     
@@ -46,10 +46,10 @@ public class InventarioArticulo {
 	}
 	*/
     // Método para mostrar la información de todos los artículos en el inventario
-    public void mostrarInventario() {
+    public static void mostrarInventario() {
         System.out.println("Inventario de Artículos:");
         for (Articulo articulo : articulos) {
-            articulo.articulosDisponibles();
+            System.out.println(articulo.articulosDisponibles());
         }
     }
 }

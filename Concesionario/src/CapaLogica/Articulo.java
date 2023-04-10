@@ -7,11 +7,12 @@ public class Articulo {
     private  String marca;
     
     // Constructor
-    public Articulo(String tipoArticulo, String tipoVehiculo, double precio, String marca) {
+    public Articulo(String tipoArticulo, String tipoVehiculo, String marca, double precio ) {
         this.tipoArticulo = tipoArticulo;
         this.tipoVehiculo = tipoVehiculo;
         this.precio = precio;
         this.marca = marca;
+        InventarioArticulo.articulos.add(this);
     }
     
     // Getters y Setters
@@ -49,8 +50,7 @@ public class Articulo {
    
 	
 	public String articulosDisponibles() {
-		String informacion = "Articulos Disponibles:\n";
-		informacion += tipoArticulo + " " + tipoVehiculo + " " + marca + " " + precio + "\n";
+		String informacion = tipoArticulo + " " + tipoVehiculo + " " + marca + " " + precio + "\n"  ;
 		
 		return informacion; 
 	}
