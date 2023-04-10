@@ -1,10 +1,10 @@
 package CapaLogica;
 
 public class Articulo {
-    private static String tipoArticulo;
-    private static String tipoVehiculo;
-    private static double precio;
-    private static String marca;
+    private  String tipoArticulo;
+    private  String tipoVehiculo;
+    private  double precio;
+    private  String marca;
     
     // Constructor
     public Articulo(String tipoArticulo, String tipoVehiculo, double precio, String marca) {
