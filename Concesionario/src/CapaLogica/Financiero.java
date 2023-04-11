@@ -37,7 +37,7 @@ public class Financiero {
 				confirmarVendedor = sc.nextLine();
 				if(confirmarVendedor.equals("si")) {
 					if(comprador.getPresupuesto()>=auto.getPrecio()) {
-						int diferencia = comprador.getPresupuesto()-auto.getPrecio();
+						long diferencia = comprador.getPresupuesto()-auto.getPrecio();
 						comprador.setPresupuesto(diferencia);
 						comprador.setAuto(auto);
 						auto.setDisponible(false);
