@@ -1,6 +1,5 @@
 package CapaLogica;
 import java.util.*;
-import java.util.stream.Stream;
 
 public class main {
 
@@ -19,17 +18,17 @@ public class main {
 		Vendedor vendedor2 = new Vendedor("Pedro", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789);
 		
 		//Articulos aceites
-		Articulo articulo1= new Articulo("aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000);
-		Articulo articulo2= new Articulo("aceite sintetico", "automovil y camioneta", "Aceite 5w20 Mobil 2000 – cuarto", 33900);
-		Articulo articulo3= new Articulo("aceite semisintetico", "automovil y camioneta", "Aceite 5w40 Mobil 3000 – cuarto", 34900);
+		Articulo articulo1= new Articulo("aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100);
+		Articulo articulo2= new Articulo("aceite sintetico", "automovil y camioneta", "Aceite 5w20 Mobil 2000 – cuarto", 33900, 100);
+		Articulo articulo3= new Articulo("aceite semisintetico", "automovil y camioneta", "Aceite 5w40 Mobil 3000 – cuarto", 34900, 100);
 				
 		//Articulos llantas
-		Articulo articulo4= new Articulo("Llanta todo tereno", "automovil y camioneta", "GoodYear", 745000);
-		Articulo articulo5= new Articulo("Llanta todo tereno", "automovil y camioneta", "Michelin", 1150000);
-		Articulo articulo6= new Articulo("llanta tereno de barro", "automovil y camioneta", "Bridgestone", 750000);
-		Articulo articulo7= new Articulo("llanta tereno de barro", "automovil y camioneta", "Yokohama Geolanda", 1899000);
-		Articulo articulo8= new Articulo("llanta terreno de asfalto", "automovil y camioneta", "Goodyear", 650000);
-		Articulo articulo9= new Articulo("llanta terreno de asfalto", "automovil y camioneta", "michelin", 1000000);
+		Articulo articulo4= new Articulo("Llanta todo tereno", "automovil y camioneta", "GoodYear", 745000, 100);
+		Articulo articulo5= new Articulo("Llanta todo tereno", "automovil y camioneta", "Michelin", 1150000, 100);
+		Articulo articulo6= new Articulo("llanta terreno de barro", "automovil y camioneta", "Bridgestone", 750000, 100);
+		Articulo articulo7= new Articulo("llanta terreno de barro", "automovil y camioneta", "Yokohama Geolanda", 1899000, 100);
+		Articulo articulo8= new Articulo("llanta terreno de asfalto", "automovil y camioneta", "Goodyear", 650000, 100);
+		Articulo articulo9= new Articulo("llanta terreno de asfalto", "automovil y camioneta", "michelin", 1000000, 100);
 		
 	
 		/*INTERFAZ*/

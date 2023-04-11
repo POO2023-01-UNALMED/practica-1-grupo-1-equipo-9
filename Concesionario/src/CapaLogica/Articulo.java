@@ -5,13 +5,15 @@ public class Articulo {
     private  String tipoVehiculo;
     private  double precio;
     private  String marca;
+    private int cantidad; 
     
     // Constructor
-    public Articulo(String tipoArticulo, String tipoVehiculo, String marca, double precio ) {
+    public Articulo(String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad ) {
         this.tipoArticulo = tipoArticulo;
         this.tipoVehiculo = tipoVehiculo;
         this.precio = precio;
         this.marca = marca;
+        this.cantidad = cantidad;
         InventarioArticulo.articulos.add(this);
     }
     
@@ -53,6 +55,14 @@ public class Articulo {
 		String informacion = tipoArticulo + " " + tipoVehiculo + " " + marca + " " + precio + "\n"  ;
 		
 		return informacion; 
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
    
     

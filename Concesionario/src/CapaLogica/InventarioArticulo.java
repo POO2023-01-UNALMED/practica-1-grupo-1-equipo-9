@@ -1,8 +1,10 @@
 package CapaLogica;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class InventarioArticulo {
+	Scanner sc = new Scanner(System.in);
     static ArrayList<Articulo> articulos = new ArrayList<>();
     
     // Método para agregar un artículo al inventario
@@ -51,5 +53,44 @@ public class InventarioArticulo {
         for (Articulo articulo : articulos) {
             System.out.println(articulo.articulosDisponibles());
         }
+    }
+    public  void buscarPorTipo(String tipoArticulo) {
+    	byte input;
+		String salir = null;
+		do {
+			System.out.println("Seleccione el tipo de producto que necesita");
+			System.out.println("1. Aceeites");
+			System.out.println("2. llantas");
+			System.out.print("Ingrese el número de la opción que va a utilizar: ");
+			
+			input = sc.nextByte();
+			
+			switch (input) {
+			case 1:
+				byte input2;
+				String salir2 = null;
+				do {
+					System.out.println("Seleccione el tipo de Aceite que necesita");
+					System.out.println("1. aceite mineral");
+					System.out.println("2. aceite sintetico");
+					System.out.println("3. aceite semisintetico");
+					System.out.print("Ingrese el número de la opción que va a utilizar: ");
+					
+					input2 = sc.nextByte();
+					
+					switch (input2) {
+					case 1:
+						
+					}
+				}while(salir2=="no");
+			}
+		}while(salir=="no");
+				
+    	for (Articulo articulo : articulos) {
+    		if (articulo.getTipoArticulo() == tipoArticulo) {
+    			System.out.println(articulo.articulosDisponibles());
+    		}
+    		 
+    	}
     }
 }
