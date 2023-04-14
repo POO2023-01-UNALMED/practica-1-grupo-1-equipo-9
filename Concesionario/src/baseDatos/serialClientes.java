@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
-import CapaLogica.InventarioAuto;
+import CapaLogica.Cliente;
 
-public class serialAutos {
+public class serialClientes {
 	private static File rutaTemp = new File("src\\baseDatos\\temp")
 ;
-	public static void serializar(InventarioAuto autos) {
+	public static void serializar(Cliente clt) {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
 		File[] docs = rutaTemp.listFiles();
@@ -28,11 +28,11 @@ public class serialAutos {
 		}
 		for (File file:docs) {
 			
-			if (file.getAbsolutePath().contains("autos")) {
+			if (file.getAbsolutePath().contains("clientes")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
-					oos.writeObject(autos.getAutos());
+					oos.writeObject(clt.getClientes());
 				} catch (FileNotFoundException e ) {
 					e.printStackTrace();
 				} catch (IOException e) {
