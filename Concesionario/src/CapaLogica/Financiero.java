@@ -57,23 +57,38 @@ public class Financiero {
 		
 	}
 	public static void procesoTaller() {
-		String confirmarSvc = null;
-		while(confirmarSvc==null||confirmarSvc.equals("no")) {
-			Cliente comprador = null;
-			Mecanico mecanico = null;
-			Auto auto = null;
-			Scanner sc = new Scanner(System.in);
-			System.out.print("Introduzca la cédula del propietario: ");
-			long cedula = sc.nextLong();
-			comprador = Cliente.getClientePorCedula(cedula);
-			comprador.toString();
-			auto=comprador.getAuto();
-			System.out.print("¿Confirmar propietario? (si/no)");
-			confirmarSvc = sc.nextLine();
-		}if(confirmarSvc.equals("si")) {
-			String confirmarMech = null;
-		
-		}		
+	    String confirmarSvc = null;
+	    Cliente comprador = null;
+	    Auto auto = null;
+
+	    Scanner sc = new Scanner(System.in);
+
+	    while(confirmarSvc == null || confirmarSvc.equals("no")) {
+	        System.out.print("Introduzca la cédula del propietario: ");
+	        long cedula = sc.nextLong();
+	        comprador = Cliente.getClientePorCedula(cedula);
+	        comprador.toString();
+	        auto = comprador.getAuto();
+	        System.out.print("¿Confirmar propietario? (si/no)");
+	        confirmarSvc = sc.nextLine();
+	        sc.nextLine();
+	    }
+	    if(confirmarSvc.equals("si")) {
+	        String confirmarMech = null;
+	        for(Mecanico mecanico: Mecanico.mecanicos) {
+	            if (mecanico.getAutos().equals(auto.getMarca())) {
+	                System.out.println("Mecánico disponible: " + mecanico.getNombre());
+	                System.out.print("¿Desea seleccionar este mecánico? (si/no)");
+	                confirmarMech = sc.nextLine();
+	                sc.nextLine();
+	                if(confirmarMech.equals("si")) {
+	                	System.out.print("eso si ");
+	                }
+	                break;
+	            }
+	        }
+	    }        
 	}
+
 	
 }

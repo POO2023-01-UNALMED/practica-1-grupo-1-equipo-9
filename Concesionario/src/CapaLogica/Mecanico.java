@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class Mecanico extends Trabajador {
 	static ArrayList<Mecanico> mecanicos = new ArrayList<Mecanico>();
-	String[] autos;
+	String autos;
 	long pagoSvcs=0;
 
 	public Mecanico(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
-			String banco, long cuentaBanco, String[] autos) {
+			String banco, long cuentaBanco, String autos) {
 		super(nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco);
 		this.autos = autos;
 		Mecanico.mecanicos.add(this);
 	}
 
-	public String[] getAutos() {
+	public String getAutos() {
 		return autos;
 	}
 
-	public void setAutos(String[] autos) {
+	public void setAutos(String autos) {
 		this.autos = autos;
 	}
 	
