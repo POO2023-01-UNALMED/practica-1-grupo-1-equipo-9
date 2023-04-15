@@ -3,7 +3,7 @@ package CapaLogica;
 public class Auto {
 	private String modelo;
 	private String marca;
-	private int precio;
+	private long precio;
 	private int cilindraje;
 	private String color;
 	private boolean fullEquipo;
@@ -29,7 +29,7 @@ public class Auto {
 		return marca;
 	}
 
-	public int getPrecio() {
+	public long getPrecio() {
 		return precio;
 	}
 
@@ -61,7 +61,7 @@ public class Auto {
 		this.marca = marca;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(long precio) {
 		this.precio = precio;
 	}
 

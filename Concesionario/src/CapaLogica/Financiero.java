@@ -44,7 +44,8 @@ public class Financiero {
 						vendedor.confirmarVenta();
 						auto.setDueno(comprador);
 						System.out.println("Compra efectuada Con exito");
-						
+						Transaccion transaccion=new Transaccion("venta",vendedor,auto.getPrecio(),comprador,auto);
+						System.out.println(transaccion.toString());
 					}else if(comprador.getPresupuesto()<=auto.getPrecio()) {
 						System.out.println("El cliente no tiene el presupuesto suficiente.");
 					}

@@ -82,8 +82,7 @@ public class Cliente extends Persona {
 				String modelo = sc.nextLine(); 
 			
 				System.out.print("Introduzca su Presupuesto: ");
-				long presupuesto = sc.nextInt(); 
-				sc.nextLine();
+				long presupuesto = sc.nextLong(); 
 				Cliente cli = new Cliente(nombre, cedula1, telefono, correo, direccion, modelo, presupuesto);
 				System.out.print(cli.toString());
 				System.out.print("Confirmar cliente (si/no): ");
