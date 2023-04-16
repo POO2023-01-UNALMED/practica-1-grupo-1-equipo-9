@@ -86,13 +86,18 @@ public class Financiero {
 			Mecanico mecanico=Mecanico.mecanicoDisponible(transaccion.auto.getMarca());
 			System.out.print(mecanico.info());
 			while (confirmarMech==null||confirmarMech.equals("no")) {
-				System.out.print("¿Confirmar propietario? (si/no)");
+				System.out.print("¿Confirmar mecanico? (si/no)");
 				confirmarMech = sc.nextLine();
 		}if(confirmarMech.equals("si")) {
-			String confirmarSvc=null;
+			String confirmarProd=null; 
+			Articulo producto=InventarioArticulo.articuloDispo(mecanico.getEspecialidad());
+			System.out.print(producto.info());
+			while (confirmarProd==null||confirmarProd.equals("no")) {
+				System.out.print("¿Confirmar mecanico? (si/no)");
+				confirmarProd = sc.nextLine();
 			
 		}
 	}
 	}
-
+	}
 }

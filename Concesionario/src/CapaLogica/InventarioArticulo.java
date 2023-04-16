@@ -59,7 +59,7 @@ public class InventarioArticulo {
 		String salir = null;
 		do {
 			System.out.println("Seleccione el tipo de producto que necesita");
-			System.out.println("1. Aceeites");
+			System.out.println("1. Aceites");
 			System.out.println("2. Llantas");
 			System.out.println("3. Frenos");
 			System.out.print("Ingrese el número de la opción que va a utilizar: \n");
@@ -171,5 +171,47 @@ public class InventarioArticulo {
     			System.out.println(articulo.articulosDisponibles());
     		}	 
     	}*/
+		
     }
+    public static Articulo articuloDispo(String tipo) {
+    	Scanner sc = new Scanner(System.in);
+ 	    byte input;
+ 	    String salir = null;
+ 	    String result = String.format("%-10s%-10s%-10s%-10s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
+ 	    int i = 0;
+ 	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
+ 	    for (Articulo articulo : getArticulos()) {
+ 	        if (tipo.equals(articulo.getEspecialidad())) {
+ 	            i++;
+ 	            prods.add(articulo);
+ 	            String mechInfo = String.format("%-10s%-10s%-10s%-10s%n", articulo.getTipoArticulo(), articulo.getTipoVehiculo(),articulo.getMarca(),articulo.getPrecio());
+ 	            result += String.format("%-3d%s", i, mechInfo);
+ 	        }
+ 	    }
+ 	    Articulo product = null;
+ 	    if (prods.size() >= 1) {
+ 	        System.out.println("Los productos " + tipo + " disponibles son:\n");
+ 	        System.out.println(result);
+ 	        int num = 0;
+ 	        while (num <= 0 || num > prods.size()) {
+ 	            System.out.println("Seleccione el numero del producto" + "[1-" + prods.size() + "]: ");
+ 	            if (sc.hasNextInt()) {
+ 	                num = sc.nextInt();
+ 	            } else {
+ 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + prods.size() + ".");
+ 	                sc.nextLine(); // Limpiar la entrada no válida
+ 	            }
+ 	        }
+ 	        product = prods.get(num - 1);
+
+ 	    } else if (prods.size() == 0) {
+ 	        System.out.println("No hay productos disponibles para su vehiculo");
+ 	    }
+ 	    return product;
+ 		
+ 	}
+
+    	
+    	
 }
+

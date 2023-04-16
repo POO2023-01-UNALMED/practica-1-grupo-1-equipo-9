@@ -29,17 +29,17 @@ public class main {
 		Transaccion tr4=new Transaccion ("venta",vendedor1,2345738,c4,a4);
 		
 		//Articulos aceites
-		Articulo articulo1= new Articulo("aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100);
-		Articulo articulo2= new Articulo("aceite sintetico", "automovil y camioneta", "Aceite 5w20 Mobil 2000 – cuarto", 33900, 100);
-		Articulo articulo3= new Articulo("aceite semisintetico", "automovil y camioneta", "Aceite 5w40 Mobil 3000 – cuarto", 34900, 100);
+		Articulo articulo1= new Articulo("General","aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100);
+		Articulo articulo2= new Articulo("General","aceite sintetico", "automovil y camioneta", "Aceite 5w20 Mobil 2000 – cuarto", 33900, 100);
+		Articulo articulo3= new Articulo("General","aceite semisintetico", "automovil y camioneta", "Aceite 5w40 Mobil 3000 – cuarto", 34900, 100);
 				
 		//Articulos llantas
-		Articulo articulo4= new Articulo("Llanta todo terreno", "automovil y camioneta", "GoodYear", 745000, 100);
-		Articulo articulo5= new Articulo("Llanta todo terreno", "automovil y camioneta", "Michelin", 1150000, 99);
-		Articulo articulo6= new Articulo("Llanta terreno de barro", "automovil y camioneta", "Bridgestone", 750000, 100);
-		Articulo articulo7= new Articulo("Llanta terreno de barro", "automovil y camioneta", "Yokohama Geolanda", 1899000, 100);
-		Articulo articulo8= new Articulo("Llanta terreno de asfalto", "automovil y camioneta", "Goodyear", 650000, 100);
-		Articulo articulo9= new Articulo("Llanta terreno de asfalto", "automovil y camioneta", "michelin", 1000000, 100);
+		Articulo articulo4= new Articulo("Llantas","Llanta todo terreno", "automovil y camioneta", "GoodYear", 745000, 100);
+		Articulo articulo5= new Articulo("Llantas","Llanta todo terreno", "automovil y camioneta", "Michelin", 1150000, 99);
+		Articulo articulo6= new Articulo("Llantas","Llanta terreno de barro", "automovil y camioneta", "Bridgestone", 750000, 100);
+		Articulo articulo7= new Articulo("Llantas","Llanta terreno de barro", "automovil y camioneta", "Yokohama Geolanda", 1899000, 100);
+		Articulo articulo8= new Articulo("Llantas","Llanta terreno de asfalto", "automovil y camioneta", "Goodyear", 650000, 100);
+		Articulo articulo9= new Articulo("Llantas","Llanta terreno de asfalto", "automovil y camioneta", "michelin", 1000000, 100);
 		
 	
 		/*INTERFAZ*/

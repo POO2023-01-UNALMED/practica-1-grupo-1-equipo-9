@@ -50,6 +50,7 @@ public class Mecanico extends Trabajador {
 	        System.out.println("1. Latoneria y pintura");
 	        System.out.println("2. Cambio de Llantas y alineacion");
 	        System.out.println("3. Cambio de Aceite");
+	        System.out.println("4. Cambio de Frenos");
 	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
 
 	        input = sc.nextByte();
@@ -82,20 +83,28 @@ public class Mecanico extends Trabajador {
         	        salir="si";
         	    }
                 break;
-        
+            case 4:
+                especialidad="General";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	        if (especialidad.equals(mecanico.getEspecialidad())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
 			default:
 				System.out.print("\n¿Salir? (si/no)");
 				salir = sc.nextLine();
 			} 
 	    } while(salir.equals(null));
 	    
-	    String result = String.format("%-10s%-10s%n", "   Nombre", "   Atiende");
+	    String result = String.format("%-10s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
 	    int i = 0;
 	    for (Mecanico mecanico : mechs) {
 	        if (modelo.equals(mecanico.getAutos())) {
 	            i++;
 	            mechas.add(mecanico);
-	            String mechInfo = String.format("%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos());
+	            String mechInfo = String.format("%-10s%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos(),mecanico.getEspecialidad());
 	            result += String.format("%-3d%s", i, mechInfo);
 	        }
 	    }

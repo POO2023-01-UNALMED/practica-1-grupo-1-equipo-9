@@ -1,6 +1,7 @@
 package CapaLogica;
 
 public class Articulo {
+	private String especialidad;
     private  String tipoArticulo;
     private  String tipoVehiculo;
     private  double precio;
@@ -8,8 +9,9 @@ public class Articulo {
     private int cantidad; 
     
     // Constructor
-    public Articulo(String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad ) {
+    public Articulo(String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad ) {
         this.tipoArticulo = tipoArticulo;
+        this.especialidad = especialidad;
         this.tipoVehiculo = tipoVehiculo;
         this.precio = precio;
         this.marca = marca;
@@ -64,6 +66,19 @@ public class Articulo {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
+
+	public String getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+	public String info() {
+		String texto = "Producto: " + getTipoArticulo() + "\n";
+		return texto;
+	}
+	
    
     
 }
