@@ -72,10 +72,38 @@ public class Transaccion {
     public long getIngreso() {
         return ingreso;
     }
-
     public Cliente getCliente() {
         return cliente;
     }
+
+    public long getClienteCed() {
+        return cliente.getCedula();
+    }
+    
+	public static Cliente getClientePorCedula(long cedula){
+		Transaccion finder = null;
+		Cliente cli=null;
+		
+		for(Transaccion trans: transacciones) {
+			if(trans.getClienteCed()== cedula) {
+				finder = trans;
+				cli=finder.getCliente();
+				break;
+			}
+		}
+		return cli;
+	}
+	public static Transaccion getTransaccionporCedula(long cedula) {
+		Transaccion finder = null;
+		for (Transaccion trans: transacciones) {
+			if(trans.getClienteCed()== cedula) {
+				finder = trans;
+				
+				break;
+			}
+		}
+		return finder;
+	}
 
     public Auto getAuto() {
         return auto;

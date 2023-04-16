@@ -57,36 +57,48 @@ public class Financiero {
 		
 	}
 	public static void procesoTaller() {
-	    String confirmarSvc = null;
 	    Cliente comprador = null;
-	    Auto auto = null;
-
+	    Auto auto ;
+	    Mecanico mecanico=null;
+	    Transaccion transaccion=null;
+	    String marca;
 	    Scanner sc = new Scanner(System.in);
+	    String confirmarSvc = null;
+
+
 
 	    while(confirmarSvc == null || confirmarSvc.equals("no")) {
 	        System.out.print("Introduzca la cédula del propietario: ");
 	        long cedula = sc.nextLong();
-	        comprador = Cliente.getClientePorCedula(cedula);
-	        comprador.toString();
+	        transaccion=Transaccion.getTransaccionporCedula(cedula);
+	        comprador = Transaccion.getClientePorCedula(cedula);
+	        System.out.print(comprador.toString());
+	        if (comprador.getAuto() == null) {
+	            System.out.println("Error: Este cliente no tiene un auto registrado.");
+	            return;
+	        }
+
 	        auto = comprador.getAuto();
+	        marca=auto.getMarca();
+	        auto = comprador.getAuto();
+	        marca=auto.getMarca();
 	        System.out.print("¿Confirmar propietario? (si/no)");
 	        confirmarSvc = sc.nextLine();
 	        sc.nextLine();
 	    }
-	    if(confirmarSvc.equals("si")) {
+	    if(!confirmarSvc.equals("no")) {
 	        String confirmarMech = null;
-	        for(Mecanico mecanico: Mecanico.mecanicos) {
-	            if (mecanico.getAutos().equals(auto.getMarca())) {
-	                System.out.println("Mecánico disponible: " + mecanico.getNombre());
-	                System.out.print("¿Desea seleccionar este mecánico? (si/no)");
-	                confirmarMech = sc.nextLine();
-	                sc.nextLine();
-	                if(confirmarMech.equals("si")) {
-	                	System.out.print("eso si ");
-	                }
-	                break;
-	            }
-	        }
+	        while(confirmarMech == null || confirmarMech.equals("no")) {
+	        	mecanico=Mecanico.mecanicoDisponible(auto.getMarca());
+	        	System.out.print(mecanico);
+	        	System.out.print("Presione Enter para continuar...");
+	        	sc.nextLine();
+	            System.out.print("¿Confirmar mecanico? (si/no)");
+	            confirmarMech = sc.nextLine();
+
+
+	        
+	        }	        
 	    }        
 	}
 
