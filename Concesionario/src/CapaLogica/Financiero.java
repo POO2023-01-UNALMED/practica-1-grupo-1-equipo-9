@@ -58,7 +58,7 @@ public class Financiero {
 	}
 	public static void procesoTaller() {
 	    Cliente comprador = null;
-	    Auto auto ;
+	    Auto auto=null;
 	    Mecanico mecanico=null;
 	    Transaccion transaccion=null;
 	    String marca;
@@ -89,7 +89,7 @@ public class Financiero {
 	    if(!confirmarSvc.equals("no")) {
 	        String confirmarMech = null;
 	        while(confirmarMech == null || confirmarMech.equals("no")) {
-	        	mecanico=Mecanico.mecanicoDisponible(auto.getMarca());
+	        	mecanico=Mecanico.mecanicoDisponible(marca);
 	        	System.out.print(mecanico);
 	        	System.out.print("Presione Enter para continuar...");
 	        	sc.nextLine();
