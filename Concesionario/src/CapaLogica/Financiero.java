@@ -58,33 +58,41 @@ public class Financiero {
 	}
 	public static void procesoTaller() {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Introduzca la cédula del propietario: ");
-		long cedula = sc.nextLong(); 
-		sc.nextLine();
-		Cliente propietario = Transaccion.getClientePorCedula(cedula);
+		Cliente propietario = null;
+		Transaccion transaccion = null;
+		
+		while (propietario == null || transaccion == null) {
+			System.out.print("Introduzca la cédula del propietario: ");
+			long cedula = sc.nextLong(); 
+			sc.nextLine();
+			propietario = Transaccion.getClientePorCedula(cedula);
+			transaccion = Transaccion.getTransaccionporCedula(cedula);
+			
+			if (propietario == null || transaccion == null) {
+				System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla.");
+			}
+		}
+		
 		System.out.print(propietario.info());
-		Transaccion transaccion=Transaccion.getTransaccionporCedula(cedula);
-		String ConfirmarPrp=null;
+		String confirmarPrp=null;
 
-		while (ConfirmarPrp==null||ConfirmarPrp.equals("no")) {
+		while (confirmarPrp==null||confirmarPrp.equals("no")) {
 			System.out.print("¿Confirmar propietario? (si/no)");
-			ConfirmarPrp = sc.nextLine();
+			confirmarPrp = sc.nextLine();
 			
 		}
-		if (ConfirmarPrp.equals("si")) {
+		if (confirmarPrp.equals("si")) {
 			String confirmarMech=null;
-			
 			Mecanico mecanico=Mecanico.mecanicoDisponible(transaccion.auto.getMarca());
 			System.out.print(mecanico.info());
-			
-			
+			while (confirmarMech==null||confirmarMech.equals("no")) {
+				System.out.print("¿Confirmar propietario? (si/no)");
+				confirmarMech = sc.nextLine();
+		}if(confirmarMech.equals("si")) {
+			String confirmarSvc=null;
 			
 		}
-
-		
-		
-		
-		
+	}
 	}
 
 }

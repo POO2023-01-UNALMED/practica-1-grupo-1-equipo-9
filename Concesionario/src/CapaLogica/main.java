@@ -16,11 +16,11 @@ public class main {
 		Cliente c2= new Cliente("Ernesto",123443223,556655,"trtr","avenida siempreviva","cupra",23000000);
 		Cliente c3= new Cliente("Ernesto",123443224,556655,"trtr","avenida siempreviva","cupra",23000000);
 		Cliente c4= new Cliente("Ernesto",123443225,556655,"trtr","avenida siempreviva","cupra",23000000);
-		Mecanico mecanico = new Mecanico("Juan hola", 1234567890L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota");
-		Mecanico mecanico1 = new Mecanico("ppi Perez", 1234567891L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Mazda");
-		Mecanico mecanico2 = new Mecanico("Jdn Perez", 1234567892L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota");
-		Mecanico mecanico3 = new Mecanico("Jussdan Perez", 1234567893L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Mazda");
-		Mecanico mecanico4 = new Mecanico("Juadsadn Perez", 1234567894L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota");
+		Mecanico mecanico = new Mecanico("Juan hola", 1234567890L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota","Latonero");
+		Mecanico mecanico1 = new Mecanico("ppi Perez", 1234567891L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Mazda","Latonero");
+		Mecanico mecanico2 = new Mecanico("Jdn Perez", 1234567892L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota","General");
+		Mecanico mecanico3 = new Mecanico("Jussdan Perez", 1234567893L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Mazda","General");
+		Mecanico mecanico4 = new Mecanico("Juadsadn Perez", 1234567894L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota","General");
 		Vendedor vendedor1 = new Vendedor("Juan", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321);
 		Vendedor vendedor2 = new Vendedor("Pedro", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789);
 		Transaccion tr1=new Transaccion ("venta",vendedor1,2345738,c1,a1);
