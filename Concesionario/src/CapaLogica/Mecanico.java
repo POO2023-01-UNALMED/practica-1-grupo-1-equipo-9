@@ -33,14 +33,14 @@ public class Mecanico extends Trabajador {
 	public static Mecanico mecanicoDisponible(String modelo) {
 	    Scanner sc = new Scanner(System.in);
 	    ArrayList<Mecanico> mechs = new ArrayList<Mecanico>();
-	    String result = String.format("%-10s%-10s%\n", "   Nombre", "   Atiende");
+	    String result = String.format("%-10s%-10s%n", "   Nombre", "   Atiende");
 	    int i = 0;
 	    for (Mecanico mecanico : getMecanicos()) {
 	        if (modelo.equals(mecanico.getAutos())) {
 	            i++;
 	            mechs.add(mecanico);
-	            String mechInfo = String.format("%-10s%-10s%\n", mecanico.getNombre(), mecanico.getAutos());
-	            result += String.format("%-2d%s", i, mechInfo);
+	            String mechInfo = String.format("%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos());
+	            result += String.format("%-3d%s", i, mechInfo);
 	        }
 	    }
 	    Mecanico mecanico = null;
@@ -82,5 +82,9 @@ public class Mecanico extends Trabajador {
 	@Override
 	int calcularSalario() {
 		return (int) (pagoSvcs+getSalario());
+	}
+	public String info() {
+		String texto = "Nombre del Mecanico: " + getNombre() + "\n";
+		return texto;
 	}
 }

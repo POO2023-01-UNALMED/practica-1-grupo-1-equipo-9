@@ -98,7 +98,6 @@ public class Transaccion {
 		for (Transaccion trans: transacciones) {
 			if(trans.getClienteCed()== cedula) {
 				finder = trans;
-				
 				break;
 			}
 		}
