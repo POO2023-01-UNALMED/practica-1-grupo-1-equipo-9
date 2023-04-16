@@ -46,7 +46,7 @@ public class Vendedor extends Trabajador {
 		return (int) (getSalario()+(ventas*comision));
 	}
 	
-	public String toString() {
+	public String info() {
 		String texto = "Nombre del Vendedor: " + getNombre() + "\n";
 		return texto;
 	}

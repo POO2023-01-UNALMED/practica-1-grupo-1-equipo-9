@@ -21,7 +21,7 @@ public class Transaccion {
 		this.cliente=cliente;
 		this.auto=auto;
 		transacciones.add(this);
-		numtrans++;
+		++numtrans;
 	}
 	public Transaccion(String tipo,Mecanico mecanico,long ingreso,Cliente cliente,Auto auto,Articulo articulo) {
 		this.tipo=tipo;
@@ -31,7 +31,7 @@ public class Transaccion {
 		this.auto=auto;
 		this.articulo=articulo;
 		transacciones.add(this);
-		numtrans++;
+		++numtrans;
 	}
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -116,7 +116,7 @@ public class Transaccion {
     public static void setNumtrans(long numtrans) {
         Transaccion.numtrans = numtrans;
     }
-    public String toString() {
+    public String info() {
     	String txt = null;
 		if(getTipo().equals("venta")){
 		   txt = String.format("Transacción #%08d: %s realizada por %s para el cliente %s por un total de $%d por el auto %s",

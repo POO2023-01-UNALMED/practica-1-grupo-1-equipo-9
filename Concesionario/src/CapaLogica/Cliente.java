@@ -99,7 +99,7 @@ public class Cliente extends Persona {
 		Cliente.clientes = clientes;
 	}
 	
-	public String toString() {
+	public String info() {
 		String texto = "Nombre del cliente: " + getNombre() + "\n";
 		return texto;
 	}

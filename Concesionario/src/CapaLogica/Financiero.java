@@ -22,7 +22,7 @@ public class Financiero {
 			long cedula = sc.nextLong(); 
 			sc.nextLine();
 			comprador = Cliente.getClientePorCedula(cedula);
-			System.out.print(comprador.toString());
+			System.out.print(comprador.info());
 			System.out.print("¿Confirmar cliente? (si/no)");
 			confirmarCliente = sc.nextLine();
 		}if(confirmarCliente.equals("si")) {
@@ -32,7 +32,7 @@ public class Financiero {
 				long cedulaVendedor = sc.nextLong();
 				sc.nextLine();
 				vendedor = Vendedor.getVendedorPorCedula(cedulaVendedor);
-				System.out.print(vendedor.toString());
+				System.out.print(vendedor.info());
 				System.out.print("¿Confirmar vendedor? (si/no)");
 				confirmarVendedor = sc.nextLine();
 				if(confirmarVendedor.equals("si")) {
@@ -45,7 +45,7 @@ public class Financiero {
 						auto.setDueno(comprador);
 						System.out.println("Compra efectuada Con exito");
 						Transaccion transaccion=new Transaccion("venta",vendedor,auto.getPrecio(),comprador,auto);
-						System.out.println(transaccion.toString());
+						System.out.println(transaccion.info());
 					}else if(comprador.getPresupuesto()<=auto.getPrecio()) {
 						System.out.println("El cliente no tiene el presupuesto suficiente.");
 					}
@@ -61,7 +61,7 @@ public class Financiero {
 	    Auto auto=null;
 	    Mecanico mecanico=null;
 	    Transaccion transaccion=null;
-	    String marca;
+	    String marca = null;
 	    Scanner sc = new Scanner(System.in);
 	    String confirmarSvc = null;
 
@@ -72,7 +72,7 @@ public class Financiero {
 	        long cedula = sc.nextLong();
 	        transaccion=Transaccion.getTransaccionporCedula(cedula);
 	        comprador = Transaccion.getClientePorCedula(cedula);
-	        System.out.print(comprador.toString());
+	        System.out.print(comprador.info());
 	        if (comprador.getAuto() == null) {
 	            System.out.println("Error: Este cliente no tiene un auto registrado.");
 	            return;
