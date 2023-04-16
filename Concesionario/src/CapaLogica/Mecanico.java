@@ -100,7 +100,7 @@ public class Mecanico extends Trabajador {
 	        }
 	    }
 	    Mecanico mecanico = null;
-	    if (mechas.size() > 1) {
+	    if (mechas.size() >= 1) {
 	        System.out.println("Los mecanicos que atienden " + modelo + " disponibles son:\n");
 	        System.out.println(result);
 	        int num = 0;
@@ -115,14 +115,6 @@ public class Mecanico extends Trabajador {
 	        }
 	        mecanico = mechas.get(num - 1);
 
-	    } else if (mechas.size() == 1) {
-	        System.out.println("El unico mecanico que atiende " + modelo + " disponible es:\n");
-	        System.out.println(result);
-	        System.out.println("Lo desea seleccionar? (si/no): ");
-	        String resp = sc.nextLine();
-	        if (resp.equals("si")) {
-	            mecanico = mechas.get(0);
-	        }
 	    } else if (mechas.size() == 0) {
 	        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
 	    }
