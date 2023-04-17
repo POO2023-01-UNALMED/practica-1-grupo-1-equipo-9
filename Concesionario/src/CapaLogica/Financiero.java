@@ -190,9 +190,12 @@ public class Financiero {
 				salir=sc.nextLine();
 			}
 			
+			}
+			}
 		}
+		}while(salir.equals("si"));
 	}
+	public static void ventaRepuestos() {
+		
 	}
-	}while(salir.equals("si"));
-}
 }
