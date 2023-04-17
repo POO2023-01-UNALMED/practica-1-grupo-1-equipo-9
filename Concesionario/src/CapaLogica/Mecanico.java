@@ -8,14 +8,23 @@ public class Mecanico extends Trabajador {
 	String autos;
 	String especialidad;
 	long pagoSvcs=0;
+	long manoObra;
 
 	public Mecanico(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
-			String banco, long cuentaBanco, String autos,String especialidad) {
+			String banco, long cuentaBanco, String autos,String especialidad,long manoObra) {
 		super(nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco);
 		this.autos = autos;
+		this.manoObra=manoObra;
 		this.especialidad=especialidad;
 		Mecanico.mecanicos.add(this);
 	}
+    public long  getManoObra() {
+        return manoObra;
+    }
+
+    public void setManoObra(long manoObra) {
+        this.manoObra = manoObra;
+    }
 
 	public String getAutos() {
 		return autos;

@@ -123,8 +123,8 @@ public class Transaccion {
 			
 		}
 		else {
-			txt = String.format("Transacción #%08d: %s realizado por %s para el cliente %s por un total de $%d por el auto %s",
-		            numtrans, getTipo(), getMecanico(), getCliente(), getIngreso(), getAuto());
+			txt = String.format("Transacción #%08d: %s realizado por %s para el cliente %s por un total de $%d",
+		            numtrans, getTipo(), mecanico.getNombre(), cliente.getNombre(), getIngreso());
 			
 			
 		}
