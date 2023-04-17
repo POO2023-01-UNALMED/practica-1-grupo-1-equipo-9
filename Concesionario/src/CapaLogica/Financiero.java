@@ -9,7 +9,33 @@ public class Financiero {
 		Vendedor vendedor = null;
 		Auto auto = null;
 		Scanner sc = new Scanner(System.in);
-		InventarioAuto.autosDisponibles();
+		
+		while (comprador==null) {
+			System.out.println("Escriba la cédula del comprador: ");
+			long cedula = sc.nextLong();
+			comprador = Cliente.getClientePorCedula(cedula);
+			if (comprador==null) {
+				System.out.println("La cédula ingresada no se encuentra registrada. Por favor, vuelva a ingresarla.");
+			}
+		}
+		
+		/*Selección del carro*/
+		int opcion = 0;
+		ArrayList<Auto> modelosInteres = InventarioAuto.getAutosporModelo(comprador.getModeloInteres());
+		System.out.println("Estos son los Modelos de interés para el cliente disponibles en este momento: ");
+		for (Auto carro:modelosInteres) {
+			System.out.println(++opcion+ ". "+carro.info());
+		}
+		System.out.println("0. Más opciones de busqueda...");
+		System.out.println("Seleccione el Auto en el que está interesado o use las otras opciones de busqueda: ");
+		if (sc.nextInt()!=0) {
+			
+		}
+		
+
+		/*Selección del carro*/
+		
+		/*InventarioAuto.autosDisponibles();
 		System.out.print("Escriba el modelo del carro a escoger: ");
 		String modelo = sc.nextLine();
 		auto=InventarioAuto.autosModelo(modelo);
@@ -21,7 +47,7 @@ public class Financiero {
 			System.out.print("Introduzca la cédula del comprador: ");
 			long cedula = sc.nextLong(); 
 			sc.nextLine();
-			comprador = Cliente.getClientePorCedula(cedula);
+			
 			System.out.print(comprador.info());
 			System.out.print("¿Confirmar cliente? (si/no)");
 			confirmarCliente = sc.nextLine();
@@ -52,7 +78,7 @@ public class Financiero {
 				}
 			}
 
-		}
+		}*/
 		
 		
 	}

@@ -85,8 +85,7 @@ public class Auto {
 		this.disponible = disponible;
 	}
 
-	@Override
-	public String toString() {
+	public String info() {
 	    String fullEquipoStr = fullEquipo ? "Fullequipo" : "No Fullequipo";
 	    return String.format("Datos del Carro: Modelo %s, Marca %s, Precio %d, Color %s, %s",
 	            modelo, marca, precio, color, fullEquipoStr);

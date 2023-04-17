@@ -51,6 +51,17 @@ public class InventarioAuto {
 		}return finder;
 	}
 	
+	public static ArrayList<Auto> getAutosporModelo(String modelo) {
+		ArrayList<Auto> modelosInteres = new ArrayList<Auto>();
+		for (Auto auto: getAutosDisponibles()) {
+			if(modelo==auto.getModelo()) {
+				modelosInteres.add(auto);
+			}
+		}if (modelosInteres.size()==0) {
+			System.out.println("No existen carros de este modelo disponibles en este momento.");
+		}return modelosInteres;
+	}
+	
 	public static Auto autosModelo(String modelo) {
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Auto> autosMod = new ArrayList<Auto>();
