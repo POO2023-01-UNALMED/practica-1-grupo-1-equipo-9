@@ -7,7 +7,7 @@ public class main {
 		Scanner sc = new Scanner(System.in);
 		//Autos
 		Auto a1= new Auto("Cupra Leon", "Toyota", 20000000, 5400, "verde fofo", true, true);
-		Auto a2= new Auto("Corolla", "Toyota", 456, 5, "negro", false, true);
+		Auto a2= new Auto("Corolla", "Chevrolet", 456, 5, "negro", false, true);
 		Auto a3= new Auto("Hybrid", "Mazda", 111, 6, "azul", true, true);
 		Auto a4= new Auto("Highlander", "Toyota", 789, 10, "blanco", false, true);
 		Auto a5= new Auto("Hybrid", "Chevrolet", 222, 6, "cafe", true, true);
@@ -40,7 +40,7 @@ public class main {
 		Vendedor vendedor1 = new Vendedor("Juan", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321);
 		Vendedor vendedor2 = new Vendedor("Pedro", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789);
 		Transaccion tr1=new Transaccion ("venta",vendedor1,2345738,c1,a1);
-		Transaccion tr2=new Transaccion ("venta",vendedor1,2345738,c2,a2);
+		Transaccion tr2=new Transaccion ("venta",vendedor1,2345738,c1,a2);
 		Transaccion tr3=new Transaccion ("venta",vendedor1,2345738,c3,a3);
 		Transaccion tr4=new Transaccion ("venta",vendedor1,2345738,c4,a4);
 		

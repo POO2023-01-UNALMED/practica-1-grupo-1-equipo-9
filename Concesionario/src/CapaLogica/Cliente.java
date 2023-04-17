@@ -100,7 +100,7 @@ public class Cliente extends Persona {
 	}
 	
 	public String info() {
-		String texto = "Nombre del cliente: " + getNombre() + "\n";;
+		String texto = "Nombre del cliente: " + getNombre() + "\n";
 		return texto;
 	}
 }
