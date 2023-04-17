@@ -121,7 +121,38 @@ public class Financiero {
 			while (confirmarProd==null||confirmarProd.equals("no")) {
 				System.out.print("¿Confirmar mecanico? (si/no)");
 				confirmarProd = sc.nextLine();
-			
+		}if(confirmarProd.equals("si")) {
+			String confirmarSvc=null;
+			long costoTotal=(long) (mecanico.getManoObra()+producto.getPrecio());
+			System.out.print("El precio total por su Servicio es:"+costoTotal);
+			if(producto.getEspecialidad().equals("Motor")) {
+				System.out.print("El procedimiento a realizar es: Cambio de aceite con "+producto.getTipoArticulo()+", y su mecanico será"+mecanico.info());
+			}
+			else if(producto.getEspecialidad().equals("Llantas")) {
+				System.out.print("El procedimiento a realizar es: Cambio de Llantas con "+producto.getTipoArticulo()+", y su mecanico será"+mecanico.info());
+			}
+			else if(producto.getEspecialidad().equals("Pintura")) {
+				System.out.print("El procedimiento a realizar es: Latoneria y pintura con "+producto.getTipoArticulo()+", y su mecanico será"+mecanico.info());
+			}
+			else if(producto.getEspecialidad().equals("Frenos")) {
+				System.out.print("El procedimiento a realizar es: Cambio de frenos con "+producto.getTipoArticulo()+", y su mecanico será"+mecanico.info());
+			}
+			while (confirmarSvc==null||confirmarSvc.equals("no")) {
+				System.out.print("¿Confirmar Transaccion? (si/no)");
+				String confirmarTrans= sc.nextLine();
+				if(confirmarTrans.equals("si")) {
+					new Transaccion("taller", mecanico, costoTotal, propietario, propietario.getAuto(), producto);
+					System.out.print(new Transaccion("taller", mecanico, costoTotal, propietario, propietario.getAuto(), producto).info());
+				}
+				else {
+					System.out.print("Transaccion cancelada");
+					break;
+				}
+				System.out.print("esperemos verlo de nuevo en nuestro Consecionario,desea terminar el servicio(si/no)");
+				confirmarSvc= sc.nextLine();
+			}if (confirmarSvc.equals("si")) {
+				System.out.print("Hasta luego");
+			}
 		}
 	}
 	}

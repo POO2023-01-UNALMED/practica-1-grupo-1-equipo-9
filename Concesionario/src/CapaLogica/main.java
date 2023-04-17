@@ -20,21 +20,21 @@ public class main {
 		Cliente c4= new Cliente("Javier Castro", 958762341, 900654321, "Avenida Las Palmas, #6-78", "Barranquilla", "Chevrolet", 55000000);
 		Cliente c5= new Cliente("Roberto Palacio", 123443226, 556656, "Carrera 20 #2-55", "Medellin", "Hybrid", 30000000);
 		//Mecanicos
-		Mecanico mecanico = new Mecanico("Carlos Martinez", 1234567890L, 9876543210L, "carlos@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota","Pintura");
-		Mecanico mecanico1 = new Mecanico("Laura Hernandez", 1234567891L, 9876543211L, "laura@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123457L,"Mazda","Pintura");
-		Mecanico mecanico2 = new Mecanico("Mario Gonzalez", 1234567892L, 9876543212L, "mario@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123458L,"Chevrolet","Pintura");
-		Mecanico mecanico3 = new Mecanico("Daniela Ramirez", 1234567893L, 9876543213L, "daniela@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123459L,"Toyota","Llantas");
-		Mecanico mecanico4 = new Mecanico("Manuel Torres", 1234567894L, 9876543214L, "manuel@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123460L,"Mazda","Llantas");
-		Mecanico mecanico5 = new Mecanico("Lucia Perez", 1234567895L, 9876543215L, "lucia@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123461L,"Chevrolet","Llantas");
-		Mecanico mecanico6 = new Mecanico("Andres Castro", 1234567896L, 9876543216L, "andres@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123462L,"Toyota","Motor");
-		Mecanico mecanico7 = new Mecanico("Sofia Hernandez", 1234567897L, 9876543217L, "sofia@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123463L,"Mazda","Motor");
-		Mecanico mecanico8 = new Mecanico("Javier Diaz", 1234567898L, 9876543218L, "javier@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123464L,"Chevrolet","Motor");
-		Mecanico mecanico9 = new Mecanico("Monica Rodriguez", 1234567899L, 9876543219L, "monica@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123465L,"Toyota","Frenos");
-		Mecanico mecanico10 = new Mecanico("Juadsadn Perez", 1234567894L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Mazda","Frenos");
-		Mecanico mecanico11 = new Mecanico("Juaco Gomez", 1234567895L, 9876543211L, "jgomez@example.com", "Calle 456", 2500.0, "Banco Y", 2345678901234567L, "Chevrolet", "Motor");
-		Mecanico mecanico12 = new Mecanico("Pedro Rodriguez", 1234567896L, 9876543212L, "pedrorodriguez@example.com", "Calle 789", 3000.0, "Banco Z", 3456789012345678L, "Toyota", "Pintura");
-		Mecanico mecanico13 = new Mecanico("Maria Martinez", 1234567897L, 9876543213L, "mariamartinez@example.com", "Calle 012", 3500.0, "Banco X", 4567890123456789L, "Mazda", "Llantas");
-		Mecanico mecanico14 = new Mecanico("Juan Lopez", 1234567898L, 9876543214L, "juanlopez@example.com", "Calle 345", 4000.0, "Banco Y", 5678901234567890L, "Chevrolet", "Motor");
+		Mecanico mecanico = new Mecanico("Carlos Martinez", 1234567890L, 9876543210L, "carlos@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota","Pintura",340000);
+		Mecanico mecanico1 = new Mecanico("Laura Hernandez", 1234567891L, 9876543211L, "laura@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123457L,"Mazda","Pintura",340000);
+		Mecanico mecanico2 = new Mecanico("Mario Gonzalez", 1234567892L, 9876543212L, "mario@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123458L,"Chevrolet","Pintura",340000);
+		Mecanico mecanico3 = new Mecanico("Daniela Ramirez", 1234567893L, 9876543213L, "daniela@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123459L,"Toyota","Llantas",50000);
+		Mecanico mecanico4 = new Mecanico("Manuel Torres", 1234567894L, 9876543214L, "manuel@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123460L,"Mazda","Llantas",50000);
+		Mecanico mecanico5 = new Mecanico("Lucia Perez", 1234567895L, 9876543215L, "lucia@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123461L,"Chevrolet","Llantas",50000);
+		Mecanico mecanico6 = new Mecanico("Andres Castro", 1234567896L, 9876543216L, "andres@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123462L,"Toyota","Motor",15000);
+		Mecanico mecanico7 = new Mecanico("Sofia Hernandez", 1234567897L, 9876543217L, "sofia@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123463L,"Mazda","Motor",15000);
+		Mecanico mecanico8 = new Mecanico("Javier Diaz", 1234567898L, 9876543218L, "javier@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123464L,"Chevrolet","Motor",15000);
+		Mecanico mecanico9 = new Mecanico("Monica Rodriguez", 1234567899L, 9876543219L, "monica@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123465L,"Toyota","Frenos",57000);
+		Mecanico mecanico10 = new Mecanico("Juadsadn Perez", 1234567894L, 9876543210L, "juanperez@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Mazda","Frenos",57000);
+		Mecanico mecanico11 = new Mecanico("Juaco Gomez", 1234567895L, 9876543211L, "jgomez@example.com", "Calle 456", 2500.0, "Banco Y", 2345678901234567L, "Chevrolet", "Frenos",57000);
+		Mecanico mecanico12 = new Mecanico("Pedro Rodriguez", 1234567896L, 9876543212L, "pedrorodriguez@example.com", "Calle 789", 3000.0, "Banco Z", 3456789012345678L, "Toyota", "Pintura",340000);
+		Mecanico mecanico13 = new Mecanico("Maria Martinez", 1234567897L, 9876543213L, "mariamartinez@example.com", "Calle 012", 3500.0, "Banco X", 4567890123456789L, "Mazda", "Llantas",50000);
+		Mecanico mecanico14 = new Mecanico("Juan Lopez", 1234567898L, 9876543214L, "juanlopez@example.com", "Calle 345", 4000.0, "Banco Y", 5678901234567890L, "Chevrolet", "Motor",15000);
 
 		
 		Vendedor vendedor1 = new Vendedor("Juan", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321);
