@@ -32,7 +32,14 @@ public class Financiero {
 			System.out.println("4. Volver");
 			switch (sc.nextInt()){
 				case 1:
-					
+					break;
+				case 2:
+					break;
+				case 3:
+					InventarioAuto.autosDisponibles();
+					break;
+				case 4:
+					break;
 			}
 		}
 		
