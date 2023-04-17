@@ -80,10 +80,7 @@ public class InventarioAuto {
 		    System.out.println("Los carros de modelo " + modelo + " disponibles son:\n");
 		    System.out.println(result);
 		    /*falta hacer control de errores cuando se ingresa una opcion no valida*/
-		    System.out.println("Seleccione el numero del carro" + "[1-" + autosMod.size() + "]: ");
-		    byte num = readByte();
-		    auto=autosMod.get(num-1);
-		    auto.setDisponible(false);
+		    System.out.println("Seleccione el numero del carro" + "[1-" + autosMod.size() + "] ");
 	    } else if (autosMod.size()==1) {
 	    	System.out.println("El unico carro de modelo " + modelo + " disponible es:\n");
 		    System.out.println(result);

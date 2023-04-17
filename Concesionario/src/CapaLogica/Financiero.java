@@ -21,15 +21,19 @@ public class Financiero {
 		
 		/*Selección del carro*/
 		int opcion = 0;
-		ArrayList<Auto> modelosInteres = InventarioAuto.getAutosporModelo(comprador.getModeloInteres());
 		System.out.println("Estos son los Modelos de interés para el cliente disponibles en este momento: ");
-		for (Auto carro:modelosInteres) {
-			System.out.println(++opcion+ ". "+carro.info());
-		}
+		InventarioAuto.autosModelo(comprador.getModeloInteres());
 		System.out.println("0. Más opciones de busqueda...");
 		System.out.println("Seleccione el Auto en el que está interesado o use las otras opciones de busqueda: ");
 		if (sc.nextInt()!=0) {
-			
+			System.out.println("1. Mostrar Autos por Marca");
+			System.out.println("2. Mostrar Autos por precio");
+			System.out.println("3. Mostrar todos los autos");
+			System.out.println("4. Volver");
+			switch (sc.nextInt()){
+				case 1:
+					
+			}
 		}
 		
 
