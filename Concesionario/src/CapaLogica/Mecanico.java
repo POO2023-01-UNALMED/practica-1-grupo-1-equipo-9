@@ -57,7 +57,7 @@ public class Mecanico extends Trabajador {
 
 	        switch (input) {
 	        case 1:
-                especialidad="Latonero";
+                especialidad="Pintura";
         	    for (Mecanico mecanico : getMecanicos()) {
         	        if (especialidad.equals(mecanico.getEspecialidad())) {
         	            mechs.add(mecanico);
@@ -66,7 +66,7 @@ public class Mecanico extends Trabajador {
         	    }
                 break;
             case 2:
-                especialidad="General";
+                especialidad="Llantas";
         	    for (Mecanico mecanico : getMecanicos()) {
         	        if (especialidad.equals(mecanico.getEspecialidad())) {
         	            mechs.add(mecanico);
@@ -75,7 +75,7 @@ public class Mecanico extends Trabajador {
         	    }
                 break;
             case 3:
-                especialidad="General";
+                especialidad="Motor";
         	    for (Mecanico mecanico : getMecanicos()) {
         	        if (especialidad.equals(mecanico.getEspecialidad())) {
         	            mechs.add(mecanico);
@@ -84,7 +84,7 @@ public class Mecanico extends Trabajador {
         	    }
                 break;
             case 4:
-                especialidad="General";
+                especialidad="Frenos";
         	    for (Mecanico mecanico : getMecanicos()) {
         	        if (especialidad.equals(mecanico.getEspecialidad())) {
         	            mechs.add(mecanico);
@@ -98,13 +98,13 @@ public class Mecanico extends Trabajador {
 			} 
 	    } while(salir.equals(null));
 	    
-	    String result = String.format("%-10s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
+	    String result = String.format("%-20s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
 	    int i = 0;
 	    for (Mecanico mecanico : mechs) {
 	        if (modelo.equals(mecanico.getAutos())) {
 	            i++;
 	            mechas.add(mecanico);
-	            String mechInfo = String.format("%-10s%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos(),mecanico.getEspecialidad());
+	            String mechInfo = String.format("%-20s%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos(),mecanico.getEspecialidad());
 	            result += String.format("%-3d%s", i, mechInfo);
 	        }
 	    }

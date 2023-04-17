@@ -177,14 +177,14 @@ public class InventarioArticulo {
     	Scanner sc = new Scanner(System.in);
  	    byte input;
  	    String salir = null;
- 	    String result = String.format("%-10s%-10s%-10s%-10s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
+ 	    String result = String.format("%-40s%-25s%-20s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
  	    int i = 0;
  	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
  	    for (Articulo articulo : getArticulos()) {
  	        if (tipo.equals(articulo.getEspecialidad())) {
  	            i++;
  	            prods.add(articulo);
- 	            String mechInfo = String.format("%-10s%-10s%-10s%-10s%n", articulo.getTipoArticulo(), articulo.getTipoVehiculo(),articulo.getMarca(),articulo.getPrecio());
+ 	            String mechInfo = String.format("%-40s%-25s%-20s%-15s%n", articulo.getTipoArticulo(), articulo.getTipoVehiculo(),articulo.getMarca(),articulo.getPrecio());
  	            result += String.format("%-3d%s", i, mechInfo);
  	        }
  	    }
