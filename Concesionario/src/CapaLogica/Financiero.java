@@ -217,7 +217,6 @@ public class Financiero {
 				long cedula = sc.nextLong();
 				comprador = Cliente.getClientePorCedula(cedula);
 				System.out.print(comprador.info());
-				
 
 			}
 		}if(!confirmarComp.equals("no")) {
