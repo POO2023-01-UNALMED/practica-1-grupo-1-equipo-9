@@ -212,11 +212,12 @@ public class Financiero {
 			System.out.print("¿Confirmar cliente? (si/no)");
 			confirmarComp = sc.nextLine();
 			sc.nextLine();
-			if (confirmarComp.equals("no")){
+			if (!confirmarComp.equals("si")){
 				System.out.println("Escriba la cédula del comprador: ");
 				long cedula = sc.nextLong();
 				comprador = Cliente.getClientePorCedula(cedula);
 				System.out.print(comprador.info());
+
 			}
 		}if(!confirmarComp.equals("no")) {
 			String confirmarTipo=null;
@@ -226,6 +227,11 @@ public class Financiero {
 				System.out.print("¿Confirmar Tipo de repuesto? (si/no)");
 				confirmarTipo = sc.nextLine();
 				sc.nextLine();
+				if (confirmarTipo.equals("no")){
+					repuesto=InventarioArticulo.selectorEspecial();
+					System.out.print("Usted Va a comprar un repuesto de: "+repuesto.get(0).getEspecialidad()+"\n");
+					
+				}
 			}if(confirmarTipo.equals("si")) {
 				String confirmarMarca=null;
 				ArrayList<Articulo> marca=InventarioArticulo.selectorMarca(repuesto);
@@ -234,6 +240,11 @@ public class Financiero {
 					System.out.print("¿Confirmar Tipo de Vehiculo? (si/no)");
 					confirmarMarca = sc.nextLine();
 					sc.nextLine();
+					if (confirmarTipo.equals("no")){
+						marca=InventarioArticulo.selectorMarca(repuesto);
+						System.out.print("Usted Va a comprar un repuesto de: "+marca.get(0).getMarcaVehiculo()+"\n");
+						
+					}
 				}if(confirmarTipo.equals("si")) {
 					Articulo articulo=InventarioArticulo.selectorCalidad(marca);
 					System.out.print(articulo.getTipoArticulo());
