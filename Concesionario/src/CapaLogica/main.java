@@ -43,13 +43,13 @@ public class main {
 		Mecanico mecanico14 = new Mecanico("Juan Lopez", 1234567898L, 9876543214L, "juanlopez@example.com", "Calle 345", 4000.0, "Banco Y", 5678901234567890L, "Chevrolet", "Motor",15000);
 
 		// Vendedor
-		Vendedor vendedor1 = new Vendedor("Juan", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321);
-		Vendedor vendedor2 = new Vendedor("Pedro", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789);
-		Vendedor vendedor3 = new Vendedor("María", 456789123, 5557890, "maria@ejemplo.com", "Calle Principal 456", 1200.0, "Banco Ejemplo", 654321987);
-		Vendedor vendedor4 = new Vendedor("Luis", 789123456, 5552468, "luis@ejemplo.com", 1800.0, "Banco Otro Ejemplo", 321654987);
-		Vendedor vendedor5 = new Vendedor("Ana", 321654987, 5551357, "ana@ejemplo.com", "Avenida Central 789", 900.0, "Banco Ejemplo", 147258369);
-		Vendedor vendedor6 = new Vendedor("Jorge", 654789321, 5558642, "jorge@ejemplo.com", 2000.0, "Banco Otro Ejemplo", 963852741);
-		Vendedor vendedor7 = new Vendedor("Carla", 789654123, 5552795, "carla@ejemplo.com", "Calle Secundaria 321", 1500.0, "Banco Ejemplo", 369852147);
+		Vendedor vendedor1 = new Vendedor("Juan", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321,"Vitrina");
+		Vendedor vendedor2 = new Vendedor("Pedro", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789,"Repuestos");
+		Vendedor vendedor3 = new Vendedor("María", 456789123, 5557890, "maria@ejemplo.com", "Calle Principal 456", 1200.0, "Banco Ejemplo", 654321987,"Vitrina");
+		Vendedor vendedor4 = new Vendedor("Luis", 789123456, 5552468, "luis@ejemplo.com", 1800.0, "Banco Otro Ejemplo", 321654987,"Repuestos");
+		Vendedor vendedor5 = new Vendedor("Ana", 321654987, 5551357, "ana@ejemplo.com", "Avenida Central 789", 900.0, "Banco Ejemplo", 147258369,"Vitrina");
+		Vendedor vendedor6 = new Vendedor("Jorge", 654789321, 5558642, "jorge@ejemplo.com", 2000.0, "Banco Otro Ejemplo", 963852741,"Repuestos");
+		Vendedor vendedor7 = new Vendedor("Carla", 789654123, 5552795, "carla@ejemplo.com", "Calle Secundaria 321", 1500.0, "Banco Ejemplo", 369852147,"Vitrina");
 
 		//Articulos aceites
 		Articulo articulo1= new Articulo("Basico","taller","Motor","aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100);
