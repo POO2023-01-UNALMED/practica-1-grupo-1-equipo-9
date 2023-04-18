@@ -227,6 +227,65 @@ public class InventarioArticulo {
  	    return product;
  		
  	}
+    public static String selectorEspecial() {
+		System.out.print("paso");
+		String salir=null;
+		 byte input;
+		 String especialidad=null;
+		 ArrayList<Articulo> artic = new ArrayList<Articulo>();
+		do {
+			System.out.print("¿Que repuesto deseas Comprar?"+"\n");
+	        System.out.println("1. Repuestos de Motor");
+	        System.out.println("2. Escapes");
+	        System.out.println("3. Sistema de Sonido");
+	        System.out.println("4. Suspension");
+	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+	        input = sc.nextByte();
+
+	        switch (input) {
+	        case 1:
+                especialidad="Motor";
+        	    for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 2:
+                especialidad="Escape";
+        	    for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 3:
+                especialidad="Sonido";
+        	    for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 4:
+                especialidad="Suspension";
+        	    for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+			default:
+				System.out.print("\n¿Salir? (si/no)");
+				salir = sc.nextLine();
+			} 
+		}while(salir==null);
+		return especialidad;
+    }
 
     	
     	
