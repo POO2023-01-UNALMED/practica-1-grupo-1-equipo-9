@@ -98,9 +98,39 @@ public class InventarioAuto {
 	    return auto;
 	}
 	
-	/*public static String autosMarca() {
+	public static String autosMarca() {
+		Scanner sc = new Scanner(System.in);
+		String marca = ""; 
+		System.out.println("1. Mazda");
+		System.out.println("2. Toyota");
+		System.out.println("3. Chevrolet");
+		System.out.println("Seleccione la marca [1-3]: ");
+		switch (sc.nextInt()){
+		case 1:
+			marca = "Mazda";
+			break;
+		case 2:
+			marca = "Toyota";
+			break;
+		case 3:
+			marca = "Chevrolet";
+			break;
+		}		
+		ArrayList<Auto> autosMarca = new ArrayList<Auto>();
+		for(Auto auto:getAutosDisponibles()) {
+			if(auto.getMarca()==marca) {
+				autosMarca.add(auto);
+			}
+		}
+		System.out.println("Estos son los carros disponibles de esta marca: ");
+		for (Auto auto:autosMarca){
+			System.out.println(auto.info());
+		}
+		return "";
 		
-	}*/
+		
+		
+	}
 	
 	public static byte readByte() {
 	    Scanner scanner = new Scanner(System.in);
