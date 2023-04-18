@@ -78,7 +78,7 @@ public class Cliente extends Persona {
 				System.out.print("Introduzca su Dirección: ");
 				String direccion = sc.nextLine(); 
 				
-				System.out.print("Introduzca su Modelo de Interes: ");
+				System.out.print("Introduzca su Marca de Interes: ");
 				String modelo = sc.nextLine(); 
 			
 				System.out.print("Introduzca su Presupuesto: ");
@@ -93,7 +93,6 @@ public class Cliente extends Persona {
 		}
 		return finder;
 	}
-
 
 	public static void setClientes(ArrayList<Cliente> clientes) {
 		Cliente.clientes = clientes;

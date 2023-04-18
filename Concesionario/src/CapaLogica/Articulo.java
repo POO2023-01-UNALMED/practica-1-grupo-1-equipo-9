@@ -9,10 +9,32 @@ public class Articulo {
     private  double precio;
     private  String marca;
     private int cantidad; 
+    private String marcaVehiculo;
     
     // Constructor
     public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad ) {
         this.calidad=calidad;
+    	this.tipo=tipo;
+    	this.tipoArticulo = tipoArticulo;
+        this.especialidad = especialidad;
+        this.tipoVehiculo = tipoVehiculo;
+        this.precio = precio;
+        this.marca = marca;
+        this.cantidad = cantidad;
+        
+        if(tipo.equals("taller")) {
+        	InventarioArticulo.articulos.add(this);
+        	this.marcaVehiculo="Generico";
+        }
+        else if(tipo.equals("repuesto")) {
+        	InventarioArticulo.repuestos.add(this);
+        	this.marcaVehiculo="Generico";
+        }
+        
+    }
+    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad,String marcaVehiculo ) {
+        this.marcaVehiculo=marcaVehiculo;
+    	this.calidad=calidad;
     	this.tipo=tipo;
     	this.tipoArticulo = tipoArticulo;
         this.especialidad = especialidad;
@@ -103,6 +125,14 @@ public class Articulo {
 
 	public void setCalidad(String calidad) {
 		this.calidad = calidad;
+	}
+
+	public String getMarcaVehiculo() {
+		return marcaVehiculo;
+	}
+
+	public void setMarcaVehiculo(String marcaVehiculo) {
+		this.marcaVehiculo = marcaVehiculo;
 	}
 	
    

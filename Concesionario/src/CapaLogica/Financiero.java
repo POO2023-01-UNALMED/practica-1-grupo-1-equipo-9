@@ -227,9 +227,18 @@ public class Financiero {
 				confirmarTipo = sc.nextLine();
 				sc.nextLine();
 			}if(confirmarTipo.equals("si")) {
-				String confirmarCalidad=null;
-				Articulo articulo=InventarioArticulo.selectorCalidad(repuesto);
-				System.out.print(articulo.getTipoArticulo());
+				String confirmarMarca=null;
+				ArrayList<Articulo> marca=InventarioArticulo.selectorMarca(repuesto);
+				System.out.print("Usted Va a comprar un repuesto de: "+marca.get(0).getMarcaVehiculo()+"\n");
+				while(confirmarMarca==null||confirmarMarca.equals("no")) {
+					System.out.print("¿Confirmar Tipo de Vehiculo? (si/no)");
+					confirmarMarca = sc.nextLine();
+					sc.nextLine();
+				}if(confirmarTipo.equals("si")) {
+					Articulo articulo=InventarioArticulo.selectorCalidad(marca);
+					System.out.print(articulo.getTipoArticulo());
+				}
+
 			}
 		}
 	}

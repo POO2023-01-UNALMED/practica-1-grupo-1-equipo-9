@@ -329,7 +329,7 @@ public class InventarioArticulo {
 	       	        articulo = articul.get(num - 1);
 	
 	       	    } else if (articul.size() == 0) {
-	       	        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
+	       	        System.out.println("No hay productos disponibles que atiendan su vehiculo");
 	       	    }
 	       	 salir="si";
 	       	    
@@ -363,7 +363,7 @@ public class InventarioArticulo {
 	       	        articulo = articul.get(num - 1);
 	
 	       	    } else if (articul.size() == 0) {
-	       	        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
+	       	        System.out.println("No hay productos disponibles que atiendan su vehiculo");
 	       	    }
 	       	 salir="si";
 	       	    
@@ -375,8 +375,53 @@ public class InventarioArticulo {
 		}while(salir==null);
 		return articulo;
    }
-    	
-    
-    	
+    public static ArrayList<Articulo> selectorMarca(ArrayList<Articulo> artic) {
+    	String salir=null;
+		 byte input;
+		 String marca=null;
+		 ArrayList<Articulo> articul = new ArrayList<Articulo>();
+		do {
+			System.out.print("¿Que Marca de auto posee?"+"\n");
+	        System.out.println("1. Toyota");
+	        System.out.println("2. Mazda");
+	        System.out.println("3. Chevrolet");
+	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+	        input = sc.nextByte();
+
+	        switch (input) {
+	        case 1:
+                marca="Toyota";
+        	    for (Articulo ar : artic) {
+        	        if (marca.equals(ar.getMarcaVehiculo())) {
+        	            articul.add(ar);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 2:
+                marca="Mazda";
+        	    for (Articulo ar : artic) {
+        	        if (marca.equals(ar.getMarcaVehiculo()) ) {
+        	            articul.add(ar);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 3:
+                marca="Chevrolet";
+        	    for (Articulo ar : artic) {
+        	        if (marca.equals(ar.getMarcaVehiculo()) ) {
+        	            articul.add(ar);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+			default:
+				System.out.print("\n¿Salir? (si/no)");
+				salir = sc.nextLine();
+			} 
+		}while(salir==null);
+		return articul;
+   }	
 }
 
