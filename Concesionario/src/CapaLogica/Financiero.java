@@ -212,13 +212,7 @@ public class Financiero {
 			System.out.print("¿Confirmar cliente? (si/no)");
 			confirmarComp = sc.nextLine();
 			sc.nextLine();
-			if (!confirmarComp.equals("si")){
-				System.out.println("Escriba la cédula del comprador: ");
-				long cedula = sc.nextLong();
-				comprador = Cliente.getClientePorCedula(cedula);
-				System.out.print(comprador.info());
 
-			}
 		}if(!confirmarComp.equals("no")) {
 			String confirmarTipo=null;
 			ArrayList<Articulo> repuesto=InventarioArticulo.selectorEspecial();
