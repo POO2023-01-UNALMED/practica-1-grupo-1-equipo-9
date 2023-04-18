@@ -1,5 +1,7 @@
 package CapaLogica;
 
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.*;  
 
 public class Financiero {
@@ -278,22 +280,22 @@ public class Financiero {
 			float num = ((float)vendedores1.size() / Vendedor.getVendedores().size()) * 100;
 			int roundedNum = Math.round(num);
 
-			System.out.println("De los " + Vendedor.getVendedores().size() + " vendedores que trabajan actualmente en el concesionario, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en lo que va del mes, estos son:");
+			System.out.println("-------- De los " + Vendedor.getVendedores().size() + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
 			
 			for (String vend: vendedores1)
 			{
 				System.out.println(vend);
 			}
 			
-			// para saber la cantidad total en ventas:
+			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			int sumaTotal=0;
 			int contadorTotal=0;
 			for (Transaccion trans1: Transaccion.getTransacciones())
 				{sumaTotal+=trans1.getIngreso();
 				contadorTotal+=1;}
-			// para saber la cantidad total en ventas:
+			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			
-			System.out.println("Los cuales suman la siguiente cantidad de dinero en ventas: ");
+			System.out.println("-------- Suma de dinero en ventas por vendedor: --------");
 			
 			for (String vend: vendedores1)
 			{
@@ -308,10 +310,10 @@ public class Financiero {
 				}
 				float num2 = ((float)suma / sumaTotal) * 100;
 				int roundedSum = Math.round(num2);
-				System.out.println(vend + ": " + suma + ", el " + roundedSum + " % del total de ingresos por ventas de autos.");
+				System.out.println(vend + ": " + suma + " $, el " + roundedSum + " % del total de ingresos por ventas de autos.");
 			}
 			
-			System.out.println("A continuacion, el # de ventas que han realizado, y el promedio de ingreso por venta: ");
+			System.out.println("-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
 			
 			for (String vend: vendedores1)
 			{
@@ -329,15 +331,24 @@ public class Financiero {
 				int roundedNum4 = Math.round(num4);
 				//int roundedNum3 = Math.round(num3);
 				
-				System.out.println(vend + ": " + contador + ", el " + roundedNum4 + "% del total de ventas, promediando " + num3 + " $ por venta.");
+				System.out.println(vend + ": " + contador + ", el " + roundedNum4 + "% del número total de ventas, promediando " + num3 + " $ por venta.");
 			}
 			
+			LocalDate fecha = LocalDate.now();
+			int dia = fecha.getDayOfMonth();
+			String nombreMes = fecha.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault());
+			
+			float num5 = ((float)sumaTotal/dia);
+			int roundedNum5 = Math.round(num5);
+			System.out.println("-------- Suma de ingresos total, y promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": --------");
+			System.out.println("Suma total de ingresos: " + sumaTotal + ", promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": " + roundedNum5 + " $.");
 			break;
 			
 		case 2:
 			break;
 		}
 		//System.out.println("has seleccionado " + opcion);
+		
 		
 		
 	}
