@@ -2,34 +2,20 @@ package CapaLogica;
 
 import java.util.ArrayList;
 
-public class Transaccion {
+public abstract class Transaccion {
 	static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
 	String tipo;
-	Vendedor vendedor;
 	Mecanico mecanico;
 	long ingreso;
 	Cliente cliente;
-	Auto auto;
 	Articulo articulo;
 	static long numtrans=00000001;
 	
 	
-	public Transaccion(String tipo,Vendedor vendedor,long ingreso,Cliente cliente,Auto auto) {
+	public Transaccion(String tipo,long ingreso,Cliente cliente) {
 		this.tipo=tipo;
-		this.vendedor=vendedor;
 		this.ingreso=ingreso;
 		this.cliente=cliente;
-		this.auto=auto;
-		transacciones.add(this);
-		++numtrans;
-	}
-	public Transaccion(String tipo,Mecanico mecanico,long ingreso,Cliente cliente,Auto auto,Articulo articulo) {
-		this.tipo=tipo;
-		this.mecanico=mecanico;
-		this.ingreso=ingreso;
-		this.cliente=cliente;
-		this.auto=auto;
-		this.articulo=articulo;
 		transacciones.add(this);
 		++numtrans;
 	}
@@ -42,9 +28,6 @@ public class Transaccion {
         this.tipo = tipo;
     }
 
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
-    }
 
     public void setMecanico(Mecanico mecanico) {
         this.mecanico = mecanico;
@@ -58,17 +41,11 @@ public class Transaccion {
         this.cliente = cliente;
     }
 
-    public void setAuto(Auto auto) {
-        this.auto = auto;
-    }
 
     public String getTipo() {
         return tipo;
     }
 
-    public Vendedor getVendedor() {
-        return vendedor;
-    }
 
     public Mecanico getMecanico() {
         return mecanico;
@@ -85,33 +62,8 @@ public class Transaccion {
         return cliente.getCedula();
     }
     
-	public static Cliente getClientePorCedula(long cedula){
-		Transaccion finder = null;
-		Cliente cli=null;
-		
-		for(Transaccion trans: transacciones) {
-			if(trans.getClienteCed()== cedula) {
-				finder = trans;
-				cli=finder.getCliente();
-				break;
-			}
-		}
-		return cli;
-	}
-	public static Transaccion getTransaccionporCedula(long cedula) {
-		Transaccion finder = null;
-		for (Transaccion trans: transacciones) {
-			if(trans.getClienteCed()== cedula) {
-				finder = trans;
-				break;
-			}
-		}
-		return finder;
-	}
 
-    public Auto getAuto() {
-        return auto;
-    }
+
 
     public static long getNumtrans() {
         return numtrans;
@@ -120,21 +72,7 @@ public class Transaccion {
     public static void setNumtrans(long numtrans) {
         Transaccion.numtrans = numtrans;
     }
-    public String info() {
-    	String txt = null;
-		if(getTipo().equals("venta")){
-		   txt = String.format("Transacción #%08d: %s realizada por %s para el cliente %s por un total de $%d por el auto %s",
-		            numtrans, getTipo(), vendedor.getNombre(), cliente.getNombre(), auto.getPrecio(), auto.getModelo());
-			
-		}
-		else {
-			txt = String.format("Transacción #%08d: %s realizado por %s para el cliente %s por un total de $%d",
-		            numtrans, getTipo(), mecanico.getNombre(), cliente.getNombre(), getIngreso());
-			
-			
-		}
-		return txt;
-	}
+    public abstract String info(); 
     
 }
 	

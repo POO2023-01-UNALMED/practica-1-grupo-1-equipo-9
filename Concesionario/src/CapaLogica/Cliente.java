@@ -1,9 +1,14 @@
 package CapaLogica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cliente extends Persona {
+public class Cliente extends Persona implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	private String modeloInteres;
 	private long presupuesto;
