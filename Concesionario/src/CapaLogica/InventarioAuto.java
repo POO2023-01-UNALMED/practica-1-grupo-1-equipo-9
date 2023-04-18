@@ -98,9 +98,9 @@ public class InventarioAuto {
 	    return auto;
 	}
 	
-	public static String autosMarca() {
+	/*public static String autosMarca() {
 		
-	}
+	}*/
 	
 	public static byte readByte() {
 	    Scanner scanner = new Scanner(System.in);

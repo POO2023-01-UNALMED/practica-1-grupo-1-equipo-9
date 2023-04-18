@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class InventarioArticulo {
 	static Scanner sc = new Scanner(System.in);
     static ArrayList<Articulo> articulos = new ArrayList<>();
+    static ArrayList<Articulo> repuestos = new ArrayList<>();
     
     // Método para agregar un artículo al inventario
     public static void agregarArticulo(Articulo articulo) {
@@ -22,6 +23,22 @@ public class InventarioArticulo {
     public static ArrayList<Articulo> getArticulos() {
     	return articulos;
     }
+    // Método para agregar un artículo al inventario
+    public static void agregarRepuesto(Articulo repuesto) {
+        repuestos.add(repuesto);
+    }
+    
+    //Metodo para eliminar un articulo del inventario
+    public void eliminarRepuesto(Articulo repuesto) {
+    	repuestos.remove(repuesto);
+    }
+    
+    //Metodo para obtener articulos
+    
+    public static ArrayList<Articulo> getRepuesto() {
+    	return repuestos;
+    }
+    
     
     /* Metodo para  reemplazar la lista completa de articulos en el inventario 
      * con una nueva lista proporcionada.*/

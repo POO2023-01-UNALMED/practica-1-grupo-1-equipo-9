@@ -196,6 +196,30 @@ public class Financiero {
 		}while(salir.equals("si"));
 	}
 	public static void ventaRepuestos() {
-		
+		System.out.print("Bienvenido a nuestro portal de Ventas de Repuestos"+"\n");
+		Cliente comprador = null;
+		Vendedor vendedor = null;
+		Auto auto = null;
+		Scanner sc = new Scanner(System.in);
+		while (comprador==null) {
+			System.out.println("Escriba la cédula del comprador: ");
+			long cedula = sc.nextLong();
+			comprador = Cliente.getClientePorCedula(cedula);
+			System.out.print(comprador.info());
+		}
+		System.out.print(comprador.info());
+		String confirmarComp=null;
+		while(confirmarComp==null||confirmarComp.equals("no")) {
+			System.out.print("¿Confirmar cliente? (si/no)");
+			confirmarComp = sc.nextLine();
+			if (confirmarComp.equals("no")){
+				System.out.println("Escriba la cédula del comprador: ");
+				long cedula = sc.nextLong();
+				comprador = Cliente.getClientePorCedula(cedula);
+				System.out.print(comprador.info());
+			}
+		}if(confirmarComp.equals("si")) {
+			
+		}
 	}
 }

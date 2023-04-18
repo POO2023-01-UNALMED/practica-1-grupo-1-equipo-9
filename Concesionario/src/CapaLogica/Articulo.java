@@ -1,6 +1,8 @@
 package CapaLogica;
 
 public class Articulo {
+	private String calidad;
+	private String tipo;
 	private String especialidad;
     private  String tipoArticulo;
     private  String tipoVehiculo;
@@ -9,14 +11,22 @@ public class Articulo {
     private int cantidad; 
     
     // Constructor
-    public Articulo(String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad ) {
-        this.tipoArticulo = tipoArticulo;
+    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad ) {
+        this.calidad=calidad;
+    	this.tipo=tipo;
+    	this.tipoArticulo = tipoArticulo;
         this.especialidad = especialidad;
         this.tipoVehiculo = tipoVehiculo;
         this.precio = precio;
         this.marca = marca;
         this.cantidad = cantidad;
-        InventarioArticulo.articulos.add(this);
+        if(tipo.equals("taller")) {
+        	InventarioArticulo.articulos.add(this);
+        }
+        else if(tipo.equals("repuesto")) {
+        	InventarioArticulo.repuestos.add(this);
+        }
+        
     }
     
     // Getters y Setters
@@ -77,6 +87,22 @@ public class Articulo {
 	public String info() {
 		String texto = "Producto: " + getTipoArticulo() + "\n";
 		return texto;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getCalidad() {
+		return calidad;
+	}
+
+	public void setCalidad(String calidad) {
+		this.calidad = calidad;
 	}
 	
    

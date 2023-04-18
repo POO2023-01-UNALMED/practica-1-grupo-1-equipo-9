@@ -45,31 +45,53 @@ public class main {
 		Transaccion tr4=new Transaccion ("venta",vendedor1,2345738,c4,a4);
 		
 		//Articulos aceites
-		Articulo articulo1= new Articulo("Motor","aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100);
-		Articulo articulo2= new Articulo("Motor","aceite sintetico", "automovil y camioneta", "Aceite 5w20 Mobil 2000 – cuarto", 33900, 100);
-		Articulo articulo3= new Articulo("Motor","aceite semisintetico", "automovil y camioneta", "Aceite 5w40 Mobil 3000 – cuarto", 34900, 100);
+		Articulo articulo1= new Articulo("Basico","taller","Motor","aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100);
+		Articulo articulo2= new Articulo("Basico","taller","Motor","aceite sintetico", "automovil y camioneta", "Aceite 5w20 Mobil 2000 – cuarto", 33900, 100);
+		Articulo articulo3= new Articulo("Basico","taller","Motor","aceite semisintetico", "automovil y camioneta", "Aceite 5w40 Mobil 3000 – cuarto", 34900, 100);
 				
 		//Articulos llantas
-		Articulo articulo4= new Articulo("Llantas","Llanta todo terreno", "automovil y camioneta", "GoodYear", 745000, 100);
-		Articulo articulo5= new Articulo("Llantas","Llanta todo terreno", "automovil y camioneta", "Michelin", 1150000, 99);
-		Articulo articulo6= new Articulo("Llantas","Llanta terreno de barro", "automovil y camioneta", "Bridgestone", 750000, 100);
-		Articulo articulo7= new Articulo("Llantas","Llanta terreno de barro", "automovil y camioneta", "Yokohama Geolanda", 1899000, 100);
-		Articulo articulo8= new Articulo("Llantas","Llanta terreno de asfalto", "automovil y camioneta", "Goodyear", 650000, 100);
-		Articulo articulo9= new Articulo("Llantas","Llanta terreno de asfalto", "automovil y camioneta", "michelin", 1000000, 100);
+		Articulo articulo4= new Articulo("Basico","taller","Llantas","Llanta todo terreno", "automovil y camioneta", "GoodYear", 745000, 100);
+		Articulo articulo5= new Articulo("Basico","taller","Llantas","Llanta todo terreno", "automovil y camioneta", "Michelin", 1150000, 99);
+		Articulo articulo6= new Articulo("Basico","taller","Llantas","Llanta terreno de barro", "automovil y camioneta", "Bridgestone", 750000, 100);
+		Articulo articulo7= new Articulo("Basico","taller","Llantas","Llanta terreno de barro", "automovil y camioneta", "Yokohama Geolanda", 1899000, 100);
+		Articulo articulo8= new Articulo("Basico","taller","Llantas","Llanta terreno de asfalto", "automovil y camioneta", "Goodyear", 650000, 100);
+		Articulo articulo9= new Articulo("Basico","taller","Llantas","Llanta terreno de asfalto", "automovil y camioneta", "michelin", 1000000, 100);
 		//Articulos frenos
-		Articulo articulo10 = new Articulo("Frenos", "Frenos de disco delanteros", "automóvil", "Brembo", 980000, 50);
-		Articulo articulo11 = new Articulo("Frenos", "Frenos de disco traseros", "automóvil", "Ferodo", 640000, 35);
-		Articulo articulo12 = new Articulo("Frenos", "Frenos de tambor delanteros", "automovil y camioneta", "Wabco", 2350000, 25);
-		Articulo articulo13 = new Articulo("Frenos", "Frenos de tambor traseros", "automovil y camioneta", "Bendix", 2150000, 30);
-		Articulo articulo14 = new Articulo("Frenos", "Frenos de disco delanteros y traseros", "automovil y camioneta", "Beringer", 440000, 20);
-		Articulo articulo15 = new Articulo("Frenos", "Frenos de tambor delanteros y traseros", "automovil y camioneta", "Wabco", 88000, 50);
+		Articulo articulo10 = new Articulo("Basico","taller","Frenos", "Frenos de disco delanteros", "automóvil", "Brembo", 980000, 50);
+		Articulo articulo11 = new Articulo("Basico","taller","Frenos", "Frenos de disco traseros", "automóvil", "Ferodo", 640000, 35);
+		Articulo articulo12 = new Articulo("Basico","taller","Frenos", "Frenos de tambor delanteros", "automovil y camioneta", "Wabco", 2350000, 25);
+		Articulo articulo13 = new Articulo("Basico","taller","Frenos", "Frenos de tambor traseros", "automovil y camioneta", "Bendix", 2150000, 30);
+		Articulo articulo14 = new Articulo("Basico","taller","Frenos", "Frenos de disco delanteros y traseros", "automovil y camioneta", "Beringer", 440000, 20);
+		Articulo articulo15 = new Articulo("Basico","taller","Frenos", "Frenos de tambor delanteros y traseros", "automovil y camioneta", "Wabco", 88000, 50);
 		//Articulos Pintura
-		Articulo articulo16 = new Articulo("Pintura", "Pintura acrílica blanca", "interior y exterior", "Behr", 300000, 50);
-		Articulo articulo17 = new Articulo("Pintura", "Pintura acrílica gris", "interior y exterior", "Sherwin Williams", 250000, 60);
-		Articulo articulo18 = new Articulo("Pintura", "Pintura esmalte roja", "interior y exterior", "Pintuco", 200000, 70);
-		Articulo articulo19 = new Articulo("Pintura", "Pintura para pizarrón negro", "interior", "Rust-Oleum", 100000, 30);
-		Articulo articulo20 = new Articulo("Pintura", "Pintura en spray dorada", "interior y exterior", "Krylon", 50000, 80);
-		Articulo articulo21 = new Articulo("Pintura", "Pintura acrílica verde oliva", "interior y exterior", "Glidden", 280000, 45);
+		Articulo articulo16 = new Articulo("Basico","taller","Pintura", "Pintura acrílica blanca", "interior y exterior", "Behr", 300000, 50);
+		Articulo articulo17 = new Articulo("Basico","taller","Pintura", "Pintura acrílica gris", "interior y exterior", "Sherwin Williams", 250000, 60);
+		Articulo articulo18 = new Articulo("Basico","taller","Pintura", "Pintura esmalte roja", "interior y exterior", "Pintuco", 200000, 70);
+		Articulo articulo19 = new Articulo("Basico","taller","Pintura", "Pintura para pizarrón negro", "interior", "Rust-Oleum", 100000, 30);
+		Articulo articulo20 = new Articulo("Basico","taller","Pintura", "Pintura en spray dorada", "interior y exterior", "Krylon", 50000, 80);
+		Articulo articulo21 = new Articulo("Basico","taller","Pintura", "Pintura acrílica verde oliva", "interior y exterior", "Glidden", 280000, 45);
+		
+		Articulo articulo22 = new Articulo("premium", "repuesto", "Motor", "Bomba de agua", "automóvil", "Airtex", 350000, 10);
+		Articulo articulo23 = new Articulo("premium", "repuesto", "Escape", "Silenciador", "automóvil", "MagnaFlow", 1200000, 5);
+		Articulo articulo24 = new Articulo("premium", "repuesto", "Sonido", "Sistema de audio", "automóvil", "JBL", 1500000, 3);
+		Articulo articulo25 = new Articulo("premium", "repuesto", "Suspension", "Amortiguador", "camioneta", "Bilstein", 850000, 8);
+		Articulo articulo26 = new Articulo("premium", "repuesto", "Motor", "Filtro de aire", "automóvil", "K&N", 180000, 20);
+		Articulo articulo27 = new Articulo("premium", "repuesto", "Escape", "Sistema de escape deportivo", "automóvil", "BORLA", 2500000, 2);
+		Articulo articulo28 = new Articulo("premium", "repuesto", "Sonido", "Subwoofer", "automóvil", "Alpine", 650000, 6);
+		Articulo articulo29 = new Articulo("premium", "repuesto", "Suspension", "Kit de levante", "camioneta", "Rancho", 3200000, 1);
+		Articulo articulo30 = new Articulo("premium", "repuesto", "Motor", "Bujías de alto rendimiento", "automóvil", "NGK", 140000, 15);
+		Articulo articulo31 = new Articulo("premium", "repuesto", "Escape", "Cabezal de escape", "automóvil", "Gibson", 2100000, 4);
+
+		Articulo articulo32 = new Articulo("Basico","repuesto","Motor", "Filtro de aire", "automóvil", "FRAM", 45000, 100);
+		Articulo articulo33 = new Articulo("Basico","repuesto","Motor", "Bujías", "automóvil", "NGK", 40000, 80);
+		Articulo articulo34 = new Articulo("Basico","repuesto","Escape", "Silenciador", "automóvil", "Walker", 150000, 50);
+		Articulo articulo35 = new Articulo("Basico","repuesto","Escape", "Tubo de escape", "automóvil", "Bosal", 80000, 60);
+		Articulo articulo36 = new Articulo("Basico","repuesto","Sonido", "Radio FM/AM", "automóvil", "Sony", 180000, 30);
+		Articulo articulo37 = new Articulo("Basico","repuesto","Sonido", "Parlantes", "automóvil", "Pioneer", 120000, 40);
+		Articulo articulo38 = new Articulo("Basico","repuesto","Suspension", "Amortiguador", "automóvil", "Monroe", 100000, 70);
+		Articulo articulo39 = new Articulo("Basico","repuesto","Suspension", "Esfera de suspensión", "automóvil", "Sachs", 65000, 90);
+		Articulo articulo40 = new Articulo("Basico","repuesto","Motor", "Bomba de agua", "automóvil", "Gates", 80000, 60);
+		Articulo articulo41 = new Articulo("Basico","repuesto","Motor", "Correa de distribución", "automóvil", "Continental", 60000, 80);
 
 	
 		/*INTERFAZ*/
@@ -77,9 +99,10 @@ public class main {
 		String salir = null;
 		do {
 			System.out.println("\n\nMenú principal Concesionario");
-			System.out.println("1. Empezar proceso de venta.");
-			System.out.println("2. Taller");
+			System.out.println("1. Venta de Autos");
+			System.out.println("2. Venta de Repuestos");
 			System.out.println("3. inventario de Articulos");
+			System.out.println("4. Taller");
 			System.out.print("Ingrese el número de la opción que va a utilizar: ");
 			
 			input = sc.nextByte();
@@ -89,11 +112,14 @@ public class main {
 				Financiero.procesoVenta();
 				break;
 			case 2:
-				Financiero.procesoTaller();
+				Financiero.ventaRepuestos();
 				break;
 			case 3:
 				System.out.println("Articulos Disponibles:\n");
 				InventarioArticulo.buscarPorTipoArticulo();
+				break;
+			case 4:
+				Financiero.procesoTaller();
 				break;
 			default:
 				System.out.print("\n¿Salir? (si/no)");
