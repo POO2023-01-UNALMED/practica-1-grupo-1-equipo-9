@@ -242,4 +242,102 @@ public class Financiero {
 			}
 		}
 	}
+	
+	public static void stats() {
+		Scanner sc = new Scanner(System.in);
+		byte opcion;
+		System.out.println("¿Qué estadisticas en particular quiere consultar?");
+		//static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
+		System.out.println("1. Ventas por Vendedor");
+		System.out.println("2. Ventas por Marca");
+		System.out.println("Selecciona: ");
+		opcion = sc.nextByte();
+		switch (opcion){
+		case 1:
+			
+			//System.out.println(Vendedor.getVendedores());
+			//Arraylist<Vendedor> vendedores = Vendedor.getVendedores();
+
+			ArrayList<String> vendedores1 = new ArrayList<String>();
+			
+			for (Transaccion transacc: Transaccion.getTransacciones())
+			{
+				if (vendedores1.contains(transacc.getVendedor().getNombre())){
+					
+				} else {
+					vendedores1.add(transacc.getVendedor().getNombre());
+				}
+			}
+			
+			float num = ((float)vendedores1.size() / Vendedor.getVendedores().size()) * 100;
+			int roundedNum = Math.round(num);
+
+			System.out.println("De los " + Vendedor.getVendedores().size() + " vendedores que trabajan actualmente en el concesionario, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en lo que va del mes, estos son:");
+			
+			for (String vend: vendedores1)
+			{
+				System.out.println(vend);
+			}
+			
+			// para saber la cantidad total en ventas:
+			int sumaTotal=0;
+			int contadorTotal=0;
+			for (Transaccion trans1: Transaccion.getTransacciones())
+				{sumaTotal+=trans1.getIngreso();
+				contadorTotal+=1;}
+			// para saber la cantidad total en ventas:
+			
+			System.out.println("Los cuales suman la siguiente cantidad de dinero en ventas: ");
+			
+			for (String vend: vendedores1)
+			{
+				int suma = 0;
+				int contador=0;
+				for (Transaccion trans1: Transaccion.getTransacciones())
+				{
+					if (vend.equals(trans1.getVendedor().getNombre())){
+						suma+=trans1.getIngreso();
+						contador+=1;
+					}
+				}
+				float num2 = ((float)suma / sumaTotal) * 100;
+				int roundedSum = Math.round(num2);
+				System.out.println(vend + ": " + suma + ", el " + roundedSum + " % del total de ingresos por ventas de autos.");
+			}
+			
+			System.out.println("A continuacion, el # de ventas que han realizado, y el promedio de ingreso por venta: ");
+			
+			for (String vend: vendedores1)
+			{
+				int contador=0;
+				int suma2 = 0;
+				for (Transaccion trans1: Transaccion.getTransacciones())
+				{
+					if (vend.equals(trans1.getVendedor().getNombre())){
+						contador+=1;
+						suma2+=trans1.getIngreso();
+					}
+				}
+				int num3 = (suma2 / contador);
+				float num4 = ((float)contador/contadorTotal)*100;
+				int roundedNum4 = Math.round(num4);
+				//int roundedNum3 = Math.round(num3);
+				
+				System.out.println(vend + ": " + contador + ", el " + roundedNum4 + "% del total de ventas, promediando " + num3 + " $ por venta.");
+			}
+			
+			break;
+			
+		case 2:
+			break;
+		}
+		//System.out.println("has seleccionado " + opcion);
+		
+		
+	}
+	public static byte readByte() {
+	    Scanner scanner = new Scanner(System.in);
+	    byte num = scanner.nextByte();
+	    return num;
+	}
 }

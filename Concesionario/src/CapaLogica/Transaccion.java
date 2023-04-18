@@ -33,6 +33,11 @@ public class Transaccion {
 		transacciones.add(this);
 		++numtrans;
 	}
+	
+	public static ArrayList<Transaccion> getTransacciones() {
+		return transacciones;
+	}
+	
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }

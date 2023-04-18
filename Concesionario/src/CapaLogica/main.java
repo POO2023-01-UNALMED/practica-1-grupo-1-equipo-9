@@ -13,6 +13,7 @@ public class main {
 		Auto a5= new Auto("Hybrid", "Chevrolet", 222, 6, "cafe", true, true);
 		Auto a6= new Auto("Hybrid", "Mazda", 333, 6, "verde", false, true);
 		Auto a7= new Auto("Hybrid", "Mazda", 444, 6, "rosa", false, true);
+		
 		//Clientes
 		Cliente c1= new Cliente("Ana González", 305478921, 87654321, "Calle 5ta, #10-23", "Bogotá", "Toyota", 40000000);
 		Cliente c2= new Cliente("Juan Pérez", 102367459, 300987654, "Carrera 12, #34-56", "Medellín", "Toyota", 35000000);
@@ -36,13 +37,30 @@ public class main {
 		Mecanico mecanico13 = new Mecanico("Maria Martinez", 1234567897L, 9876543213L, "mariamartinez@example.com", "Calle 012", 3500.0, "Banco X", 4567890123456789L, "Mazda", "Llantas",50000);
 		Mecanico mecanico14 = new Mecanico("Juan Lopez", 1234567898L, 9876543214L, "juanlopez@example.com", "Calle 345", 4000.0, "Banco Y", 5678901234567890L, "Chevrolet", "Motor",15000);
 
-		
+		// Vendedor
 		Vendedor vendedor1 = new Vendedor("Juan", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321);
 		Vendedor vendedor2 = new Vendedor("Pedro", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789);
-		Transaccion tr1=new Transaccion ("venta",vendedor1,2345738,c1,a1);
-		Transaccion tr2=new Transaccion ("venta",vendedor1,2345738,c1,a2);
-		Transaccion tr3=new Transaccion ("venta",vendedor1,2345738,c3,a3);
-		Transaccion tr4=new Transaccion ("venta",vendedor1,2345738,c4,a4);
+		Vendedor vendedor3 = new Vendedor("María", 456789123, 5557890, "maria@ejemplo.com", "Calle Principal 456", 1200.0, "Banco Ejemplo", 654321987);
+		Vendedor vendedor4 = new Vendedor("Luis", 789123456, 5552468, "luis@ejemplo.com", 1800.0, "Banco Otro Ejemplo", 321654987);
+		Vendedor vendedor5 = new Vendedor("Ana", 321654987, 5551357, "ana@ejemplo.com", "Avenida Central 789", 900.0, "Banco Ejemplo", 147258369);
+		Vendedor vendedor6 = new Vendedor("Jorge", 654789321, 5558642, "jorge@ejemplo.com", 2000.0, "Banco Otro Ejemplo", 963852741);
+		Vendedor vendedor7 = new Vendedor("Carla", 789654123, 5552795, "carla@ejemplo.com", "Calle Secundaria 321", 1500.0, "Banco Ejemplo", 369852147);
+		
+		//Transaccion
+		Transaccion tr1=new Transaccion ("efectivo",vendedor1,100,c1,a1);
+		Transaccion tr2=new Transaccion ("efectivo",vendedor1,200,c1,a2);
+		Transaccion tr3=new Transaccion ("credito",vendedor1,300,c3,a3);
+		Transaccion tr4=new Transaccion ("credito",vendedor1,400,c4,a4);
+		
+		Transaccion tr5=new Transaccion ("efectivo",vendedor2,100,c1,a1);
+		Transaccion tr6=new Transaccion ("efectivo",vendedor2,200,c1,a2);
+		Transaccion tr7=new Transaccion ("credito",vendedor2,3000,c3,a3);
+		Transaccion tr8=new Transaccion ("credito",vendedor2,400,c4,a4);
+		
+		Transaccion tr9=new Transaccion ("efectivo",vendedor3,100,c1,a1);
+		Transaccion tr10=new Transaccion ("efectivo",vendedor3,200,c1,a2);
+		Transaccion tr11=new Transaccion ("credito",vendedor3,3000,c3,a3);
+		Transaccion tr12=new Transaccion ("credito",vendedor3,4000,c4,a4);
 		
 		//Articulos aceites
 		Articulo articulo1= new Articulo("Basico","taller","Motor","aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100);
@@ -103,6 +121,7 @@ public class main {
 			System.out.println("2. Venta de Repuestos");
 			System.out.println("3. inventario de Articulos");
 			System.out.println("4. Taller");
+			System.out.println("5. Consultar estadisticas de ventas");
 			System.out.print("Ingrese el número de la opción que va a utilizar: ");
 			
 			input = sc.nextByte();
@@ -120,6 +139,9 @@ public class main {
 				break;
 			case 4:
 				Financiero.procesoTaller();
+				break;
+			case 5:
+				Financiero.stats();
 				break;
 			default:
 				System.out.print("\n¿Salir? (si/no)");
