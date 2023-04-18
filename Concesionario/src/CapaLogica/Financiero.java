@@ -220,14 +220,16 @@ public class Financiero {
 			}
 		}if(!confirmarComp.equals("no")) {
 			String confirmarTipo=null;
-			String repuesto=InventarioArticulo.selectorEspecial();
-			System.out.print("Usted Va a comprar un repuesto de: "+repuesto+"\n");
+			ArrayList<Articulo> repuesto=InventarioArticulo.selectorEspecial();
+			System.out.print("Usted Va a comprar un repuesto de: "+repuesto.get(0).getEspecialidad()+"\n");
 			while(confirmarTipo==null||confirmarTipo.equals("no")) {
 				System.out.print("¿Confirmar Tipo de repuesto? (si/no)");
 				confirmarTipo = sc.nextLine();
 				sc.nextLine();
 			}if(confirmarTipo.equals("si")) {
-				
+				String confirmarCalidad=null;
+				Articulo articulo=InventarioArticulo.selectorCalidad(repuesto);
+				System.out.print(articulo.getTipoArticulo());
 			}
 		}
 	}

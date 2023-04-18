@@ -227,8 +227,8 @@ public class InventarioArticulo {
  	    return product;
  		
  	}
-    public static String selectorEspecial() {
-		System.out.print("paso");
+    public static ArrayList<Articulo> selectorEspecial() {
+
 		String salir=null;
 		 byte input;
 		 String especialidad=null;
@@ -284,10 +284,99 @@ public class InventarioArticulo {
 				salir = sc.nextLine();
 			} 
 		}while(salir==null);
-		return especialidad;
+		return artic;
     }
+    public static Articulo selectorCalidad(ArrayList<Articulo> artic) {
+    	String salir=null;
+    	Articulo articulo=null;
+		 byte input;
+		 String calidad=null;
+		 ArrayList<Articulo> articul = new ArrayList<Articulo>();
+		do {
+			System.out.print("¿Que calidad desea?"+"\n");
+	        System.out.println("1. Premium");
+	        System.out.println("2. Basico");
+	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+	        input = sc.nextByte();
 
+	        switch (input) {
+	        case 1:
+               calidad="premium";
+               String result = String.format("%-40s%-20s%-10s%n", "   Producto", "   Marca", "   Precio");
+	       	    int i = 0;
+	       	    for (Articulo ar : artic) {
+	       	        if (calidad.equals(ar.getCalidad())) {
+	       	            i++;
+	       	            articul.add(ar);
+	       	            String articulinfo = String.format("%-40s%-20s%-10s%n", ar.getTipoArticulo(), ar.getMarca(),ar.getPrecio());
+	       	            result += String.format("%-3d%s", i, articulinfo);
+	       	        }
+	       	    }
+;
+	       	    if (articul.size() >= 1) {
+	       	        System.out.println("Los productos " + calidad + " disponibles son:\n");
+	       	        System.out.println(result);
+	       	        int num = 0;
+	       	        while (num <= 0 || num > articul.size()) {
+	       	            System.out.println("Seleccione el numero del producto" + "[1-" + articul.size() + "]: ");
+	       	            if (sc.hasNextInt()) {
+	       	                num = sc.nextInt();
+	       	            } else {
+	       	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + articul.size() + ".");
+	       	                sc.nextLine(); // Limpiar la entrada no válida
+	       	            }
+	       	        }
+	       	        articulo = articul.get(num - 1);
+	
+	       	    } else if (articul.size() == 0) {
+	       	        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
+	       	    }
+	       	 salir="si";
+	       	    
+               break;
+           case 2:
+               calidad="Basico";
+               String result1 = String.format("%-40s%-20s%-10s%n", "   Producto", "   Marca", "   Precio");
+	       	    int j = 0;
+	       	    for (Articulo ar : artic) {
+	       	        if (calidad.equals(ar.getCalidad())) {
+	       	            j++;
+	       	            articul.add(ar);
+	       	            String articulinfo = String.format("%-40s%-20s%-10s%n", ar.getTipoArticulo(), ar.getMarca(),ar.getPrecio());
+	       	            result1 += String.format("%-3d%s", j, articulinfo);
+	       	        }
+	       	    }
+;
+	       	    if (articul.size() >= 1) {
+	       	        System.out.println("Los productos " + calidad + " disponibles son:\n");
+	       	        System.out.println(result1);
+	       	        int num = 0;
+	       	        while (num <= 0 || num > articul.size()) {
+	       	            System.out.println("Seleccione el numero del producto" + "[1-" + articul.size() + "]: ");
+	       	            if (sc.hasNextInt()) {
+	       	                num = sc.nextInt();
+	       	            } else {
+	       	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + articul.size() + ".");
+	       	                sc.nextLine(); // Limpiar la entrada no válida
+	       	            }
+	       	        }
+	       	        articulo = articul.get(num - 1);
+	
+	       	    } else if (articul.size() == 0) {
+	       	        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
+	       	    }
+	       	 salir="si";
+	       	    
+               break;
+			default:
+				System.out.print("\n¿Salir? (si/no)");
+				salir = sc.nextLine();
+			} 
+		}while(salir==null);
+		return articulo;
+   }
     	
+    
     	
 }
 
