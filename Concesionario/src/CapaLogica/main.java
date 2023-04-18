@@ -5,14 +5,19 @@ public class main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		//Articulos default
+		Articulo llanta= new Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000);
+		Articulo sonido= new Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000);
+		Articulo escape= new Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000);
+		Articulo suspension= new Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000);
 		//Autos
-		Auto a1= new Auto("Cupra Leon", "Toyota", 20000000, 5400, "verde fofo", true, true);
-		Auto a2= new Auto("Corolla", "Chevrolet", 456, 5, "negro", false, true);
-		Auto a3= new Auto("Hybrid", "Mazda", 111, 6, "azul", true, true);
-		Auto a4= new Auto("Highlander", "Toyota", 789, 10, "blanco", false, true);
-		Auto a5= new Auto("Hybrid", "Chevrolet", 222, 6, "cafe", true, true);
-		Auto a6= new Auto("Hybrid", "Mazda", 333, 6, "verde", false, true);
-		Auto a7= new Auto("Hybrid", "Mazda", 444, 6, "rosa", false, true);
+		Auto a1= new Auto("Cupra Leon", "Toyota", 20000000, 5400, "verde fofo", true, true,llanta,suspension,sonido,escape);
+		Auto a2= new Auto("Corolla", "Chevrolet", 456, 5, "negro", false, true,llanta,suspension,sonido,escape);
+		Auto a3= new Auto("Hybrid", "Mazda", 111, 6, "azul", true, true,llanta,suspension,sonido,escape);
+		Auto a4= new Auto("Highlander", "Toyota", 789, 10, "blanco", false, true,llanta,suspension,sonido,escape);
+		Auto a5= new Auto("Hybrid", "Chevrolet", 222, 6, "cafe", true, true,llanta,suspension,sonido,escape);
+		Auto a6= new Auto("Hybrid", "Mazda", 333, 6, "verde", false, true,llanta,suspension,sonido,escape);
+		Auto a7= new Auto("Hybrid", "Mazda", 444, 6, "rosa", false, true,llanta,suspension,sonido,escape);
 		
 		//Clientes
 		Cliente c1= new Cliente("Ana González", 305478921, 87654321, "Calle 5ta, #10-23", "Bogotá", "Toyota", 40000000);
@@ -45,6 +50,7 @@ public class main {
 		Vendedor vendedor5 = new Vendedor("Ana", 321654987, 5551357, "ana@ejemplo.com", "Avenida Central 789", 900.0, "Banco Ejemplo", 147258369);
 		Vendedor vendedor6 = new Vendedor("Jorge", 654789321, 5558642, "jorge@ejemplo.com", 2000.0, "Banco Otro Ejemplo", 963852741);
 		Vendedor vendedor7 = new Vendedor("Carla", 789654123, 5552795, "carla@ejemplo.com", "Calle Secundaria 321", 1500.0, "Banco Ejemplo", 369852147);
+
 		//Articulos aceites
 		Articulo articulo1= new Articulo("Basico","taller","Motor","aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100);
 		Articulo articulo2= new Articulo("Basico","taller","Motor","aceite sintetico", "automovil y camioneta", "Aceite 5w20 Mobil 2000 – cuarto", 33900, 100);

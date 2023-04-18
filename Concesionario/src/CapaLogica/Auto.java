@@ -1,6 +1,10 @@
 package CapaLogica;
 
 public class Auto {
+	private Articulo llantas;
+	private Articulo suspension;
+	private Articulo sonido;
+	private Articulo escape;
 	private String modelo;
 	private String marca;
 	private long precio;
@@ -10,7 +14,11 @@ public class Auto {
 	private boolean disponible;
 	private Cliente dueno;
 
-	public Auto(String modelo, String marca, int precio, int cilindraje, String color, boolean fullEquipo, boolean disponible) {
+	public Auto(String modelo, String marca, int precio, int cilindraje, String color, boolean fullEquipo, boolean disponible,Articulo llantas,Articulo suspension,Articulo sonido, Articulo escape) {
+		this.llantas=llantas;
+		this.suspension=suspension;
+		this.sonido=sonido;
+		this.escape=escape;
 		this.modelo = modelo;
 		this.marca = marca;
 		this.precio = precio;
@@ -89,6 +97,38 @@ public class Auto {
 	    String fullEquipoStr = fullEquipo ? "Fullequipo" : "No Fullequipo";
 	    return String.format("Datos del Carro: Modelo %s, Marca %s, Precio %d, Color %s, %s",
 	            modelo, marca, precio, color, fullEquipoStr);
+	}
+
+	public Articulo getLlantas() {
+		return llantas;
+	}
+
+	public void setLlantas(Articulo llantas) {
+		this.llantas = llantas;
+	}
+
+	public Articulo getSuspension() {
+		return suspension;
+	}
+
+	public void setSuspension(Articulo suspension) {
+		this.suspension = suspension;
+	}
+
+	public Articulo getSonido() {
+		return sonido;
+	}
+
+	public void setSonido(Articulo sonido) {
+		this.sonido = sonido;
+	}
+
+	public Articulo getEscape() {
+		return escape;
+	}
+
+	public void setEscape(Articulo escape) {
+		this.escape = escape;
 	}
 }
 
