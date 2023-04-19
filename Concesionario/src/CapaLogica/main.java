@@ -511,6 +511,9 @@ public class main {
 	    byte num = scanner.nextByte();
 	    return num;
 	}
+	public static void personalizarAuto() {
+		
+	}
 
 
 }
