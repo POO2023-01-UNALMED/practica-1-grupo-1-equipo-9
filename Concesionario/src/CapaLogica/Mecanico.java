@@ -47,20 +47,14 @@ public class Mecanico extends Trabajador {
 	public static void setMecanicos(ArrayList<Mecanico> mecanicos) {
 		Mecanico.mecanicos = mecanicos;
 	}
-	public static Mecanico mecanicoDisponible(String modelo) {
+	public static ArrayList<Mecanico> mecanicoDisponible() {
 	    Scanner sc = new Scanner(System.in);
 	    byte input;
 	    String salir = null;
 	    String especialidad=null;
 	    ArrayList<Mecanico> mechs = new ArrayList<Mecanico>();
-	    ArrayList<Mecanico> mechas = new ArrayList<Mecanico>();
+	    
 	    do {
-	        System.out.println("\n\nQue deseas hacerle al Vehiculo");
-	        System.out.println("1. Latoneria y pintura");
-	        System.out.println("2. Cambio de Llantas y alineacion");
-	        System.out.println("3. Cambio de Aceite");
-	        System.out.println("4. Cambio de Frenos");
-	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
 
 	        input = sc.nextByte();
 
@@ -106,11 +100,15 @@ public class Mecanico extends Trabajador {
 				salir = sc.nextLine();
 			} 
 	    } while(salir.equals(null));
-	    
+	    return mechs;
+	}
+	public static Mecanico selector(ArrayList<Mecanico> mechs,Auto auto) {
+		Scanner sc = new Scanner(System.in);
+		ArrayList<Mecanico> mechas = new ArrayList<Mecanico>();
 	    String result = String.format("%-20s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
 	    int i = 0;
 	    for (Mecanico mecanico : mechs) {
-	        if (modelo.equals(mecanico.getAutos())) {
+	        if (auto.getMarca().equals(mecanico.getAutos())) {
 	            i++;
 	            mechas.add(mecanico);
 	            String mechInfo = String.format("%-20s%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos(),mecanico.getEspecialidad());
@@ -118,8 +116,9 @@ public class Mecanico extends Trabajador {
 	        }
 	    }
 	    Mecanico mecanico = null;
+	    
 	    if (mechas.size() >= 1) {
-	        System.out.println("Los mecanicos que atienden " + modelo + " disponibles son:\n");
+	        System.out.println("Los mecanicos que atienden " + auto.getMarca() + " disponibles son:\n");
 	        System.out.println(result);
 	        int num = 0;
 	        while (num <= 0 || num > mechas.size()) {
@@ -127,7 +126,7 @@ public class Mecanico extends Trabajador {
 	            if (sc.hasNextInt()) {
 	                num = sc.nextInt();
 	            } else {
-	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mechas.size() + ".");
+	                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mechas.size() + ".");
 	                sc.nextLine(); // Limpiar la entrada no válida
 	            }
 	        }

@@ -290,14 +290,23 @@ public class main {
 		}
 		if (confirmarPrp.equals("si")) {
 			String confirmarMech=null;
-			Mecanico mecanico=Mecanico.mecanicoDisponible(transaccion.auto.getMarca());
+	        System.out.println("\n\nQue deseas hacerle al Vehiculo");
+	        System.out.println("1. Latoneria y pintura");
+	        System.out.println("2. Cambio de Llantas y alineacion");
+	        System.out.println("3. Cambio de Aceite");
+	        System.out.println("4. Cambio de Frenos");
+	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+			ArrayList<Mecanico> mecanicos=Mecanico.mecanicoDisponible();
+			Mecanico mecanico=Mecanico.selector(mecanicos, transaccion.auto);
 			System.out.print(mecanico.info());
 			while (confirmarMech==null||confirmarMech.equals("no")) {
 				
 				System.out.print("¿Confirmar mecanico? (si/no)");
 				confirmarMech = sc.nextLine();
 				if (confirmarMech.equals("no")) {
-					mecanico=Mecanico.mecanicoDisponible(transaccion.auto.getMarca());
+					mecanicos=Mecanico.mecanicoDisponible();
+					mecanico=Mecanico.selector(mecanicos, transaccion.auto);
+					System.out.print(mecanico.info());
 					System.out.print(mecanico.info());
 				}
 		}if(confirmarMech.equals("si")) {
