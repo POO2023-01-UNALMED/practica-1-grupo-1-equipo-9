@@ -1,5 +1,7 @@
 package CapaLogica;
 
+import java.util.Comparator;
+
 public class Auto {
 	private Articulo llantas;
 	private Articulo suspension;
@@ -132,4 +134,12 @@ public class Auto {
 	}
 }
 
-
+class Sortbyroll implements Comparator<Auto>
+{
+    // Used for sorting in ascending order of
+    // roll number
+    public int compare(Auto a, Auto b)
+    {
+        return (int) (b.getPrecio() - a.getPrecio());
+    }
+}

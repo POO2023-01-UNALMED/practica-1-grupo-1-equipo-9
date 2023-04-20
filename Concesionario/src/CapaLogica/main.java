@@ -1,6 +1,7 @@
 package CapaLogica;
 import java.util.*;
 
+
 public class main {
 
 	public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class main {
 		Cliente c2= new Cliente("Juan Pérez", 102367459, 300987654, "Carrera 12, #34-56", "Medellín", "Toyota", 35000000);
 		Cliente c3= new Cliente("María Sánchez", 745631982, 500123456, "Calle 8, #19-45", "Cali", "Mazda", 60000000);
 		Cliente c4= new Cliente("Javier Castro", 958762341, 900654321, "Avenida Las Palmas, #6-78", "Barranquilla", "Chevrolet", 55000000);
-		Cliente c5= new Cliente("Roberto Palacio", 123443226, 556656, "Carrera 20 #2-55", "Medellin", "Hybrid", 30000000);
+		Cliente c5= new Cliente("Roberto Palacio", 1000413512, 556656, "Carrera 20 #2-55", "Medellin", "Hybrid", 30000000);
 		//Mecanicos
 		Mecanico mecanico = new Mecanico("Carlos Martinez", 1234567890L, 9876543210L, "carlos@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota","Pintura",340000);
 		Mecanico mecanico1 = new Mecanico("Laura Hernandez", 1234567891L, 9876543211L, "laura@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123457L,"Mazda","Pintura",340000);
@@ -185,14 +186,20 @@ public class main {
 			System.out.println("2. Mostrar Autos por precio");
 			System.out.println("3. Mostrar todos los autos");
 			System.out.println("4. Volver");
+			System.out.println("Seleccione una opción");
 			switch (sc.nextInt()){
 				case 1:
 					InventarioAuto.autosMarca();
 					break;
 				case 2:
+					int cont = 1;
+					for (Auto carro: InventarioAuto.getAutosporPrecio()) {
+						System.out.println(cont + ". " + carro.info());
+						++cont;
+					}
 					break;
 				case 3:
-					InventarioAuto.autosDisponibles();
+					System.out.println(InventarioAuto.autosDisponibles());
 					break;
 				case 4:
 					break;

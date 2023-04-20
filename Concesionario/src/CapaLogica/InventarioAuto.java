@@ -1,6 +1,7 @@
 package CapaLogica;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class InventarioAuto {
@@ -23,9 +24,11 @@ public class InventarioAuto {
 	}
 
 	public static String autosDisponibles() {
+		int cont = 1;
 		String resultado = "Autos Disponibles:\n";
 		for (Auto auto : getAutosDisponibles()) {
-			resultado += auto.getMarca() + " " + auto.getPrecio() + " " + auto.getColor() + "\n";
+			resultado += cont + ". " + auto.getModelo() + " " +  auto.getMarca() + " " + auto.getPrecio() + " " + auto.getColor() + "\n";
+			cont++;
 		}
 		return resultado;
 	}
@@ -49,6 +52,15 @@ public class InventarioAuto {
 				return finder;
 			}
 		}return finder;
+	}
+	
+	public static ArrayList<Auto> getAutosporPrecio() {
+		ArrayList<Auto> autosPrecio = new ArrayList<Auto>();
+		for (Auto auto: InventarioAuto.getAutosDisponibles()) {
+			autosPrecio.add(auto);
+		}
+		Collections.sort(autosPrecio, new Sortbyroll());
+		return autosPrecio;
 	}
 	
 	public static ArrayList<Auto> getAutosporModelo(String modelo) {
@@ -123,8 +135,10 @@ public class InventarioAuto {
 			}
 		}
 		System.out.println("Estos son los carros disponibles de esta marca: ");
+		int cont = 1;
 		for (Auto auto:autosMarca){
-			System.out.println(auto.info());
+			System.out.println(cont + ". " + auto.info());
+			cont++;
 		}
 		return "";
 		
