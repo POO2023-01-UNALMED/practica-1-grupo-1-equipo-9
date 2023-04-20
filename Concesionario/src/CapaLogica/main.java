@@ -1,6 +1,7 @@
 package CapaLogica;
 import java.util.*;
-
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 
 public class main {
 
@@ -101,15 +102,15 @@ public class main {
 		Articulo articulo40 = new Articulo("Basico","repuesto","Motor", "Bomba de agua", "automóvil", "Gates", 80000, 60);
 		Articulo articulo41 = new Articulo("Basico","repuesto","Motor", "Correa de distribución", "automóvil", "Continental", 60000, 80);
 		//Transaccion
-		Transaccion tr1=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
-		Transaccion tr2=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
-		Transaccion tr3=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
-		Transaccion tr4=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
+		Transaccion tr1=new TransaccionVenta ("efectivo",100,c1,a1,vendedor5);
+		Transaccion tr2=new TransaccionVenta ("efectivo",100,c1,a1,vendedor5);
+		Transaccion tr3=new TransaccionVenta ("efectivo",100,c1,a1,vendedor5);
+		Transaccion tr4=new TransaccionVenta ("efectivo",100,c1,a1,vendedor5);
 		
-		Transaccion tr5=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
-		Transaccion tr6=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
-		Transaccion tr7=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
-		Transaccion tr8=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
+		Transaccion tr5=new TransaccionVenta ("efectivo",100,c1,a1,vendedor5);
+		Transaccion tr6=new TransaccionVenta ("efectivo",100,c1,a1,vendedor5);
+		Transaccion tr7=new TransaccionVenta ("efectivo",100,c1,a1,vendedor5);
+		Transaccion tr8=new TransaccionVenta ("efectivo",100,c1,a1,vendedor5);
 		
 		Transaccion tr9=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
 		Transaccion tr10=new TransaccionVenta ("efectivo",100,c1,a1,vendedor1);
@@ -121,7 +122,15 @@ public class main {
 		Transaccion tr15=new TransaccionTaller ("efectivo",100,c1,a1,articulo4,mecanico1);
 		Transaccion tr16=new TransaccionTaller ("efectivo",100,c1,a1,articulo4,mecanico1);
 		
-
+		Transaccion tr17=new TransaccionVenta ("efectivo",200,c1,a1,vendedor2);
+		Transaccion tr18=new TransaccionVenta ("efectivo",200,c1,a1,vendedor2);
+		Transaccion tr19=new TransaccionVenta ("efectivo",200,c1,a1,vendedor2);
+		Transaccion tr20=new TransaccionVenta ("efectivo",200,c1,a1,vendedor2);
+		
+		Transaccion tr21=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
+		Transaccion tr22=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
+		Transaccion tr23=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
+		Transaccion tr24=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 
 	
 		/*INTERFAZ*/
@@ -450,22 +459,22 @@ public class main {
 			float num = ((float)vendedores1.size() / Vendedor.getVendedores().size()) * 100;
 			int roundedNum = Math.round(num);
 
-			System.out.println("De los " + Vendedor.getVendedores().size() + " vendedores que trabajan actualmente en el concesionario, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en lo que va del mes, estos son:");
+			System.out.println("-------- De los " + Vendedor.getVendedores().size() + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
 			
 			for (String vend: vendedores1)
 			{
 				System.out.println(vend);
 			}
 			
-			// para saber la cantidad total en ventas:
+			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			int sumaTotal=0;
 			int contadorTotal=0;
 			for (Transaccion trans1: Transaccion.getTransacciones())
 				{sumaTotal+=trans1.getIngreso();
 				contadorTotal+=1;}
-			// para saber la cantidad total en ventas:
+			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			
-			System.out.println("Los cuales suman la siguiente cantidad de dinero en ventas: ");
+			System.out.println("-------- Suma de dinero en ventas por vendedor: --------");
 			
 			for (String vend: vendedores1)
 			{
@@ -480,10 +489,10 @@ public class main {
 				}
 				float num2 = ((float)suma / sumaTotal) * 100;
 				int roundedSum = Math.round(num2);
-				System.out.println(vend + ": " + suma + ", el " + roundedSum + " % del total de ingresos por ventas de autos.");
+				System.out.println(vend + ": " + suma + " $, el " + roundedSum + " % del total de ingresos por ventas de autos.");
 			}
 			
-			System.out.println("A continuacion, el # de ventas que han realizado, y el promedio de ingreso por venta: ");
+			System.out.println("-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
 			
 			for (String vend: vendedores1)
 			{
@@ -501,8 +510,17 @@ public class main {
 				int roundedNum4 = Math.round(num4);
 				//int roundedNum3 = Math.round(num3);
 				
-				System.out.println(vend + ": " + contador + ", el " + roundedNum4 + "% del total de ventas, promediando " + num3 + " $ por venta.");
+				System.out.println(vend + ": " + contador + ", el " + roundedNum4 + "% del número total de ventas, promediando " + num3 + " $ por venta.");
 			}
+			
+			LocalDate fecha = LocalDate.now();
+			int dia = fecha.getDayOfMonth();
+			String nombreMes = fecha.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault());
+			
+			float num5 = ((float)sumaTotal/dia);
+			int roundedNum5 = Math.round(num5);
+			System.out.println("-------- Suma de ingresos total, y promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": --------");
+			System.out.println("Suma total de ingresos: " + sumaTotal + ", promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": " + roundedNum5 + " $.");
 			
 			break;
 			
