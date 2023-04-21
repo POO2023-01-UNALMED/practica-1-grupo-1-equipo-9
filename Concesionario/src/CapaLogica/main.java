@@ -136,6 +136,8 @@ public class main {
 		Transaccion tr22=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		Transaccion tr23=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		Transaccion tr24=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
+		
+		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23);
 
 	
 		/*INTERFAZ*/
@@ -562,7 +564,7 @@ public class main {
 			transaccion = TransaccionModificacion.getTransaccionporCedula(cedula);
 			
 			if (propietario == null || transaccion == null) {
-				System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla.");
+				System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla."+ "/n");
 			}
 		}
 		
