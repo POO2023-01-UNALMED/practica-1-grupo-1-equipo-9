@@ -23,8 +23,9 @@ public class TransaccionModificacion extends Transaccion{
 	
 	@Override
 	public String info() {
-		// TODO Auto-generated method stub
-		return null;
+		String txt = String.format("Transacción" + numtrans + getTipo() + "realizado por" + mecanico.getNombre() + "para el cliente"  
+				+ cliente.getNombre()+ "por un total de" + getIngreso());
+		return txt;
 	}
 		
 	public static Cliente getClientePorCedula(long cedula){

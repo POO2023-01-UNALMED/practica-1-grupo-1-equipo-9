@@ -95,6 +95,15 @@ public class Mecanico extends Trabajador {
         	        salir="si";
         	    }
                 break;
+            case 5:
+                especialidad="Modificacion";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	        if (especialidad.equals(mecanico.getEspecialidad())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
 			default:
 				System.out.print("\n¿Salir? (si/no)");
 				salir = sc.nextLine();

@@ -27,6 +27,7 @@ public class main {
 		Cliente c3= new Cliente("María Sánchez", 745631982, 500123456, "Calle 8, #19-45", "Cali", "Mazda", 60000000);
 		Cliente c4= new Cliente("Javier Castro", 958762341, 900654321, "Avenida Las Palmas, #6-78", "Barranquilla", "Chevrolet", 55000000);
 		Cliente c5= new Cliente("Roberto Palacio", 1000413512, 556656, "Carrera 20 #2-55", "Medellin", "Hybrid", 30000000);
+		Cliente c6= new Cliente("Roxanna Corrales", 1034515785, 300475854, "Carrera 12 #45-13", "Medellin", "Toyota", 70000000);
 		//Mecanicos
 		Mecanico mecanico = new Mecanico("Carlos Martinez", 1234567890L, 9876543210L, "carlos@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota","Pintura",340000);
 		Mecanico mecanico1 = new Mecanico("Laura Hernandez", 1234567891L, 9876543211L, "laura@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123457L,"Mazda","Pintura",340000);
@@ -43,7 +44,11 @@ public class main {
 		Mecanico mecanico12 = new Mecanico("Pedro Rodriguez", 1234567896L, 9876543212L, "pedrorodriguez@example.com", "Calle 789", 3000.0, "Banco Z", 3456789012345678L, "Toyota", "Pintura",340000);
 		Mecanico mecanico13 = new Mecanico("Maria Martinez", 1234567897L, 9876543213L, "mariamartinez@example.com", "Calle 012", 3500.0, "Banco X", 4567890123456789L, "Mazda", "Llantas",50000);
 		Mecanico mecanico14 = new Mecanico("Juan Lopez", 1234567898L, 9876543214L, "juanlopez@example.com", "Calle 345", 4000.0, "Banco Y", 5678901234567890L, "Chevrolet", "Motor",15000);
+		Mecanico mecanico15 = new Mecanico("Daniel Hurtado", 1234567899L, 9876543215L, "danielhurtado@example.com", "Calle 754", 2000.0, "Banco Z", 3456789012345752L, "Toyota", "Modificacion",20000);
+		Mecanico mecanico16 = new Mecanico("Valentina Sanchez ", 1234567900L, 9876543216L, "valentinasanchez@example.com", "Calle 632", 2500.0, "Banco X", 4567890123456753L, "Mazda", "Modificacion",20000);
+		Mecanico mecanico17 = new Mecanico("Diego Jaramillo", 1234567901L, 9876543217L, "diegojaramillo@example.com", "Calle 784", 2000.0, "Banco Y", 5678901234567754L, "Chevrolet", "Modificacion",20000);
 
+		
 		// Vendedor
 		Vendedor vendedor1 = new Vendedor("Juan", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321,"Vitrina");
 		Vendedor vendedor2 = new Vendedor("Pedro", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789,"Repuestos");
@@ -142,6 +147,7 @@ public class main {
 			System.out.println("2. Venta de Repuestos");
 			System.out.println("3. Taller");
 			System.out.println("4. Consultar estadisticas de ventas");
+			System.out.println("5. Personalizar su auto");
 			System.out.print("Ingrese el número de la opción que va a utilizar: ");
 			
 			input = sc.nextByte();
@@ -158,6 +164,9 @@ public class main {
 				break;
 			case 4:
 				stats();
+				break;
+			case 5:
+				personalizarAuto();
 				break;
 			default:
 				System.out.print("\n¿Salir? (si/no)");
@@ -537,6 +546,119 @@ public class main {
 	    return num;
 	}
 	public static void personalizarAuto() {
+		String salir=null;
+		do {
+			Scanner sc = new Scanner(System.in);
+			Cliente propietario = null;
+			Vendedor vendedor = null; 
+			TransaccionModificacion transaccion = null;
+		System.out.print("bienvenido a nuestra seccion de personaizacion automovilistica");
+			
+		while (propietario == null || transaccion == null) {
+			System.out.print("Introduzca la cédula del propietario: ");
+			long cedula = sc.nextLong(); 
+			sc.nextLine();
+			propietario = TransaccionModificacion.getClientePorCedula(cedula);
+			transaccion = TransaccionModificacion.getTransaccionporCedula(cedula);
+			
+			if (propietario == null || transaccion == null) {
+				System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla.");
+			}
+		}
+		
+		System.out.print(propietario.info());
+		String confirmarPrp=null;
+
+		while (confirmarPrp==null||confirmarPrp.equals("no")) {
+			System.out.print("¿Confirmar propietario? (si/no)");
+			confirmarPrp = sc.nextLine();
+			if (confirmarPrp.equals("no")) {
+				System.out.print("Introduzca la cédula del propietario: ");
+				long cedula = sc.nextLong(); 
+				sc.nextLine();
+				propietario = TransaccionModificacion.getClientePorCedula(cedula);
+				transaccion = TransaccionModificacion.getTransaccionporCedula(cedula);
+				System.out.print(propietario.info());
+				
+				if (propietario == null || transaccion == null) {
+					System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla.");
+				}
+			}
+			
+		}
+		if (confirmarPrp.equals("si")) {
+			String confirmarMech=null;
+	        System.out.println("\n\nQue deseas hacerle al Vehiculo");
+	        System.out.println("1. Modificacion de pintura");
+	        System.out.println("2. Modificacion de Llantas");
+	        System.out.println("3. Modificacion del sonido");
+	        System.out.println("4. Modificacion de frenos");
+	        System.out.println("5. Modificacion del escape");
+	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+			ArrayList<Mecanico> mecanicos=Mecanico.mecanicoDisponible();
+			Mecanico mecanico=Mecanico.selector(mecanicos, transaccion.auto);
+			System.out.print(mecanico.info());
+			while (confirmarMech==null||confirmarMech.equals("no")) {
+				
+				System.out.print("¿Confirmar mecanico? (si/no)");
+				confirmarMech = sc.nextLine();
+				if (confirmarMech.equals("no")) {
+					mecanicos=Mecanico.mecanicoDisponible();
+					mecanico=Mecanico.selector(mecanicos, transaccion.auto);
+					System.out.print(mecanico.info());
+					System.out.print(mecanico.info());
+				}
+		}if(confirmarMech.equals("si")) {
+			String confirmarProd=null; 
+			Articulo producto=InventarioArticulo.articuloDispo(mecanico.getEspecialidad());
+			System.out.print(producto.info());
+			while (confirmarProd==null||confirmarProd.equals("no")) {
+				System.out.print("¿Confirmar producto? (si/no)");
+				confirmarProd = sc.nextLine();
+				if (confirmarProd.equals("no")) {
+					producto=InventarioArticulo.articuloDispo(mecanico.getEspecialidad());
+					System.out.print(producto.info());
+				}
+		}if(confirmarProd.equals("si")) {
+			String confirmarTrans=null;
+			long costoTotal=(long) (mecanico.getManoObra()+producto.getPrecio());
+			System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
+			if(producto.getEspecialidad().equals("Motor")) {
+				System.out.print("El procedimiento a realizar es: Cambio de aceite con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			}
+			else if(producto.getEspecialidad().equals("Llantas")) {
+				System.out.print("El procedimiento a realizar es: Cambio de Llantas con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			}
+			else if(producto.getEspecialidad().equals("Pintura")) {
+				System.out.print("El procedimiento a realizar es: cambio de pintura con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			}
+			else if(producto.getEspecialidad().equals("Frenos")) {
+				System.out.print("El procedimiento a realizar es: Cambio de frenos con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			}
+			while (confirmarTrans==null||confirmarTrans.equals("no")) {
+				System.out.print("¿Confirmar Transaccion? (si/no)");
+				confirmarTrans= sc.nextLine();
+				if(confirmarTrans.equals("si")) {
+					
+					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),producto, mecanico).info()+"\n");
+				}
+				else {
+					System.out.print("Transaccion cancelada"+"\n");
+					System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)");
+					salir=sc.nextLine();
+					break;
+				}
+				System.out.print("esperemos verlo de nuevo en nuestro Consecionario");
+				;
+			}if (confirmarTrans.equals("si")) {
+				System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)");
+				salir=sc.nextLine();
+			}
+			
+			}
+			}
+		}
+		}while(salir.equals("si"));
 		
 	}
 
