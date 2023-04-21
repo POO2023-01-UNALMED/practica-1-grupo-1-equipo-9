@@ -47,7 +47,7 @@ public class Mecanico extends Trabajador {
 	public static void setMecanicos(ArrayList<Mecanico> mecanicos) {
 		Mecanico.mecanicos = mecanicos;
 	}
-	public static ArrayList<Mecanico> mecanicoDisponible() {
+	public static ArrayList<Mecanico> mecanicoDisponible(Auto auto) {
 	    Scanner sc = new Scanner(System.in);
 	    byte input;
 	    String salir = null;
@@ -62,7 +62,7 @@ public class Mecanico extends Trabajador {
 	        case 1:
                 especialidad="Pintura";
         	    for (Mecanico mecanico : getMecanicos()) {
-        	        if (especialidad.equals(mecanico.getEspecialidad())) {
+        	        if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
         	        }
         	        salir="si";
@@ -71,7 +71,7 @@ public class Mecanico extends Trabajador {
             case 2:
                 especialidad="Llantas";
         	    for (Mecanico mecanico : getMecanicos()) {
-        	        if (especialidad.equals(mecanico.getEspecialidad())) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
         	        }
         	        salir="si";
@@ -80,7 +80,7 @@ public class Mecanico extends Trabajador {
             case 3:
                 especialidad="Motor";
         	    for (Mecanico mecanico : getMecanicos()) {
-        	        if (especialidad.equals(mecanico.getEspecialidad())) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
         	        }
         	        salir="si";
@@ -89,7 +89,7 @@ public class Mecanico extends Trabajador {
             case 4:
                 especialidad="Frenos";
         	    for (Mecanico mecanico : getMecanicos()) {
-        	        if (especialidad.equals(mecanico.getEspecialidad())) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
         	        }
         	        salir="si";
@@ -98,7 +98,7 @@ public class Mecanico extends Trabajador {
             case 5:
                 especialidad="Modificacion";
         	    for (Mecanico mecanico : getMecanicos()) {
-        	        if (especialidad.equals(mecanico.getEspecialidad())) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
         	        }
         	        salir="si";
@@ -111,42 +111,36 @@ public class Mecanico extends Trabajador {
 	    } while(salir.equals(null));
 	    return mechs;
 	}
-	public static Mecanico selector(ArrayList<Mecanico> mechs,Auto auto) {
+	/*public static Mecanico selector(ArrayList<Mecanico> mechs,Auto auto) {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Mecanico> mechas = new ArrayList<Mecanico>();
 	    String result = String.format("%-20s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
-	    int i = 0;
 	    for (Mecanico mecanico : mechs) {
-	        if (auto.getMarca().equals(mecanico.getAutos())) {
-	            i++;
-	            mechas.add(mecanico);
 	            String mechInfo = String.format("%-20s%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos(),mecanico.getEspecialidad());
-	            result += String.format("%-3d%s", i, mechInfo);
-	        }
+	            result += String.format("%-3d%s", mechs.size(), mechInfo);
 	    }
 	    Mecanico mecanico = null;
 	    
-	    if (mechas.size() >= 1) {
+	    if (mechs.size() >= 1) {
 	        System.out.println("Los mecanicos que atienden " + auto.getMarca() + " disponibles son:\n");
 	        System.out.println(result);
 	        int num = 0;
-	        while (num <= 0 || num > mechas.size()) {
-	            System.out.println("Seleccione el numero del mecanico" + "[1-" + mechas.size() + "]: ");
+	        while (num <= 0 || num > mechs.size()) {
+	            System.out.println("Seleccione el numero del mecanico" + "[1-" + mechs.size() + "]: ");
 	            if (sc.hasNextInt()) {
 	                num = sc.nextInt();
 	            } else {
-	                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mechas.size() + ".");
+	                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mechs.size() + ".");
 	                sc.nextLine(); // Limpiar la entrada no válida
 	            }
 	        }
-	        mecanico = mechas.get(num - 1);
+	        mecanico = mechs.get(num - 1);
 
-	    } else if (mechas.size() == 0) {
+	    } else if (mechs.size() == 0) {
 	        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
 	    }
 	    return mecanico;
 		
-	}
+	}*/
 
 	public static byte readByte() {
 	    Scanner scanner = new Scanner(System.in);

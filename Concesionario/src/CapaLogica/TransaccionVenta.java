@@ -34,11 +34,11 @@ public class TransaccionVenta extends Transaccion {
 		}
 		return cli;
 	}
-	public static TransaccionVenta getTransaccionporCedula(long cedula) {
-		TransaccionVenta finder = null;
+	public static Auto getTransaccionporCedula(long cedula) {
+		Auto finder = null;
 		for (TransaccionVenta trans: transaccionesven) {
 			if(trans.getClienteCed()== cedula) {
-				finder = trans;
+				finder = trans.getAuto();
 				break;
 			}
 		}
