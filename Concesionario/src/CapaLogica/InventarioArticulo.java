@@ -190,7 +190,7 @@ public class InventarioArticulo {
     	}*/
 		
     }
-    public static Articulo articuloDispo(String tipo) {
+    public static Articulo articuloDispo(Mecanico mecanico) {
     	Scanner sc = new Scanner(System.in);
  	    byte input;
  	    String salir = null;
@@ -198,7 +198,7 @@ public class InventarioArticulo {
  	    int i = 0;
  	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
  	    for (Articulo articulo : getArticulos()) {
- 	        if (tipo.equals(articulo.getEspecialidad())) {
+ 	        if (mecanico.getEspecialidad().equals(articulo.getEspecialidad())) {
  	            i++;
  	            prods.add(articulo);
  	            String mechInfo = String.format("%-40s%-25s%-20s%-15s%n", articulo.getTipoArticulo(), articulo.getTipoVehiculo(),articulo.getMarca(),articulo.getPrecio());
@@ -207,7 +207,7 @@ public class InventarioArticulo {
  	    }
  	    Articulo product = null;
  	    if (prods.size() >= 1) {
- 	        System.out.println("Los productos " + tipo + " disponibles son:\n");
+ 	        System.out.println("Los productos " + mecanico.getEspecialidad() + " disponibles son:\n");
  	        System.out.println(result);
  	        int num = 0;
  	        while (num <= 0 || num > prods.size()) {

@@ -358,13 +358,13 @@ public class main {
 				sc.nextLine();
 		}if(!confirmarMech.equals("no")) {
 			String confirmarProd=null; 
-			Articulo producto=InventarioArticulo.articuloDispo(mecanico.getEspecialidad());
+			Articulo producto=InventarioArticulo.articuloDispo(mecanico);
 			System.out.print(producto.info());
 			while (confirmarProd==null||confirmarProd.equals("no")) {
 				System.out.print("¿Confirmar producto? (si/no)");
 				confirmarProd = sc.nextLine();
 				if (confirmarProd.equals("no")) {
-					producto=InventarioArticulo.articuloDispo(mecanico.getEspecialidad());
+					producto=InventarioArticulo.articuloDispo(mecanico);
 					System.out.print(producto.info());
 				}
 		}if(confirmarProd.equals("si")) {
