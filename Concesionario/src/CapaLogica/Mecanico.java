@@ -9,6 +9,7 @@ public class Mecanico extends Trabajador {
 	String especialidad;
 	long pagoSvcs=0;
 	long manoObra;
+	ArrayList<String> horario=new ArrayList<String>() {{add("9:00-11:00");add("11:00-1:00");add("2:00-4:00");add("4:00-6:00");}};
 
 	public Mecanico(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
 			String banco, long cuentaBanco, String autos,String especialidad,long manoObra) {
@@ -18,6 +19,13 @@ public class Mecanico extends Trabajador {
 		this.especialidad=especialidad;
 		Mecanico.mecanicos.add(this);
 	}
+    public ArrayList<String> getHorario() {
+        return horario;
+    }
+
+    public void setHorario(ArrayList<String> horario) {
+        this.horario = horario;
+    }
     public long  getManoObra() {
         return manoObra;
     }

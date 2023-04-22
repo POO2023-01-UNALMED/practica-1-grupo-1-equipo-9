@@ -29,6 +29,11 @@ public class main {
 		Cliente c5= new Cliente("Roberto Palacio", 1000413512, 556656, "Carrera 20 #2-55", "Medellin", "Hybrid", 30000000);
 		Cliente c6= new Cliente("Roxanna Corrales", 1034515785, 300475854, "Carrera 12 #45-13", "Medellin", "Toyota", 70000000);
 		//Mecanicos
+		ArrayList<String> horario = new ArrayList<String>();
+		horario.add("9:00-11:00");
+		horario.add("11:00-1:00");
+		horario.add("2:00-4:00");
+		horario.add("4:00-6:00");
 		Mecanico mecanico = new Mecanico("Carlos Martinez", 1234567890L, 9876543210L, "carlos@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123456L,"Toyota","Pintura",340000);
 		Mecanico mecanico1 = new Mecanico("Laura Hernandez", 1234567891L, 9876543211L, "laura@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123457L,"Mazda","Pintura",340000);
 		Mecanico mecanico2 = new Mecanico("Mario Gonzalez", 1234567892L, 9876543212L, "mario@example.com", "Calle 123", 2000.0, "Banco X", 1234567890123458L,"Chevrolet","Pintura",340000);
@@ -352,10 +357,38 @@ public class main {
 		    } else if (mecanicos.size() == 0) {
 		        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
 		    }
-			System.out.print(mecanico.info());
+		    String resulth = String.format("%-20s%n", "   Horario disponible");
+		    byte h=0;
+		    for(String hora:mecanico.getHorario()) {
+		    	h++;
+	            String hor = String.format("%-20s%n", hora);
+	            resulth += String.format("%-3d%s", h, hor);
+		    }
+		    if (mecanico.getHorario().size() >= 1) {
+		        System.out.println("Las horas de " + mecanico.getNombre() + " disponibles son:\n");
+		        System.out.println(resulth);
+		        int num = 0;
+		        while (num <= 0 || num > mecanico.getHorario().size()) {
+		            System.out.println("Seleccione la hora" + "[1-" + mecanico.getHorario().size() + "]: ");
+		            if (sc.hasNextInt()) {
+		                num = sc.nextInt();
+		            } else {
+		                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mecanicos.size() + ".");
+		                sc.nextLine(); // Limpiar la entrada no válida
+		            }
+		        }
+				System.out.print(mecanico.info()+ mecanico.getHorario().get(num-1));
+		        mecanico.getHorario().remove(num-1);
+		        
+
+		    } else if (mecanicos.size() == 0) {
+		        System.out.println("No hay hora disponible");
+		    }
+		    
+
 			String confirmarMech=null;
 			while (confirmarMech==null||confirmarMech.equals("no")) {
-				System.out.print("¿Confirmar mecanico? (si/no)");
+				System.out.print("¿Confirmar mecanico y hora? (si/no)");
 				confirmarMech = sc.nextLine();
 				sc.nextLine();
 		}if(!confirmarMech.equals("no")) {
@@ -393,8 +426,6 @@ public class main {
 				sc.nextLine();
 		}if(!confirmarProd.equals("no")) {
 			String confirmarTrans=null;
-			long costoTotal=(long) (mecanico.getManoObra()+articulo.getPrecio());
-			System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 			if(articulo.getEspecialidad().equals("Motor")) {
 				System.out.print("El procedimiento a realizar es: Cambio de aceite con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
@@ -411,6 +442,8 @@ public class main {
 				System.out.print("¿Confirmar Transaccion? (si/no)");
 				confirmarTrans= sc.nextLine();
 				if(confirmarTrans.equals("si")) {
+					long costoTotal=(long) (mecanico.getManoObra()+articulo.getPrecio());
+					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
 				}
