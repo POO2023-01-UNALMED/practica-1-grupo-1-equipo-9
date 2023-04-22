@@ -326,9 +326,11 @@ public class main {
 			//Selector
 			Scanner sc1 = new Scanner(System.in);
 		    String result = String.format("%-20s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
+		    byte j=0;
 		    for (Mecanico mecanico : mecanicos) {
+		    		j++;
 		            String mechInfo = String.format("%-20s%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos(),mecanico.getEspecialidad());
-		            result += String.format("%-3d%s", mecanicos.size(), mechInfo);
+		            result += String.format("%-3d%s", j, mechInfo);
 		    }
 		    Mecanico mecanico = null;
 		    
@@ -357,38 +359,60 @@ public class main {
 				confirmarMech = sc.nextLine();
 				sc.nextLine();
 		}if(!confirmarMech.equals("no")) {
+			Articulo articulo=null;
 			String confirmarProd=null; 
-			Articulo producto=InventarioArticulo.articuloDispo(mecanico);
-			System.out.print(producto.info());
+			ArrayList<Articulo> producto=InventarioArticulo.articuloDispo(mecanico);
+	 	    String resultp = String.format("%-40s%-25s%-20s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
+	 	    byte i=0;
+	 	    for (Articulo articuloi:producto) {
+	 	    	i++;
+ 	            String mechInfo = String.format("%-40s%-25s%-20s%-15s%n", articuloi.getTipoArticulo(), articuloi.getTipoVehiculo(),articuloi.getMarca(),articuloi.getPrecio());
+ 	            resultp += String.format("%-3d%s", i, mechInfo);
+	 	    }if (producto.size() >= 1) {
+	 	        System.out.println("Los productos " + mecanico.getEspecialidad() + " disponibles son:\n");
+	 	        System.out.println(resultp);
+	 	        int num = 0;
+	 	        while (num <= 0 || num > producto.size()) {
+	 	            System.out.println("Seleccione el numero del producto" + "[1-" + producto.size() + "]: ");
+	 	            if (sc.hasNextInt()) {
+	 	                num = sc.nextInt();
+	 	            } else {
+	 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + producto.size() + ".");
+	 	                sc.nextLine(); // Limpiar la entrada no válida
+	 	            }
+	 	        }
+	 	        articulo = producto.get(num - 1);
+
+	 	    } else if (producto.size() == 0) {
+	 	        System.out.println("No hay productos disponibles para su vehiculo");
+	 	    }
+			
 			while (confirmarProd==null||confirmarProd.equals("no")) {
 				System.out.print("¿Confirmar producto? (si/no)");
 				confirmarProd = sc.nextLine();
-				if (confirmarProd.equals("no")) {
-					producto=InventarioArticulo.articuloDispo(mecanico);
-					System.out.print(producto.info());
-				}
-		}if(confirmarProd.equals("si")) {
+				sc.nextLine();
+		}if(!confirmarProd.equals("no")) {
 			String confirmarTrans=null;
-			long costoTotal=(long) (mecanico.getManoObra()+producto.getPrecio());
+			long costoTotal=(long) (mecanico.getManoObra()+articulo.getPrecio());
 			System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
-			if(producto.getEspecialidad().equals("Motor")) {
-				System.out.print("El procedimiento a realizar es: Cambio de aceite con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			if(articulo.getEspecialidad().equals("Motor")) {
+				System.out.print("El procedimiento a realizar es: Cambio de aceite con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
-			else if(producto.getEspecialidad().equals("Llantas")) {
-				System.out.print("El procedimiento a realizar es: Cambio de Llantas con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			else if(articulo.getEspecialidad().equals("Llantas")) {
+				System.out.print("El procedimiento a realizar es: Cambio de Llantas con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
-			else if(producto.getEspecialidad().equals("Pintura")) {
-				System.out.print("El procedimiento a realizar es: Latoneria y pintura con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			else if(articulo.getEspecialidad().equals("Pintura")) {
+				System.out.print("El procedimiento a realizar es: Latoneria y pintura con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
-			else if(producto.getEspecialidad().equals("Frenos")) {
-				System.out.print("El procedimiento a realizar es: Cambio de frenos con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			else if(articulo.getEspecialidad().equals("Frenos")) {
+				System.out.print("El procedimiento a realizar es: Cambio de frenos con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
 			while (confirmarTrans==null||confirmarTrans.equals("no")) {
 				System.out.print("¿Confirmar Transaccion? (si/no)");
 				confirmarTrans= sc.nextLine();
 				if(confirmarTrans.equals("si")) {
 					
-					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),producto, mecanico).info()+"\n");
+					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
 				}
 				else {
 					System.out.print("Transaccion cancelada"+"\n");

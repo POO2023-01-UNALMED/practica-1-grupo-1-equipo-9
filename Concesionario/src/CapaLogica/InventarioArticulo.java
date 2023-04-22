@@ -190,41 +190,14 @@ public class InventarioArticulo {
     	}*/
 		
     }
-    public static Articulo articuloDispo(Mecanico mecanico) {
-    	Scanner sc = new Scanner(System.in);
- 	    byte input;
- 	    String salir = null;
- 	    String result = String.format("%-40s%-25s%-20s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
- 	    int i = 0;
+   public static ArrayList<Articulo> articuloDispo(Mecanico mecanico) {
  	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
  	    for (Articulo articulo : getArticulos()) {
  	        if (mecanico.getEspecialidad().equals(articulo.getEspecialidad())) {
- 	            i++;
  	            prods.add(articulo);
- 	            String mechInfo = String.format("%-40s%-25s%-20s%-15s%n", articulo.getTipoArticulo(), articulo.getTipoVehiculo(),articulo.getMarca(),articulo.getPrecio());
- 	            result += String.format("%-3d%s", i, mechInfo);
  	        }
  	    }
- 	    Articulo product = null;
- 	    if (prods.size() >= 1) {
- 	        System.out.println("Los productos " + mecanico.getEspecialidad() + " disponibles son:\n");
- 	        System.out.println(result);
- 	        int num = 0;
- 	        while (num <= 0 || num > prods.size()) {
- 	            System.out.println("Seleccione el numero del producto" + "[1-" + prods.size() + "]: ");
- 	            if (sc.hasNextInt()) {
- 	                num = sc.nextInt();
- 	            } else {
- 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + prods.size() + ".");
- 	                sc.nextLine(); // Limpiar la entrada no válida
- 	            }
- 	        }
- 	        product = prods.get(num - 1);
-
- 	    } else if (prods.size() == 0) {
- 	        System.out.println("No hay productos disponibles para su vehiculo");
- 	    }
- 	    return product;
+ 	    return prods;
  		
  	}
     public static ArrayList<Articulo> selectorEspecial() {
