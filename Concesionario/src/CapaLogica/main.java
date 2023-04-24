@@ -292,6 +292,7 @@ public class main {
 			System.out.print("Introduzca la cédula del propietario: ");
 			long cedula = sc.nextLong(); 
 			sc.nextLine();
+			//Se ingresa una cedula y se devuelve un cliente y un auto, donde se verifica que el cliente si tenga transacciones.
 			propietario = TransaccionVenta.getClientePorCedula(cedula);
 			auto = TransaccionVenta.getTransaccionporCedula(cedula);
 			
@@ -327,8 +328,8 @@ public class main {
 	        System.out.println("3. Cambio de Aceite");
 	        System.out.println("4. Cambio de Frenos");
 	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+	        //Se ingresa el auto que se devolvio anteriormente y este entrega una lista de mecanicos
 			ArrayList<Mecanico> mecanicos=Mecanico.mecanicoDisponible(auto);
-			//Mecanico mecanico=Mecanico.selector(mecanicos, auto);
 			//Selector
 			Scanner sc1 = new Scanner(System.in);
 		    String result = String.format("%-20s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
@@ -395,7 +396,9 @@ public class main {
 		}if(!confirmarMech.equals("no")) {
 			Articulo articulo=null;
 			String confirmarProd=null; 
+			//Ingresa este mecanico que se selecciono y se devuekve una lista de productos
 			ArrayList<Articulo> producto=InventarioArticulo.articuloDispo(mecanico);
+			//Selector
 	 	    String resultp = String.format("%-40s%-25s%-20s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
 	 	    byte i=0;
 	 	    for (Articulo articuloi:producto) {
@@ -445,7 +448,7 @@ public class main {
 				if(confirmarTrans.equals("si")) {
 					long costoTotal=(long) (mecanico.getManoObra()+articulo.getPrecio());
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
-					
+					//Reune todos los objetos y crea un objeto llamado transaccion.
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
 				}
 				else {
