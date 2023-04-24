@@ -155,6 +155,7 @@ public class main {
 			System.out.println("3. Taller");
 			System.out.println("4. Consultar estadisticas de ventas");
 			System.out.println("5. Personalizar su auto");
+			System.out.println("6. Crear nuevo usuario (Comprador)");			
 			System.out.print("Ingrese el número de la opción que va a utilizar: ");
 			
 			input = sc.nextByte();
@@ -456,7 +457,7 @@ public class main {
 				System.out.print("esperemos verlo de nuevo en nuestro Consecionario");
 				;
 			}if (confirmarTrans.equals("si")) {
-				System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)");
+				System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)"); 
 			
 			}
 			
@@ -485,12 +486,17 @@ public class main {
 
 		}if(!confirmarComp.equals("no")) {
 			String confirmarTipo=null;
+			System.out.print("¿Que repuesto deseas Comprar?"+"\n");
+	        System.out.println("1. Repuestos de Motor");
+	        System.out.println("2. Escapes");
+	        System.out.println("3. Sistema de Sonido");
+	        System.out.println("4. Suspension");
+	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
 			ArrayList<Articulo> repuesto=InventarioArticulo.selectorEspecial();
 			System.out.print("Usted Va a comprar un repuesto de: "+repuesto.get(0).getEspecialidad()+"\n");
 			while(confirmarTipo==null||confirmarTipo.equals("no")) {
 				System.out.print("¿Confirmar Tipo de repuesto? (si/no)");
 				confirmarTipo = sc.nextLine();
-				sc.nextLine();
 				if (confirmarTipo.equals("no")){
 					repuesto=InventarioArticulo.selectorEspecial();
 					System.out.print("Usted Va a comprar un repuesto de: "+repuesto.get(0).getEspecialidad()+"\n");
@@ -498,6 +504,11 @@ public class main {
 				}
 			}if(confirmarTipo.equals("si")) {
 				String confirmarMarca=null;
+				System.out.print("¿Que Marca de auto posee?"+"\n");
+		        System.out.println("1. Toyota");
+		        System.out.println("2. Mazda");
+		        System.out.println("3. Chevrolet");
+		        System.out.print("Ingrese el número de la opción que va a utilizar: ");
 				ArrayList<Articulo> marca=InventarioArticulo.selectorMarca(repuesto);
 				System.out.print("Usted Va a comprar un repuesto de: "+marca.get(0).getMarcaVehiculo()+"\n");
 				while(confirmarMarca==null||confirmarMarca.equals("no")) {
@@ -510,8 +521,47 @@ public class main {
 						
 					}
 				}if(confirmarTipo.equals("si")) {
-					Articulo articulo=InventarioArticulo.selectorCalidad(marca);
-					System.out.print(articulo.getTipoArticulo());
+					String confirmarCalidad=null;
+					System.out.print("¿Que calidad desea?"+"\n");
+			        System.out.println("1. Premium");
+			        System.out.println("2. Basico");
+			        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+					ArrayList<Articulo> articulos=InventarioArticulo.selectorCalidad(marca);
+					Articulo articulo=null;
+					String resultp = String.format("%-40s%-25s%-20s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
+				 	    byte i=0;
+				 	    for (Articulo articuloi:articulos) {
+				 	    	i++;
+			 	            String articuloinfo = String.format("%-40s%-25s%-20s%-15s%n", articuloi.getTipoArticulo(), articuloi.getTipoVehiculo(),articuloi.getMarca(),articuloi.getPrecio());
+			 	            resultp += String.format("%-3d%s", i, articuloinfo );
+				 	    }if (articulos.size() >= 1) {
+				 	        System.out.println("Los productos " + articulos.get(0).getEspecialidad() + " disponibles son:\n");
+				 	        System.out.println(resultp);
+				 	        int num = 0;
+				 	        while (num <= 0 || num > articulos.size()) {
+				 	            System.out.println("Seleccione el numero del producto" + "[1-" + articulos.size() + "]: ");
+				 	            if (sc.hasNextInt()) {
+				 	                num = sc.nextInt();
+				 	            } else {
+				 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + articulos.size() + ".");
+				 	                sc.nextLine(); // Limpiar la entrada no válida
+				 	            }
+				 	        }
+				 	        articulo = articulos.get(num - 1);
+
+				 	    } else if (articulos.size() == 0) {
+				 	        System.out.println("No hay productos disponibles para su vehiculo");
+				 	    }
+					System.out.print(articulo.getTipoArticulo()+" "+ articulo.getMarca()+"\n");
+					while(confirmarCalidad==null||confirmarCalidad.equals("no")) {
+						System.out.print("¿Confirmar repuesto? (si/no)");
+						confirmarCalidad = sc.nextLine();
+						sc.nextLine();
+					}if(confirmarCalidad.equals("si")) {
+						String confirmarProducto=null;
+						
+						
+					}
 				}
 
 			}
