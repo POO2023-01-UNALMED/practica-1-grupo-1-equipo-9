@@ -147,7 +147,7 @@ public class main {
 	
 		/*INTERFAZ*/
 		byte input;
-		String salir = null;
+		boolean seguirEjecutando = true;
 		do {
 			System.out.println("\n\nMenú principal Concesionario");
 			System.out.println("1. Venta de Autos");
@@ -168,7 +168,7 @@ public class main {
 				ventaRepuestos();
 				break;
 			case 3:
-				procesoTaller();
+				seguirEjecutando=procesoTaller();
 				break;
 			case 4:
 				stats();
@@ -178,14 +178,13 @@ public class main {
 				break;
 			default:
 				System.out.print("\n¿Salir? (si/no)");
-				salir = sc.nextLine();
 			}
-		}while(salir=="no");
-		
-		
-		/*INTERFAZ*/
+		}while(seguirEjecutando);
 		
 	}
+		/*INTERFAZ*/
+		
+	
 	public static void procesoVenta() {
 		Cliente comprador = null;
 		Vendedor vendedor = null;
@@ -282,11 +281,11 @@ public class main {
 		
 		
 	}
-	public static void procesoTaller() {
-
+	public static boolean procesoTaller() {
 			Scanner sc = new Scanner(System.in);
 			Cliente propietario = null;
 			Auto auto=null;
+			boolean seRealizoSvc = false;
 			
 		while (propietario == null || auto == null) {
 			System.out.print("Introduzca la cédula del propietario: ");
@@ -460,13 +459,15 @@ public class main {
 				System.out.print("esperemos verlo de nuevo en nuestro Consecionario");
 				
 			}if (confirmarTrans.equals("si")) {
-				System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)"); 
+				seRealizoSvc=true;
+				System.out.print("Hasta luego"); 
 			
 			}
 			
 			}
 			}
 		}
+		return seRealizoSvc;
 		
 	}
 	public static void ventaRepuestos() {
