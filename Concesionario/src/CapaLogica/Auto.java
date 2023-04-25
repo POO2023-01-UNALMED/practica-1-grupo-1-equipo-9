@@ -1,8 +1,9 @@
 package CapaLogica;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Auto {
+public class Auto  implements Serializable{
 	private Articulo llantas;
 	private Articulo suspension;
 	private Articulo sonido;

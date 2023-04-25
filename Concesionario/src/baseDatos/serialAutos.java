@@ -10,9 +10,9 @@ import java.io.PrintWriter;
 import CapaLogica.InventarioAuto;
 
 public class serialAutos {
-	private static File rutaTemp = new File("src\\baseDatos\\temp")
+	private static File rutaTemp = new File("\\temp")
 ;
-	public static void serializar(InventarioAuto autos) {
+	public static void serializarAutos() {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
 		File[] docs = rutaTemp.listFiles();
@@ -32,7 +32,7 @@ public class serialAutos {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
-					oos.writeObject(autos.getAutos());
+					oos.writeObject(InventarioAuto.getAutos());
 				} catch (FileNotFoundException e ) {
 					e.printStackTrace();
 				} catch (IOException e) {

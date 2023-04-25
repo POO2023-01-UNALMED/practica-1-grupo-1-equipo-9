@@ -1,10 +1,11 @@
 package CapaLogica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class InventarioAuto {
+public class InventarioAuto  implements Serializable{
 	static ArrayList<Auto> autos = new ArrayList<Auto>();
 
 	public void agregarAuto(Auto auto) {

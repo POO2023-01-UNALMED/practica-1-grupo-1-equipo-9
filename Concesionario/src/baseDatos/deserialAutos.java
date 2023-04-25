@@ -11,9 +11,9 @@ import CapaLogica.Auto;
 import CapaLogica.InventarioAuto;
 
 public class deserialAutos {
-	private static File rutaTemp = new File("src\\baseDatos\\temp");
+	private static File rutaTemp = new File("\\temp");
 	
-	public static void desearializar(InventarioAuto autos) {
+	public static void desearializarAutos() {
 		File[] docs = rutaTemp.listFiles();
 		FileInputStream fis;
 		ObjectInputStream ois;
@@ -24,12 +24,15 @@ public class deserialAutos {
 					fis = new FileInputStream(file);
 					ois = new ObjectInputStream(fis);
 					
-					autos.setAutos((ArrayList<Auto>) ois.readObject());
+					InventarioAuto.setAutos((ArrayList<Auto>) ois.readObject());
 				} catch (FileNotFoundException e) {
+					System.out.print("FileNotFound");
 					e.printStackTrace();
 				} catch (IOException e) {
+					System.out.print("IOException");
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
+					System.out.print("ClassNotFoundException");
 					e.printStackTrace();
 				}
 			}

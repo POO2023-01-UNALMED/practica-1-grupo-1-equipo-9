@@ -1,5 +1,8 @@
 package CapaLogica;
 import java.util.*;
+
+import baseDatos.*;
+
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 
@@ -148,6 +151,9 @@ public class main {
 		/*INTERFAZ*/
 		byte input;
 		boolean seguirEjecutando = true;
+		/*SerialAuto.serializarAuto();*/
+		/*SerialAuto.deserializarAuto();*/
+		
 		do {
 			System.out.println("\n\nMenú principal Concesionario");
 			System.out.println("1. Venta de Autos");
