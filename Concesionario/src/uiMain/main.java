@@ -723,7 +723,7 @@ public class main {
 			Cliente propietario = null;
 			Vendedor vendedor = null; 
 			TransaccionModificacion transaccion = null;
-		System.out.print("bienvenido a nuestra seccion de personaizacion automovilistica");
+		System.out.print("bienvenido a nuestra seccion de personaizacion de su automovil");
 			
 		while (propietario == null || transaccion == null) {
 			System.out.print("Introduzca la cédula del propietario: ");
@@ -794,35 +794,38 @@ public class main {
 			String confirmarTrans=null;
 			long costoTotal=(long) (mecanico.getManoObra()+producto.getPrecio());
 			System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
-			if(producto.getEspecialidad().equals("Motor")) {
-				System.out.print("El procedimiento a realizar es: Cambio de aceite con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			if(producto.getEspecialidad().equals("Sonido")) {
+				System.out.print("El procedimiento a realizar es: Personalizacion del sonido con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
 			else if(producto.getEspecialidad().equals("Llantas")) {
-				System.out.print("El procedimiento a realizar es: Cambio de Llantas con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+				System.out.print("El procedimiento a realizar es: personalizacion de Llantas con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
 			else if(producto.getEspecialidad().equals("Pintura")) {
-				System.out.print("El procedimiento a realizar es: cambio de pintura con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+				System.out.print("El procedimiento a realizar es: personalizacon de pintura con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
 			else if(producto.getEspecialidad().equals("Frenos")) {
-				System.out.print("El procedimiento a realizar es: Cambio de frenos con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+				System.out.print("El procedimiento a realizar es: personalizacion de frenos con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
+			}
+			else if(producto.getEspecialidad().equals("Escape")) {
+				System.out.print("El procedimiento a realizar es: personalizacion de frenos con "+producto.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
 			while (confirmarTrans==null||confirmarTrans.equals("no")) {
 				System.out.print("¿Confirmar Transaccion? (si/no)");
 				confirmarTrans= sc.nextLine();
 				if(confirmarTrans.equals("si")) {
 					
-					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),producto, mecanico).info()+"\n");
+					System.out.print(new TransaccionModificacion("Modificacion",costoTotal,propietario,propietario.getAuto(), mecanico, vendedor, producto).info()+"\n");
 				}
 				else {
 					System.out.print("Transaccion cancelada"+"\n");
-					System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)");
+					System.out.print("Hasta luego, desea otro servicio relacionado con la personalizacion del Auto  (si/no)");
 					salir=sc.nextLine();
 					break;
 				}
 				System.out.print("esperemos verlo de nuevo en nuestro Consecionario");
 				;
 			}if (confirmarTrans.equals("si")) {
-				System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)");
+				System.out.print("Hasta luego, desea otro servicio relacionado con la personalizacion del Auto (si/no)");
 				salir=sc.nextLine();
 			}
 			
