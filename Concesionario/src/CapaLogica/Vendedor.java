@@ -12,12 +12,14 @@ public class Vendedor extends Trabajador {
 	public Vendedor(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
 			String banco, long cuentaBanco,String puesto) {
 		super(nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco);
+		this.puesto=puesto;
 		vendedores.add(this);
 	}
 
 	public Vendedor(String nombre, long cedula, long telefono, String correo, double salario, String banco,
 			long cuentaBanco,String puesto) {
 		super(nombre, cedula, telefono, correo, salario, banco, cuentaBanco);
+		this.puesto=puesto;
 		vendedores.add(this);
 	}
 

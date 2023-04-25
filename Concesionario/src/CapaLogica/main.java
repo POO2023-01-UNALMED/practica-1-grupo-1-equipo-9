@@ -471,6 +471,7 @@ public class main {
 	}
 	public static void ventaRepuestos() {
 		System.out.print("Bienvenido a nuestro portal de Ventas de Repuestos"+"\n");
+		Articulo articulo=null;
 		Cliente comprador = null;
 		Vendedor vendedor = null;
 		Auto auto = null;
@@ -478,6 +479,7 @@ public class main {
 		while (comprador==null) {
 			System.out.println("Escriba la cédula del comprador: ");
 			long cedula = sc.nextLong();
+			//Devuelve un cliente que ya debe estar previamente registrado
 			comprador = Cliente.getClientePorCedula(cedula);
 			System.out.print(comprador.info());
 		}
@@ -495,6 +497,7 @@ public class main {
 	        System.out.println("3. Sistema de Sonido");
 	        System.out.println("4. Suspension");
 	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+	        //Se le pide que escoja un tipo de repuesto a comprar y devuelve una lista de articulos
 			ArrayList<Articulo> repuesto=InventarioArticulo.selectorEspecial();
 			System.out.print("Usted Va a comprar un repuesto de: "+repuesto.get(0).getEspecialidad()+"\n");
 			while(confirmarTipo==null||confirmarTipo.equals("no")) {
@@ -512,6 +515,7 @@ public class main {
 		        System.out.println("2. Mazda");
 		        System.out.println("3. Chevrolet");
 		        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+		        //Recibe la lista anterior y filtra por marcas de autos y devuelve un array de articulos filtrados
 				ArrayList<Articulo> marca=InventarioArticulo.selectorMarca(repuesto);
 				System.out.print("Usted Va a comprar un repuesto de: "+marca.get(0).getMarcaVehiculo()+"\n");
 				while(confirmarMarca==null||confirmarMarca.equals("no")) {
@@ -529,8 +533,10 @@ public class main {
 			        System.out.println("1. Premium");
 			        System.out.println("2. Basico");
 			        System.out.print("Ingrese el número de la opción que va a utilizar: ");
+			        //Con la lista anterior se hace un refiltrado, por articulos premium o basico y devuelve una lista de articulos
 					ArrayList<Articulo> articulos=InventarioArticulo.selectorCalidad(marca);
-					Articulo articulo=null;
+
+					//Selector de articulo despues de los filtros y devuelve un articulo.
 					String resultp = String.format("%-40s%-25s%-20s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
 				 	    byte i=0;
 				 	    for (Articulo articuloi:articulos) {
@@ -560,10 +566,34 @@ public class main {
 						System.out.print("¿Confirmar repuesto? (si/no)");
 						confirmarCalidad = sc.nextLine();
 						sc.nextLine();
-					}if(confirmarCalidad.equals("si")) {
+					}if(!confirmarCalidad.equals("no")) {
+						
 						String confirmarVendedor=null;
-						
-						
+						ArrayList<Vendedor> vendedores= Vendedor.selectorVend(articulo);
+						String resultado = String.format("%-40s%-15s%n", "   Vendedor", "   Tipo de venta");
+				 	    byte v=0;
+				 	    for (Vendedor vend:vendedores) {
+				 	    	v++;
+			 	            String vendedorinfo = String.format("%-40s%-15s%n", vend.getNombre(), vend.getPuesto());
+			 	            resultado += String.format("%-3d%s", v, vendedorinfo );
+				 	    }if (vendedores.size() >= 1) {
+				 	        System.out.println("Los vendedores de " + vendedores.get(0).getPuesto() + " disponibles son:\n");
+				 	        System.out.println(resultado);
+				 	        int num = 0;
+				 	        while (num <= 0 || num > vendedores.size()) {
+				 	            System.out.println("Seleccione el numero del vendedor" + "[1-" + vendedores.size() + "]: ");
+				 	            if (sc.hasNextInt()) {
+				 	                num = sc.nextInt();
+				 	            } else {
+				 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + vendedores.size() + ".");
+				 	                sc.nextLine(); // Limpiar la entrada no válida
+				 	            }
+				 	        }
+				 	        vendedor = vendedores.get(num - 1);
+
+				 	    } else if (vendedores.size() == 0) {
+				 	        System.out.println("No hay vendedores disponibles para su vehiculo");
+				 	    }
 					}
 				}
 
