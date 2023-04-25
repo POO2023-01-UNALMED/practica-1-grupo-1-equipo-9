@@ -1,7 +1,7 @@
-package personal;
+package gestorAplicacion.personal;
 
 import java.util.ArrayList;
-import activos.*;
+import gestorAplicacion.activos.*;
 
 public class Vendedor extends Trabajador {
 	static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();

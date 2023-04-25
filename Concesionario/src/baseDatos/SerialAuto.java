@@ -9,9 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
-import activos.Auto;
-import activos.InventarioAuto;
+import gestorAplicacion.personal.*;
+import gestorAplicacion.activos.*;
 
 public class SerialAuto {
 	

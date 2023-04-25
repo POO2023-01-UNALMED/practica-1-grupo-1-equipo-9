@@ -1,4 +1,4 @@
-package personal;
+package gestorAplicacion.personal;
 
 public abstract class Trabajador extends Persona {
 	double salario;

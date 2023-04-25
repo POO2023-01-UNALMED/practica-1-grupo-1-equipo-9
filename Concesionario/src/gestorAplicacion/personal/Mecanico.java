@@ -1,8 +1,8 @@
-package personal;
+package gestorAplicacion.personal;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import activos.*;
+import gestorAplicacion.activos.*;
 
 public class Mecanico extends Trabajador {
 	static ArrayList<Mecanico> mecanicos = new ArrayList<Mecanico>();

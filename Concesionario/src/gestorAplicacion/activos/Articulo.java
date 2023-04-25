@@ -1,4 +1,4 @@
-package activos;
+package gestorAplicacion.activos;
 
 public class Articulo {
 	private String calidad;

@@ -1,4 +1,4 @@
-package personal;
+package gestorAplicacion.personal;
 
 public class Persona {
 	String nombre;

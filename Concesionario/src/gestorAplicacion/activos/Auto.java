@@ -1,9 +1,9 @@
-package activos;
+package gestorAplicacion.activos;
 
 import java.io.Serializable;
 import java.util.Comparator;
 
-import personal.Cliente;
+import gestorAplicacion.personal.*;
 
 public class Auto  implements Serializable{
 	private Articulo llantas;

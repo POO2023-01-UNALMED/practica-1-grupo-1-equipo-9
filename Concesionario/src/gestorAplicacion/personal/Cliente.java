@@ -1,9 +1,9 @@
-package personal;
+package gestorAplicacion.personal;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
-import activos.*;
+import gestorAplicacion.activos.*;
 
 public class Cliente extends Persona implements Serializable{
 	/**

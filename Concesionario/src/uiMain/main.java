@@ -2,8 +2,8 @@ package uiMain;
 
 import java.util.*;
 import baseDatos.*;
-import personal.*;
-import activos.*;
+import gestorAplicacion.activos.*;
+import gestorAplicacion.personal.*;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 

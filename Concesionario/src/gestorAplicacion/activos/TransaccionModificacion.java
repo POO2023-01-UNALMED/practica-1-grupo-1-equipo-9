@@ -1,10 +1,8 @@
-package activos;
+package gestorAplicacion.activos;
 
 import java.util.ArrayList;
 
-import personal.Cliente;
-import personal.Mecanico;
-import personal.Vendedor;
+import gestorAplicacion.personal.*;
 
 public class TransaccionModificacion extends Transaccion{
 	

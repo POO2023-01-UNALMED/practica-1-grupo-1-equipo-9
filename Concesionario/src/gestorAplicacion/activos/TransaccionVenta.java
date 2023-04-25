@@ -1,9 +1,8 @@
-package activos;
+package gestorAplicacion.activos;
 
 import java.util.ArrayList;
 
-import personal.Cliente;
-import personal.Vendedor;
+import gestorAplicacion.personal.*;
 
 public class TransaccionVenta extends Transaccion {
 	Auto auto;
