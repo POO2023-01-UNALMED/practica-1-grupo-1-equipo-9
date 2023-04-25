@@ -25,7 +25,7 @@ public class main {
 		Auto a7= new Auto("Hybrid", "Mazda", 444, 6, "rosa", false, true,llanta,suspension,sonido,escape);
 		
 		//Clientes
-		Cliente c1= new Cliente("Ana González", 305478921, 87654321, "Calle 5ta, #10-23", "Bogotá", "Toyota", 40000000);
+		Cliente c1= new Cliente("Ana González", 1234991492, 87654321, "Calle 5ta, #10-23", "Bogotá", "Toyota", 40000000);
 		Cliente c2= new Cliente("Juan Pérez", 102367459, 300987654, "Carrera 12, #34-56", "Medellín", "Toyota", 35000000);
 		Cliente c3= new Cliente("María Sánchez", 745631982, 500123456, "Calle 8, #19-45", "Cali", "Mazda", 60000000);
 		Cliente c4= new Cliente("Javier Castro", 958762341, 900654321, "Avenida Las Palmas, #6-78", "Barranquilla", "Chevrolet", 55000000);
@@ -174,7 +174,7 @@ public class main {
 				ventaRepuestos();
 				break;
 			case 3:
-				seguirEjecutando=procesoTaller();
+				procesoTaller();
 				break;
 			case 4:
 				stats();
@@ -185,7 +185,7 @@ public class main {
 			default:
 				System.out.print("\n¿Salir? (si/no)");
 			}
-		}while(seguirEjecutando);
+		}while(input!=6);
 		
 	}
 		/*INTERFAZ*/
@@ -287,11 +287,11 @@ public class main {
 		
 		
 	}
-	public static boolean procesoTaller() {
+	public static void procesoTaller() {
 			Scanner sc = new Scanner(System.in);
 			Cliente propietario = null;
 			Auto auto=null;
-			boolean seRealizoSvc = false;
+
 			
 		while (propietario == null || auto == null) {
 			System.out.print("Introduzca la cédula del propietario: ");
@@ -465,14 +465,8 @@ public class main {
 				System.out.print("esperemos verlo de nuevo en nuestro Consecionario"+"\n");
 				
 			}if (confirmarTrans.equals("si")) {
-				System.out.print("¿Desea volver al menu principal?  (si/no)"+"\n");
+				System.out.print("presione enter para ir al menu principal"+"\n");
 				String resp=sc.nextLine();
-				if(resp.equals("si")) {
-					seRealizoSvc=true;
-				}
-				else if(resp.equals("no")) {
-					seRealizoSvc=false;
-				}
 
 				System.out.print("Hasta luego"); 
 			
@@ -481,7 +475,6 @@ public class main {
 			}
 			}
 		}
-		return seRealizoSvc;
 		
 	}
 	public static void ventaRepuestos() {
