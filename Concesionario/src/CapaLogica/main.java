@@ -452,14 +452,22 @@ public class main {
 				}
 				else {
 					System.out.print("Transaccion cancelada"+"\n");
-					System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)");
+					System.out.print("Hasta luego");
 					
 					break;
 				}
-				System.out.print("esperemos verlo de nuevo en nuestro Consecionario");
+				System.out.print("esperemos verlo de nuevo en nuestro Consecionario"+"\n");
 				
 			}if (confirmarTrans.equals("si")) {
-				seRealizoSvc=true;
+				System.out.print("¿Desea volver al menu principal?  (si/no)"+"\n");
+				String resp=sc.nextLine();
+				if(resp.equals("si")) {
+					seRealizoSvc=true;
+				}
+				else if(resp.equals("no")) {
+					seRealizoSvc=false;
+				}
+
 				System.out.print("Hasta luego"); 
 			
 			}
