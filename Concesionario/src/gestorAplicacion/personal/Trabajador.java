@@ -1,4 +1,4 @@
-package CapaLogica;
+package personal;
 
 public abstract class Trabajador extends Persona {
 	double salario;

@@ -1,4 +1,4 @@
-package CapaLogica;
+package activos;
 
 public class Articulo {
 	private String calidad;

@@ -1,4 +1,4 @@
-package CapaLogica;
+package personal;
 
 public class Persona {
 	String nombre;

@@ -1,8 +1,9 @@
-package CapaLogica;
+package personal;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
+import activos.*;
 
 public class Cliente extends Persona implements Serializable{
 	/**

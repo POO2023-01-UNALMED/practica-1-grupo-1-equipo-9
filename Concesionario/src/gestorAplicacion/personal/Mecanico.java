@@ -1,7 +1,8 @@
-package CapaLogica;
+package personal;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import activos.*;
 
 public class Mecanico extends Trabajador {
 	static ArrayList<Mecanico> mecanicos = new ArrayList<Mecanico>();

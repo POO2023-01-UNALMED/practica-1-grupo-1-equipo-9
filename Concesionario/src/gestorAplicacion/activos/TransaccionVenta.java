@@ -1,6 +1,9 @@
-package CapaLogica;
+package activos;
 
 import java.util.ArrayList;
+
+import personal.Cliente;
+import personal.Vendedor;
 
 public class TransaccionVenta extends Transaccion {
 	Auto auto;

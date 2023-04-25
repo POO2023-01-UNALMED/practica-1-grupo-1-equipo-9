@@ -10,8 +10,8 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import CapaLogica.Auto;
-import CapaLogica.InventarioAuto;
+import activos.Auto;
+import activos.InventarioAuto;
 
 public class SerialAuto {
 	

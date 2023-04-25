@@ -1,6 +1,7 @@
-package CapaLogica;
+package personal;
 
 import java.util.ArrayList;
+import activos.*;
 
 public class Vendedor extends Trabajador {
 	static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();

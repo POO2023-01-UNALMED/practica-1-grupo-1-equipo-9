@@ -1,4 +1,4 @@
-package CapaLogica;
+package activos;
 
 import java.io.Serializable;
 import java.util.ArrayList;

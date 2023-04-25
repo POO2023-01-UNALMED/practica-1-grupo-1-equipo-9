@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
-import CapaLogica.InventarioAuto;
+import activos.InventarioAuto;
 
 public class serialAutos {
 	private static File rutaTemp = new File("\\temp")

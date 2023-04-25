@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-import CapaLogica.Auto;
-import CapaLogica.InventarioAuto;
+import activos.Auto;
+import activos.InventarioAuto;
 
 public class deserialAutos {
 	private static File rutaTemp = new File("\\temp");

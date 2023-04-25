@@ -1,7 +1,9 @@
-package CapaLogica;
+package activos;
 
 import java.io.Serializable;
 import java.util.Comparator;
+
+import personal.Cliente;
 
 public class Auto  implements Serializable{
 	private Articulo llantas;

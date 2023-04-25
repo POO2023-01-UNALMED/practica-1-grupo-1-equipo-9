@@ -1,8 +1,9 @@
-package CapaLogica;
+package uiMain;
+
 import java.util.*;
-
 import baseDatos.*;
-
+import personal.*;
+import activos.*;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 

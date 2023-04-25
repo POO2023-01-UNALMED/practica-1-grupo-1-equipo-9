@@ -1,6 +1,9 @@
-package CapaLogica;
+package activos;
 
 import java.util.ArrayList;
+
+import personal.Cliente;
+import personal.Mecanico;
 
 public abstract class Transaccion {
 	static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();

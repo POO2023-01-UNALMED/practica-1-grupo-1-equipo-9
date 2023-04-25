@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-import CapaLogica.Mecanico;
+import personal.Mecanico;
 
 public class deserialMecanicos {
 	private static File rutaTemp = new File("src\\baseDatos\\temp");

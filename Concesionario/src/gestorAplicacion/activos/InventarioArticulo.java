@@ -1,7 +1,9 @@
-package CapaLogica;
+package activos;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import personal.Mecanico;
 
 public class InventarioArticulo {
 	static Scanner sc = new Scanner(System.in);
