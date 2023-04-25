@@ -458,7 +458,7 @@ public class main {
 					break;
 				}
 				System.out.print("esperemos verlo de nuevo en nuestro Consecionario");
-				;
+				
 			}if (confirmarTrans.equals("si")) {
 				System.out.print("Hasta luego, desea otro servicio relacionado con taller (si/no)"); 
 			
@@ -561,7 +561,7 @@ public class main {
 						confirmarCalidad = sc.nextLine();
 						sc.nextLine();
 					}if(confirmarCalidad.equals("si")) {
-						String confirmarProducto=null;
+						String confirmarVendedor=null;
 						
 						
 					}
