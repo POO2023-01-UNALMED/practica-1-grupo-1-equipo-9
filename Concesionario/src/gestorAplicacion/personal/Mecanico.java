@@ -122,37 +122,15 @@ public class Mecanico extends Trabajador implements Serializable{
 	    } while(salir.equals(null));
 	    return mechs;
 	}
-	/*public static Mecanico selector(ArrayList<Mecanico> mechs,Auto auto) {
-		Scanner sc = new Scanner(System.in);
-	    String result = String.format("%-20s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
-	    for (Mecanico mecanico : mechs) {
-	            String mechInfo = String.format("%-20s%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos(),mecanico.getEspecialidad());
-	            result += String.format("%-3d%s", mechs.size(), mechInfo);
-	    }
-	    Mecanico mecanico = null;
-	    
-	    if (mechs.size() >= 1) {
-	        System.out.println("Los mecanicos que atienden " + auto.getMarca() + " disponibles son:\n");
-	        System.out.println(result);
-	        int num = 0;
-	        while (num <= 0 || num > mechs.size()) {
-	            System.out.println("Seleccione el numero del mecanico" + "[1-" + mechs.size() + "]: ");
-	            if (sc.hasNextInt()) {
-	                num = sc.nextInt();
-	            } else {
-	                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mechs.size() + ".");
-	                sc.nextLine(); // Limpiar la entrada no válida
-	            }
-	        }
-	        mecanico = mechs.get(num - 1);
-
-	    } else if (mechs.size() == 0) {
-	        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
-	    }
-	    return mecanico;
+	public static Mecanico getMecanicoPorCedula(long cedula){
+		Mecanico finder = null;
+		for(Mecanico mecanico: mecanicos) {
+			if(mecanico.getCedula()==cedula) {
+				finder = mecanico;
+			} 
 		
-	}*/
-
+		}return finder;
+	}
 	public static byte readByte() {
 	    Scanner scanner = new Scanner(System.in);
 	    byte num = scanner.nextByte();

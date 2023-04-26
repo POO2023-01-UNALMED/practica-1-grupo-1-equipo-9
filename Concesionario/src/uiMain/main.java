@@ -22,7 +22,8 @@ public class main {
 			System.out.println("4. Consultar estadisticas de ventas");
 			System.out.println("5. Personalizar su auto");
 			System.out.println("6. Crear nuevo usuario (Comprador)");	
-			System.out.println("7. Salir");		
+			System.out.println("7. Administración");	
+			System.out.println("8. Salir");		
 			System.out.print("Ingrese el número de la opción que va a utilizar: ");
 			
 			input = sc.nextByte();
@@ -46,12 +47,15 @@ public class main {
 			case 6:
 				crearUsuario();
 				break;
+			case 7:
+				administracion();
+				break;
 			default:
 				System.out.print("\nHasta pronto");
 				Serializador.serializarArrays();
 				break;
 			}
-		}while(input!=7);
+		}while(input!=8);
 		
 	}
 		/*INTERFAZ*/
@@ -203,11 +207,11 @@ public class main {
 			ArrayList<Mecanico> mecanicos=Mecanico.mecanicoDisponible(auto);
 			//Selector
 			Scanner sc1 = new Scanner(System.in);
-		    String result = String.format("%-20s%-10s%-10s%n", "   Nombre", "   Atiende", "   Especialidad");
+		    String result = String.format("%-20s%-20s%-10s%-10s%n", "   Nombre","   Cedula", "   Atiende", "   Especialidad");
 		    byte j=0;
 		    for (Mecanico mecanico : mecanicos) {
 		    		j++;
-		            String mechInfo = String.format("%-20s%-10s%-10s%n", mecanico.getNombre(), mecanico.getAutos(),mecanico.getEspecialidad());
+		            String mechInfo = String.format("%-20s%-20s%-10s%-10s%n", mecanico.getNombre(),mecanico.getCedula(), mecanico.getAutos(),mecanico.getEspecialidad());
 		            result += String.format("%-3d%s", j, mechInfo);
 		    }
 		    Mecanico mecanico = null;
@@ -725,7 +729,7 @@ public class main {
 	}
 	public static void crearUsuario() {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Bienvenido al portal de cracion de usuarios de nuestro concesionario"+"\n");
+		System.out.print("Bienvenido al portal de creación de usuarios de nuestro concesionario"+"\n");
 		System.out.print("Introduzca su Nombre y Apellido"+"\n");
 		String usuario=sc.nextLine();
 		System.out.print("Introduzca su Cedula"+"\n");
@@ -746,6 +750,33 @@ public class main {
 		System.out.print("Señor "+usuario + " Usted se encuentra registrado en nuestro concesionario, presione Enter para ir al menu principal"+"\n");
 		sc.nextLine();
 		sc.nextLine();
+	}
+	public static void administracion() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Bienvenido al portal de administración de nuestro concesionario"+"\n");
+		System.out.print("Introduzca su cedula"+"\n");
+		long cedula=sc.nextLong();
+		Vendedor admin=Vendedor.getVendedorPorCedula(cedula);
+		if(admin!=null&&admin.getPuesto().equals("admin")) {
+			byte input;
+			do {
+				System.out.print("¿Que labor administrativa desea hacer?"+"\n");
+				System.out.print("1.¿Asignar Horarios a mecanicos?"+"\n");
+				input = sc.nextByte();
+				switch(input) {
+				case 1:
+					System.out.print("¿Introduzca la cedula del mecanico?"+"\n");
+					long cedulamecanico=sc.nextLong();
+					Mecanico mech=Mecanico.getMecanicoPorCedula(cedulamecanico);
+					mech.setHorario(new ArrayList<String>() {{add("9:00-11:00");add("11:00-1:00");add("2:00-4:00");add("4:00-6:00");}});
+					System.out.print("Horario Reasignado a "+mech.getNombre()+"\n");
+					input=8;
+				}
+			}while(input!=8);
+		}
+		else if(admin==null) {
+			System.out.print("Usted no tiene acceso a este portal,sera redirigido al menu inicial."+"\n");
+		}
 	}
 	
 
