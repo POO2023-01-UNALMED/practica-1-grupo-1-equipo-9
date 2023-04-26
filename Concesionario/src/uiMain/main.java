@@ -56,6 +56,9 @@ public class main {
 			case 5:
 				personalizarAuto();
 				break;
+			case 6:
+				crearUsuario();
+				break;
 			default:
 				System.out.print("\nHasta pronto");
 				Serializador.serializarArrays();
@@ -733,6 +736,31 @@ public class main {
 		}while(salir.equals("si"));
 		
 	}
+	public static void crearUsuario() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Bienvenido al portal de cracion de usuarios de nuestro concesionario"+"\n");
+		System.out.print("Introduzca su Nombre y Apellido"+"\n");
+		String usuario=sc.nextLine();
+		System.out.print("Introduzca su Cedula"+"\n");
+		long cedula=sc.nextLong();
+		System.out.print("Introduzca su Telefono"+"\n");
+		long telefono=sc.nextLong();
+		System.out.print("Introduzca su Correo"+"\n");
+		String correo=sc.nextLine();
+		sc.nextLine();
+		System.out.print("Introduzca su Direccion"+"\n");
+		String direccion=sc.nextLine();
+		System.out.print("Introduzca su Marca de interes"+"\n");
+		String modelo=sc.nextLine();
+		System.out.print("Introduzca su presupuesto"+"\n");
+		long presupuesto=sc.nextLong();
+		new Cliente(usuario,cedula,telefono,correo,direccion,modelo,presupuesto);
+		
+		System.out.print("Señor "+usuario + " Usted se encuentra registrado en nuestro concesionario, presione Enter para ir al menu principal"+"\n");
+		sc.nextLine();
+		sc.nextLine();
+	}
+	
 
 
 }
