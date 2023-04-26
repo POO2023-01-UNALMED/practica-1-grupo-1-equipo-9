@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import gestorAplicacion.personal.*;
 
 public abstract class Transaccion implements Serializable{
+	private static final long serialVersionUID = 1L;
 	static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
 	String tipo;
 	Mecanico mecanico;

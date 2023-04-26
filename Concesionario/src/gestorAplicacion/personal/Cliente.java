@@ -6,9 +6,7 @@ import java.util.Scanner;
 import gestorAplicacion.activos.*;
 
 public class Cliente extends Persona implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	private String modeloInteres;

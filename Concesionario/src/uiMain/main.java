@@ -148,13 +148,13 @@ public class main {
 		Transaccion tr23=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		Transaccion tr24=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		
-		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23); */
+		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23); */ 
 
+		
 	
 		/*INTERFAZ*/
 		byte input;
 		boolean seguirEjecutando = true;
-		/*Serializador.serializarArrays();*/
 		Deserializador.deserializarArrays();
 		System.out.println(gestorAplicacion.activos.InventarioArticulo.getArticulos());/*Funciona*/
 		System.out.println(gestorAplicacion.activos.InventarioAuto.getAutos());/*Funciona*/
@@ -175,7 +175,8 @@ public class main {
 			System.out.println("3. Taller");
 			System.out.println("4. Consultar estadisticas de ventas");
 			System.out.println("5. Personalizar su auto");
-			System.out.println("6. Crear nuevo usuario (Comprador)");			
+			System.out.println("6. Crear nuevo usuario (Comprador)");	
+			System.out.println("7. Salir");		
 			System.out.print("Ingrese el número de la opción que va a utilizar: ");
 			
 			input = sc.nextByte();
@@ -197,9 +198,11 @@ public class main {
 				personalizarAuto();
 				break;
 			default:
-				System.out.print("\n¿Salir? (si/no)");
+				System.out.print("\nHasta pronto");
+				Serializador.serializarArrays();
+				break;
 			}
-		}while(input!=6);
+		}while(input!=7);
 		
 	}
 		/*INTERFAZ*/

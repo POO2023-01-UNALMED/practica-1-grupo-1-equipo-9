@@ -3,6 +3,7 @@ package gestorAplicacion.personal;
 import java.io.Serializable;
 
 public abstract class Trabajador extends Persona implements Serializable{
+	private static final long serialVersionUID = 1L;
 	double salario;
 	String banco;
 	long cuentaBanco;

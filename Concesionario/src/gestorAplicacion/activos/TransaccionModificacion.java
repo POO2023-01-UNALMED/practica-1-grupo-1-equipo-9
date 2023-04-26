@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import gestorAplicacion.personal.*;
 
 public class TransaccionModificacion extends Transaccion implements Serializable{
-	
-
+	private static final long serialVersionUID = 1L;
 	Auto auto;
 	Mecanico mecanico;
 	Vendedor vendedor;

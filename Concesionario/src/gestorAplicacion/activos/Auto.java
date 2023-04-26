@@ -6,6 +6,7 @@ import java.util.Comparator;
 import gestorAplicacion.personal.*;
 
 public class Auto implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Articulo llantas;
 	private Articulo suspension;
 	private Articulo sonido;

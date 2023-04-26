@@ -3,6 +3,7 @@ package gestorAplicacion.activos;
 import java.io.Serializable;
 
 public class Articulo implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String calidad;
 	private String tipo;
 	private String especialidad;

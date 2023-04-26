@@ -6,6 +6,7 @@ import java.util.Scanner;
 import gestorAplicacion.activos.*;
 
 public class Mecanico extends Trabajador implements Serializable{
+	private static final long serialVersionUID = 1L;
 	static ArrayList<Mecanico> mecanicos = new ArrayList<Mecanico>();
 	String autos;
 	String especialidad;

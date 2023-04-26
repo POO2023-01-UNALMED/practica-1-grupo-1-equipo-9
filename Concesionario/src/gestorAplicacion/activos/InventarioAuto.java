@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class InventarioAuto implements Serializable{
+	private static final long serialVersionUID = 1L;
 	static ArrayList<Auto> autos = new ArrayList<Auto>();
 
 	public void agregarAuto(Auto auto) {

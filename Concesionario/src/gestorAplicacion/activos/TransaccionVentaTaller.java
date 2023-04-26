@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import gestorAplicacion.personal.*;
 
 public class TransaccionVentaTaller extends Transaccion implements Serializable{
+	private static final long serialVersionUID = 1L;
 	Articulo articulo;
 	Vendedor vendedor;
 	static ArrayList<TransaccionVentaTaller> transaccionesvental = new ArrayList<TransaccionVentaTaller>();

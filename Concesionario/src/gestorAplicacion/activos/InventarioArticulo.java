@@ -7,6 +7,7 @@ import java.util.Scanner;
 import gestorAplicacion.personal.*;
 
 public class InventarioArticulo implements Serializable{
+	private static final long serialVersionUID = 1L;
 	static Scanner sc = new Scanner(System.in);
     static ArrayList<Articulo> articulos = new ArrayList<>();
     static ArrayList<Articulo> repuestos = new ArrayList<>();

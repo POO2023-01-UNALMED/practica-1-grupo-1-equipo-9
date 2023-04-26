@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import gestorAplicacion.personal.*;
 
 public class TransaccionTaller extends Transaccion implements Serializable{
+	private static final long serialVersionUID = 1L;
 	Auto auto;
 	Mecanico mecanico;
 	Articulo articulo;
