@@ -12,7 +12,7 @@ public class main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		//aca
+		/*
 		//Articulos default
 		Articulo llanta= new Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000);
 		Articulo sonido= new Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000);
@@ -148,7 +148,7 @@ public class main {
 		Transaccion tr23=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		Transaccion tr24=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		
-		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23); //aca
+		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23); */
 
 	
 		/*INTERFAZ*/
@@ -626,10 +626,15 @@ public class main {
 	public static void stats() {
 		Scanner sc = new Scanner(System.in);
 		byte opcion;
+		
+		LocalDate fecha = LocalDate.now();
+		int dia = fecha.getDayOfMonth();
+		String nombreMes = fecha.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault());
+		
 		System.out.println("¿Qué estadisticas en particular quiere consultar?");
 		//static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
-		System.out.println("1. Ventas por Vendedor");
-		System.out.println("2. Ventas por Marca");
+		System.out.println("1. Ventas - Vendedor");
+		System.out.println("2. Ventas - Autos");
 		System.out.println("Selecciona: ");
 		opcion = sc.nextByte();
 		switch (opcion){
@@ -647,12 +652,17 @@ public class main {
 //				}
 //			}
 			
+			
+//			for (Vendedor vendeddd: Vendedor.getVendedores()) {
+//				System.out.println(vendeddd.getNombre());
+//			}
+			
 			ArrayList<Vendedor> vendedores1 = TransaccionVenta.vendedoresVentas(transaccionesActuales);
 			
-			float num = ((float)vendedores1.size() / Vendedor.getVendedores().size()) * 100;
+			float num = ((float)vendedores1.size() / ((Vendedor.getVendedores().size())/2)) * 100;
 			int roundedNum = Math.round(num);
 
-			System.out.println("-------- De los " + Vendedor.getVendedores().size() + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
+			System.out.println("-------- De los " + (Vendedor.getVendedores().size())/2 + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
 			
 			for (Vendedor vend: vendedores1)
 			{
@@ -662,12 +672,12 @@ public class main {
 			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			int sumaTotal=0;
 			int contadorTotal=0;
-			for (Transaccion trans1: Transaccion.getTransacciones())
+			for (Transaccion trans1: TransaccionVenta.getTransaccionesven())
 				{sumaTotal+=trans1.getIngreso();
 				contadorTotal+=1;}
 			
-			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			
+			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			System.out.println("-------- Suma de dinero en ventas por vendedor: --------");
 			
 			for (Vendedor vend: vendedores1)
@@ -676,14 +686,14 @@ public class main {
 				int contador=0;
 				for (TransaccionVenta trans1: TransaccionVenta.getTransaccionesven())
 				{
-					if (vend.equals(trans1.getVendedor().getNombre())){
+					if (vend.equals(trans1.getVendedor())){
 						suma+=trans1.getIngreso();
 						contador+=1;
 					}
 				}
 				float num2 = ((float)suma / sumaTotal) * 100;
 				int roundedSum = Math.round(num2);
-				System.out.println(vend + ": " + suma + " $, el " + roundedSum + " % del total de ingresos por ventas de autos.");
+				System.out.println(vend.getNombre() + ": " + suma + " $, el " + roundedSum + " % del total de ingresos por ventas de autos.");
 			}
 			
 			System.out.println("-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
@@ -694,7 +704,7 @@ public class main {
 				int suma2 = 0;
 				for (TransaccionVenta trans1: TransaccionVenta.getTransaccionesven())
 				{
-					if (vend.equals(trans1.getVendedor().getNombre())){
+					if (vend.equals(trans1.getVendedor())){
 						contador+=1;
 						suma2+=trans1.getIngreso();
 					}
@@ -704,12 +714,8 @@ public class main {
 				int roundedNum4 = Math.round(num4);
 				//int roundedNum3 = Math.round(num3);
 				
-				System.out.println(vend + ": " + contador + ", el " + roundedNum4 + "% del número total de ventas, promediando " + num3 + " $ por venta.");
+				System.out.println(vend.getNombre() + ": " + contador + ", el " + roundedNum4 + "% del número total de ventas, promediando " + num3 + " $ por venta.");
 			}
-			
-			LocalDate fecha = LocalDate.now();
-			int dia = fecha.getDayOfMonth();
-			String nombreMes = fecha.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault());
 			
 			float num5 = ((float)sumaTotal/dia);
 			int roundedNum5 = Math.round(num5);
@@ -719,11 +725,25 @@ public class main {
 			break;
 			
 		case 2:
+			
+		
+//			ArrayList<TransaccionVenta> transaccionesActuales = TransaccionVenta.getTransaccionesven();
+//			ArrayList<Vendedor> vendedores1 = TransaccionVenta.vendedoresVentas(transaccionesActuales);
+//			float num = ((float)vendedores1.size() / ((Vendedor.getVendedores().size())/2)) * 100;
+//			int roundedNum = Math.round(num);
+//			System.out.println("-------- De los " + (Vendedor.getVendedores().size())/2 + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
+			
+			ArrayList<Auto> autosIniciales = InventarioAuto.getAutos();
+			ArrayList<Auto> autosVendidos = TransaccionVenta.AutosVendidos(); //#2
+			
+			float numA = ((float)autosVendidos.size() / ((autosIniciales.size())/2)) * 100;
+			int roundedNumA = Math.round(numA);
+			
+			System.out.println("-------- De los " + (autosIniciales.size()/2) + " autos que se tenían a comienzos del mes de " + nombreMes + ", " + autosVendidos.size()+ " (el " + roundedNumA + "%) se han vendido, son: --------");
+
+			
 			break;
 		}
-		//System.out.println("has seleccionado " + opcion);
-		
-		
 	}
 	public static byte readByte() {
 	    Scanner scanner = new Scanner(System.in);

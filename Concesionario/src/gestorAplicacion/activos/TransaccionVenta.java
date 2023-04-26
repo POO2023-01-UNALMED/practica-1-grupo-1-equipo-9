@@ -9,13 +9,16 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 	Auto auto;
 	Vendedor vendedor;
 	static ArrayList<TransaccionVenta> transaccionesven = new ArrayList<TransaccionVenta>();
+	static ArrayList<Auto> autosV = new ArrayList<Auto>();
 	
 	public TransaccionVenta(String tipo, long ingreso, Cliente cliente, Auto auto, Vendedor vendedor) {
 		super(tipo, ingreso, cliente);
 		this.auto=auto;
 		this.vendedor=vendedor;
 		transaccionesven.add(this);
+		autosV.add(this.auto);
 	}
+	
 	@Override
 	public String info() {
 		 String txt = String.format("Transacción #%08d: venta realizada por %s para el cliente %s por un total de $%d por el auto %s",
@@ -85,6 +88,16 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 	    }
 	    return vendedores;
 	}
-
+	
+	public static ArrayList<Auto> AutosVendidos(){
+		ArrayList<Auto> autosvend = new ArrayList<>();
+		for (Auto a: autosV) {
+			if (autosvend.contains(a)) {
+			} else {
+				autosvend.add(a);
+			}
+		}
+		return autosvend;
+	}
 
 }

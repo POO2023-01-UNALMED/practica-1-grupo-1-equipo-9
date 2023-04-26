@@ -44,6 +44,17 @@ public class InventarioAuto implements Serializable{
 		return disponibles;
 	}
 	
+	public static ArrayList<Auto> AutosVendidos(ArrayList<Auto> autosinic) {
+		ArrayList<Auto> vendidos = new ArrayList<>();
+		for (Auto auto : autosinic) {
+			if (auto.isDisponible()) {
+			} else {
+				vendidos.add(auto);
+			}
+		}
+		return vendidos;
+	}
+	
 	public static Auto getAutoporModelo(String modelo) {
 		Auto finder = null;
 		for (Auto auto : getAutosDisponibles()) {
@@ -152,6 +163,8 @@ public class InventarioAuto implements Serializable{
 	    byte num = scanner.nextByte();
 	    return num;
 	}
+
+	
 
 
 
