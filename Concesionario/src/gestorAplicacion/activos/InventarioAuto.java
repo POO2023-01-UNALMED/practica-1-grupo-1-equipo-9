@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class InventarioAuto  implements Serializable{
+public class InventarioAuto implements Serializable{
 	static ArrayList<Auto> autos = new ArrayList<Auto>();
 
 	public void agregarAuto(Auto auto) {

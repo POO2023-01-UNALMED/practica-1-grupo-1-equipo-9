@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 import gestorAplicacion.personal.*;
 
-public class Auto  implements Serializable{
+public class Auto implements Serializable{
 	private Articulo llantas;
 	private Articulo suspension;
 	private Articulo sonido;

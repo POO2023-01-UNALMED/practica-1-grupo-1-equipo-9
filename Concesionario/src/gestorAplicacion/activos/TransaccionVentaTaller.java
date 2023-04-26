@@ -1,10 +1,11 @@
 package gestorAplicacion.activos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import gestorAplicacion.personal.*;
 
-public class TransaccionVentaTaller extends Transaccion {
+public class TransaccionVentaTaller extends Transaccion implements Serializable{
 	Articulo articulo;
 	Vendedor vendedor;
 	static ArrayList<TransaccionVentaTaller> transaccionesvental = new ArrayList<TransaccionVentaTaller>();
@@ -13,7 +14,7 @@ public class TransaccionVentaTaller extends Transaccion {
 		super(tipo, ingreso, cliente);
 		this.articulo=articulo;
 		this.vendedor=vendedor;
-		transaccionesvental.add(this);
+		TransaccionVentaTaller.transaccionesvental.add(this);
 	}
 	@Override
 	public String info() {

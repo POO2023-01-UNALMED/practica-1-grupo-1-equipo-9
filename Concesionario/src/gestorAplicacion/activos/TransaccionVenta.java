@@ -1,10 +1,11 @@
 package gestorAplicacion.activos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import gestorAplicacion.personal.*;
 
-public class TransaccionVenta extends Transaccion {
+public class TransaccionVenta extends Transaccion implements Serializable{
 	Auto auto;
 	Vendedor vendedor;
 	static ArrayList<TransaccionVenta> transaccionesven = new ArrayList<TransaccionVenta>();

@@ -11,6 +11,7 @@ public class main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		/*
 		//Articulos default
 		Articulo llanta= new Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000);
 		Articulo sonido= new Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000);
@@ -146,14 +147,25 @@ public class main {
 		Transaccion tr23=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		Transaccion tr24=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		
-		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23);
+		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23);*/
 
 	
 		/*INTERFAZ*/
 		byte input;
 		boolean seguirEjecutando = true;
-		/*SerialAuto.serializarAuto();*/
-		/*SerialAuto.deserializarAuto();*/
+		/*Serializador.serializarArrays();*/
+		Deserializador.deserializarArrays();
+		System.out.println(gestorAplicacion.activos.InventarioArticulo.getArticulos());/*Funciona*/
+		System.out.println(gestorAplicacion.activos.InventarioAuto.getAutos());/*Funciona*/
+		System.out.println(gestorAplicacion.personal.Cliente.getClientes());/*Funciona*/
+		System.out.println(gestorAplicacion.personal.Mecanico.getMecanicos());/*Funciona*/
+		System.out.println(gestorAplicacion.activos.InventarioArticulo.getRepuesto());/*Funciona*/
+		System.out.println(gestorAplicacion.activos.Transaccion.getTransacciones());/*Funciona*/
+		System.out.println(gestorAplicacion.activos.TransaccionModificacion.getTransaccionesmod());
+		System.out.println(gestorAplicacion.activos.TransaccionTaller.getTransaccionestal());
+		System.out.println(gestorAplicacion.activos.TransaccionVenta.getTransaccionesven());/*Funciona*/
+		System.out.println(gestorAplicacion.activos.TransaccionVentaTaller.getTransaccionesven());
+		System.out.println(gestorAplicacion.personal.Vendedor.getVendedores());/*Funciona*/
 		
 		do {
 			System.out.println("\n\nMenú principal Concesionario");

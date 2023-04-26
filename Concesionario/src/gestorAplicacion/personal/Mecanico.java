@@ -1,10 +1,11 @@
 package gestorAplicacion.personal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import gestorAplicacion.activos.*;
 
-public class Mecanico extends Trabajador {
+public class Mecanico extends Trabajador implements Serializable{
 	static ArrayList<Mecanico> mecanicos = new ArrayList<Mecanico>();
 	String autos;
 	String especialidad;

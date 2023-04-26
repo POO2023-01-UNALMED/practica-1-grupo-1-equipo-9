@@ -1,9 +1,10 @@
 package gestorAplicacion.personal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import gestorAplicacion.activos.*;
 
-public class Vendedor extends Trabajador {
+public class Vendedor extends Trabajador implements Serializable{
 	static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
 	int ventas = 0;
 	String puesto; 

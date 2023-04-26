@@ -1,10 +1,11 @@
 package gestorAplicacion.activos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import gestorAplicacion.personal.*;
 
-public class TransaccionModificacion extends Transaccion{
+public class TransaccionModificacion extends Transaccion implements Serializable{
 	
 
 	Auto auto;
@@ -18,6 +19,7 @@ public class TransaccionModificacion extends Transaccion{
 		this.mecanico=mecanico;
 		this.vendedor=vendedor;
 		this.articulo=articulo;
+		TransaccionModificacion.transaccionesmod.add(this);
 		
 	}
 	

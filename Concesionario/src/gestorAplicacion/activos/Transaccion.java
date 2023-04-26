@@ -1,10 +1,11 @@
 package gestorAplicacion.activos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import gestorAplicacion.personal.*;
 
-public abstract class Transaccion {
+public abstract class Transaccion implements Serializable{
 	static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
 	String tipo;
 	Mecanico mecanico;

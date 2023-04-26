@@ -1,6 +1,8 @@
 package gestorAplicacion.activos;
 
-public class Articulo {
+import java.io.Serializable;
+
+public class Articulo implements Serializable{
 	private String calidad;
 	private String tipo;
 	private String especialidad;

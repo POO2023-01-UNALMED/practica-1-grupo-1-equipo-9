@@ -1,11 +1,12 @@
 package gestorAplicacion.activos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import gestorAplicacion.personal.*;
 
-public class InventarioArticulo {
+public class InventarioArticulo implements Serializable{
 	static Scanner sc = new Scanner(System.in);
     static ArrayList<Articulo> articulos = new ArrayList<>();
     static ArrayList<Articulo> repuestos = new ArrayList<>();

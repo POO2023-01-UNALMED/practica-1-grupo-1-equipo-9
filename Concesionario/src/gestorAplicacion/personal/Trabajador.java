@@ -1,6 +1,8 @@
 package gestorAplicacion.personal;
 
-public abstract class Trabajador extends Persona {
+import java.io.Serializable;
+
+public abstract class Trabajador extends Persona implements Serializable{
 	double salario;
 	String banco;
 	long cuentaBanco;
