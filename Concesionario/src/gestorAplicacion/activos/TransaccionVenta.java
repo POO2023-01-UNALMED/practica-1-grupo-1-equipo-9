@@ -74,4 +74,17 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 	    return transaccionesven;
 	}
 	
+	// metodo para obtener los vendedores de las ventas realizadas y agregarlos a la lista "vendedores"
+	public static ArrayList<Vendedor> vendedoresVentas(ArrayList<TransaccionVenta> ventas) {
+	    ArrayList<Vendedor> vendedores = new ArrayList<>();
+	    for (TransaccionVenta transacc: ventas) {
+	    	if (vendedores.contains(transacc.getVendedor())) {
+	    	} else {
+	    		vendedores.add(transacc.getVendedor());
+	    	}
+	    }
+	    return vendedores;
+	}
+
+
 }

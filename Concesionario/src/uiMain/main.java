@@ -11,7 +11,8 @@ public class main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		/*
+		
+		//aca
 		//Articulos default
 		Articulo llanta= new Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000);
 		Articulo sonido= new Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000);
@@ -147,7 +148,7 @@ public class main {
 		Transaccion tr23=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		Transaccion tr24=new TransaccionVenta ("efectivo",300,c1,a1,vendedor3);
 		
-		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23);*/
+		Transaccion tr25=new TransaccionModificacion ("efectivo",400,c1,a1,mecanico15,vendedor6, articulo23); //aca
 
 	
 		/*INTERFAZ*/
@@ -327,7 +328,7 @@ public class main {
 			confirmarPrp = sc.nextLine();
 			if (confirmarPrp.equals("no")) {
 				System.out.print("Introduzca la cédula del propietario: ");
-				long cedula = sc.nextLong(); 
+				long cedula = sc.nextLong();
 				sc.nextLine();
 				propietario = TransaccionVenta.getClientePorCedula(cedula);
 				auto = TransaccionVenta.getTransaccionporCedula(cedula);
@@ -634,28 +635,28 @@ public class main {
 		switch (opcion){
 		case 1:
 			
-			//System.out.println(Vendedor.getVendedores());
-			//Arraylist<Vendedor> vendedores = Vendedor.getVendedores();
-
-			ArrayList<String> vendedores1 = new ArrayList<String>();
+			ArrayList<TransaccionVenta> transaccionesActuales = TransaccionVenta.getTransaccionesven();
 			
-			for (TransaccionVenta transacc: TransaccionVenta.getTransaccionesven())
-			{
-				if (vendedores1.contains(transacc.getVendedor().getNombre())){
-					
-				} else {
-					vendedores1.add(transacc.getVendedor().getNombre());
-				}
-			}
+			
+//			ArrayList<String> vendedores1 = new ArrayList<String>();
+//			for (TransaccionVenta transacc: TransaccionVenta.getTransaccionesven())
+//			{
+//				if (vendedores1.contains(transacc.getVendedor().getNombre())){	
+//				} else {
+//					vendedores1.add(transacc.getVendedor().getNombre());
+//				}
+//			}
+			
+			ArrayList<Vendedor> vendedores1 = TransaccionVenta.vendedoresVentas(transaccionesActuales);
 			
 			float num = ((float)vendedores1.size() / Vendedor.getVendedores().size()) * 100;
 			int roundedNum = Math.round(num);
 
 			System.out.println("-------- De los " + Vendedor.getVendedores().size() + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
 			
-			for (String vend: vendedores1)
+			for (Vendedor vend: vendedores1)
 			{
-				System.out.println(vend);
+				System.out.println(vend.getNombre());
 			}
 			
 			// para saber la cantidad total de dinero en ventas y # total de ventas:
@@ -664,11 +665,12 @@ public class main {
 			for (Transaccion trans1: Transaccion.getTransacciones())
 				{sumaTotal+=trans1.getIngreso();
 				contadorTotal+=1;}
+			
 			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			
 			System.out.println("-------- Suma de dinero en ventas por vendedor: --------");
 			
-			for (String vend: vendedores1)
+			for (Vendedor vend: vendedores1)
 			{
 				int suma = 0;
 				int contador=0;
@@ -686,7 +688,7 @@ public class main {
 			
 			System.out.println("-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
 			
-			for (String vend: vendedores1)
+			for (Vendedor vend: vendedores1)
 			{
 				int contador=0;
 				int suma2 = 0;
@@ -727,6 +729,8 @@ public class main {
 	    Scanner scanner = new Scanner(System.in);
 	    byte num = scanner.nextByte();
 	    return num;
+	    
+	    
 	}
 	public static void personalizarAuto() {
 		String salir=null;
