@@ -13,20 +13,7 @@ public class main {
 		Scanner sc = new Scanner(System.in);	
 		/*INTERFAZ*/
 		byte input;
-		boolean seguirEjecutando = true;
-		Deserializador.deserializarArrays();
-		System.out.println(gestorAplicacion.activos.InventarioArticulo.getArticulos());/*Funciona*/
-		System.out.println(gestorAplicacion.activos.InventarioAuto.getAutos());/*Funciona*/
-		System.out.println(gestorAplicacion.personal.Cliente.getClientes());/*Funciona*/
-		System.out.println(gestorAplicacion.personal.Mecanico.getMecanicos());/*Funciona*/
-		System.out.println(gestorAplicacion.activos.InventarioArticulo.getRepuesto());/*Funciona*/
-		System.out.println(gestorAplicacion.activos.Transaccion.getTransacciones());/*Funciona*/
-		System.out.println(gestorAplicacion.activos.TransaccionModificacion.getTransaccionesmod());
-		System.out.println(gestorAplicacion.activos.TransaccionTaller.getTransaccionestal());
-		System.out.println(gestorAplicacion.activos.TransaccionVenta.getTransaccionesven());/*Funciona*/
-		System.out.println(gestorAplicacion.activos.TransaccionVentaTaller.getTransaccionesven());
-		System.out.println(gestorAplicacion.personal.Vendedor.getVendedores());/*Funciona*/
-		
+		Deserializador.deserializarArrays();		
 		do {
 			System.out.println("\n\nMenú principal Concesionario");
 			System.out.println("1. Venta de Autos");
