@@ -79,84 +79,145 @@ public class main {
 		/*Selección del carro*/
 		int opcion = 0;
 		System.out.println("Estos son los Modelos de interés para el cliente disponibles en este momento: ");
-		InventarioAuto.autosModelo(comprador.getModeloInteres());
+		/*AUTOS POR MODELO*/
+		
+		ArrayList<Auto> autosMod = new ArrayList<Auto>();
+		String result = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+		int j = 0;
+		for (Auto auto1 : gestorAplicacion.activos.InventarioAuto.getAutosDisponibles()) {
+	        if (comprador.getModeloInteres().equals(auto1.getModelo())) {
+	            j++;
+	            autosMod.add(auto1);
+	            String carInfo = String.format("%-10s%-10s%-10s\n", auto1.getModelo(), auto1.getPrecio(), auto1.getColor());
+	            result += String.format("%-3d%s", j, carInfo);
+	        }
+	    }
+		if (autosMod.size()>1){
+		    System.out.println("Los carros de modelo " + comprador.getModeloInteres() + " disponibles son:\n");
+		    System.out.println(result);
+		    System.out.println("Seleccione el numero del carro" + "[1-" + autosMod.size() + "] ");
+	    } else if (autosMod.size()==1) {
+	    	System.out.println("El unico carro de modelo " + comprador.getModeloInteres() + " disponible es:\n");
+		    System.out.println(result);
+		    System.out.println("Lo desea seleccionar? (y/n): ");
+		    String resp = sc.nextLine();
+		    if (resp.equals("y")) {
+		    	auto=autosMod.get(0);
+		    } else {
+		    	auto=null;
+		    }
+	    } else if (autosMod.size()==0) {
+	    	System.out.println("No hay carros disponibles del modelo seleccionado");
+	    	auto=null;
+	    }
+		
+		/*AUTOS POR MODELO*/
 		System.out.println("0. Más opciones de busqueda...");
 		System.out.println("Seleccione el Auto en el que está interesado o use las otras opciones de busqueda: ");
-		if (sc.nextInt()==0) {
+		opcion = sc.nextInt();
+		if (opcion==0) {
 			System.out.println("1. Mostrar Autos por Marca");
 			System.out.println("2. Mostrar Autos por precio");
 			System.out.println("3. Mostrar todos los autos");
-			System.out.println("4. Volver");
-			System.out.println("Seleccione una opción");
+			System.out.println("4. Volver al inicio.");
+			System.out.println("Seleccione una opción: ");
 			switch (sc.nextInt()){
+				/*AUTOS POR MARCA*/
 				case 1:
-					InventarioAuto.autosMarca();
-					break;
-				case 2:
+					String marca = ""; 
+					System.out.println("1. Mazda");
+					System.out.println("2. Toyota");
+					System.out.println("3. Chevrolet");
+					System.out.println("4. Volver al inicio.");
+					System.out.println("Seleccione la marca [1-3]: ");
+					switch (sc.nextInt()){
+					case 1:
+						marca = "Mazda";
+						break;
+					case 2:
+						marca = "Toyota";
+						break;
+					case 3:
+						marca = "Chevrolet";
+						break;
+					}		
+					ArrayList<Auto> autosMarca = new ArrayList<Auto>();
+					for(Auto auto2:gestorAplicacion.activos.InventarioAuto.getAutosDisponibles()) {
+						if(auto2.getMarca().equals(marca)) {
+							autosMarca.add(auto2);
+						}
+					}
+					System.out.println("Estos son los carros disponibles de esta marca: ");
 					int cont = 1;
-					for (Auto carro: InventarioAuto.getAutosporPrecio()) {
-						System.out.println(cont + ". " + carro.info());
-						++cont;
+					for (Auto auto3:autosMarca){
+						System.out.println(cont + ". " + auto3.info());
+						cont++;
+					}
+					
+					break;
+				/*AUTOS POR MARCA*/
+				/*AUTOS POR PRECIO*/
+				case 2:
+					int contt = 1;
+					System.out.println("Estos son los autos ordenados por precio de mayor a menor: ");
+					for (Auto auto4:InventarioAuto.getAutosporPrecio()) {
+						System.out.println(contt + ". " + auto4.info());
+						++contt;
 					}
 					break;
+				/*AUTOS POR PRECIO*/
+				/*TODOS LOS AUTOS*/
 				case 3:
 					System.out.println(InventarioAuto.autosDisponibles());
 					break;
+				/*TODOS LOS AUTOS*/
 				case 4:
 					break;
 			}
-		}
-		
-
-		/*Selección del carro*/
-		
-		/*InventarioAuto.autosDisponibles();
-		System.out.print("Escriba el modelo del carro a escoger: ");
-		String modelo = sc.nextLine();
-		auto=InventarioAuto.autosModelo(modelo);
-		
-		System.out.println(auto);
-		String confirmarCliente = null;
-		
-		while(confirmarCliente==null||confirmarCliente.equals("no")) {
-			System.out.print("Introduzca la cédula del comprador: ");
-			long cedula = sc.nextLong(); 
+		}else if (opcion!=0) {
+			auto = autosMod.get(opcion-1);
+			System.out.println("El auto elegido es " + auto.info());
+			System.out.println("¿Desea confirmar?:  (si/no)");
 			sc.nextLine();
-			
-			System.out.print(comprador.info());
-			System.out.print("¿Confirmar cliente? (si/no)");
-			confirmarCliente = sc.nextLine();
-		}if(confirmarCliente.equals("si")) {
-			String confirmarVendedor = null;
-			while(confirmarVendedor==null||confirmarVendedor.equals("no")) {
-				System.out.print("Introduzca el vendedor asociado a la compra: ");
-				long cedulaVendedor = sc.nextLong();
-				sc.nextLine();
-				vendedor = Vendedor.getVendedorPorCedula(cedulaVendedor);
-				System.out.print(vendedor.info());
-				System.out.print("¿Confirmar vendedor? (si/no)");
-				confirmarVendedor = sc.nextLine();
-				if(confirmarVendedor.equals("si")) {
-					if(comprador.getPresupuesto()>=auto.getPrecio()) {
-						long diferencia = comprador.getPresupuesto()-auto.getPrecio();
-						comprador.setPresupuesto(diferencia);
-						comprador.setAuto(auto);
-						auto.setDisponible(false);
-						vendedor.confirmarVenta();
-						auto.setDueno(comprador);
-						System.out.println("Compra efectuada Con exito");
-						Transaccion transaccion=new Transaccion("venta",vendedor,auto.getPrecio(),comprador,auto);
-						System.out.println(transaccion.info());
-					}else if(comprador.getPresupuesto()<=auto.getPrecio()) {
-						System.out.println("El cliente no tiene el presupuesto suficiente.");
-					}
+			/*CREADOR DE TRANSACCION*/
+			if (!sc.nextLine().equals("no")) {
+				String confirmarVendedor=null;
+				ArrayList<Vendedor> vendedores= Vendedor.selectorVend(auto);
+				String resultado = String.format("%-40s%-15s%n", "   Vendedor", "   Tipo de venta");
+		 	    byte v=0;
+		 	    for (Vendedor vend:vendedores) {
+		 	    	v++;
+	 	            String vendedorinfo = String.format("%-40s%-15s%n", vend.getNombre(), vend.getPuesto());
+	 	            resultado += String.format("%-3d%s", v, vendedorinfo );
+		 	    }if (vendedores.size() >= 1) {
+		 	        System.out.println("Los vendedores de " + vendedores.get(0).getPuesto() + " disponibles son:\n");
+		 	        System.out.println(resultado);
+		 	        int num = 0;
+		 	        while (num <= 0 || num > vendedores.size()) {
+		 	            System.out.println("Seleccione el numero del vendedor" + "[1-" + vendedores.size() + "]: ");
+		 	            if (sc.hasNextInt()) {
+		 	                num = sc.nextInt();
+		 	            } else {
+		 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + vendedores.size() + ".");
+		 	                sc.nextLine(); // Limpiar la entrada no válida
+		 	            }
+		 	        }
+		 	        vendedor = vendedores.get(num - 1);
+
+		 	    } else if (vendedores.size() == 0) {
+		 	        System.out.println("No hay vendedores disponibles para su vehiculo");
+		 	    }
+				
+				if(comprador.getPresupuesto()>=auto.getPrecio()) {
+					auto.setDueno(comprador);
+					auto.setDisponible(false);
+					comprador.setAuto(auto);
 				}
 			}
-
-		}*/
-		
-		
+			/*CREADOR DE TRANSACCION*/
+		}	
 	}
+	
 	public static void procesoTaller() {
 			Scanner sc = new Scanner(System.in);
 			Cliente propietario = null;
