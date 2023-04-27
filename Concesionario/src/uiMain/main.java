@@ -317,29 +317,24 @@ public class main {
 		        }
 				System.out.print(mecanico.info()+ mecanico.getHorario().get(num-1));
 		        mecanico.getHorario().remove(num-1);
-		        
-
 		    } else if (mecanicos.size() == 0) {
 		        System.out.println("No hay hora disponible");
 		    }
-		    
-
 			String confirmarMech=null;
 			while (confirmarMech==null||confirmarMech.equals("no")) {
 				System.out.print("¿Confirmar mecanico y hora? (si/no)");
 				confirmarMech = sc.nextLine();
-				sc.nextLine();
-		}if(!confirmarMech.equals("no")) {
+		}if(!sc.nextLine().equals("no")) {
 			Articulo articulo=null;
 			String confirmarProd=null; 
 			//Ingresa este mecanico que se selecciono y se devuekve una lista de productos
 			ArrayList<Articulo> producto=InventarioArticulo.articuloDispo(mecanico);
 			//Selector
-	 	    String resultp = String.format("%-40s%-25s%-20s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
+	 	    String resultp = String.format("%-40s%-25s%-40s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
 	 	    byte i=0;
 	 	    for (Articulo articuloi:producto) {
 	 	    	i++;
- 	            String mechInfo = String.format("%-40s%-25s%-20s%-15s%n", articuloi.getTipoArticulo(), articuloi.getTipoVehiculo(),articuloi.getMarca(),articuloi.getPrecio());
+ 	            String mechInfo = String.format("%-40s%-25s%-40s%-15s%n", articuloi.getTipoArticulo(), articuloi.getTipoVehiculo(),articuloi.getMarca(),articuloi.getPrecio());
  	            resultp += String.format("%-3d%s", i, mechInfo);
 	 	    }if (producto.size() >= 1) {
 	 	        System.out.println("Los productos " + mecanico.getEspecialidad() + " disponibles son:\n");
@@ -363,8 +358,7 @@ public class main {
 			while (confirmarProd==null||confirmarProd.equals("no")) {
 				System.out.print("¿Confirmar producto? (si/no)");
 				confirmarProd = sc.nextLine();
-				sc.nextLine();
-		}if(!confirmarProd.equals("no")) {
+		}if(!sc.nextLine().equals("no")) {
 			String confirmarTrans=null;
 			if(articulo.getEspecialidad().equals("Motor")) {
 				System.out.print("El procedimiento a realizar es: Cambio de aceite con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
@@ -426,9 +420,8 @@ public class main {
 		while(confirmarComp==null||confirmarComp.equals("no")) {
 			System.out.print("¿Confirmar cliente? (si/no)");
 			confirmarComp = sc.nextLine();
-			sc.nextLine();
 
-		}if(!confirmarComp.equals("no")) {
+		}if(!sc.nextLine().equals("no")) {
 			String confirmarTipo=null;
 			System.out.print("¿Que repuesto deseas Comprar?"+"\n");
 	        System.out.println("1. Repuestos de Motor");
@@ -460,13 +453,7 @@ public class main {
 				while(confirmarMarca==null||confirmarMarca.equals("no")) {
 					System.out.print("¿Confirmar Tipo de Vehiculo? (si/no)");
 					confirmarMarca = sc.nextLine();
-					sc.nextLine();
-					if (confirmarTipo.equals("no")){
-						marca=InventarioArticulo.selectorMarca(repuesto);
-						System.out.print("Usted Va a comprar un repuesto de: "+marca.get(0).getMarcaVehiculo()+"\n");
-						
-					}
-				}if(confirmarTipo.equals("si")) {
+				}if(!sc.nextLine().equals("no")) {
 					String confirmarCalidad=null;
 					System.out.print("¿Que calidad desea?"+"\n");
 			        System.out.println("1. Premium");
@@ -504,8 +491,7 @@ public class main {
 					while(confirmarCalidad==null||confirmarCalidad.equals("no")) {
 						System.out.print("¿Confirmar repuesto? (si/no)");
 						confirmarCalidad = sc.nextLine();
-						sc.nextLine();
-					}if(!confirmarCalidad.equals("no")) {
+					}if(!sc.nextLine().equals("no")) {
 						
 						String confirmarVendedor=null;
 						ArrayList<Vendedor> vendedores= Vendedor.selectorVend(articulo);
