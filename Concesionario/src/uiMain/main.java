@@ -395,12 +395,10 @@ public class main {
 					break;
 				}
 			}
-			
-			}
-			}
 		}
-		
+		}
 	}
+}
 	public static void ventaRepuestos() {
 		System.out.print("Bienvenido a nuestro portal de Ventas de Repuestos"+"\n");
 		Articulo articulo=null;
