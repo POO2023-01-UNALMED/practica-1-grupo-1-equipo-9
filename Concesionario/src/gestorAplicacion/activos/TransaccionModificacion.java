@@ -10,7 +10,6 @@ public class TransaccionModificacion extends Transaccion implements Serializable
 	Auto auto;
 	Mecanico mecanico;
 	Vendedor vendedor;
-	Articulo articulo;
 	
 	public TransaccionModificacion(String tipo, long ingreso, Cliente cliente, Auto auto, Mecanico mecanico, Vendedor vendedor, Articulo articulo) {
 		super(tipo, ingreso, cliente);

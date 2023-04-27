@@ -659,17 +659,17 @@ public class main {
 			Scanner sc = new Scanner(System.in);
 			Cliente propietario = null;
 			Vendedor vendedor = null; 
-			TransaccionModificacion transaccion = null;
+			Auto auto=null;
 		System.out.print("bienvenido a nuestra seccion de personaizacion de su automovil");
 			
-		while (propietario == null || transaccion == null) {
+		while (propietario == null || auto == null) {
 			System.out.print("Introduzca la cédula del propietario: ");
 			long cedula = sc.nextLong(); 
 			sc.nextLine();
 			propietario = TransaccionModificacion.getClientePorCedula(cedula);
-			transaccion = TransaccionModificacion.getTransaccionporCedula(cedula);
+			auto = TransaccionModificacion.getTransaccionporCedula(cedula);
 			
-			if (propietario == null || transaccion == null) {
+			if (propietario == null || auto == null) {
 				System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla."+ "/n");
 			}
 		}
