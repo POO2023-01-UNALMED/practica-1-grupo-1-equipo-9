@@ -295,34 +295,9 @@ public class main {
 		    } else if (mecanicos.size() == 0) {
 		        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
 		    }
-		    String resulth = String.format("%-20s%n", "   Horario disponible");
-		    byte h=0;
-		    for(String hora:mecanico.getHorario()) {
-		    	h++;
-	            String hor = String.format("%-20s%n", hora);
-	            resulth += String.format("%-3d%s", h, hor);
-		    }
-		    if (mecanico.getHorario().size() >= 1) {
-		        System.out.println("Las horas de " + mecanico.getNombre() + " disponibles son:\n");
-		        System.out.println(resulth);
-		        int num = 0;
-		        while (num <= 0 || num > mecanico.getHorario().size()) {
-		            System.out.println("Seleccione la hora" + "[1-" + mecanico.getHorario().size() + "]: ");
-		            if (sc.hasNextInt()) {
-		                num = sc.nextInt();
-		            } else {
-		                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mecanicos.size() + ".");
-		                sc.nextLine(); // Limpiar la entrada no válida
-		            }
-		        }
-				System.out.print(mecanico.info()+ mecanico.getHorario().get(num-1));
-		        mecanico.getHorario().remove(num-1);
-		    } else if (mecanicos.size() == 0) {
-		        System.out.println("No hay hora disponible");
-		    }
 			String confirmarMech=null;
 			while (confirmarMech==null||confirmarMech.equals("no")) {
-				System.out.print("¿Confirmar mecanico y hora? (si/no)");
+				System.out.print("¿Confirmar mecanico? (si/no)");
 				confirmarMech = sc.nextLine();
 		}if(!sc.nextLine().equals("no")) {
 			Articulo articulo=null;
@@ -360,9 +335,11 @@ public class main {
 				confirmarProd = sc.nextLine();
 		}if(!sc.nextLine().equals("no")) {
 			String confirmarTrans=null;
+			while (confirmarTrans==null||confirmarTrans.equals("no")) {
 			if(articulo.getEspecialidad().equals("Motor")) {
 				System.out.print("El procedimiento a realizar es: Cambio de aceite con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
+			
 			else if(articulo.getEspecialidad().equals("Llantas")) {
 				System.out.print("El procedimiento a realizar es: Cambio de Llantas con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
@@ -372,14 +349,44 @@ public class main {
 			else if(articulo.getEspecialidad().equals("Frenos")) {
 				System.out.print("El procedimiento a realizar es: Cambio de frenos con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
 			}
-			while (confirmarTrans==null||confirmarTrans.equals("no")) {
-				System.out.print("¿Confirmar Transaccion? (si/no)");
-				confirmarTrans= sc.nextLine();
-				if(confirmarTrans.equals("si")) {
+			System.out.print("¿Confirmar Transaccion? (si/no)");
+			confirmarTrans= sc.nextLine();
+			if(confirmarTrans.equals("si")) {
+				//selecciona la hora a la cual esta disponible el mecanico.
+				System.out.print("Seleccione la hora para su servicio"+"\n");
+				System.out.print("Esta es la agenda de: "+mecanico.getNombre()+"\n");
+				 String resulth = String.format("%-20s%n", "   Horario disponible");
+				    byte h=0;
+				    for(String hora:mecanico.getHorario()) {
+				    	h++;
+			            String hor = String.format("%-20s%n", hora);
+			            resulth += String.format("%-3d%s", h, hor);
+				    }
+				    if (mecanico.getHorario().size() >= 1) {
+				        System.out.println("Las horas disponibles son:\n");
+				        System.out.println(resulth);
+				        int num = 0;
+				        while (num <= 0 || num > mecanico.getHorario().size()) {
+				            System.out.println("Seleccione la hora" + "[1-" + mecanico.getHorario().size() + "]: ");
+				            if (sc.hasNextInt()) {
+				                num = sc.nextInt();
+				            } else {
+				                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mecanicos.size() + ".");
+				                sc.nextLine(); // Limpiar la entrada no válida
+				            }
+				        }
+						System.out.print("La hora de su cita es"+ mecanico.getHorario().get(num-1)+"\n");
+				        mecanico.getHorario().remove(num-1);
+				    } else if (mecanicos.size() == 0) {
+				        System.out.println("No hay hora disponible");
+				    }
 					long costoTotal=(long) (mecanico.getManoObra()+articulo.getPrecio());
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					//Reune todos los objetos y crea un objeto llamado transaccion.
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
+					System.out.print("presione enter para ir al menu principal"+"\n");
+					sc.nextLine();
+					sc.nextLine();
 				}
 				else {
 					System.out.print("Transaccion cancelada"+"\n");
@@ -387,14 +394,6 @@ public class main {
 					
 					break;
 				}
-				System.out.print("esperemos verlo de nuevo en nuestro Consecionario"+"\n");
-				
-			}if (confirmarTrans.equals("si")) {
-				System.out.print("presione enter para ir al menu principal"+"\n");
-				String resp=sc.nextLine();
-
-				System.out.print("Hasta luego"); 
-			
 			}
 			
 			}

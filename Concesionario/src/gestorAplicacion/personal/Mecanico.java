@@ -73,7 +73,7 @@ public class Mecanico extends Trabajador implements Serializable{
 	        case 1:
                 especialidad="Pintura";
         	    for (Mecanico mecanico : getMecanicos()) {
-        	        if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	        if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())&&mecanico.getHorario().size()>=1) {
         	            mechs.add(mecanico);
         	        }
         	        salir="si";
