@@ -384,8 +384,9 @@ public class main {
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					//Reune todos los objetos y crea un objeto llamado transaccion.
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
+					System.out.print("");
 					System.out.print("presione enter para ir al menu principal"+"\n");
-					sc.nextLine();
+					//sc.nextLine();
 					sc.nextLine();
 				}
 				else {
