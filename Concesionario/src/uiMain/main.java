@@ -986,8 +986,6 @@ public class main {
 		
 	}
 	public static void crearUsuario() {
-		byte input;
-		do {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Bienvenido al portal de creación de usuarios de nuestro concesionario"+"\n");
 		System.out.print("Introduzca su Nombre y Apellido"+"\n");
@@ -996,7 +994,6 @@ public class main {
 		long cedula=sc.nextLong();
 		if(Cliente.getClientePorCedula(cedula)!=null) {
 			System.out.print("Señor "+usuario + " Usted ya se encuentra registrado en nuestro concesionario"+"\n");
-			input=0;
 		}
 		else {
 		System.out.print("Introduzca su Telefono"+"\n");
@@ -1013,9 +1010,7 @@ public class main {
 		new Cliente(usuario,cedula,telefono,correo,direccion,modelo,presupuesto);
 		
 		System.out.print("Señor "+usuario + " Usted En este momento se encuentra registrado en nuestro concesionario"+"\n");
-		input=0;
 		}
-	}while(input!=0);
 }
 	public static void administracion() {
 		Scanner sc = new Scanner(System.in);
