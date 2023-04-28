@@ -64,37 +64,6 @@ public class Cliente extends Persona implements Serializable{
 				break;
 			}
 		}
-		if(finder == null) {
-			Scanner sc = new Scanner(System.in);
-			String confirmar = "no";
-			while(confirmar.equals("no")) {
-				System.out.println("Eres un cliente nuevo, procederemos a crear tu usuario ");
-				System.out.print("Introduzca su Nombre: ");
-				String nombre = sc.nextLine(); 
-				System.out.print("Introduzca su Cedula: ");
-				Long cedula1 = sc.nextLong(); 
-				sc.nextLine();
-				System.out.print("Introduzca su Telefono: ");
-				Long telefono = sc.nextLong(); 
-				System.out.print("Introduzca su Correo: ");
-				String correo = sc.nextLine(); 
-				sc.nextLine();
-				System.out.print("Introduzca su Dirección: ");
-				String direccion = sc.nextLine(); 
-				
-				System.out.print("Introduzca su Marca de Interes: ");
-				String modelo = sc.nextLine(); 
-			
-				System.out.print("Introduzca su Presupuesto: ");
-				long presupuesto = sc.nextLong(); 
-				Cliente cli = new Cliente(nombre, cedula1, telefono, correo, direccion, modelo, presupuesto);
-				System.out.print(cli.toString());
-				System.out.print("Confirmar cliente (si/no): ");
-				confirmar = sc.nextLine(); 
-				finder = cli;
-				break;
-			}
-		}
 		return finder;
 	}
 
