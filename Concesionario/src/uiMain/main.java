@@ -156,6 +156,54 @@ public class main {
 						System.out.println(cont + ". " + auto3.info());
 						cont++;
 					}
+					System.out.println("Escribe el número del auto a escoger: ");
+					auto = autosMarca.get(sc.nextInt()-1);
+					System.out.println("El auto elegido es " + auto.info());
+					System.out.println("¿Desea confirmar?:  (si/no)");
+					sc.nextLine();
+					/*CREADOR DE TRANSACCION*/
+					if (!sc.nextLine().equals("no")) {
+						ArrayList<Vendedor> vendedores= Vendedor.selectorVend(auto);
+						String resultado = String.format("%-40s%-15s%n", "   Vendedor", "   Tipo de venta");
+				 	    byte v=0;
+				 	    for (Vendedor vend:vendedores) {
+				 	    	v++;
+			 	            String vendedorinfo = String.format("%-40s%-15s%n", vend.getNombre(), vend.getPuesto());
+			 	            resultado += String.format("%-3d%s", v, vendedorinfo );
+				 	    }if (vendedores.size() >= 1) {
+				 	        System.out.println("Los vendedores de " + vendedores.get(0).getPuesto() + " disponibles son:\n");
+				 	        System.out.println(resultado);
+				 	        int num = 0;
+				 	        while (num <= 0 || num > vendedores.size()) {
+				 	            System.out.println("Seleccione el numero del vendedor" + "[1-" + vendedores.size() + "]: ");
+				 	            if (sc.hasNextInt()) {
+				 	                num = sc.nextInt();
+				 	            } else {
+				 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + vendedores.size() + ".");
+				 	                sc.nextLine(); // Limpiar la entrada no válida
+				 	            }
+				 	        }
+				 	        vendedor = vendedores.get(num - 1);
+
+
+				 	    } else if (vendedores.size() == 0) {
+				 	        System.out.println("No hay vendedores disponibles para su vehiculo");
+				 	    }
+						
+						if(comprador.getPresupuesto()>=auto.getPrecio()) {
+							auto.setDueno(comprador);
+							auto.setDisponible(false);
+							comprador.setAuto(auto);
+				 	        vendedor.confirmarVenta();
+				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
+							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
+							System.out.print("");
+							System.out.print("presione enter para ir al menu principal"+"\n");
+							sc.nextLine();
+							sc.nextLine();
+						}
+					}
+					/*CREADOR DE TRANSACCION*/
 					
 					break;
 				/*AUTOS POR MARCA*/
@@ -167,11 +215,107 @@ public class main {
 						System.out.println(contt + ". " + auto4.info());
 						++contt;
 					}
+					System.out.println("Escribe el número del auto a escoger: ");
+					auto = InventarioAuto.getAutosporPrecio().get(sc.nextInt()-1);
+					System.out.println("El auto elegido es " + auto.info());
+					System.out.println("¿Desea confirmar?:  (si/no)");
+					sc.nextLine();
+					/*CREADOR DE TRANSACCION*/
+					if (!sc.nextLine().equals("no")) {
+						ArrayList<Vendedor> vendedores= Vendedor.selectorVend(auto);
+						String resultado = String.format("%-40s%-15s%n", "   Vendedor", "   Tipo de venta");
+				 	    byte v=0;
+				 	    for (Vendedor vend:vendedores) {
+				 	    	v++;
+			 	            String vendedorinfo = String.format("%-40s%-15s%n", vend.getNombre(), vend.getPuesto());
+			 	            resultado += String.format("%-3d%s", v, vendedorinfo );
+				 	    }if (vendedores.size() >= 1) {
+				 	        System.out.println("Los vendedores de " + vendedores.get(0).getPuesto() + " disponibles son:\n");
+				 	        System.out.println(resultado);
+				 	        int num = 0;
+				 	        while (num <= 0 || num > vendedores.size()) {
+				 	            System.out.println("Seleccione el numero del vendedor" + "[1-" + vendedores.size() + "]: ");
+				 	            if (sc.hasNextInt()) {
+				 	                num = sc.nextInt();
+				 	            } else {
+				 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + vendedores.size() + ".");
+				 	                sc.nextLine(); // Limpiar la entrada no válida
+				 	            }
+				 	        }
+				 	        vendedor = vendedores.get(num - 1);
+
+
+				 	    } else if (vendedores.size() == 0) {
+				 	        System.out.println("No hay vendedores disponibles para su vehiculo");
+				 	    }
+						
+						if(comprador.getPresupuesto()>=auto.getPrecio()) {
+							auto.setDueno(comprador);
+							auto.setDisponible(false);
+							comprador.setAuto(auto);
+				 	        vendedor.confirmarVenta();
+				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
+							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
+							System.out.print("");
+							System.out.print("presione enter para ir al menu principal"+"\n");
+							sc.nextLine();
+							sc.nextLine();
+						}
+					}
+					/*CREADOR DE TRANSACCION*/
 					break;
 				/*AUTOS POR PRECIO*/
 				/*TODOS LOS AUTOS*/
 				case 3:
 					System.out.println(InventarioAuto.autosDisponibles());
+					System.out.println("Escribe el número del auto a escoger: ");
+					auto = InventarioAuto.getAutosDisponibles().get(sc.nextInt()-1);
+					System.out.println("El auto elegido es " + auto.info());
+					System.out.println("¿Desea confirmar?:  (si/no)");
+					sc.nextLine();
+					/*CREADOR DE TRANSACCION*/
+					if (!sc.nextLine().equals("no")) {
+						ArrayList<Vendedor> vendedores= Vendedor.selectorVend(auto);
+						String resultado = String.format("%-40s%-15s%n", "   Vendedor", "   Tipo de venta");
+				 	    byte v=0;
+				 	    for (Vendedor vend:vendedores) {
+				 	    	v++;
+			 	            String vendedorinfo = String.format("%-40s%-15s%n", vend.getNombre(), vend.getPuesto());
+			 	            resultado += String.format("%-3d%s", v, vendedorinfo );
+				 	    }if (vendedores.size() >= 1) {
+				 	        System.out.println("Los vendedores de " + vendedores.get(0).getPuesto() + " disponibles son:\n");
+				 	        System.out.println(resultado);
+				 	        int num = 0;
+				 	        while (num <= 0 || num > vendedores.size()) {
+				 	            System.out.println("Seleccione el numero del vendedor" + "[1-" + vendedores.size() + "]: ");
+				 	            if (sc.hasNextInt()) {
+				 	                num = sc.nextInt();
+				 	            } else {
+				 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + vendedores.size() + ".");
+				 	                sc.nextLine(); // Limpiar la entrada no válida
+				 	            }
+				 	        }
+				 	        vendedor = vendedores.get(num - 1);
+
+
+				 	    } else if (vendedores.size() == 0) {
+				 	        System.out.println("No hay vendedores disponibles para su vehiculo");
+				 	    }
+						
+						if(comprador.getPresupuesto()>=auto.getPrecio()) {
+							auto.setDueno(comprador);
+							auto.setDisponible(false);
+							comprador.setAuto(auto);
+				 	        vendedor.confirmarVenta();
+				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
+							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
+							System.out.print("");
+							System.out.print("presione enter para ir al menu principal"+"\n");
+							sc.nextLine();
+							sc.nextLine();
+						}
+					}
+					/*CREADOR DE TRANSACCION*/
 					break;
 				/*TODOS LOS AUTOS*/
 				case 4:
@@ -184,7 +328,6 @@ public class main {
 			sc.nextLine();
 			/*CREADOR DE TRANSACCION*/
 			if (!sc.nextLine().equals("no")) {
-				String confirmarVendedor=null;
 				ArrayList<Vendedor> vendedores= Vendedor.selectorVend(auto);
 				String resultado = String.format("%-40s%-15s%n", "   Vendedor", "   Tipo de venta");
 		 	    byte v=0;
@@ -207,6 +350,7 @@ public class main {
 		 	        }
 		 	        vendedor = vendedores.get(num - 1);
 
+
 		 	    } else if (vendedores.size() == 0) {
 		 	        System.out.println("No hay vendedores disponibles para su vehiculo");
 		 	    }
@@ -215,6 +359,13 @@ public class main {
 					auto.setDueno(comprador);
 					auto.setDisponible(false);
 					comprador.setAuto(auto);
+		 	        vendedor.confirmarVenta();
+		 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
+					System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
+					System.out.print("");
+					System.out.print("presione enter para ir al menu principal"+"\n");
+					sc.nextLine();
+					sc.nextLine();
 				}
 			}
 			/*CREADOR DE TRANSACCION*/
