@@ -59,7 +59,7 @@ public class InventarioArticulo implements Serializable{
    public static ArrayList<Articulo> articuloDispo(Mecanico mecanico) {
  	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
  	    for (Articulo articulo : getArticulos()) {
- 	        if (mecanico.getEspecialidad().equals(articulo.getEspecialidad())) {
+ 	        if (mecanico.getEspecialidad().equals(articulo.getEspecialidad())&& articulo.getCantidad()>=1) {
  	            prods.add(articulo);
  	        }
  	    }

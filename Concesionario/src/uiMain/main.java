@@ -494,11 +494,11 @@ public class main {
 			//Ingresa este mecanico que se selecciono y se devuekve una lista de productos
 			ArrayList<Articulo> producto=InventarioArticulo.articuloDispo(mecanico);
 			//Selector
-	 	    String resultp = String.format("%-40s%-25s%-40s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio");
+	 	    String resultp = String.format("%-40s%-25s%-40s%-15s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio","Cantidad");
 	 	    byte i=0;
 	 	    for (Articulo articuloi:producto) {
 	 	    	i++;
- 	            String mechInfo = String.format("%-40s%-25s%-40s%-15s%n", articuloi.getTipoArticulo(), articuloi.getTipoVehiculo(),articuloi.getMarca(),articuloi.getPrecio());
+ 	            String mechInfo = String.format("%-40s%-25s%-40s%-15s%-15s%n", articuloi.getTipoArticulo(), articuloi.getTipoVehiculo(),articuloi.getMarca(),articuloi.getPrecio(),articuloi.getCantidad());
  	            resultp += String.format("%-3d%s", i, mechInfo);
 	 	    }if (producto.size() >= 1) {
 	 	        System.out.println("Los productos " + mecanico.getEspecialidad() + " disponibles son:\n");
