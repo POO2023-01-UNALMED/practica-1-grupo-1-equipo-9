@@ -1003,7 +1003,7 @@ public class main {
 		long telefono=sc.nextLong();
 		System.out.print("Introduzca su Correo"+"\n");
 		String correo=sc.nextLine();
-		sc.nextLine();
+		correo=sc.nextLine();  
 		System.out.print("Introduzca su Direccion"+"\n");
 		String direccion=sc.nextLine();
 		System.out.print("Introduzca su Marca de interes"+"\n");
@@ -1027,6 +1027,7 @@ public class main {
 				System.out.print("¿Que labor administrativa desea hacer?"+"\n");
 				System.out.print("1.¿Asignar Horarios a mecanicos?"+"\n");
 				System.out.print("2.Añadir articulo (Nuevo)"+"\n");
+				System.out.print("3.Salir del Portal administrativo"+"\n");
 				input = sc.nextByte();
 				switch(input) {
 				case 1:
@@ -1040,7 +1041,7 @@ public class main {
 				case 2:
 					System.out.print("Nombre del articulo"+"\n");
 					String nombre=sc.nextLine();
-					sc.nextLine();
+					nombre=sc.nextLine();
 					System.out.print("Calidad del articulo (premium/basico)"+"\n");
 					String calidad=sc.nextLine();
 					System.out.print("Tipo del articulo (repuesto/taller)"+"\n");
@@ -1066,10 +1067,10 @@ public class main {
 							System.out.print("El articulo es Generico"+"\n");
 						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad);
 					}
-					System.out.print("Articilo creado con exito"+nombre+"\n");
+					System.out.print("Articilo creado con exito"+"\n");
 				}
 				
-			}while(input!=8);
+			}while(input!=3);
 		}
 		else if(admin==null) {
 			System.out.print("Usted no tiene acceso a este portal,sera redirigido al menu inicial."+"\n");
