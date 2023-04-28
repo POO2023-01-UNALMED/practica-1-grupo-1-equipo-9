@@ -10,7 +10,7 @@ public class Mecanico extends Trabajador implements Serializable{
 	static ArrayList<Mecanico> mecanicos = new ArrayList<Mecanico>();
 	String autos;
 	String especialidad;
-	long pagoSvcs=0;
+	public long pagoSvcs=0;
 	long manoObra;
 	ArrayList<String> horario=new ArrayList<String>() {{add("9:00-11:00");add("11:00-1:00");add("2:00-4:00");add("4:00-6:00");}};
 

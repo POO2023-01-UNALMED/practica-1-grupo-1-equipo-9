@@ -573,6 +573,9 @@ public class main {
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					//Reune todos los objetos y crea un objeto llamado transaccion.
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
+					articulo.cantidad--;
+					mecanico.pagoSvcs+=mecanico.getManoObra();
+					
 					System.out.print("");
 				}
 				else {
@@ -1023,6 +1026,7 @@ public class main {
 			do {
 				System.out.print("¿Que labor administrativa desea hacer?"+"\n");
 				System.out.print("1.¿Asignar Horarios a mecanicos?"+"\n");
+				System.out.print("2.Añadir articulo (Nuevo)"+"\n");
 				input = sc.nextByte();
 				switch(input) {
 				case 1:
@@ -1032,7 +1036,37 @@ public class main {
 					mech.setHorario(new ArrayList<String>() {{add("9:00-11:00");add("11:00-1:00");add("2:00-4:00");add("4:00-6:00");}});
 					System.out.print("Horario Reasignado a "+mech.getNombre()+"\n");
 					input=8;
+					
+				case 2:
+					System.out.print("Nombre del articulo"+"\n");
+					String nombre=sc.nextLine();
+					System.out.print("Calidad del articulo"+"\n");
+					String calidad=sc.nextLine();
+					System.out.print("Tipo del articulo (repuesto/taller)"+"\n");
+					String tipo=sc.nextLine();
+					System.out.print("Especialidad (Llantas/Pintura/Motor/Frenos/Modificacion)"+"\n");
+					String especialidad=sc.nextLine();
+					System.out.print("Tipo del Vehiculo"+"\n");
+					String tipoVehi=sc.nextLine();
+					System.out.print("Marca del articulo"+"\n");
+					String marca=sc.nextLine();
+					System.out.print("precio del articulo"+"\n");
+					double precio=sc.nextDouble();
+					System.out.print("Numero de unidades"+"\n");
+					int cantidad=sc.nextInt();
+					System.out.print("¿Es para una Marca especial? (si/no)"+"\n");
+					if(sc.nextLine().equals("si")) {
+						System.out.print("¿Cual? (Mazda/Toyota/Chevrolet)"+"\n");
+						String marcaVehiculo=sc.nextLine();
+						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad,marcaVehiculo);
+					}
+					else {
+							System.out.print("El articulo es Generico"+"\n");
+						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad);
+					}
+					System.out.print("Articilo creado con exito"+"\n");
 				}
+				
 			}while(input!=8);
 		}
 		else if(admin==null) {

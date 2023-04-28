@@ -11,7 +11,7 @@ public class Articulo implements Serializable{
     private  String tipoVehiculo;
     private  double precio;
     private  String marca;
-    private int cantidad; 
+    public int cantidad; 
     private String marcaVehiculo;
     
     // Constructor
