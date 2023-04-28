@@ -1040,7 +1040,8 @@ public class main {
 				case 2:
 					System.out.print("Nombre del articulo"+"\n");
 					String nombre=sc.nextLine();
-					System.out.print("Calidad del articulo"+"\n");
+					sc.nextLine();
+					System.out.print("Calidad del articulo (premium/basico)"+"\n");
 					String calidad=sc.nextLine();
 					System.out.print("Tipo del articulo (repuesto/taller)"+"\n");
 					String tipo=sc.nextLine();
@@ -1064,7 +1065,7 @@ public class main {
 							System.out.print("El articulo es Generico"+"\n");
 						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad);
 					}
-					System.out.print("Articilo creado con exito"+"\n");
+					System.out.print("Articilo creado con exito"+nombre+"\n");
 				}
 				
 			}while(input!=8);
