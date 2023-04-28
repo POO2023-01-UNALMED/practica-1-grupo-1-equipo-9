@@ -44,16 +44,18 @@ public class TransaccionModificacion extends Transaccion implements Serializable
 		return client;
 	}
 	
-	public static TransaccionModificacion getTransaccionporCedula(long cedula) {
-		TransaccionModificacion finder = null;
+	public static Auto getTransaccionporCedula(long cedula) {
+		Auto finder = null;
 		for (TransaccionModificacion trans: transaccionesmod) {
 			if(trans.getClienteCed()== cedula) {
-				finder = trans;
+				finder = trans.getAuto();
 				break;
 			}
 		}
 		return finder;
 	}
+	
+	
 	public void setAuto(Auto auto) {
 	    this.auto = auto;
 	}

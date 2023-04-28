@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 
 public class main {
+	
+	
+	
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);	
@@ -685,10 +688,10 @@ public class main {
 				long cedula = sc.nextLong(); 
 				sc.nextLine();
 				propietario = TransaccionModificacion.getClientePorCedula(cedula);
-				transaccion = TransaccionModificacion.getTransaccionporCedula(cedula);
+				auto = TransaccionModificacion.getTransaccionporCedula(cedula);
 				System.out.print(propietario.info());
 				
-				if (propietario == null || transaccion == null) {
+				if (propietario == null || auto == null) {
 					System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla.");
 				}
 			}
@@ -703,9 +706,38 @@ public class main {
 	        System.out.println("4. Modificacion de frenos");
 	        System.out.println("5. Modificacion del escape");
 	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
-			ArrayList<Mecanico> mecanicos=Mecanico.mecanicoDisponible();
-			Mecanico mecanico=Mecanico.selector(mecanicos, transaccion.auto);
-			System.out.print(mecanico.info());
+	      //Se ingresa el auto que se devolvio anteriormente y este entrega una lista de mecanicos
+			ArrayList<Mecanico> mecanicos=Mecanico.mecanicoDisponible(auto);
+	      //Selector
+			Scanner sc1 = new Scanner(System.in);
+		    String result = String.format("%-20s%-20s%-10s%-10s%n", "   Nombre","   Cedula", "   Atiende", "   Especialidad");
+		    byte j=0;
+		    for (Mecanico mecanico : mecanicos) {
+		    		j++;
+		            String mechInfo = String.format("%-20s%-20s%-10s%-10s%n", mecanico.getNombre(),mecanico.getCedula(), mecanico.getAutos(),mecanico.getEspecialidad());
+		            result += String.format("%-3d%s", j, mechInfo);
+		    }
+		    Mecanico mecanico = null;
+		    
+		    if (mecanicos.size() >= 1) {
+		        System.out.println("Los mecanicos que atienden " + auto.getMarca() + " disponibles son:\n");
+		        System.out.println(result);
+		        int num = 0;
+		        while (num <= 0 || num > mecanicos.size()) {
+		            System.out.println("Seleccione el numero del mecanico" + "[1-" + mecanicos.size() + "]: ");
+		            if (sc.hasNextInt()) {
+		                num = sc.nextInt();
+		            } else {
+		                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mecanicos.size() + ".");
+		                sc.nextLine(); // Limpiar la entrada no válida
+		            }
+		        }
+		        mecanico = mecanicos.get(num - 1);
+
+		    } else if (mecanicos.size() == 0) {
+		        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
+		    }
+			String confirmarMech=null;
 			while (confirmarMech==null||confirmarMech.equals("no")) {
 				
 				System.out.print("¿Confirmar mecanico? (si/no)");
