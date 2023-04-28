@@ -2,6 +2,8 @@ package gestorAplicacion.activos;
 
 import java.io.Serializable;
 
+import gestorAplicacion.personal.Cliente;
+
 public class Articulo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String calidad;
@@ -13,9 +15,10 @@ public class Articulo implements Serializable{
     private  String marca;
     public int cantidad; 
     private String marcaVehiculo;
+    long referencia;
     
     // Constructor
-    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad ) {
+    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad,long referencia ) {
         this.calidad=calidad;
     	this.tipo=tipo;
     	this.tipoArticulo = tipoArticulo;
@@ -24,6 +27,7 @@ public class Articulo implements Serializable{
         this.precio = precio;
         this.marca = marca;
         this.cantidad = cantidad;
+        this.referencia=referencia;
         
         if(tipo.equals("taller")) {
         	InventarioArticulo.articulos.add(this);
@@ -35,7 +39,7 @@ public class Articulo implements Serializable{
         }
         
     }
-    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad,String marcaVehiculo ) {
+    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad,String marcaVehiculo,long referencia ) {
         this.marcaVehiculo=marcaVehiculo;
     	this.calidad=calidad;
     	this.tipo=tipo;
@@ -45,6 +49,7 @@ public class Articulo implements Serializable{
         this.precio = precio;
         this.marca = marca;
         this.cantidad = cantidad;
+        this.referencia=referencia;
         if(tipo.equals("taller")) {
         	InventarioArticulo.articulos.add(this);
         }
@@ -69,6 +74,13 @@ public class Articulo implements Serializable{
 
     public void setTipoVehiculo(String tipoVehiculo) {
         this.tipoVehiculo = tipoVehiculo;
+    }
+    public long getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(long referencia) {
+        this.referencia = referencia;
     }
 
     public double getPrecio() {
@@ -136,6 +148,27 @@ public class Articulo implements Serializable{
 
 	public void setMarcaVehiculo(String marcaVehiculo) {
 		this.marcaVehiculo = marcaVehiculo;
+	}
+	
+	public static Articulo getArticuloPorReferencia(long referencia){
+		Articulo finder = null;
+		for(Articulo articulo: InventarioArticulo.articulos) {
+			if(articulo.getReferencia() == referencia) {
+				finder = articulo;
+				break;
+			}
+		}
+		return finder;
+	}
+	public static Articulo getRepuestoPorReferencia(long referencia){
+		Articulo finder = null;
+		for(Articulo articulo: InventarioArticulo.repuestos) {
+			if(articulo.getReferencia() == referencia) {
+				finder = articulo;
+				break;
+			}
+		}
+		return finder;
 	}
 	
    

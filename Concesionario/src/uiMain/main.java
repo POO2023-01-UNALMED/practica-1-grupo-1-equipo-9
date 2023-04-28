@@ -1042,6 +1042,12 @@ public class main {
 					System.out.print("Nombre del articulo"+"\n");
 					String nombre=sc.nextLine();
 					nombre=sc.nextLine();
+					System.out.print("Referencia del articulo"+"\n");
+					long referencia=sc.nextLong();
+					if(Articulo.getArticuloPorReferencia(referencia)!=null && Articulo.getRepuestoPorReferencia(referencia)!=null ) {
+						System.out.print("El ya se encuentra registrado en nuestro concesionario"+"\n");
+					}
+					else {
 					System.out.print("Calidad del articulo (premium/basico)"+"\n");
 					String calidad=sc.nextLine();
 					System.out.print("Tipo del articulo (repuesto/taller)"+"\n");
@@ -1061,13 +1067,14 @@ public class main {
 					if(sc.nextLine().equals("si")) {
 						System.out.print("¿Cual? (Mazda/Toyota/Chevrolet)"+"\n");
 						String marcaVehiculo=sc.nextLine();
-						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad,marcaVehiculo);
+						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad,marcaVehiculo,referencia);
 					}
 					else {
 							System.out.print("El articulo es Generico"+"\n");
-						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad);
+						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad,referencia);
 					}
 					System.out.print("Articilo creado con exito"+"\n");
+				}
 				}
 				
 			}while(input!=3);
