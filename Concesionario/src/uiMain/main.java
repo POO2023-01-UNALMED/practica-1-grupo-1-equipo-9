@@ -14,6 +14,7 @@ public class main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);	
+		boolean volverAlMenuPrincipal = true;
 		/*INTERFAZ*/
 		byte input;
 		Deserializador.deserializarArrays();		
@@ -28,37 +29,80 @@ public class main {
 			System.out.println("7. Administración");	
 			System.out.println("8. Salir");		
 			System.out.print("Ingrese el número de la opción que va a utilizar: ");
-			
+			String respuesta=null;
 			input = sc.nextByte();
 			
 			switch (input) {
 			case 1:
 				procesoVenta();
-				break;
+	            System.out.print("\n¿Desea volver al menú principal? (si/no): ");
+	            respuesta = sc.next();
+	            if(respuesta.equals("no")){
+					Serializador.serializarArrays();
+	                volverAlMenuPrincipal = false;
+	            }
+	            break;
 			case 2:
 				ventaRepuestos();
-				break;
+	            System.out.print("\n¿Desea volver al menú principal? (si/no): ");
+	            respuesta = sc.next();
+	            if(respuesta.equals("no")){
+					Serializador.serializarArrays();
+	                volverAlMenuPrincipal = false;
+	            }
+	            break;
 			case 3:
 				procesoTaller();
-				break;
+	            System.out.print("\n¿Desea volver al menú principal? (si/no): ");
+	            respuesta = sc.next();
+	            if(respuesta.equals("no")){
+					Serializador.serializarArrays();
+	                volverAlMenuPrincipal = false;
+	            }
+	            break;
 			case 4:
 				stats();
+	            System.out.print("\n¿Desea volver al menú principal? (si/no): ");
+	            respuesta = sc.next();
+	            if(respuesta.equals("no")){
+					Serializador.serializarArrays();
+	                volverAlMenuPrincipal = false;
+	            }
 				break;
 			case 5:
 				personalizarAuto();
-				break;
+	            System.out.print("\n¿Desea volver al menú principal? (si/no): ");
+	            respuesta = sc.next();
+	            if(respuesta.equals("no")){
+					Serializador.serializarArrays();
+	                volverAlMenuPrincipal = false;
+	            }
+	            break;
 			case 6:
 				crearUsuario();
-				break;
+	            System.out.print("\n¿Desea volver al menú principal? (si/no): ");
+	            respuesta = sc.next();
+	            if(respuesta.equals("no")){
+					Serializador.serializarArrays();
+	                volverAlMenuPrincipal = false;
+	            }
+	            break;
 			case 7:
 				administracion();
-				break;
+	            System.out.print("\n¿Desea volver al menú principal? (si/no): ");
+	            respuesta = sc.next();
+	            if(respuesta.equals("no")){
+					Serializador.serializarArrays();
+	                volverAlMenuPrincipal = false;
+	            }
+	            break;
 			default:
 				System.out.print("\nHasta pronto");
 				Serializador.serializarArrays();
+	            volverAlMenuPrincipal = false;
 				break;
 			}
-		}while(input!=8);
+		}while(volverAlMenuPrincipal);
 		
 	}
 		/*INTERFAZ*/
@@ -198,9 +242,6 @@ public class main {
 				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
 							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
 							System.out.print("");
-							System.out.print("presione enter para ir al menu principal"+"\n");
-							sc.nextLine();
-							sc.nextLine();
 						}
 					}
 					/*CREADOR DE TRANSACCION*/
@@ -257,9 +298,7 @@ public class main {
 				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
 							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
 							System.out.print("");
-							System.out.print("presione enter para ir al menu principal"+"\n");
-							sc.nextLine();
-							sc.nextLine();
+
 						}
 					}
 					/*CREADOR DE TRANSACCION*/
@@ -310,9 +349,7 @@ public class main {
 				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
 							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
 							System.out.print("");
-							System.out.print("presione enter para ir al menu principal"+"\n");
-							sc.nextLine();
-							sc.nextLine();
+
 						}
 					}
 					/*CREADOR DE TRANSACCION*/
@@ -363,9 +400,7 @@ public class main {
 		 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
 					System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
 					System.out.print("");
-					System.out.print("presione enter para ir al menu principal"+"\n");
-					sc.nextLine();
-					sc.nextLine();
+
 				}
 			}
 			/*CREADOR DE TRANSACCION*/
@@ -539,14 +574,9 @@ public class main {
 					//Reune todos los objetos y crea un objeto llamado transaccion.
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
 					System.out.print("");
-					System.out.print("presione enter para ir al menu principal"+"\n");
-					//sc.nextLine();
-					sc.nextLine();
 				}
 				else {
 					System.out.print("Transaccion cancelada"+"\n");
-					System.out.print("Hasta luego");
-					
 					break;
 				}
 			}
