@@ -1056,6 +1056,7 @@ public class main {
 					System.out.print("Numero de unidades"+"\n");
 					int cantidad=sc.nextInt();
 					System.out.print("¿Es para una Marca especial? (si/no)"+"\n");
+					sc.nextLine();
 					if(sc.nextLine().equals("si")) {
 						System.out.print("¿Cual? (Mazda/Toyota/Chevrolet)"+"\n");
 						String marcaVehiculo=sc.nextLine();
