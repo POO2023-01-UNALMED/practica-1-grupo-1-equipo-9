@@ -1050,7 +1050,7 @@ public class main {
 		System.out.print("Introduzca su Cedula"+"\n");
 		long cedula=sc.nextLong();
 		if(Cliente.getClientePorCedula(cedula)!=null) {
-			System.out.print("Señor "+usuario + " Usted ya se encuentra registrado en nuestro concesionario"+"\n");
+			System.out.print("Señor "+ usuario + " Usted ya se encuentra registrado en nuestro concesionario"+"\n");
 		}
 		else {
 		System.out.print("Introduzca su Telefono"+"\n");
@@ -1072,16 +1072,17 @@ public class main {
 	public static void administracion() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Bienvenido al portal de administración de nuestro concesionario"+"\n");
-		System.out.print("Introduzca su cedula"+"\n");
+		System.out.print("Introduzca su cedula"+"\n"); //3355479
 		long cedula=sc.nextLong();
 		Vendedor admin=Vendedor.getVendedorPorCedula(cedula);
 		if(admin!=null&&admin.getPuesto().equals("admin")) {
 			byte input;
 			do {
 				System.out.print("¿Que labor administrativa desea hacer?"+"\n");
-				System.out.print("1.¿Asignar Horarios a mecanicos?"+"\n");
-				System.out.print("2.Añadir articulo (Nuevo)"+"\n");
-				System.out.print("3.Salir del Portal administrativo"+"\n");
+				System.out.print("1. ¿Asignar Horarios a mecanicos?"+"\n");
+				System.out.print("2. Añadir articulo (Nuevo)"+"\n");
+				System.out.println("3. Añadir Auto (Nuevo)");
+				System.out.print("4. Salir del Portal administrativo"+"\n");
 				input = sc.nextByte();
 				switch(input) {
 				case 1:
@@ -1138,11 +1139,39 @@ public class main {
 							System.out.print("El articulo es Generico"+"\n");
 						new Articulo(calidad,tipo,especialidad,nombre,tipoVehi,marca,precio,cantidad,referencia);
 					}
-					System.out.print("Articilo creado con exito"+"\n");
+					System.out.print("Articulo creado con exito"+"\n");
 				}
+				case 3: //3355479
+					System.out.println("Modelo del carro: ");
+					String modelo = sc.nextLine();
+					modelo=sc.nextLine();
+					System.out.println("Marca del carro: ");
+					String marca = sc.nextLine();
+					System.out.println("Precio del carro: ");
+					int precio=sc.nextInt();
+					System.out.println("Cilindraje del carro: ");
+					int cilindraje = sc.nextInt();
+					System.out.println("Color del carro: ");
+					String color = sc.nextLine();
+					color=sc.nextLine();
+					System.out.println("El carro es Full Equipo? (si/no): ");
+					String fq = sc.nextLine();
+					Articulo llantas = Articulo.getArticuloPorReferencia(3001);
+					Articulo suspension = Articulo.getArticuloPorReferencia(3002);
+					Articulo sonido = Articulo.getArticuloPorReferencia(3003);
+					Articulo escape = Articulo.getArticuloPorReferencia(3004);
+					
+					if (fq == "si") {
+						new Auto(modelo, marca, precio, cilindraje, color, true, true, llantas, suspension, sonido, escape);
+						System.out.println("El carro " + marca + ", modelo " + modelo + ", FullEquipo se ha añadido con éxito"+"\n");
+					} else {
+						new Auto(modelo, marca, precio, cilindraje, color, false, true, llantas, suspension, sonido, escape);
+						System.out.println("El carro " + marca + ", modelo " + modelo + ", no FullEqipo se ha añadido con éxito"+"\n");
+					}
 				}
 				
-			}while(input!=3);
+					
+			}while(input!=4);
 		}
 		else if(admin==null) {
 			System.out.print("Usted no tiene acceso a este portal,sera redirigido al menu inicial."+"\n");
