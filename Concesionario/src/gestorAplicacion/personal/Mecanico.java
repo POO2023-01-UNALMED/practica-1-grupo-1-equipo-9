@@ -107,7 +107,47 @@ public class Mecanico extends Trabajador implements Serializable{
         	    }
                 break;
             case 5:
-                especialidad="Modificacion";
+                especialidad="Modificacion de pintura";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+                
+            case 6:
+                especialidad="Modificacion de llantas ";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+                
+            case 7:
+                especialidad="Modificacion de sonido";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+                
+            case 8:
+                especialidad="Modificacion de frenos";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+                
+            case 9:
+                especialidad="Modificacion de escape";
         	    for (Mecanico mecanico : getMecanicos()) {
         	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
