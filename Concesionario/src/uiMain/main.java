@@ -728,6 +728,22 @@ public class main {
 	}
 	
 	public static void stats() {
+		//objetos de prueba
+		Articulo llantas = Articulo.getArticuloPorReferencia(3001);
+		Articulo suspension = Articulo.getArticuloPorReferencia(3002);
+		Articulo sonido = Articulo.getArticuloPorReferencia(3003);
+		Articulo escape = Articulo.getArticuloPorReferencia(3004);
+		Cliente c1= new Cliente("Ana González", 12345678, 87654321, "Calle 5ta, #10-23", "Bogotá", "Toyota", 40000000);
+		Cliente c2= new Cliente("Juan Pérez", 102367459, 300987654, "Carrera 12, #34-56", "Medellín", "Toyota", 35000000);
+		Auto a1= new Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", true, true,llantas,suspension,sonido,escape);
+		Auto a2= new Auto("Corolla", "Chevrolet", 70000000, 2000, "negro", false, true,llantas,suspension,sonido,escape);
+		Vendedor vendedorr1 = new Vendedor("Juan Guaido", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321,"Vitrina");
+		Vendedor vendedorr2 = new Vendedor("Pedro Mojica", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789,"Repuestos");
+		Transaccion tr1=new TransaccionVenta ("efectivo",10000000,c1,a1,vendedorr1);
+		Transaccion tr2=new TransaccionVenta ("efectivo",10000000,c2,a2,vendedorr1);
+		Transaccion tr3=new TransaccionVenta ("efectivo",20000000,c1,a1,vendedorr2);
+		Transaccion tr4=new TransaccionVenta ("efectivo",20000000,c2,a2,vendedorr2);
+		
 		Scanner sc = new Scanner(System.in);
 		byte opcion;
 		
@@ -763,10 +779,10 @@ public class main {
 			
 			ArrayList<Vendedor> vendedores1 = TransaccionVenta.vendedoresVentas(transaccionesActuales);
 			
-			float num = ((float)vendedores1.size() / ((Vendedor.getVendedores().size())/2)) * 100;
+			float num = ((float)vendedores1.size() / ((Vendedor.getVendedores().size()))) * 100;
 			int roundedNum = Math.round(num);
 
-			System.out.println("-------- De los " + (Vendedor.getVendedores().size())/2 + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
+			System.out.println("\n" + "-------- De los " + (Vendedor.getVendedores().size()) + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
 			
 			for (Vendedor vend: vendedores1)
 			{
@@ -782,7 +798,7 @@ public class main {
 			
 			
 			// para saber la cantidad total de dinero en ventas y # total de ventas:
-			System.out.println("-------- Suma de dinero en ventas por vendedor: --------");
+			System.out.println("\n" + "-------- Suma de dinero en ventas por vendedor: --------");
 			
 			for (Vendedor vend: vendedores1)
 			{
@@ -800,7 +816,7 @@ public class main {
 				System.out.println(vend.getNombre() + ": " + suma + " $, el " + roundedSum + " % del total de ingresos por ventas de autos.");
 			}
 			
-			System.out.println("-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
+			System.out.println("\n" + "-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
 			
 			for (Vendedor vend: vendedores1)
 			{
@@ -823,7 +839,7 @@ public class main {
 			
 			float num5 = ((float)sumaTotal/dia);
 			int roundedNum5 = Math.round(num5);
-			System.out.println("-------- Suma de ingresos total, y promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": --------");
+			System.out.println("\n" + "-------- Suma de ingresos total, y promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": --------");
 			System.out.println("Suma total de ingresos: " + sumaTotal + ", promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": " + roundedNum5 + " $.");
 			
 			break;
@@ -838,7 +854,7 @@ public class main {
 //			System.out.println("-------- De los " + (Vendedor.getVendedores().size())/2 + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
 			
 			ArrayList<Auto> autosIniciales = InventarioAuto.getAutos();
-			ArrayList<Auto> autosVendidos = TransaccionVenta.AutosVendidos(); //#2
+			ArrayList<Auto> autosVendidos = TransaccionVenta.AutosVendidos(autosIniciales); //#2
 			
 			float numA = ((float)autosVendidos.size() / ((autosIniciales.size())/2)) * 100;
 			int roundedNumA = Math.round(numA);

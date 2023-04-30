@@ -90,9 +90,9 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 	    return vendedores;
 	}
 	
-	public static ArrayList<Auto> AutosVendidos(){
+	public static ArrayList<Auto> AutosVendidos(ArrayList<Auto> autosIniciales){
 		ArrayList<Auto> autosvend = new ArrayList<>();
-		for (Auto a: autosV) {
+		for (Auto a: autosIniciales) {
 			if (autosvend.contains(a)) {
 			} else {
 				autosvend.add(a);
