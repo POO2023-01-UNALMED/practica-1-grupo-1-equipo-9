@@ -10,12 +10,7 @@ import java.time.format.TextStyle;
 public class main {
 
 	public static void main(String[] args) {
-		Cliente cc1 = new Cliente("María Conchita Alonso", 11223344, 3209876543L, "mariaconchita@mail.com", "Calle 23 #10-45", "Toyota", 150000000);
-		Cliente cc2 = new Cliente("Luisa Fernanda W", 987654321, 3012345678L, "luisafernanda@mail.com", "Carrera 56 #34-12", "Toyota", 120000000);
-		Cliente cc3 = new Cliente("Fulanito Pérez", 87654321, 3187654321L, "fulanito@mail.com", "Avenida de las Américas #15-23", "Mazda", 180000000);
-		Cliente cc4 = new Cliente("Pedro Picapiedra", 159753, 3056789456L, "pedropicapiedra@mail.com", "Calle 1 #10-20", "Chevrolet", 130000000);
-		Cliente cc5 = new Cliente("Mafalda González", 1234567890, 3109876543L, "mafalda@mail.com", "Carrera 80 #45-67", "Mazda", 110000000);
-		Cliente cc6 = new Cliente("Amparo Grisales", 333444, 3176543210L, "amparo@mail.com", "Calle 100 #20-30", "Toyota", 250000000);
+
 
 		Scanner sc = new Scanner(System.in);	
 		boolean volverAlMenuPrincipal = true;
