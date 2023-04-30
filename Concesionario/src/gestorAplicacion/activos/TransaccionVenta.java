@@ -100,5 +100,17 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 		}
 		return autosvend;
 	}
-
+	
+	public static ArrayList<Auto> getAutosV(){
+		return autosV;
+	}
+	
+	public static long getIngresoPorAuto(Auto auto){
+		for (TransaccionVenta transacc: TransaccionVenta.getTransaccionesven()) {
+			if (transacc.getAuto().equals(auto)) {
+				return transacc.getIngreso();
+			}
+		}
+		return -1;
+	}
 }
