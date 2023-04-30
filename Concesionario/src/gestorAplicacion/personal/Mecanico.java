@@ -107,7 +107,7 @@ public class Mecanico extends Trabajador implements Serializable{
         	    }
                 break;
             case 5:
-                especialidad="Modificacion de pintura";
+                especialidad="ModificacionPintura";
         	    for (Mecanico mecanico : getMecanicos()) {
         	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
@@ -117,7 +117,7 @@ public class Mecanico extends Trabajador implements Serializable{
                 break;
                 
             case 6:
-                especialidad="Modificacion de llantas ";
+                especialidad="ModificacionLlantas";
         	    for (Mecanico mecanico : getMecanicos()) {
         	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
@@ -127,7 +127,7 @@ public class Mecanico extends Trabajador implements Serializable{
                 break;
                 
             case 7:
-                especialidad="Modificacion de sonido";
+                especialidad="ModificacionSonido";
         	    for (Mecanico mecanico : getMecanicos()) {
         	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
@@ -137,7 +137,7 @@ public class Mecanico extends Trabajador implements Serializable{
                 break;
                 
             case 8:
-                especialidad="Modificacion de frenos";
+                especialidad="ModificacionFrenos";
         	    for (Mecanico mecanico : getMecanicos()) {
         	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
@@ -147,7 +147,7 @@ public class Mecanico extends Trabajador implements Serializable{
                 break;
                 
             case 9:
-                especialidad="Modificacion de escape";
+                especialidad="ModificacionEscape";
         	    for (Mecanico mecanico : getMecanicos()) {
         	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
         	            mechs.add(mecanico);
