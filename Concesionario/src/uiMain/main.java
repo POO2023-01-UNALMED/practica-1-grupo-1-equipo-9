@@ -128,23 +128,23 @@ public class main {
 		/*AUTOS POR MODELO*/
 		
 		ArrayList<Auto> autosMod = new ArrayList<Auto>();
-		String result = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+		String result1 = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
 		int j = 0;
 		for (Auto auto1 : gestorAplicacion.activos.InventarioAuto.getAutosDisponibles()) {
-	        if (comprador.getModeloInteres().equals(auto1.getModelo())) {
+	        if (comprador.getModeloInteres().equals(auto1.getMarca())) {
 	            j++;
 	            autosMod.add(auto1);
-	            String carInfo = String.format("%-10s%-10s%-10s\n", auto1.getModelo(), auto1.getPrecio(), auto1.getColor());
-	            result += String.format("%-3d%s", j, carInfo);
+	            String carInfo1 = String.format("%-10s%-10s%-10s\n", auto1.getModelo(), auto1.getPrecio(), auto1.getColor());
+	            result1 += String.format("%-3d%s", j, carInfo1);
 	        }
 	    }
 		if (autosMod.size()>1){
 		    System.out.println("Los carros de modelo " + comprador.getModeloInteres() + " disponibles son:\n");
-		    System.out.println(result);
+		    System.out.println(result1);
 		    System.out.println("Seleccione el numero del carro" + "[1-" + autosMod.size() + "] ");
 	    } else if (autosMod.size()==1) {
 	    	System.out.println("El unico carro de modelo " + comprador.getModeloInteres() + " disponible es:\n");
-		    System.out.println(result);
+		    System.out.println(result1);
 		    System.out.println("Lo desea seleccionar? (y/n): ");
 		    String resp = sc.nextLine();
 		    if (resp.equals("y")) {
@@ -195,10 +195,13 @@ public class main {
 					}
 					System.out.println("Estos son los carros disponibles de esta marca: ");
 					int cont = 1;
-					for (Auto auto3:autosMarca){
-						System.out.println(cont + ". " + auto3.info());
-						cont++;
-					}
+					String result2 = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+					for (Auto auto3:autosMarca) {
+				        String carInfo2 = String.format("%-10s%-10s%-10s\n", auto3.getModelo(), auto3.getPrecio(), auto3.getColor());
+				        result2 += String.format("%-3d%s", cont, carInfo2);
+				        cont++;
+				    }
+					System.out.println(result2);
 					System.out.println("Escribe el número del auto a escoger: ");
 					auto = autosMarca.get(sc.nextInt()-1);
 					System.out.println("El auto elegido es " + auto.info());
@@ -251,12 +254,15 @@ public class main {
 				case 2:
 					int contt = 1;
 					System.out.println("Estos son los autos ordenados por precio de mayor a menor: ");
-					for (Auto auto4:InventarioAuto.getAutosporPrecio()) {
-						System.out.println(contt + ". " + auto4.info());
-						++contt;
-					}
+					String result3 = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+					for (Auto auto4:InventarioAuto.getAutosporPrecio(comprador)) {
+				        String carInfo3 = String.format("%-10s%-10s%-10s\n", auto4.getModelo(), auto4.getPrecio(), auto4.getColor());
+				        result3 += String.format("%-3d%s", contt, carInfo3);
+				        contt++;
+				    }
+					System.out.println(result3);
 					System.out.println("Escribe el número del auto a escoger: ");
-					auto = InventarioAuto.getAutosporPrecio().get(sc.nextInt()-1);
+					auto = InventarioAuto.getAutosporPrecio(comprador).get(sc.nextInt()-1);
 					System.out.println("El auto elegido es " + auto.info());
 					System.out.println("¿Desea confirmar?:  (si/no)");
 					sc.nextLine();
@@ -305,7 +311,15 @@ public class main {
 				/*AUTOS POR PRECIO*/
 				/*TODOS LOS AUTOS*/
 				case 3:
-					System.out.println(InventarioAuto.autosDisponibles());
+					int conttt = 1;
+					System.out.println("Autos Disponibles: ");
+					String result4 = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+					for (Auto auto5:InventarioAuto.getAutosDisponibles()) {
+				        String carInfo4 = String.format("%-10s%-10s%-10s\n", auto5.getModelo(), auto5.getPrecio(), auto5.getColor());
+				        result4 += String.format("%-3d%s", conttt, carInfo4);
+				        conttt++;
+				    }
+					System.out.println(result4);
 					System.out.println("Escribe el número del auto a escoger: ");
 					auto = InventarioAuto.getAutosDisponibles().get(sc.nextInt()-1);
 					System.out.println("El auto elegido es " + auto.info());

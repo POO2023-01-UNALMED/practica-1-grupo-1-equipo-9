@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import gestorAplicacion.personal.Cliente;
+
 public class InventarioAuto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	static ArrayList<Auto> autos = new ArrayList<Auto>();
@@ -67,10 +69,12 @@ public class InventarioAuto implements Serializable{
 		}return finder;
 	}
 	
-	public static ArrayList<Auto> getAutosporPrecio() {
+	public static ArrayList<Auto> getAutosporPrecio(Cliente cliente) {
 		ArrayList<Auto> autosPrecio = new ArrayList<Auto>();
 		for (Auto auto: InventarioAuto.getAutosDisponibles()) {
-			autosPrecio.add(auto);
+			if (cliente.getPresupuesto()>=auto.getPrecio()) {
+				autosPrecio.add(auto);
+			}
 		}
 		Collections.sort(autosPrecio, new Sortbyroll());
 		return autosPrecio;
