@@ -1227,55 +1227,65 @@ public class main {
 					String nombreVendedor = sc.nextLine();
 					System.out.println("Cédula del vendedor: ");
 					long cedulaVendedor = sc.nextLong();
-					System.out.println("Teléfono del vendedor: ");
-					long telefonoVendedor = sc.nextLong();
-					System.out.println("Correo del vendedor: ");
-					String correoVendedor = sc.nextLine();
-					System.out.println("Dirección del vendedor: ");
-					String direccionVendedor = sc.nextLine();
-					System.out.println("Salario del vendedor: ");
-					double salarioVendedor = sc.nextDouble();
-					System.out.println("Banco del vendedor: ");
-					String bancoVendedor = sc.nextLine();
-					System.out.println("Numero de cuenta de banco del vendedor: ");
-					long cuentaBancoVendedor = sc.nextLong();
-					System.out.println("Puesto del vendedor: ");
-					String puestoVendedor = sc.nextLine();
-					
-					if (direccionVendedor == "") {
-						new Vendedor(nombreVendedor, cedulaVendedor, telefonoVendedor, correoVendedor, "Medellin", salarioVendedor, bancoVendedor, cuentaBancoVendedor, puestoVendedor);
-						System.out.println("El vendedor " + nombreVendedor + " con Cédula " + cedulaVendedor + ", ha sido añadido con éxito.");
+					if (Vendedor.getVendedorPorCedula(cedulaVendedor)!=null) {
+						System.out.println("Este usuario ya se encuentra registrado en el concesionario.");
 					} else {
-						new Vendedor(nombreVendedor, cedulaVendedor, telefonoVendedor, correoVendedor, direccionVendedor, salarioVendedor, bancoVendedor, cuentaBancoVendedor, puestoVendedor);
-						System.out.println("El vendedor " + nombreVendedor + " con Cédula " + cedulaVendedor + ", ha sido añadido con éxito.");
-					}
+						System.out.println("Teléfono del vendedor: ");
+						long telefonoVendedor = sc.nextLong();
+						System.out.println("Correo del vendedor: ");
+						String correoVendedor = sc.nextLine();
+						System.out.println("Dirección del vendedor: ");
+						String direccionVendedor = sc.nextLine();
+						System.out.println("Salario del vendedor: ");
+						double salarioVendedor = sc.nextDouble();
+						System.out.println("Banco del vendedor: ");
+						String bancoVendedor = sc.nextLine();
+						System.out.println("Numero de cuenta de banco del vendedor: ");
+						long cuentaBancoVendedor = sc.nextLong();
+						System.out.println("Puesto del vendedor: ");
+						String puestoVendedor = sc.nextLine();
+						
+						if (direccionVendedor == "") {
+							new Vendedor(nombreVendedor, cedulaVendedor, telefonoVendedor, correoVendedor, "Medellin", salarioVendedor, bancoVendedor, cuentaBancoVendedor, puestoVendedor);
+							System.out.println("El vendedor " + nombreVendedor + " con Cédula " + cedulaVendedor + ", ha sido añadido con éxito.");
+						} else {
+							new Vendedor(nombreVendedor, cedulaVendedor, telefonoVendedor, correoVendedor, direccionVendedor, salarioVendedor, bancoVendedor, cuentaBancoVendedor, puestoVendedor);
+							System.out.println("El vendedor " + nombreVendedor + " con Cédula " + cedulaVendedor + ", ha sido añadido con éxito.");
+						}
+						}
+
 				case 5:
 					System.out.println("Nombre del mecánico: ");
 					String nombreMecanico = sc.nextLine();
 					System.out.println("Cédula del mecánico: ");
 					long cedulaMecanico = sc.nextLong();
-					System.out.println("Teléfono del mecánico: ");
-					long telefonoMecanico = sc.nextLong();
-					System.out.println("Correo del mecánico: ");
-					String correoMecanico = sc.nextLine();
-					System.out.println("Dirección del mecánico: ");
-					String direccionMecanico = sc.nextLine();
-					System.out.println("Salario del mecánico: ");
-					double salarioMecanico = sc.nextDouble();
-					System.out.println("Banco del mecánico: ");
-					String bancoMecanico = sc.nextLine();
-					System.out.println("Número de cuenta de banco del mecánico: ");
-					long cuentaBancoMecanico = sc.nextLong();
-					System.out.println("Marca de carros que atiende el mecánico: ");
-					String autosMecanico = sc.nextLine();
-					System.out.println("Especialidad del mecánico: ");
-					String especialidadMecanico = sc.nextLine();
-					System.out.println("Valor de mano de obra del mecánico: ");
-					long manoObraMecanico =sc.nextLong();
-					
-					new Mecanico(nombreMecanico, cedulaMecanico, telefonoMecanico, correoMecanico, direccionMecanico, salarioMecanico, bancoMecanico, cuentaBancoMecanico, autosMecanico, especialidadMecanico, manoObraMecanico);
-					System.out.println("El mecánico " + nombreMecanico + " con Cédula " + cedulaMecanico + ", ha sido añadido con éxito.");
-				}
+					if (Mecanico.getMecanicoPorCedula(cedulaMecanico)!=null) {
+						System.out.println("Este usuario ya se encuentra registrado en el concesionario.");
+					} else {
+						System.out.println("Teléfono del mecánico: ");
+						long telefonoMecanico = sc.nextLong();
+						System.out.println("Correo del mecánico: ");
+						String correoMecanico = sc.nextLine();
+						System.out.println("Dirección del mecánico: ");
+						String direccionMecanico = sc.nextLine();
+						System.out.println("Salario del mecánico: ");
+						double salarioMecanico = sc.nextDouble();
+						System.out.println("Banco del mecánico: ");
+						String bancoMecanico = sc.nextLine();
+						System.out.println("Número de cuenta de banco del mecánico: ");
+						long cuentaBancoMecanico = sc.nextLong();
+						System.out.println("Marca de carros que atiende el mecánico: ");
+						String autosMecanico = sc.nextLine();
+						System.out.println("Especialidad del mecánico: ");
+						String especialidadMecanico = sc.nextLine();
+						System.out.println("Valor de mano de obra del mecánico: ");
+						long manoObraMecanico =sc.nextLong();
+						
+						new Mecanico(nombreMecanico, cedulaMecanico, telefonoMecanico, correoMecanico, direccionMecanico, salarioMecanico, bancoMecanico, cuentaBancoMecanico, autosMecanico, especialidadMecanico, manoObraMecanico);
+						System.out.println("El mecánico " + nombreMecanico + " con Cédula " + cedulaMecanico + ", ha sido añadido con éxito.");
+						}
+					}
+
 				
 					
 			}while(input!=6);
