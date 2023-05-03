@@ -732,16 +732,16 @@ public class main {
 		Articulo escape = Articulo.getArticuloPorReferencia(3004);
 		Cliente c1= new Cliente("Ana González", 12345678, 87654321, "Calle 5ta, #10-23", "Bogotá", "Toyota", 40000000);
 		Cliente c2= new Cliente("Juan Pérez", 102367459, 300987654, "Carrera 12, #34-56", "Medellín", "Toyota", 35000000);
-		Auto aa1= new Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", true, true,llantas,suspension,sonido,escape);
-		Auto aa2= new Auto("Corolla", "Chevrolet", 70000000, 2000, "negro", false, true,llantas,suspension,sonido,escape);
-		Auto aa3= new Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", true, true,llantas,suspension,sonido,escape);
-		Auto aa4= new Auto("Corolla", "Chevrolet", 70000000, 2000, "negro", false, true,llantas,suspension,sonido,escape);
+		Auto aa1= new Auto("Hilux", "Toyota", 1000, 2700, "verde fofo", true, true,llantas,suspension,sonido,escape);
+		Auto aa2= new Auto("Corolla", "Chevrolet", 2000, 2000, "negro", false, true,llantas,suspension,sonido,escape);
+		Auto aa3= new Auto("Hilux", "Toyota", 3000, 2700, "azul", true, true,llantas,suspension,sonido,escape);
+		Auto aa4= new Auto("Corolla", "Chevrolet", 4000, 2000, "rosa", false, true,llantas,suspension,sonido,escape);
 		Vendedor vendedorr1 = new Vendedor("Juan Guaido", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321,"Vitrina");
 		Vendedor vendedorr2 = new Vendedor("Pedro Mojica", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789,"Repuestos");
-		Transaccion trr1=new TransaccionVenta ("efectivo",10000000,c1,aa1,vendedorr1);
-		Transaccion trr2=new TransaccionVenta ("efectivo",10000000,c2,aa2,vendedorr1);
-		Transaccion trr3=new TransaccionVenta ("efectivo",20000000,c1,aa3,vendedorr2);
-		Transaccion trr4=new TransaccionVenta ("efectivo",20000000,c2,aa4,vendedorr2);
+		Transaccion trr1=new TransaccionVenta ("efectivo",1000,c1,aa1,vendedorr1);
+		Transaccion trr2=new TransaccionVenta ("efectivo",2000,c2,aa2,vendedorr1);
+		Transaccion trr3=new TransaccionVenta ("efectivo",3000,c1,aa3,vendedorr2);
+		Transaccion trr4=new TransaccionVenta ("efectivo",4000,c2,aa4,vendedorr2);
 		
 		Scanner sc = new Scanner(System.in);
 		byte opcion;
@@ -882,13 +882,13 @@ public class main {
 				}
 			
 			//ventas por marca
-			System.out.println("\n" + "-------- Ventas por marca --------");
+			System.out.println("\n" + "-------- Ventas ($) por marca --------");
 			for (String m: marcasVentas) {
 				int suma = 0;
 				String marca = null;
 				for (Auto a: autosIniciales) {
 					if (m.equals(a.getMarca())) {
-						suma+=TransaccionVenta.getIngresoPorAuto(a);
+						suma+=TransaccionVenta.getIngresoPorAuto(a); //cambiarlo por el ingreso de la transaccion(?)
 					}
 				}
 				float numero1 = ((float)suma / sumaTotal2) * 100;
@@ -896,8 +896,21 @@ public class main {
 				System.out.println(m + ": " + suma + ", " + rednumero + "% del total de ventas por concepto de venta de autos");
 			}
 			
+			//# de ventas por marca
+			System.out.println("\n" + "-------- Número de Ventas por marca --------");
+			for (String m: marcasVentas) {
+				int cont=0;
+				for (Auto b:autosIniciales) {
+					if (m.equals(b.getMarca())) {
+						cont+=1;
+					}
+				}
+				float numero2 = ((float)cont / contadorTotal2) * 100;
+				int rednumero2 = Math.round(numero2);
+				System.out.println(m + ": " + cont + ", " + rednumero2 + "% del numero total de ventas");
+			}
+
 			break;
-			
 			
 		}
 	}
