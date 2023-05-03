@@ -909,9 +909,14 @@ public class main {
 				int rednumero2 = Math.round(numero2);
 				System.out.println(m + ": " + cont + ", " + rednumero2 + "% del numero total de ventas");
 			}
-
-			break;
 			
+			float num6 = ((float)sumaTotal2/dia);
+			int roundedNum6 = Math.round(num6);
+			System.out.println("\n" + "-------- Suma de ingresos total, y promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": --------");
+			System.out.println("Suma total de ingresos: " + sumaTotal2 + ", promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": " + roundedNum6 + " $.");
+			
+			break;
+
 		}
 	}
 	public static byte readByte() {
