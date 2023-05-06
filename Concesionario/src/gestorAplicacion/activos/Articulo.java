@@ -9,14 +9,14 @@ public class Articulo implements Serializable{
 	private String especialidad;
     private  String tipoArticulo;
     private  String tipoVehiculo;
-    private  double precio;
+    private  long precio;
     private  String marca;
     public int cantidad; 
     private String marcaVehiculo;
     public long referencia;
     
     // Constructor
-    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad,long referencia ) {
+    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, long precio, int cantidad,long referencia ) {
         this.calidad=calidad;
     	this.tipo=tipo;
     	this.tipoArticulo = tipoArticulo;
@@ -37,7 +37,7 @@ public class Articulo implements Serializable{
         }
         
     }
-    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, double precio, int cantidad,String marcaVehiculo,long referencia ) {
+    public Articulo(String calidad,String tipo,String especialidad,String tipoArticulo, String tipoVehiculo, String marca, long precio, int cantidad,String marcaVehiculo,long referencia ) {
         this.marcaVehiculo=marcaVehiculo;
     	this.calidad=calidad;
     	this.tipo=tipo;
@@ -75,11 +75,11 @@ public class Articulo implements Serializable{
         this.tipoVehiculo = tipoVehiculo;
     }
 
-    public double getPrecio() {
+    public long getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(long precio) {
         this.precio = precio;
     }
 

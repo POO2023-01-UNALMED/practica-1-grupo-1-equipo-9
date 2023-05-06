@@ -11,7 +11,6 @@ public class main {
 
 	public static void main(String[] args) {
 
-
 		Scanner sc = new Scanner(System.in);	
 		boolean volverAlMenuPrincipal = true;
 		/*INTERFAZ*/
@@ -728,6 +727,7 @@ public class main {
 							confirmarTrans= sc.nextLine();
 				 		   if(!confirmarTrans.equals("no")) {
 				 	        vendedor.confirmarVenta();
+				 	       
 							System.out.println(new TransaccionVentaTaller("efectivo", articulo.getPrecio(), comprador, articulo, vendedor).info());
 							System.out.print("");
 				 	   }
