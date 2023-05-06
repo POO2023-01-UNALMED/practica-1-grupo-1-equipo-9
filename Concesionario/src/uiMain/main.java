@@ -585,9 +585,14 @@ public class main {
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					//Reune todos los objetos y crea un objeto llamado transaccion.
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
-					articulo.cantidad--;
 					mecanico.pagoSvcs+=mecanico.getManoObra();
-					
+					if(articulo.getEspecialidad().equals("Llantas")) {
+						articulo.cantidad-=4;
+						auto.setLlantas(articulo);
+					}
+					else {
+						articulo.cantidad--;
+					}
 					System.out.print("");
 				}
 				else {
@@ -727,9 +732,10 @@ public class main {
 							confirmarTrans= sc.nextLine();
 				 		   if(!confirmarTrans.equals("no")) {
 				 	        vendedor.confirmarVenta();
-				 	       
+							articulo.cantidad--;
 							System.out.println(new TransaccionVentaTaller("efectivo", articulo.getPrecio(), comprador, articulo, vendedor).info());
 							System.out.print("");
+
 				 	   }
 				 		   else {
 								System.out.print("Transaccion cancelada"+"\n");
