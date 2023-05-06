@@ -606,21 +606,26 @@ public class main {
 		Cliente comprador = null;
 		Vendedor vendedor = null;
 		Auto auto = null;
+		ArrayList<Articulo> repuesto=null;
+		ArrayList<Articulo> marca=null;
 		Scanner sc = new Scanner(System.in);
+		String confirmarComp=null;
 		while (comprador==null) {
+			while(confirmarComp==null||confirmarComp.equals("no")) {
 			System.out.println("Escriba la cédula del comprador: ");
 			long cedula = sc.nextLong();
 			//Devuelve un cliente que ya debe estar previamente registrado
 			comprador = Cliente.getClientePorCedula(cedula);
 			System.out.print(comprador.info());
-		}
-		String confirmarComp=null;
-		while(confirmarComp==null||confirmarComp.equals("no")) {
+		
+
 			System.out.print("¿Confirmar cliente? (si/no)");
 			confirmarComp = sc.nextLine();
-
-		}if(!sc.nextLine().equals("no")) {
+			confirmarComp = sc.nextLine();
+			}
+		}if(!confirmarComp.equals("no")) {
 			String confirmarTipo=null;
+			while(confirmarTipo==null||confirmarTipo.equals("no")) {
 			System.out.print("¿Que repuesto deseas Comprar?"+"\n");
 	        System.out.println("1. Repuestos de Motor");
 	        System.out.println("2. Escapes");
@@ -628,31 +633,28 @@ public class main {
 	        System.out.println("4. Suspension");
 	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
 	        //Se le pide que escoja un tipo de repuesto a comprar y devuelve una lista de articulos
-			ArrayList<Articulo> repuesto=InventarioArticulo.selectorEspecial();
+			repuesto=InventarioArticulo.selectorEspecial();
 			System.out.print("Usted Va a comprar un repuesto de: "+repuesto.get(0).getEspecialidad()+"\n");
-			while(confirmarTipo==null||confirmarTipo.equals("no")) {
+
 				System.out.print("¿Confirmar Tipo de repuesto? (si/no)");
 				confirmarTipo = sc.nextLine();
-				if (confirmarTipo.equals("no")){
-					repuesto=InventarioArticulo.selectorEspecial();
-					System.out.print("Usted Va a comprar un repuesto de: "+repuesto.get(0).getEspecialidad()+"\n");
-					
-				}
-			}if(confirmarTipo.equals("si")) {
+				
+			}if(!confirmarTipo.equals("no")) {
 				String confirmarMarca=null;
+				while(confirmarMarca==null||confirmarMarca.equals("no")) {
 				System.out.print("¿Que Marca de auto posee?"+"\n");
 		        System.out.println("1. Toyota");
-		        System.out.println("2. Mazda");
+		        System.out.println("2. Mazda"); 
 		        System.out.println("3. Chevrolet");
 		        System.out.print("Ingrese el número de la opción que va a utilizar: ");
 		        //Recibe la lista anterior y filtra por marcas de autos y devuelve un array de articulos filtrados
-				ArrayList<Articulo> marca=InventarioArticulo.selectorMarca(repuesto);
+				marca=InventarioArticulo.selectorMarca(repuesto);
 				System.out.print("Usted Va a comprar un repuesto de: "+marca.get(0).getMarcaVehiculo()+"\n");
-				while(confirmarMarca==null||confirmarMarca.equals("no")) {
 					System.out.print("¿Confirmar Tipo de Vehiculo? (si/no)");
 					confirmarMarca = sc.nextLine();
-				}if(!sc.nextLine().equals("no")) {
+				}if(!confirmarMarca.equals("no")) {
 					String confirmarCalidad=null;
+					while(confirmarCalidad==null||confirmarCalidad.equals("no")) {
 					System.out.print("¿Que calidad desea?"+"\n");
 			        System.out.println("1. Premium");
 			        System.out.println("2. Basico");
@@ -686,12 +688,12 @@ public class main {
 				 	        System.out.println("No hay productos disponibles para su vehiculo");
 				 	    }
 					System.out.print(articulo.getTipoArticulo()+" "+ articulo.getMarca()+"\n");
-					while(confirmarCalidad==null||confirmarCalidad.equals("no")) {
+
 						System.out.print("¿Confirmar repuesto? (si/no)");
 						confirmarCalidad = sc.nextLine();
-					}if(!sc.nextLine().equals("no")) {
-						
-						String confirmarVendedor=null;
+					}if(!sc.nextLine().equals("no")) {	
+					String confirmarVendedor=null;
+					 while(confirmarVendedor==null||confirmarVendedor.equals("no")) {
 						ArrayList<Vendedor> vendedores= Vendedor.selectorVend(articulo);
 						String resultado = String.format("%-40s%-15s%n", "   Vendedor", "   Tipo de venta");
 				 	    byte v=0;
@@ -717,6 +719,12 @@ public class main {
 				 	    } else if (vendedores.size() == 0) {
 				 	        System.out.println("No hay vendedores disponibles para su vehiculo");
 				 	    }
+						System.out.print("¿Confirmar vendedor? (si/no)");
+						confirmarVendedor = sc.nextLine();
+						confirmarVendedor = sc.nextLine();
+				 	   }if(!confirmarVendedor.equals("no")) {
+				 		   System.out.print("paso");
+				 	   }
 					}
 				}
 
