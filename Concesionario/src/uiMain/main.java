@@ -127,13 +127,13 @@ public class main {
 		/*AUTOS POR MODELO*/
 		
 		ArrayList<Auto> autosMod = new ArrayList<Auto>();
-		String result1 = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+		String result1 = String.format("%-20s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
 		int j = 0;
 		for (Auto auto1 : gestorAplicacion.activos.InventarioAuto.getAutosDisponibles()) {
 	        if (comprador.getModeloInteres().equals(auto1.getMarca())) {
 	            j++;
 	            autosMod.add(auto1);
-	            String carInfo1 = String.format("%-10s%-10s%-10s\n", auto1.getModelo(), auto1.getPrecio(), auto1.getColor());
+	            String carInfo1 = String.format("%-20s%-10s%-10s\n", auto1.getModelo(), auto1.getPrecio(), auto1.getColor());
 	            result1 += String.format("%-3d%s", j, carInfo1);
 	        }
 	    }
@@ -194,7 +194,7 @@ public class main {
 					}
 					System.out.println("Estos son los carros disponibles de esta marca: ");
 					int cont = 1;
-					String result2 = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+					String result2 = String.format("%-20s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
 					for (Auto auto3:autosMarca) {
 				        String carInfo2 = String.format("%-10s%-10s%-10s\n", auto3.getModelo(), auto3.getPrecio(), auto3.getColor());
 				        result2 += String.format("%-3d%s", cont, carInfo2);
@@ -253,9 +253,9 @@ public class main {
 				case 2:
 					int contt = 1;
 					System.out.println("Estos son los autos ordenados por precio de mayor a menor: ");
-					String result3 = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+					String result3 = String.format("%-20s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
 					for (Auto auto4:InventarioAuto.getAutosporPrecio(comprador)) {
-				        String carInfo3 = String.format("%-10s%-10s%-10s\n", auto4.getModelo(), auto4.getPrecio(), auto4.getColor());
+				        String carInfo3 = String.format("%-20s%-10s%-10s\n", auto4.getModelo(), auto4.getPrecio(), auto4.getColor());
 				        result3 += String.format("%-3d%s", contt, carInfo3);
 				        contt++;
 				    }
@@ -312,9 +312,9 @@ public class main {
 				case 3:
 					int conttt = 1;
 					System.out.println("Autos Disponibles: ");
-					String result4 = String.format("%-10s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+					String result4 = String.format("%-20s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
 					for (Auto auto5:InventarioAuto.getAutosDisponibles()) {
-				        String carInfo4 = String.format("%-10s%-10s%-10s\n", auto5.getModelo(), auto5.getPrecio(), auto5.getColor());
+				        String carInfo4 = String.format("%-20s%-10s%-10s\n", auto5.getModelo(), auto5.getPrecio(), auto5.getColor());
 				        result4 += String.format("%-3d%s", conttt, carInfo4);
 				        conttt++;
 				    }
@@ -585,6 +585,7 @@ public class main {
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					//Reune todos los objetos y crea un objeto llamado transaccion.
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
+					System.out.print("La Factura le llegara a el correo: "+ propietario.getCorreo());
 					mecanico.pagoSvcs+=mecanico.getManoObra();
 					if(articulo.getEspecialidad().equals("Llantas")) {
 						articulo.cantidad-=4;
@@ -734,6 +735,7 @@ public class main {
 				 	        vendedor.confirmarVenta();
 							articulo.cantidad--;
 							System.out.println(new TransaccionVentaTaller("efectivo", articulo.getPrecio(), comprador, articulo, vendedor).info());
+							System.out.print("La Factura le llegara a el correo: "+ comprador.getCorreo());
 							System.out.print("");
 				 	   }
 				 		   else {
