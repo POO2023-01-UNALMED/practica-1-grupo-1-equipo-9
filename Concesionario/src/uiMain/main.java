@@ -723,8 +723,18 @@ public class main {
 						confirmarVendedor = sc.nextLine();
 						confirmarVendedor = sc.nextLine();
 				 	   }if(!confirmarVendedor.equals("no")) {
-				 		   System.out.print("paso");
+				 		   String confirmarTrans=null;
+							System.out.print("¿Confirmar Transaccion? (si/no)");
+							confirmarTrans= sc.nextLine();
+				 		   if(!confirmarTrans.equals("no")) {
+				 	        vendedor.confirmarVenta();
+							System.out.println(new TransaccionVentaTaller("efectivo", articulo.getPrecio(), comprador, articulo, vendedor).info());
+							System.out.print("");
 				 	   }
+				 		   else {
+								System.out.print("Transaccion cancelada"+"\n");
+				 		   }
+				 	   }	  
 					}
 				}
 
@@ -1205,7 +1215,7 @@ public class main {
 					System.out.print("Marca del articulo"+"\n");
 					String marca=sc.nextLine();
 					System.out.print("precio del articulo"+"\n");
-					double precio=sc.nextDouble();
+					long precio=sc.nextLong();
 					System.out.print("Numero de unidades"+"\n");
 					int cantidad=sc.nextInt();
 					System.out.print("¿Es para una Marca especial? (si/no)"+"\n");
