@@ -735,7 +735,6 @@ public class main {
 							articulo.cantidad--;
 							System.out.println(new TransaccionVentaTaller("efectivo", articulo.getPrecio(), comprador, articulo, vendedor).info());
 							System.out.print("");
-
 				 	   }
 				 		   else {
 								System.out.print("Transaccion cancelada"+"\n");
@@ -1188,7 +1187,7 @@ public class main {
 					mech.setHorario(new ArrayList<String>() {{add("9:00-11:00");add("11:00-1:00");add("2:00-4:00");add("4:00-6:00");}});
 					System.out.print("Horario Reasignado a "+mech.getNombre()+"\n");
 					input=8;
-					
+					break;
 				case 2:
 					System.out.print("Nombre del articulo"+"\n");
 					String nombre=sc.nextLine();
@@ -1237,6 +1236,7 @@ public class main {
 					}
 					System.out.print("Articulo creado con exito"+"\n");
 				}
+					break;
 				case 3: //3355479
 					System.out.println("Modelo del carro: ");
 					String modelo = sc.nextLine();
@@ -1257,13 +1257,14 @@ public class main {
 					Articulo sonido = Articulo.getArticuloPorReferencia(3003);
 					Articulo escape = Articulo.getArticuloPorReferencia(3004);
 					
-					if (fq == "si") {
+					if (fq.equals("si")) {
 						new Auto(modelo, marca, precio, cilindraje, color, true, true, llantas, suspension, sonido, escape);
 						System.out.println("El carro " + marca + ", modelo " + modelo + ", FullEquipo se ha añadido con éxito"+"\n");
 					} else {
 						new Auto(modelo, marca, precio, cilindraje, color, false, true, llantas, suspension, sonido, escape);
 						System.out.println("El carro " + marca + ", modelo " + modelo + ", no FullEqipo se ha añadido con éxito"+"\n");
 					}
+					break;
 				case 4:
 					System.out.println("Nombre del vendedor: ");
 					String nombreVendedor = sc.nextLine();
@@ -1295,6 +1296,7 @@ public class main {
 							System.out.println("El vendedor " + nombreVendedor + " con Cédula " + cedulaVendedor + ", ha sido añadido con éxito.");
 						}
 						}
+					break;
 
 				case 5:
 					System.out.println("Nombre del mecánico: ");
@@ -1327,6 +1329,7 @@ public class main {
 						System.out.println("El mecánico " + nombreMecanico + " con Cédula " + cedulaMecanico + ", ha sido añadido con éxito.");
 						}
 					}
+				break;
 
 				
 					
