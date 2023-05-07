@@ -762,7 +762,7 @@ public class main {
 		//static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
 		System.out.println("1. Ventas - Vendedor");
 		System.out.println("2. Ventas - Autos");
-		System.out.println("Selecciona: ");
+		System.out.println("Selecciona: [1-2]");
 		opcion = sc.nextByte();
 		switch (opcion){
 		case 1:
