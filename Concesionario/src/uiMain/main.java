@@ -8,9 +8,8 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 
 public class main {
-
 	public static void main(String[] args) {
-
+		
 		Scanner sc = new Scanner(System.in);	
 		boolean volverAlMenuPrincipal = true;
 		/*INTERFAZ*/
@@ -123,6 +122,7 @@ public class main {
 		
 		/*Selección del carro*/
 		int opcion = 0;
+		System.out.print(comprador.info()+"Su presupuesto es: "+comprador.getPresupuesto()+"\n");
 		System.out.println("Estos son los Modelos de interés para el cliente disponibles en este momento: ");
 		/*AUTOS POR MODELO*/
 		
