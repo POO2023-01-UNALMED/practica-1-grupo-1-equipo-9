@@ -11,8 +11,8 @@ public class TransaccionVentaTaller extends Transaccion implements Serializable{
 	Vendedor vendedor;
 	static ArrayList<TransaccionVentaTaller> transaccionesvental = new ArrayList<TransaccionVentaTaller>();
 	
-	public TransaccionVentaTaller(String tipo, long  ingreso, Cliente cliente, Articulo articulo, Vendedor vendedor) {
-		super(tipo, ingreso, cliente);
+	public TransaccionVentaTaller(String tipo, long  ingreso, Cliente cliente, Articulo articulo, Vendedor vendedor, int transfer) {
+		super(tipo, ingreso, cliente, transfer);
 		this.articulo=articulo;
 		this.vendedor=vendedor;
 		TransaccionVentaTaller.transaccionesvental.add(this);

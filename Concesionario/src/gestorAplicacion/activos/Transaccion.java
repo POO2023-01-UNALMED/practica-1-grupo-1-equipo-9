@@ -9,6 +9,7 @@ public abstract class Transaccion implements Serializable{
 	private static final long serialVersionUID = 1L;
 	static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
 	String tipo;
+	int transfer;
 	Mecanico mecanico;
 	long ingreso;
 	Cliente cliente;
@@ -16,10 +17,11 @@ public abstract class Transaccion implements Serializable{
 	static long numtrans=00000001;
 	
 	
-	public Transaccion(String tipo,long ingreso,Cliente cliente) {
+	public Transaccion(String tipo,long ingreso,Cliente cliente, int transfer) {
 		this.tipo=tipo;
 		this.ingreso=ingreso;
 		this.cliente=cliente;
+		this.transfer=transfer;
 		transacciones.add(this);
 		++numtrans;
 	}
@@ -49,8 +51,16 @@ public abstract class Transaccion implements Serializable{
     public String getTipo() {
         return tipo;
     }
+    
+    public void setTransfer(int transfer) {
+        this.transfer = transfer;
+    }
+    
+    public int getTransfer() {
+        return transfer;
+    }
 
-
+   
     public Mecanico getMecanico() {
         return mecanico;
     }
@@ -76,7 +86,10 @@ public abstract class Transaccion implements Serializable{
     public static void setNumtrans(long numtrans) {
         Transaccion.numtrans = numtrans;
     }
+    
     public abstract String info(); 
+    
+    
     
 }
 	

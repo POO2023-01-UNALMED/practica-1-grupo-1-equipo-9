@@ -12,8 +12,8 @@ public class TransaccionTaller extends Transaccion implements Serializable{
 	Articulo articulo;
 	static ArrayList<TransaccionTaller> transaccionestal = new ArrayList<TransaccionTaller>();
 	
-	public TransaccionTaller(String tipo, long ingreso, Cliente cliente, Auto auto,Articulo articulo, Mecanico mecanico) {
-		super(tipo, ingreso, cliente);
+	public TransaccionTaller(String tipo, long ingreso, Cliente cliente, Auto auto,Articulo articulo, Mecanico mecanico, int transfer) {
+		super(tipo, ingreso, cliente, transfer);
 		this.auto=auto;
 		this.mecanico=mecanico;
 		this.articulo=articulo;
