@@ -22,7 +22,7 @@ public class TransaccionTaller extends Transaccion implements Serializable{
 	@Override
 	public String info() {
 		String txt = String.format("Transacción #%08d: %s realizado por %s para el cliente %s por un total de $%d",
-	            numtrans, getTipo(), mecanico.getNombre(), cliente.getNombre(), getIngreso());
+	            transfer, getTipo(), mecanico.getNombre(), cliente.getNombre(), getIngreso());
 			
 		
 		return txt;

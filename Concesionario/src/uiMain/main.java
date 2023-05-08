@@ -241,7 +241,8 @@ public class main {
 							comprador.setAuto(auto);
 				 	        vendedor.confirmarVenta();
 				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
-							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
+							int transfer = (int) (Math.random() * 1000);
+							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor,transfer).info());
 							System.out.print("");
 						}
 					}
@@ -300,7 +301,8 @@ public class main {
 							comprador.setAuto(auto);
 				 	        vendedor.confirmarVenta();
 				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
-							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
+							int transfer = (int) (Math.random() * 1000);
+							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor,transfer).info());
 							System.out.print("");
 
 						}
@@ -359,7 +361,8 @@ public class main {
 							comprador.setAuto(auto);
 				 	        vendedor.confirmarVenta();
 				 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
-							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
+							int transfer = (int) (Math.random() * 1000);
+							System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor,transfer).info());
 							System.out.print("");
 
 						}
@@ -410,7 +413,8 @@ public class main {
 					comprador.setAuto(auto);
 		 	        vendedor.confirmarVenta();
 		 	        long deducido = comprador.getPresupuesto()-auto.getPrecio();
-					System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor).info());
+					int transfer = (int) (Math.random() * 1000);
+					System.out.println(new TransaccionVenta("efectivo", deducido, comprador, auto, vendedor,transfer).info());
 					System.out.print("");
 
 				}
@@ -584,7 +588,8 @@ public class main {
 					long costoTotal=(long) (mecanico.getManoObra()+articulo.getPrecio());
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					//Reune todos los objetos y crea un objeto llamado transaccion.
-					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
+					int transfer = (int) (Math.random() * 1000);
+					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico,transfer).info()+"\n");
 					System.out.print("La Factura le llegara a el correo: "+ propietario.getCorreo());
 					mecanico.pagoSvcs+=mecanico.getManoObra();
 					if(articulo.getEspecialidad().equals("Llantas")) {
@@ -734,7 +739,8 @@ public class main {
 				 		   if(!confirmarTrans.equals("no")) {
 				 	        vendedor.confirmarVenta();
 							articulo.cantidad--;
-							System.out.println(new TransaccionVentaTaller("efectivo", articulo.getPrecio(), comprador, articulo, vendedor).info());
+							int transfer = (int) (Math.random() * 1000);
+							System.out.println(new TransaccionVentaTaller("efectivo", articulo.getPrecio(), comprador, articulo, vendedor,transfer).info());
 							System.out.print("La Factura le llegara a el correo: "+ comprador.getCorreo());
 							System.out.print("");
 				 	   }
@@ -1103,7 +1109,8 @@ public class main {
 					long costoTotal=(long) (mecanico.getManoObra()+articulo.getPrecio());
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					//Reune todos los objetos y crea un objeto llamado transaccion.
-					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico).info()+"\n");
+					int transfer = (int) (Math.random() * 1000);
+					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico,transfer).info()+"\n");
 					articulo.cantidad--;
 					mecanico.pagoSvcs+=mecanico.getManoObra();
 					

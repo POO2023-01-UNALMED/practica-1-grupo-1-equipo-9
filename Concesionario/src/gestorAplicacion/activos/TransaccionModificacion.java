@@ -25,7 +25,7 @@ public class TransaccionModificacion extends Transaccion implements Serializable
 	
 	@Override
 	public String info() {
-		String txt = String.format("Transacción" + numtrans + getTipo() + "realizado por" + mecanico.getNombre() + "para el cliente"  
+		String txt = String.format("Transacción" + transfer + getTipo() + "realizado por" + mecanico.getNombre() + "para el cliente"  
 				+ cliente.getNombre()+ "por un total de" + getIngreso());
 		return txt;
 	}

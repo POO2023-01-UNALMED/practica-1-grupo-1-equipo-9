@@ -23,7 +23,7 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 	@Override
 	public String info() {
 		 String txt = String.format("Transacción #%08d: venta realizada por %s para el cliente %s por un total de $%d por el auto %s",
-		            numtrans, vendedor.getNombre(), cliente.getNombre(), auto.getPrecio(), auto.getModelo());
+		            transfer, vendedor.getNombre(), cliente.getNombre(), auto.getPrecio(), auto.getModelo());
 			
 		
 		return txt;
