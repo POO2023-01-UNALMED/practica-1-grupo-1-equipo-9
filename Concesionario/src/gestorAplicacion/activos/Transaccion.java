@@ -26,6 +26,19 @@ public abstract class Transaccion implements Serializable{
 		++numtrans;
 	}
 	
+	public static Transaccion getTransaccionPorTransfer(int transfer) {
+		
+		Transaccion obj = null;
+		
+		for (Transaccion t:transacciones) {
+			if (t.getTransfer()==transfer) {
+				obj=t;
+				break;
+			}
+		}
+		return obj;
+	}
+	
 	public static ArrayList<Transaccion> getTransacciones() {
 		return transacciones;
 	}
