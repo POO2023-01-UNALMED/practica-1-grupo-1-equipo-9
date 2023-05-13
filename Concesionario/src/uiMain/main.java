@@ -771,11 +771,13 @@ public class main {
 		int dia = fecha.getDayOfMonth();
 		String nombreMes = fecha.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault());
 		
-		System.out.println("¿Qué estadisticas en particular quiere consultar?");
+		System.out.println("¿Qué estadisticas / info financiera quiere consultar?");
 		//static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
 		System.out.println("1. Ventas - Vendedor");
 		System.out.println("2. Ventas - Autos");
-		System.out.println("Selecciona: [1-2]");
+		System.out.println("2. Ventas - Autos");
+		System.out.println("3. Estado de Resultados");
+		System.out.println("Selecciona: [1-3]");
 		opcion = sc.nextByte();
 		switch (opcion){
 		case 1:
@@ -906,7 +908,6 @@ public class main {
 			System.out.println("\n" + "-------- Ventas ($) por marca --------");
 			for (String m: marcasVentas) {
 				int suma = 0;
-				String marca = null;
 				for (Auto a: autosIniciales) {
 					if (m.equals(a.getMarca())) {
 						suma+=TransaccionVenta.getIngresoPorAuto(a); //cambiarlo por el ingreso de la transaccion(?)
@@ -937,7 +938,13 @@ public class main {
 			System.out.println("Suma total de ingresos: " + sumaTotal2 + ", promedio de ingresos diarios en lo corrido del mes de " + nombreMes + ": " + roundedNum6 + " $.");
 			
 			break;
-
+			
+		case 3:
+			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
+			long[] listaFinanzas = new long[5];
+			//Transaccion.estResults(listaFinanzas);
+			
+		break;
 		}
 	}
 	public static byte readByte() {

@@ -100,9 +100,38 @@ public abstract class Transaccion implements Serializable{
         Transaccion.numtrans = numtrans;
     }
     
+    
+    public static ArrayList<Long> estResults(ArrayList<Long> lista) {
+        // suma en ventas
+        long ventas = 0;
+        long c = 0;
+        for (Transaccion transaccion: transacciones) {
+            ventas += transaccion.getIngreso();
+        }
+        lista.set(0, ventas);
+        
+        // suma en costos (pago vendedores y mechs)
+        long pagoEmpleados=0;
+        for (Vendedor vendedor:Vendedor.getVendedores()) {
+        	pagoEmpleados+=vendedor.getSalario();
+        }
+        
+        for (Mecanico mecanico:Mecanico.getMecanicos()) {
+        	pagoEmpleados+=mecanico.getSalario();
+        }
+        
+        lista.set(1, pagoEmpleados);
+        
+        //suma en gastos (comisiones, servicios, y gastos fijos(?))
+        // utilidad bruta
+        // utilidad neta (-33%)
+
+        return lista;
+    }
+
+    
+    
     public abstract String info(); 
-    
-    
     
 }
 	
