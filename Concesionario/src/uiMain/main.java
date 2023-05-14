@@ -764,6 +764,24 @@ public class main {
 	
 	public static void stats() {
 		
+		//objetos de prueba
+//		Articulo llantas = Articulo.getArticuloPorReferencia(3001);
+//		Articulo suspension = Articulo.getArticuloPorReferencia(3002);
+//		Articulo sonido = Articulo.getArticuloPorReferencia(3003);
+//		Articulo escape = Articulo.getArticuloPorReferencia(3004);
+//		Cliente c1= new Cliente("Ana González", 12345678, 87654321, "Calle 5ta, #10-23", "Bogotá", "Toyota", 40000000);
+//		Cliente c2= new Cliente("Juan Pérez", 102367459, 300987654, "Carrera 12, #34-56", "Medellín", "Toyota", 35000000);
+//		Auto aa1= new Auto("Hilux", "Toyota", 1000, 2700, "verde fofo", true, true,llantas,suspension,sonido,escape);
+//		Auto aa2= new Auto("Corolla", "Chevrolet", 2000, 2000, "negro", false, true,llantas,suspension,sonido,escape);
+//		Auto aa3= new Auto("Hilux", "Toyota", 3000, 2700, "azul", true, true,llantas,suspension,sonido,escape);
+//		Auto aa4= new Auto("Corolla", "Chevrolet", 4000, 2000, "rosa", false, true,llantas,suspension,sonido,escape);
+//		Vendedor vendedorr1 = new Vendedor("Juan Guaido", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321,"Vitrina");
+//		Vendedor vendedorr2 = new Vendedor("Pedro Mojica", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789,"Repuestos");
+//		Transaccion trr1=new TransaccionVenta ("efectivo",1000,c1,aa1,vendedorr1,1);
+//		Transaccion trr2=new TransaccionVenta ("efectivo",2000,c2,aa2,vendedorr1,2);
+//		Transaccion trr3=new TransaccionVenta ("efectivo",3000,c1,aa3,vendedorr2,3);
+//		Transaccion trr4=new TransaccionVenta ("efectivo",4000,c2,aa4,vendedorr2,4);
+		
 		Scanner sc = new Scanner(System.in);
 		byte opcion;
 		
@@ -941,8 +959,19 @@ public class main {
 			
 		case 3:
 			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
-			long[] listaFinanzas = new long[5];
-			//Transaccion.estResults(listaFinanzas);
+			long[] listaFinanzas = new long[4];
+			String[] rubros = new String[5];
+			rubros[0] = "Ventas Totales: ";
+			rubros[1] = "Costo de Ventas: ";
+			rubros[2] = "Gastos Operacionales y de Ventas: ";
+			rubros[3] = "Impuesto de Renta: ";
+
+			listaFinanzas = Transaccion.estResults(listaFinanzas);
+			
+			for (int n = 0; n <= 3; n++) {
+				System.out.println(rubros[n]);
+				System.out.println(listaFinanzas[n]);
+			}
 			
 		break;
 		}

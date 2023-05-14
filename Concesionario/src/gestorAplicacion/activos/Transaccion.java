@@ -101,16 +101,25 @@ public abstract class Transaccion implements Serializable{
     }
     
     
-    public static ArrayList<Long> estResults(ArrayList<Long> lista) {
-        // suma en ventas
-        long ventas = 0;
-        long c = 0;
-        for (Transaccion transaccion: transacciones) {
-            ventas += transaccion.getIngreso();
+    public static long[] estResults(long[] listaFinanzas) {
+        /// suma en ventas de carros y servicios del taller}
+    	// carros
+        long ventasautos = 0;
+        for (TransaccionVenta transaccauto: TransaccionVenta.getTransaccionesven()) {
+            ventasautos += transaccauto.getIngreso();
         }
-        lista.set(0, ventas);
         
-        // suma en costos (pago vendedores y mechs)
+        // taller
+        long ventastaller = 0;
+        for (TransaccionTaller transacctaller: TransaccionTaller.getTransaccionestal()) {
+        	ventastaller +=transacctaller.getIngreso();
+        }
+        
+        long ventas = ventasautos + ventastaller;
+        
+        listaFinanzas[0]=ventas;
+        
+        /// suma en costos (pago vendedores y mecanicos)
         long pagoEmpleados=0;
         for (Vendedor vendedor:Vendedor.getVendedores()) {
         	pagoEmpleados+=vendedor.getSalario();
@@ -120,13 +129,23 @@ public abstract class Transaccion implements Serializable{
         	pagoEmpleados+=mecanico.getSalario();
         }
         
-        lista.set(1, pagoEmpleados);
+        listaFinanzas[1]=pagoEmpleados;
         
-        //suma en gastos (comisiones, servicios, y gastos fijos(?))
-        // utilidad bruta
-        // utilidad neta (-33%)
-
-        return lista;
+        /// suma en gastos (comisiones, servicios, y gastos fijos(?))
+        long gastos = 0;
+        
+        //comisiones
+        gastos+=ventasautos*0.02;
+        // servicios y gastos fijos
+        gastos+=10000000+7000000;
+        
+        listaFinanzas[2]=gastos;
+        
+        // impuestos (utilidad bruta * 33%)
+        
+        listaFinanzas[3]=(long) ((ventas-pagoEmpleados-gastos)*0.33);
+        
+        return listaFinanzas;
     }
 
     
