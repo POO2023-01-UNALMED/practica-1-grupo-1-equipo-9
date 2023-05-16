@@ -781,6 +781,17 @@ public class main {
 //		Transaccion trr2=new TransaccionVenta ("efectivo",2000,c2,aa2,vendedorr1,2);
 //		Transaccion trr3=new TransaccionVenta ("efectivo",3000,c1,aa3,vendedorr2,3);
 //		Transaccion trr4=new TransaccionVenta ("efectivo",4000,c2,aa4,vendedorr2,4);
+//		Mecanico mecanico1 = new Mecanico("Juan Pérez", 123456789, 987654321, "juan@example.com", "Calle Principal 123", 2000.0, "Banco A", 12345, "Toyota, Honda", "Mecánica General", 30);
+//		Mecanico mecanico2 = new Mecanico("María Rodríguez", 234567890, 876543210, "maria@example.com", "Avenida Central 456", 1800.0, "Banco B", 9876, "Ford, Chevrolet", "Electricidad Automotriz", 25);
+//		Mecanico mecanico3 = new Mecanico("Carlos Gómez", 345678901, 765432109, "carlos@example.com", "Calle Secundaria 789", 2200.0, "Banco C", 45678, "Nissan, Hyundai", "Transmisiones", 35);
+//		Mecanico mecanico4 = new Mecanico("Laura López", 456789012, 654321098, "laura@example.com", "Avenida Principal 987", 1900.0, "Banco D", 345, "Volkswagen, BMW", "Frenos", 28);
+//		Mecanico mecanico5 = new Mecanico("Pedro Ramírez", 567890123, 543210987, "pedro@example.com", "Calle Central 321", 2100.0, "Banco E", 23456, "Mercedes-Benz, Audi", "Suspensión", 32);
+//		TransaccionTaller transaccion1 = new TransaccionTaller("Reparación", 1000, c1, aa1, llantas, mecanico1, 0);
+//		TransaccionTaller transaccion2 = new TransaccionTaller("Mantenimiento", 500, c2, aa2, suspension, mecanico2, 1);
+//		TransaccionTaller transaccion3 = new TransaccionTaller("Cambio de aceite", 200, c1, aa3, sonido, mecanico3, 0);
+//		TransaccionTaller transaccion4 = new TransaccionTaller("Reemplazo de frenos", 800, c2, aa4, escape, mecanico4, 1);
+//		TransaccionTaller transaccion5 = new TransaccionTaller("Inspección", 300, c1, aa2, llantas, mecanico5, 0);
+
 		
 		Scanner sc = new Scanner(System.in);
 		byte opcion;
@@ -793,9 +804,9 @@ public class main {
 		//static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
 		System.out.println("1. Ventas - Vendedor");
 		System.out.println("2. Ventas - Autos");
-		System.out.println("2. Ventas - Autos");
 		System.out.println("3. Estado de Resultados");
-		System.out.println("Selecciona: [1-3]");
+		System.out.println("4. Estado de Resultados detallado");
+		System.out.println("Selecciona: [1-4]");
 		opcion = sc.nextByte();
 		switch (opcion){
 		case 1:
@@ -985,29 +996,72 @@ public class main {
 					res=listaFinanzas[0]-listaFinanzas[1];
 				}
 				else if(n>1){
-					System.out.println(utilidades[n]+": "+res);
+					System.out.println(utilidades[n-1]+": "+res);
 					System.out.print(rubros[n]);
 					System.out.println(listaFinanzas[n]);
 					res-=listaFinanzas[n];
+					if (n==3) {
+						System.out.println(utilidades[3]+": "+res);
+					}
 				}
 			}
 			
 		break;
 	
 		case 4:
-			System.out.println("Estado de reaultados DETALLADO desde el 1 hasta el " + dia + " de " + nombreMes + ":");
+			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
 			long[] listaFinanzas2 = new long[4];
-			String[] rubros2 = new String[5];
-			rubros2[0] = "Ventas Totales: ";
-			rubros2[1] = "Costo de Ventas: ";
-			rubros2[2] = "Gastos Operacionales y de Ventas: ";
-			rubros2[3] = "Impuesto de Renta: ";
+			String[] rubros2 = new String[4];
+			rubros2[0] = "+ Ventas Totales: ";
+			rubros2[1] = "- Costo de Ventas: ";
+			rubros2[2] = "- Gastos Operacionales y de Ventas: ";
+			rubros2[3] = "- Impuesto de Renta: ";
+			
+			
+			String[] utilidades2 = new String[4];
+			utilidades2[0] = "UTILIDAD BRUTA";
+			utilidades2[1] = "UTILIDAD OPERATIVA";
+			utilidades2[2] = "UTILIDAD ANTES DE IMPUESTOS";
+			utilidades2[3] = "UTILIDAD NETA";
 
 			listaFinanzas = Transaccion.estResults(listaFinanzas2);
 			
+			long res2=0;
 			for (int n = 0; n <= 3; n++) {
-				System.out.println(rubros2[n]);
-				System.out.println(listaFinanzas[n]);
+				if(n==0) {
+					System.out.print(rubros2[n]);
+					System.out.println(listaFinanzas[n]);
+					System.out.println("     Autos vendidos:");
+					for (Auto a:TransaccionVenta.getAutosV()) {
+						System.out.println("       Auto de marca "+a.getMarca()+", modelo "+a.getModelo()+": "+a.getPrecio());
+					}
+					System.out.println("     Servicios taller");
+					for (TransaccionTaller t:TransaccionTaller.getTransaccionestal()) {
+						System.out.println("       Mecánico "+t.getMecanico().getNombre()+", con valor de: "+t.getIngreso());
+					}
+					System.out.print(rubros2[n+1]);
+					System.out.println(listaFinanzas[n+1]);
+					
+					System.out.println("     Pago a empleados:");
+					System.out.println("       Vendedores:");
+					for (Vendedor v:Vendedor.getVendedores()) {
+						System.out.println("         "+v.getNombre()+", salario: "+v.getSalario());
+					}
+					System.out.println("       Mecanicos:");
+					for (Mecanico m:Mecanico.getMecanicos()) {
+						System.out.println("         "+m.getNombre()+", salario: "+m.getSalario());
+					}
+					res2=listaFinanzas[0]-listaFinanzas[1];
+				}
+				else if(n>1){
+					System.out.println(utilidades2[n-1]+": "+res2);
+					System.out.print(rubros2[n]);
+					System.out.println(listaFinanzas[n]);
+					res2-=listaFinanzas[n];
+					if (n==3) {
+						System.out.println(utilidades2[3]+": "+res2);
+					}
+				}
 			}
 			
 		break;

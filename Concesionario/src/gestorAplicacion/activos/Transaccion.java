@@ -143,8 +143,12 @@ public abstract class Transaccion implements Serializable{
         
         // impuestos (utilidad bruta * 33%)
         
-        listaFinanzas[3]=(long) ((ventas-pagoEmpleados-gastos)*0.33);
-        
+        if (ventas-pagoEmpleados-gastos<0) {
+        	listaFinanzas[3]=(long) (((ventas-pagoEmpleados-gastos)*0.33)*-1);
+        } else {
+        	listaFinanzas[3]=(long) (((ventas-pagoEmpleados-gastos)*0.33)*-1);
+        }
+
         return listaFinanzas;
     }
 
