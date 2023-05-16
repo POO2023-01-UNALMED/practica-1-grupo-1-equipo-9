@@ -1190,10 +1190,15 @@ public class main {
 					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
 					//Reune todos los objetos y crea un objeto llamado transaccion.
 					int transfer = (int) (Math.random() * 1000);
-					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico,transfer).info()+"\n");
-					articulo.cantidad--;
+					System.out.print(new TransaccionModificacion("Personalizacion de auto",costoTotal,propietario,propietario.getAuto(), mecanico, articulo, transfer).info()+"\n");
 					mecanico.pagoSvcs+=mecanico.getManoObra();
-					
+					if(articulo.getEspecialidad().equals("\"Modificacion de llantas\"")) {
+						articulo.cantidad-=4;
+						auto.setLlantas(articulo);
+					}
+					else {
+						articulo.cantidad--;
+					}
 					System.out.print("");
 				}
 				else {
