@@ -1009,6 +1009,23 @@ public class main {
 		break;
 	
 		case 4:
+			
+			List<Integer> servicios = new ArrayList<>();
+	        servicios.add(2000000);
+	        servicios.add(1500000);
+	        servicios.add(2500000);
+	        servicios.add(1200000);
+	        servicios.add(1800000);
+	        servicios.add(1000000);
+	        
+	        List<String> rubsvcs = new ArrayList<>();
+	        rubsvcs.add("Servicio de agua:");
+	        rubsvcs.add("Servicio de electricidad:");
+	        rubsvcs.add("Servicio de gas:");
+	        rubsvcs.add("Servicio de telefonía e internet:");
+	        rubsvcs.add("Servicio de seguridad:");
+	        rubsvcs.add("Servicio de limpieza:");
+	        
 			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
 			long[] listaFinanzas2 = new long[4];
 			String[] rubros2 = new String[4];
@@ -1016,8 +1033,7 @@ public class main {
 			rubros2[1] = "- Costo de Ventas: ";
 			rubros2[2] = "- Gastos Operacionales y de Ventas: ";
 			rubros2[3] = "- Impuesto de Renta: ";
-			
-			
+
 			String[] utilidades2 = new String[4];
 			utilidades2[0] = "UTILIDAD BRUTA";
 			utilidades2[1] = "UTILIDAD OPERATIVA";
@@ -1029,35 +1045,44 @@ public class main {
 			long res2=0;
 			for (int n = 0; n <= 3; n++) {
 				if(n==0) {
-					System.out.print(rubros2[n]);
+					System.out.print("  "+rubros2[n]);
 					System.out.println(listaFinanzas[n]);
-					System.out.println("     Autos vendidos:");
+					System.out.println("      Autos vendidos:");
 					for (Auto a:TransaccionVenta.getAutosV()) {
-						System.out.println("       Auto de marca "+a.getMarca()+", modelo "+a.getModelo()+": "+a.getPrecio());
+						System.out.println("        Auto de marca "+a.getMarca()+", modelo "+a.getModelo()+": "+a.getPrecio());
 					}
-					System.out.println("     Servicios taller");
+					System.out.println("      Servicios taller;");
 					for (TransaccionTaller t:TransaccionTaller.getTransaccionestal()) {
-						System.out.println("       Mecánico "+t.getMecanico().getNombre()+", con valor de: "+t.getIngreso());
+						System.out.println("        Mecánico "+t.getMecanico().getNombre()+", con valor de: "+t.getIngreso());
 					}
-					System.out.print(rubros2[n+1]);
+					System.out.print("  "+rubros2[n+1]);
 					System.out.println(listaFinanzas[n+1]);
 					
-					System.out.println("     Pago a empleados:");
-					System.out.println("       Vendedores:");
+					System.out.println("      Pago a empleados:");
+					System.out.println("        Vendedores:");
 					for (Vendedor v:Vendedor.getVendedores()) {
-						System.out.println("         "+v.getNombre()+", salario: "+v.getSalario());
+						System.out.println("          "+v.getNombre()+", salario: "+v.getSalario());
 					}
-					System.out.println("       Mecanicos:");
+					System.out.println("        Mecanicos:");
 					for (Mecanico m:Mecanico.getMecanicos()) {
-						System.out.println("         "+m.getNombre()+", salario: "+m.getSalario());
+						System.out.println("          "+m.getNombre()+", salario: "+m.getSalario());
 					}
 					res2=listaFinanzas[0]-listaFinanzas[1];
 				}
 				else if(n>1){
 					System.out.println(utilidades2[n-1]+": "+res2);
-					System.out.print(rubros2[n]);
+					System.out.print("  "+rubros2[n]);
 					System.out.println(listaFinanzas[n]);
 					res2-=listaFinanzas[n];
+					if (n==2) {
+						System.out.println("      Comisiones:");
+						for (TransaccionVenta t:TransaccionVenta.getTransaccionesven()) {
+							System.out.println("        "+t.getVendedor().getNombre()+": "+(t.getIngreso())*0.02);
+						}
+						for (int i=0;i<=5;i++) {
+							System.out.println(rubsvcs[i]+": "+servicios[i]);
+						}
+					}
 					if (n==3) {
 						System.out.println(utilidades2[3]+": "+res2);
 					}
