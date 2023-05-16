@@ -94,7 +94,8 @@ public class main {
 	            }
 	            break;
 			default:
-				System.out.print("\nHasta pronto");
+				System.out.print("\nHasta pronto"+"\n"+"\n");
+				System.out.print("App realizada por:"+"\n"+"Juan Jose Alzate"+"\n"+"Santiago Florez"+"\n"+"Felipe Velez Fernandez"+"\n"+"Jonatan "+"\n"+"Copyright (c) 2023"+"\n"+"All Rights Reserved"+"\n"+"\n"+"This product is protected by copyright and distributed under"+"\n"+"licenses restricting copying, distribution, and decompilation.");
 				Serializador.serializarArrays();
 	            volverAlMenuPrincipal = false;
 				break;
