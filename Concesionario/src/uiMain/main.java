@@ -960,16 +960,53 @@ public class main {
 		case 3:
 			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
 			long[] listaFinanzas = new long[4];
-			String[] rubros = new String[5];
-			rubros[0] = "Ventas Totales: ";
-			rubros[1] = "Costo de Ventas: ";
-			rubros[2] = "Gastos Operacionales y de Ventas: ";
-			rubros[3] = "Impuesto de Renta: ";
+			String[] rubros = new String[4];
+			rubros[0] = "+ Ventas Totales: ";
+			rubros[1] = "- Costo de Ventas: ";
+			rubros[2] = "- Gastos Operacionales y de Ventas: ";
+			rubros[3] = "- Impuesto de Renta: ";
+			
+			
+			String[] utilidades = new String[4];
+			utilidades[0] = "UTILIDAD BRUTA";
+			utilidades[1] = "UTILIDAD OPERATIVA";
+			utilidades[2] = "UTILIDAD ANTES DE IMPUESTOS";
+			utilidades[3] = "UTILIDAD NETA";
 
 			listaFinanzas = Transaccion.estResults(listaFinanzas);
 			
+			long res=0;
 			for (int n = 0; n <= 3; n++) {
-				System.out.println(rubros[n]);
+				if(n==0) {
+					System.out.print(rubros[n]);
+					System.out.println(listaFinanzas[n]);
+					System.out.print(rubros[n+1]);
+					System.out.println(listaFinanzas[n+1]);
+					res=listaFinanzas[0]-listaFinanzas[1];
+				}
+				else if(n>1){
+					System.out.println(utilidades[n]+": "+res);
+					System.out.print(rubros[n]);
+					System.out.println(listaFinanzas[n]);
+					res-=listaFinanzas[n];
+				}
+			}
+			
+		break;
+	
+		case 4:
+			System.out.println("Estado de reaultados DETALLADO desde el 1 hasta el " + dia + " de " + nombreMes + ":");
+			long[] listaFinanzas2 = new long[4];
+			String[] rubros2 = new String[5];
+			rubros2[0] = "Ventas Totales: ";
+			rubros2[1] = "Costo de Ventas: ";
+			rubros2[2] = "Gastos Operacionales y de Ventas: ";
+			rubros2[3] = "Impuesto de Renta: ";
+
+			listaFinanzas = Transaccion.estResults(listaFinanzas2);
+			
+			for (int n = 0; n <= 3; n++) {
+				System.out.println(rubros2[n]);
 				System.out.println(listaFinanzas[n]);
 			}
 			
