@@ -845,22 +845,7 @@ public class main {
 			
 			ArrayList<TransaccionVenta> transaccionesActuales = TransaccionVenta.getTransaccionesven();
 			
-			
-//			ArrayList<String> vendedores1 = new ArrayList<String>();
-//			for (TransaccionVenta transacc: TransaccionVenta.getTransaccionesven())
-//			{
-//				if (vendedores1.contains(transacc.getVendedor().getNombre())){	
-//				} else {
-//					vendedores1.add(transacc.getVendedor().getNombre());
-//				}
-//			}
-			
-			
-//			for (Vendedor vendeddd: Vendedor.getVendedores()) {
-//				System.out.println(vendeddd.getNombre());
-//			}
-			
-			ArrayList<Vendedor> vendedores1 = TransaccionVenta.vendedoresVentas(transaccionesActuales);
+			ArrayList<Vendedor> vendedores1 = TransaccionVenta.vendedoresVentas(transaccionesActuales); //#1
 			
 			float num = ((float)vendedores1.size() / ((Vendedor.getVendedores().size()))) * 100;
 			int roundedNum = Math.round(num);
@@ -927,13 +912,6 @@ public class main {
 			break;
 			
 		case 2:
-			
-		
-//			ArrayList<TransaccionVenta> transaccionesActuales = TransaccionVenta.getTransaccionesven();
-//			ArrayList<Vendedor> vendedores1 = TransaccionVenta.vendedoresVentas(transaccionesActuales);
-//			float num = ((float)vendedores1.size() / ((Vendedor.getVendedores().size())/2)) * 100;
-//			int roundedNum = Math.round(num);
-//			System.out.println("-------- De los " + (Vendedor.getVendedores().size())/2 + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
 			
 			ArrayList<Auto> autosIniciales = TransaccionVenta.getAutosV();
 			ArrayList<Auto> autosVendidosMarca = TransaccionVenta.AutosVendidos(autosIniciales); //#2
@@ -1002,7 +980,7 @@ public class main {
 			
 		case 3:
 			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
-			long[] listaFinanzas = new long[4];
+			
 			String[] rubros = new String[4];
 			rubros[0] = "+ Ventas Totales: ";
 			rubros[1] = "- Costo de Ventas: ";
@@ -1015,8 +993,9 @@ public class main {
 			utilidades[1] = "UTILIDAD OPERATIVA";
 			utilidades[2] = "UTILIDAD ANTES DE IMPUESTOS";
 			utilidades[3] = "UTILIDAD NETA";
-
-			listaFinanzas = Transaccion.estResults(listaFinanzas);
+			
+			long[] listaFinanzas = new long[4];
+			listaFinanzas = Transaccion.estResults(listaFinanzas); // #3
 			
 			long res=0;
 			for (int n = 0; n <= 3; n++) {
