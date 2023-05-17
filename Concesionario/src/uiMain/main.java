@@ -793,7 +793,22 @@ public class main {
 //		TransaccionTaller transaccion4 = new TransaccionTaller("Reemplazo de frenos", 800, c2, aa4, escape, mecanico4, 1);
 //		TransaccionTaller transaccion5 = new TransaccionTaller("Inspección", 300, c1, aa2, llantas, mecanico5, 0);
 
-		
+		Integer[] servicios = new Integer[6];
+        servicios[0] = 2000000;
+        servicios[1] = 1500000;
+        servicios[2] = 2500000;
+        servicios[3] = 1200000;
+        servicios[4] = 1800000;
+        servicios[5] = 1000000;
+        
+        String[] rubsvcs = new String[6];
+        rubsvcs[0] = "Servicio de agua:";
+        rubsvcs[1] = "Servicio de electricidad:";
+        rubsvcs[2] = "Servicio de gas:";
+        rubsvcs[3] = "Servicio de telefonía e internet:";
+        rubsvcs[4] = "Servicio de seguridad:";
+        rubsvcs[5] = "Servicio de limpieza:";
+        
 		Scanner sc = new Scanner(System.in);
 		byte opcion;
 		
@@ -1010,23 +1025,7 @@ public class main {
 		break;
 	
 		case 4:
-			
-			List<Integer> servicios = new ArrayList<>();
-	        servicios.add(2000000);
-	        servicios.add(1500000);
-	        servicios.add(2500000);
-	        servicios.add(1200000);
-	        servicios.add(1800000);
-	        servicios.add(1000000);
-	        
-	        List<String> rubsvcs = new ArrayList<>();
-	        rubsvcs.add("Servicio de agua:");
-	        rubsvcs.add("Servicio de electricidad:");
-	        rubsvcs.add("Servicio de gas:");
-	        rubsvcs.add("Servicio de telefonía e internet:");
-	        rubsvcs.add("Servicio de seguridad:");
-	        rubsvcs.add("Servicio de limpieza:");
-	        
+
 			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
 			long[] listaFinanzas2 = new long[4];
 			String[] rubros2 = new String[4];
@@ -1052,7 +1051,7 @@ public class main {
 					for (Auto a:TransaccionVenta.getAutosV()) {
 						System.out.println("        Auto de marca "+a.getMarca()+", modelo "+a.getModelo()+": "+a.getPrecio());
 					}
-					System.out.println("      Servicios taller;");
+					System.out.println("      Servicios taller:");
 					for (TransaccionTaller t:TransaccionTaller.getTransaccionestal()) {
 						System.out.println("        Mecánico "+t.getMecanico().getNombre()+", con valor de: "+t.getIngreso());
 					}
@@ -1080,8 +1079,9 @@ public class main {
 						for (TransaccionVenta t:TransaccionVenta.getTransaccionesven()) {
 							System.out.println("        "+t.getVendedor().getNombre()+": "+(t.getIngreso())*0.02);
 						}
+						System.out.println("      Servicios:");
 						for (int i=0;i<=5;i++) {
-							System.out.println(rubsvcs[i]+": "+servicios[i]);
+							System.out.println("        "+rubsvcs[i]+" "+servicios[i]);
 						}
 					}
 					if (n==3) {
