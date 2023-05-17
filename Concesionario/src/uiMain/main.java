@@ -837,7 +837,7 @@ public class main {
 		System.out.println("1. Ventas - Vendedor");
 		System.out.println("2. Ventas - Autos");
 		System.out.println("3. Estado de Resultados");
-		System.out.println("4. Estado de Resultados detallado");
+		System.out.println("4. Estado de Resultados Detallado");
 		System.out.println("Selecciona: [1-4]");
 		opcion = sc.nextByte();
 		switch (opcion){
@@ -1021,15 +1021,15 @@ public class main {
 			long res=0;
 			for (int n = 0; n <= 3; n++) {
 				if(n==0) {
-					System.out.print(rubros[n]);
+					System.out.print("  "+rubros[n]);
 					System.out.println(listaFinanzas[n]);
-					System.out.print(rubros[n+1]);
+					System.out.print("  "+rubros[n+1]);
 					System.out.println(listaFinanzas[n+1]);
 					res=listaFinanzas[0]-listaFinanzas[1];
 				}
 				else if(n>1){
 					System.out.println(utilidades[n-1]+": "+res);
-					System.out.print(rubros[n]);
+					System.out.print("  "+rubros[n]);
 					System.out.println(listaFinanzas[n]);
 					res-=listaFinanzas[n];
 					if (n==3) {
