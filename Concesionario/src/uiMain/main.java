@@ -792,7 +792,8 @@ public class main {
 //		TransaccionTaller transaccion3 = new TransaccionTaller("Cambio de aceite", 200, c1, aa3, sonido, mecanico3, 0);
 //		TransaccionTaller transaccion4 = new TransaccionTaller("Reemplazo de frenos", 800, c2, aa4, escape, mecanico4, 1);
 //		TransaccionTaller transaccion5 = new TransaccionTaller("Inspección", 300, c1, aa2, llantas, mecanico5, 0);
-
+		
+		// info servicios
 		Integer[] servicios = new Integer[6];
         servicios[0] = 2000000;
         servicios[1] = 1500000;
@@ -808,6 +809,21 @@ public class main {
         rubsvcs[3] = "Servicio de telefonía e internet:";
         rubsvcs[4] = "Servicio de seguridad:";
         rubsvcs[5] = "Servicio de limpieza:";
+        
+        // info gastos fijos
+        String[] gastosfijos = new String[5];
+        gastosfijos[0] = "Alquiler del local:";
+        gastosfijos[1] = "Mantenimiento y reparaciones:";
+        gastosfijos[2] = "Seguros:";
+        gastosfijos[3] = "Publicidad y marketing:";
+        gastosfijos[4] = "Costos financieros:";
+        
+        int[] valgf = new int[5];
+        valgf[0] = 1500000;
+        valgf[1] = 1000000;
+        valgf[2] = 2000000;
+        valgf[3] = 1200000;
+        valgf[4] = 1300000;
         
 		Scanner sc = new Scanner(System.in);
 		byte opcion;
@@ -1053,7 +1069,11 @@ public class main {
 					}
 					System.out.println("      Servicios taller:");
 					for (TransaccionTaller t:TransaccionTaller.getTransaccionestal()) {
-						System.out.println("        Mecánico "+t.getMecanico().getNombre()+", con valor de: "+t.getIngreso());
+						System.out.println("        Mecánico(a) "+t.getMecanico().getNombre()+", con valor de: "+t.getIngreso());
+					}
+					System.out.println("      Venta de articulos taller:");
+					for (TransaccionVentaTaller t:TransaccionVentaTaller.getTransaccionesven()) {
+			        	System.out.println("        Venta de "+t.getArticulo().getMarca()+" con valor de: "+t.getIngreso());
 					}
 					System.out.print("  "+rubros2[n+1]);
 					System.out.println(listaFinanzas[n+1]);
@@ -1068,8 +1088,8 @@ public class main {
 						System.out.println("          "+m.getNombre()+", salario: "+m.getSalario());
 					}
 					res2=listaFinanzas[0]-listaFinanzas[1];
-				}
-				else if(n>1){
+				
+				}else if(n>1){
 					System.out.println(utilidades2[n-1]+": "+res2);
 					System.out.print("  "+rubros2[n]);
 					System.out.println(listaFinanzas[n]);
@@ -1083,8 +1103,11 @@ public class main {
 						for (int i=0;i<=5;i++) {
 							System.out.println("        "+rubsvcs[i]+" "+servicios[i]);
 						}
-					}
-					if (n==3) {
+						System.out.println("      Gatos Fijos:");
+						for (int e=0;e<=4;e++) {
+							System.out.println("        "+gastosfijos[e]+" "+valgf[e]);
+						}
+					} else if (n==3) {
 						System.out.println(utilidades2[3]+": "+res2);
 					}
 				}
@@ -1093,6 +1116,7 @@ public class main {
 		break;
 		}
 	}
+	
 	public static byte readByte() {
 	    Scanner scanner = new Scanner(System.in);
 	    byte num = scanner.nextByte();

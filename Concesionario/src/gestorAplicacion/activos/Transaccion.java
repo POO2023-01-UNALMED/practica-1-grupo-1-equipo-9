@@ -102,7 +102,7 @@ public abstract class Transaccion implements Serializable{
     
     
     public static long[] estResults(long[] listaFinanzas) {
-        /// suma en ventas de carros y servicios del taller}
+        /// suma en ventas de carros y servicios y venta artículos del taller}
     	// carros
         long ventasautos = 0;
         for (TransaccionVenta transaccauto: TransaccionVenta.getTransaccionesven()) {
@@ -115,7 +115,13 @@ public abstract class Transaccion implements Serializable{
         	ventastaller +=transacctaller.getIngreso();
         }
         
-        long ventas = ventasautos + ventastaller;
+        // articulos taller
+        long arttaller=0;
+        for (TransaccionVentaTaller t:TransaccionVentaTaller.getTransaccionesven()) {
+        	arttaller+=t.getIngreso();
+        }
+        
+        long ventas = ventasautos + ventastaller + arttaller;
         
         listaFinanzas[0]=ventas;
         
@@ -146,7 +152,7 @@ public abstract class Transaccion implements Serializable{
         if (ventas-pagoEmpleados-gastos<0) {
         	listaFinanzas[3]=(long) (((ventas-pagoEmpleados-gastos)*0.33)*-1);
         } else {
-        	listaFinanzas[3]=(long) (((ventas-pagoEmpleados-gastos)*0.33)*-1);
+        	listaFinanzas[3]=(long) ((ventas-pagoEmpleados-gastos)*0.33);
         }
 
         return listaFinanzas;
