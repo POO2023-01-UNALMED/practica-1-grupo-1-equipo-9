@@ -2,6 +2,9 @@ package gestorAplicacion.personal;
 
 import java.io.Serializable;
 
+import gestorAplicacion.activos.Auto;
+import gestorAplicacion.activos.TransaccionTaller;
+
 public abstract class Trabajador extends Persona implements Serializable{
 	private static final long serialVersionUID = 1L;
 	double salario;
@@ -47,5 +50,22 @@ public abstract class Trabajador extends Persona implements Serializable{
 	public void setCuentaBanco(long cuentaBanco) {
 		this.cuentaBanco = cuentaBanco;
 	}
+	
+	public void pago(Mecanico mec) {
+		double suma=0;
+		for (TransaccionTaller t: TransaccionTaller.getTransaccionestal()) {
+			if (t.getMecanico()==mec) {
+				suma+=(t.getIngreso())*0.15;
+			}
+		}
+		mec.setSalario(suma+mec.getSalario());
+	}
+	
+	public void pago(Vendedor vend, Auto a) {
+		vend.setSalario(vend.getSalario()+((a.getPrecio())*0.02));
+	}
+	
 	abstract int calcularSalario();
+	
+	
 }
