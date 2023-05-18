@@ -68,25 +68,26 @@ public class Vendedor extends Trabajador implements Serializable{
 	public void confirmarVenta() {
 		ventas++;
 	}
-	public static ArrayList<Vendedor> selectorVend(Object o) {
+	public static ArrayList<Vendedor> selectorVend(Auto o) {
 		String vende=null;
 		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
-		if (o instanceof Auto) {
 			vende="Vitrina";
 			for (Vendedor vendedor : getVendedores()) {
     	        if (vende.equals(vendedor.getPuesto())) {
     	            vendedores.add(vendedor);
     	        }
-		}		
-	}else if(o instanceof Articulo) {
-		vende="Repuestos";
-		for (Vendedor vendedor : getVendedores()) {
-	        if (vende.equals(vendedor.getPuesto())) {
-	            vendedores.add(vendedor);
-	        }
-	}		
+		}
+			return vendedores;		
 	}
-		return vendedores;
-
+	public static ArrayList<Vendedor> selectorVend(Articulo o) {
+		String vende=null;
+		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
+		vende="Repuestos";
+			for (Vendedor vendedor : getVendedores()) {
+    	        if (vende.equals(vendedor.getPuesto())) {
+    	            vendedores.add(vendedor);
+    	        }
+		}
+			return vendedores;		
 	}
 }

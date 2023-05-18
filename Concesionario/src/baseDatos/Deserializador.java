@@ -53,6 +53,7 @@ public class Deserializador {
 		Deserializador.deserializarArrays(TransaccionVentaTaller.getTransaccionesven(), "TransaccionesVentaTaller");
 		Deserializador.deserializarArrays(TransaccionTaller.getTransaccionestal(), "TransaccionesTaller");
 		Deserializador.deserializarArrays(TransaccionModificacion.getTransaccionesmod(), "TransaccionesModificacion");
+		Deserializador.deserializarArrays(TransaccionVenta.getAutosV(), "AutosV");
 	}
 
 }
