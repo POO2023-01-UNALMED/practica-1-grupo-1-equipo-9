@@ -1422,6 +1422,7 @@ public class main {
 				case 4:
 					System.out.println("Nombre del vendedor: ");
 					String nombreVendedor = sc.nextLine();
+					nombreVendedor = sc.nextLine();
 					System.out.println("Cédula del vendedor: ");
 					long cedulaVendedor = sc.nextLong();
 					if (Vendedor.getVendedorPorCedula(cedulaVendedor)!=null) {
@@ -1431,16 +1432,19 @@ public class main {
 						long telefonoVendedor = sc.nextLong();
 						System.out.println("Correo del vendedor: ");
 						String correoVendedor = sc.nextLine();
+						correoVendedor = sc.nextLine();
 						System.out.println("Dirección del vendedor: ");
 						String direccionVendedor = sc.nextLine();
 						System.out.println("Salario del vendedor: ");
 						double salarioVendedor = sc.nextDouble();
 						System.out.println("Banco del vendedor: ");
 						String bancoVendedor = sc.nextLine();
+						bancoVendedor = sc.nextLine();
 						System.out.println("Numero de cuenta de banco del vendedor: ");
 						long cuentaBancoVendedor = sc.nextLong();
-						System.out.println("Puesto del vendedor: ");
+						System.out.println("Puesto del vendedor(admin,Vitrina,Repuestos): ");
 						String puestoVendedor = sc.nextLine();
+						puestoVendedor = sc.nextLine();
 						
 						if (direccionVendedor == "") {
 							new Vendedor(nombreVendedor, cedulaVendedor, telefonoVendedor, correoVendedor, "Medellin", salarioVendedor, bancoVendedor, cuentaBancoVendedor, puestoVendedor);
