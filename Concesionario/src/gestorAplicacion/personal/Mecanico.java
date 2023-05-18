@@ -176,6 +176,59 @@ public class Mecanico extends Trabajador implements Serializable{
 	    byte num = scanner.nextByte();
 	    return num;
 	}
+	@Override
+	public String getNombre() {
+		return nombre;
+	}
+
+	@Override
+	public long getCedula() {
+		// TODO Auto-generated method stub
+		return cedula;
+	}
+
+	@Override
+	public long getTelefono() {
+		// TODO Auto-generated method stub
+		return telefono;
+	}
+
+	@Override
+	public String getCorreo() {
+		// TODO Auto-generated method stub
+		return correo;
+	}
+
+	@Override
+	public String getDireccion() {
+		// TODO Auto-generated method stub
+		return direccion;
+	}
+
+	@Override
+	public void setNombre(String nombre) {
+		this.nombre=nombre;
+	}
+
+	@Override
+	public void setCedula(long cedula) {
+		this.cedula=cedula;
+	}
+
+	@Override
+	public void setTelefono(long telefono) {
+		this.telefono=telefono;
+	}
+
+	@Override
+	public void setCorreo(String correo) {
+		this.correo=correo;
+	}
+
+	@Override
+	public void setDireccion(String direccion) {
+		this.direccion=direccion;
+	}
 
 	@Override
 	int calcularSalario() {
