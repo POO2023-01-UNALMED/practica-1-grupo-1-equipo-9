@@ -1104,195 +1104,189 @@ public class main {
 	    
 	}
 	public static void personalizarAuto() {
-		String salir=null;
-		Scanner sc = new Scanner(System.in);
-		Cliente propietario = null;
-		Auto auto=null;
-			
-		System.out.print("bienvenido a nuestra seccion de personaizacion de su automovil");
-			
-		while (propietario == null || auto == null) {
-			System.out.print("Introduzca la cédula del propietario: ");
-			long cedula = sc.nextLong(); 
-			sc.nextLine();
-			propietario = TransaccionModificacion.getClientePorCedula(cedula);
-			auto = TransaccionModificacion.getTransaccionporCedula(cedula);
-			
-			if (propietario == null || auto == null) {
-				System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla."+ "/n");
-			}
-		}
-		
-		System.out.print(propietario.info());
-		String confirmarPrp=null;
-
-		while (confirmarPrp==null||confirmarPrp.equals("no")) {
-			System.out.print("¿Confirmar propietario? (si/no)");
-			confirmarPrp = sc.nextLine();
-			if (confirmarPrp.equals("no")) {
-				System.out.print("Introduzca la cédula del propietario: ");
-				long cedula = sc.nextLong(); 
-				sc.nextLine();
-				propietario = TransaccionModificacion.getClientePorCedula(cedula);
-				auto = TransaccionModificacion.getTransaccionporCedula(cedula);
-				System.out.print(propietario.info());
-				
-				if (propietario == null || auto == null) {
-					System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla.");
-				}
-			}
-			
-		}
-		if (confirmarPrp.equals("si")) {
-	        System.out.println("\n\nQue deseas hacerle al Vehiculo");
-	        System.out.println("5. Modificacion de pintura");
-	        System.out.println("6. Modificacion de Llantas");
-	        System.out.println("7. Modificacion del sonido");
-	        System.out.println("8. Modificacion de frenos");
-	        System.out.println("9. Modificacion del escape");
-	        System.out.print("Ingrese el número de la opción que va a utilizar: ");
-	      //Se ingresa el auto que se devolvio anteriormente y este entrega una lista de mecanicos
-			ArrayList<Mecanico> mecanicos=Mecanico.mecanicoDisponible(auto);
-			//Selector
-			Scanner sc1 = new Scanner(System.in);
-		    String result = String.format("%-20s%-20s%-10s%-10s%n", "   Nombre","   Cedula", "   Atiende", "   Especialidad");
-		    byte j=0;
-		    for (Mecanico mecanico : mecanicos) {
-		    		j++;
-		            String mechInfo = String.format("%-20s%-20s%-10s%-10s%n", mecanico.getNombre(),mecanico.getCedula(), mecanico.getAutos(),mecanico.getEspecialidad());
-		            result += String.format("%-3d%s", j, mechInfo);
-		    }
-		    Mecanico mecanico = null;
-		    
-		    if (mecanicos.size() >= 1) {
-		        System.out.println("Los mecanicos que atienden " + auto.getMarca() + " disponibles son:\n");
-		        System.out.println(result);
-		        int num = 0;
-		        while (num <= 0 || num > mecanicos.size()) {
-		            System.out.println("Seleccione el numero del mecanico" + "[1-" + mecanicos.size() + "]: ");
-		            if (sc.hasNextInt()) {
-		                num = sc.nextInt();
-		            } else {
-		                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mecanicos.size() + ".");
-		                sc.nextLine(); // Limpiar la entrada no válida
-		            }
-		        }
-		        mecanico = mecanicos.get(num - 1);
-
-		    } else if (mecanicos.size() == 0) {
-		        System.out.println("No hay mecanicos disponibles que atiendan su vehiculo");
-		    }
-			String confirmarMech=null;
-			while (confirmarMech==null||confirmarMech.equals("no")) {
-				System.out.print("¿Confirmar mecanico? (si/no)");
-				confirmarMech = sc.nextLine();
-		}if(!sc.nextLine().equals("no")) {
-			Articulo articulo=null;
-			String confirmarProd=null; 
-			//Ingresa este mecanico que se selecciono y se devuekve una lista de productos
-			ArrayList<Articulo> producto=InventarioArticulo.articuloDispo(mecanico);
-			//Selector
-	 	    String resultp = String.format("%-40s%-25s%-40s%-15s%-15s%n", "   Producto", "   Tipo Vehiculo", "   Marca", "   Precio","Cantidad");
-	 	    byte i=0;
-	 	    for (Articulo articuloi:producto) {
-	 	    	i++;
- 	            String mechInfo = String.format("%-40s%-25s%-40s%-15s%-15s%n", articuloi.getTipoArticulo(), articuloi.getTipoVehiculo(),articuloi.getMarca(),articuloi.getPrecio(),articuloi.getCantidad());
- 	            resultp += String.format("%-3d%s", i, mechInfo);
-	 	    }if (producto.size() >= 1) {
-	 	        System.out.println("Los productos " + mecanico.getEspecialidad() + " disponibles son:\n");
-	 	        System.out.println(resultp);
-	 	        int num = 0;
-	 	        while (num <= 0 || num > producto.size()) {
-	 	            System.out.println("Seleccione el numero del producto" + "[1-" + producto.size() + "]: ");
-	 	            if (sc.hasNextInt()) {
-	 	                num = sc.nextInt();
-	 	            } else {
-	 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + producto.size() + ".");
-	 	                sc.nextLine(); // Limpiar la entrada no válida
-	 	            }
-	 	        }
-	 	        articulo = producto.get(num - 1);
-
-	 	    } else if (producto.size() == 0) {
-	 	        System.out.println("No hay productos disponibles para su vehiculo");
-	 	    }
-			
-			while (confirmarProd==null||confirmarProd.equals("no")) {
-				System.out.print("¿Confirmar producto? (si/no)");
-				confirmarProd = sc.nextLine();
-		}if(!sc.nextLine().equals("no")) {
-			String confirmarTrans=null;
-			while (confirmarTrans==null||confirmarTrans.equals("no")) {
-			if(articulo.getEspecialidad().equals("Modificacion de pintura")) {
-				System.out.print("El procedimiento a realizar es: Modificacion de pintura con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
-			}
-			else if(articulo.getEspecialidad().equals("Modificacion de llantas")) {
-				System.out.print("El procedimiento a realizar es: Modificacion de llantasa con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
-			}
-			else if(articulo.getEspecialidad().equals("Modificacion de sonido")) {
-				System.out.print("El procedimiento a realizar es: Modificacion de sonido con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
-			}
-			else if(articulo.getEspecialidad().equals("Modificacion de frenos")) {
-				System.out.print("El procedimiento a realizar es: Modificacion de frenos con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
-			}
-			else if(articulo.getEspecialidad().equals("Modificacion de escape")) {
-				System.out.print("El procedimiento a realizar es: Modificacion de escape con "+articulo.getTipoArticulo()+", y su mecanico será "+mecanico.getNombre()+"\n");
-			}
-			System.out.print("¿Confirmar Transaccion? (si/no)");
-			confirmarTrans= sc.nextLine();
-			if(confirmarTrans.equals("si")) {
-				//selecciona la hora a la cual esta disponible el mecanico.
-				System.out.print("Seleccione la hora para su servicio"+"\n");
-				System.out.print("Esta es la agenda de: "+mecanico.getNombre()+"\n");
-				 String resulth = String.format("%-20s%n", "   Horario disponible");
-				    byte h=0;
-				    for(String hora:mecanico.getHorario()) {
-				    	h++;
-			            String hor = String.format("%-20s%n", hora);
-			            resulth += String.format("%-3d%s", h, hor);
-				    }
-				    if (mecanico.getHorario().size() >= 1) {
-				        System.out.println("Las horas disponibles son:\n");
-				        System.out.println(resulth);
-				        int num = 0;
-				        while (num <= 0 || num > mecanico.getHorario().size()) {
-				            System.out.println("Seleccione la hora" + "[1-" + mecanico.getHorario().size() + "]: ");
-				            if (sc.hasNextInt()) {
-				                num = sc.nextInt();
-				            } else {
-				                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mecanicos.size() + ".");
-				                sc.nextLine(); // Limpiar la entrada no válida
-				            }
-				        }
-						System.out.print("La hora de su cita es"+ mecanico.getHorario().get(num-1)+"\n");
-				        mecanico.getHorario().remove(num-1);
-				    } else if (mecanicos.size() == 0) {
-				        System.out.println("No hay hora disponible");
-				    }
-					long costoTotal=(long) (mecanico.getManoObra()+articulo.getPrecio());
-					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
-					//Reune todos los objetos y crea un objeto llamado transaccion.
-					int transfer = (int) (Math.random() * 1000);
-					System.out.print(new TransaccionModificacion("Personalizacion de auto",costoTotal,propietario,propietario.getAuto(), mecanico, articulo, transfer).info()+"\n");
-					mecanico.pagoSvcs+=mecanico.getManoObra();
-					if(articulo.getEspecialidad().equals("\"Modificacion de llantas\"")) {
-						articulo.cantidad-=4;
-						auto.setLlantas(articulo);
-					}
-					else {
-						articulo.cantidad--;
-					}
-					System.out.print("");
-				}
-				else {
-					System.out.print("Transaccion cancelada"+"\n");
-					break;
-				}
-			}
-		}
-		}
+	    Scanner sc = new Scanner(System.in);
+	    Cliente propietario;
+	    Auto auto;
+	    
+	    System.out.println("Bienvenido a nuestra sección de personalización de automóviles.");
+	    
+	    do {
+	        System.out.print("Introduzca la cédula del propietario: ");
+	        long cedula = sc.nextLong();
+	        sc.nextLine();
+	        
+	        propietario = TransaccionModificacion.getClientePorCedula(cedula);
+	        auto = TransaccionModificacion.getTransaccionporCedula(cedula);
+	        
+	        if (propietario == null || auto == null) {
+	            System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla.\n");
+	        }
+	    } while (propietario == null || auto == null);
+	    
+	    System.out.println(propietario.info());
+	    
+	    String confirmarPrp;
+	    
+	    do {
+	        System.out.print("¿Confirmar propietario? (si/no): ");
+	        confirmarPrp = sc.nextLine();
+	        
+	        if (confirmarPrp.equalsIgnoreCase("no")) {
+	            System.out.print("Introduzca la cédula del propietario: ");
+	            long cedula = sc.nextLong();
+	            sc.nextLine();
+	            
+	            propietario = TransaccionModificacion.getClientePorCedula(cedula);
+	            auto = TransaccionModificacion.getTransaccionporCedula(cedula);
+	            
+	            System.out.println(propietario.info());
+	            
+	            if (propietario == null || auto == null) {
+	                System.out.println("La cédula ingresada no se encuentra en Transaccion. Por favor, vuelva a ingresarla.");
+	            }
+	        }
+	    } while (confirmarPrp.equalsIgnoreCase("no"));
+	    
+	    System.out.print("\n¿Desea utilizar el taller con mecánicos o solo desea asignar un vendedor? (taller/vendedor): ");
+	    String opcionTaller = sc.nextLine();
+	    
+	    int opcion = 0;
+		if (opcionTaller.equalsIgnoreCase("taller")) {
+	        ArrayList<Mecanico> mecanicos = Mecanico.mecanicoDisponible(auto);
+	        
+	        if (mecanicos.size() >= 1) {
+	            System.out.println("\nLos mecánicos disponibles que atienden " + auto.getMarca() + " son:");
+	            for (int i = 0; i < mecanicos.size(); i++) {
+	                System.out.println((i + 1) + ". " + mecanicos.get(i).getNombre());
+	            }
+	            
+	            int num;
+	            
+	            do {
+	                System.out.print("Seleccione el número del mecánico [1-" + mecanicos.size() + "]: ");
+	                num = sc.nextInt();
+	                sc.nextLine();
+	                
+	                if (num < 1 || num > mecanicos.size()) {
+	                    System.out.println("Opción inválida. Introduzca un número válido.");
+	                }
+	            } while (num < 1 || num > mecanicos.size());
+	            
+	            Mecanico mecanico = mecanicos.get(num - 1);
+	            
+	            ArrayList<Articulo> productos = InventarioArticulo.articuloDispo(mecanico);
+	            
+	            if (productos.size() >= 1) {
+	                System.out.println("\nLos productos disponibles para " + mecanico.getNombre() + " son:");
+	                for (int i = 0; i < productos.size(); i++) {
+	                    System.out.println((i + 1) + ". " + productos.get(i).getTipoArticulo());
+	                }
+	                
+	                int prodNum;
+	                
+	                do {
+	                    System.out.print("Seleccione el número del producto [1-" + productos.size() + "]: ");
+	                    prodNum = sc.nextInt();
+	                    sc.nextLine();
+	                    
+	                    if (prodNum < 1 || prodNum > productos.size()) {
+	                        System.out.println("Opción inválida. Introduzca un número válido.");
+	                    }
+	                } while (prodNum < 1 || prodNum > productos.size());
+	                
+	                Articulo producto = productos.get(prodNum - 1);
+	                
+	                System.out.println("\nHa seleccionado el siguiente procedimiento:");
+	                
+	                switch (opcion) {
+	                    case 5:
+	                        System.out.println("Modificación de pintura");
+	                        break;
+	                    case 6:
+	                        System.out.println("Modificación de llantas");
+	                        break;
+	                    case 7:
+	                        System.out.println("Modificación del sonido");
+	                        break;
+	                    case 8:
+	                        System.out.println("Modificación de frenos");
+	                        break;
+	                    case 9:
+	                        System.out.println("Modificación del escape");
+	                        break;
+	                }
+	                
+	                System.out.println("Mecánico seleccionado: " + mecanico.getNombre());
+	                System.out.println("Producto seleccionado: " + producto.getTipoArticulo());
+	                
+	                System.out.print("\n¿Confirma el procedimiento, el mecánico y el producto? (si/no): ");
+	                String confirmarTrans = sc.nextLine();
+	    			if(confirmarTrans.equals("si")) {
+	    				//selecciona la hora a la cual esta disponible el mecanico.
+	    				System.out.print("Seleccione la hora para su servicio"+"\n");
+	    				System.out.print("Esta es la agenda de: "+mecanico.getNombre()+"\n");
+	    				 String resulth = String.format("%-20s%n", "   Horario disponible");
+	    				    byte h=0;
+	    				    for(String hora:mecanico.getHorario()) {
+	    				    	h++;
+	    			            String hor = String.format("%-20s%n", hora);
+	    			            resulth += String.format("%-3d%s", h, hor);
+	    				    }
+	    				    if (mecanico.getHorario().size() >= 1) {
+	    				        System.out.println("Las horas disponibles son:\n");
+	    				        System.out.println(resulth);
+	    				        int num1 = 0;
+	    				        while (num1 <= 0 || num1 > mecanico.getHorario().size()) {
+	    				            System.out.println("Seleccione la hora" + "[1-" + mecanico.getHorario().size() + "]: ");
+	    				            if (sc.hasNextInt()) {
+	    				                num1 = sc.nextInt();
+	    				            } else {
+	    				                 System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + mecanicos.size() + ".");
+	    				                sc.nextLine(); // Limpiar la entrada no válida
+	    				            }
+	    				        }
+	    						System.out.print("La hora de su cita es"+ mecanico.getHorario().get(num1-1)+"\n");
+	    				        mecanico.getHorario().remove(num1-1);
+	    				    } else if (mecanicos.size() == 0) {
+	    				        System.out.println("No hay hora disponible");
+	    				    }
+	    					long costoTotal=(long) (mecanico.getManoObra()+producto.getPrecio());
+	    					System.out.print("El precio total por su Servicio es:"+costoTotal+"\n");
+	    					//Reune todos los objetos y crea un objeto llamado transaccion.
+	    					int transfer = (int) (Math.random() * 1000);
+	    					System.out.print(new TransaccionModificacion("Personalizacion de auto",costoTotal,propietario,propietario.getAuto(), mecanico, producto, transfer).info()+"\n");
+	    					mecanico.pagoSvcs+=mecanico.getManoObra();
+	    					if(producto.getEspecialidad().equals("\"Modificacion de llantas\"")) {
+	    						producto.cantidad-=4;
+	    						auto.setLlantas(producto);
+	    					}
+	    					else {
+	    						producto.cantidad--;
+	    					}
+	    					System.out.print("");
+	    				}
+	    				else {
+	    					System.out.print("Transaccion cancelada"+"\n");
+	    					
+	    				}
+	    			}
+	    		}
+	    }/* else if (opcionTaller.equalsIgnoreCase("vendedor")) {
+	        ArrayList<Vendedor> vendedores = Vendedor.selectorVend(auto);
+	        
+	        if (vendedores.size() >= 1) {
+	            System.out.println("\nLos vendedores disponibles son:");
+	            for (int i = 0; i < vendedores.size(); i++) {
+	                System.out.println((i + 1) + ". " + vendedores.get(i).getNombre());
+	            }
+	            
+	            
+	            
+	            
+	            
+	        }
+	    }*/
 	}
-}
 
 		 	  
 	public static void crearUsuario() {
