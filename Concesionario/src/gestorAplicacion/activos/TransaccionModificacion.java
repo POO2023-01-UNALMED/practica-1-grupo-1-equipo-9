@@ -9,7 +9,24 @@ public class TransaccionModificacion extends Transaccion implements Serializable
 	private static final long serialVersionUID = 1L;
 	Auto auto;
 	Mecanico mecanico;
+	Vendedor vendedor;
 	
+	public TransaccionModificacion(String tipo, long ingreso, Cliente cliente, Auto auto, Mecanico mecanico, Articulo articulo, int transfer) {
+		super(tipo, ingreso, cliente, transfer);
+		this.auto=auto;
+		this.mecanico=mecanico;
+		this.articulo=articulo;
+		TransaccionModificacion.transaccionesmod.add(this);
+		
+	}
+	public TransaccionModificacion(String tipo, long ingreso, Cliente cliente, Auto auto, Vendedor vendedor, Articulo articulo, int transfer) {
+		super(tipo, ingreso, cliente, transfer);
+		this.auto=auto;
+		this.vendedor=vendedor;
+		this.articulo=articulo;
+		TransaccionModificacion.transaccionesmod.add(this);
+		
+	}
 	
 	static ArrayList<TransaccionModificacion> transaccionesmod = new ArrayList<TransaccionModificacion>();
 	
