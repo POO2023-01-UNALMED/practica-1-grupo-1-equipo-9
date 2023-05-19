@@ -121,7 +121,13 @@ public abstract class Transaccion implements Serializable{
         	arttaller+=t.getIngreso();
         }
         
-        long ventas = ventasautos + ventastaller + arttaller;
+        // transaccion modificacion
+        long transaccmod=0;
+        for (TransaccionModificacion m:TransaccionModificacion.getTransaccionesmod()) {
+        	transaccmod+=m.getIngreso();
+        }
+        
+        long ventas = ventasautos + ventastaller + arttaller + transaccmod;
         
         listaFinanzas[0]=ventas;
         
@@ -157,8 +163,6 @@ public abstract class Transaccion implements Serializable{
 
         return listaFinanzas;
     }
-
-    
     
     public abstract String info(); 
     

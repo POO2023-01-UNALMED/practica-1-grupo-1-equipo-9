@@ -944,12 +944,12 @@ public class main {
 				}
 			
 			//ventas por marca
-			System.out.println("\n" + "-------- Ventas ($) por marca --------");
+			System.out.println("\n" + "-------- Ventas ($) por marca de auto --------");
 			for (String m: marcasVentas) {
-				int suma = 0;
+				long suma = 0;
 				for (Auto a: autosIniciales) {
 					if (m.equals(a.getMarca())) {
-						suma+=TransaccionVenta.getIngresoPorAuto(a); //cambiarlo por el ingreso de la transaccion(?)
+						suma+=a.getPrecio(); //cambiarlo por el ingreso de la transaccion(?)
 					}
 				}
 				float numero1 = ((float)suma / sumaTotal2) * 100;
@@ -958,7 +958,7 @@ public class main {
 			}
 			
 			//# de ventas por marca
-			System.out.println("\n" + "-------- Número de Ventas por marca --------");
+			System.out.println("\n" + "-------- Número de Ventas por marca de auto --------");
 			for (String m: marcasVentas) {
 				int cont=0;
 				for (Auto b:autosIniciales) {
@@ -968,7 +968,7 @@ public class main {
 				}
 				float numero2 = ((float)cont / contadorTotal2) * 100;
 				int rednumero2 = Math.round(numero2);
-				System.out.println(m + ": " + cont + ", " + rednumero2 + "% del numero total de ventas");
+				System.out.println(m + ": " + cont + ", " + rednumero2 + "% del numero total de ventas por concepto de venta de autos");
 			}
 			
 			float num6 = ((float)sumaTotal2/dia);
