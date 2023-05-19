@@ -20,7 +20,7 @@ public class Auto implements Serializable{
 	private boolean disponible;
 	private Cliente dueno;
 
-	public Auto(String modelo, String marca, int precio, int cilindraje, String color, boolean fullEquipo, boolean disponible,Articulo llantas,Articulo suspension,Articulo sonido, Articulo escape) {
+	public Auto(String modelo, String marca, long precio, int cilindraje, String color, boolean fullEquipo, boolean disponible,Articulo llantas,Articulo suspension,Articulo sonido, Articulo escape) {
 		this.llantas=llantas;
 		this.suspension=suspension;
 		this.sonido=sonido;
