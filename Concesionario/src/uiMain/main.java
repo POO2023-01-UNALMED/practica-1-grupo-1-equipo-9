@@ -128,13 +128,13 @@ public class main {
 		/*AUTOS POR MODELO*/
 		
 		ArrayList<Auto> autosMod = new ArrayList<Auto>();
-		String result1 = String.format("%-20s%-10s%-10s\n", "   Modelo", "   Precio", "   Color");
+		String result1 = String.format("%-20s%-20s%-10s\n", "   Modelo", "   Precio", "   Color");
 		int j = 0;
 		for (Auto auto1 : gestorAplicacion.activos.InventarioAuto.getAutosDisponibles()) {
 	        if (comprador.getModeloInteres().equals(auto1.getMarca())) {
 	            j++;
 	            autosMod.add(auto1);
-	            String carInfo1 = String.format("%-20s%-10s%-10s\n", auto1.getModelo(), auto1.getPrecio(), auto1.getColor());
+	            String carInfo1 = String.format("%-20s%-20s%-10s\n", auto1.getModelo(), auto1.getPrecio(), auto1.getColor());
 	            result1 += String.format("%-3d%s", j, carInfo1);
 	        }
 	    }
@@ -204,8 +204,9 @@ public class main {
 						System.out.println(result2);
 						System.out.println("0  volver");
 						System.out.println("Escribe el número del auto a escoger: ");
-						if (sc.nextInt()!=0) {
-							auto = autosMarca.get(sc.nextInt()-1);
+						int opcion8 = sc.nextInt();
+						if (opcion8!=0) {
+							auto = autosMarca.get(opcion8-1);
 							System.out.println("El auto elegido es " + auto.info());
 							System.out.println("¿Desea confirmar?:  (si/no)");
 							sc.nextLine();
@@ -272,8 +273,9 @@ public class main {
 					System.out.println(result3);
 					System.out.println("0  volver");
 					System.out.println("Escribe el número del auto a escoger: ");
-					if (sc.nextInt()!=0) {
-						auto = InventarioAuto.getAutosporPrecio(comprador).get(sc.nextInt()-1);
+					int opcion9 = sc.nextInt();
+					if (opcion9!=0) {
+						auto = InventarioAuto.getAutosporPrecio(comprador).get(opcion9-1);
 						System.out.println("El auto elegido es " + auto.info());
 						System.out.println("¿Desea confirmar?:  (si/no)");
 						sc.nextLine();
@@ -337,8 +339,9 @@ public class main {
 					System.out.println(result4);
 					System.out.println("0  Volver");
 					System.out.println("Escribe el número del auto a escoger: ");
-					if (sc.nextInt()!=0) {
-						auto = InventarioAuto.getAutosDisponibles().get(sc.nextInt()-1);
+					int opcion7 = sc.nextInt();
+					if (opcion7!=0) {
+						auto = InventarioAuto.getAutosDisponibles().get(opcion7-1);
 						System.out.println("El auto elegido es " + auto.info());
 						System.out.println("¿Desea confirmar?:  (si/no)");
 						sc.nextLine();
