@@ -1474,6 +1474,7 @@ public class main {
 				case 5:
 					System.out.println("Nombre del mecánico: ");
 					String nombreMecanico = sc.nextLine();
+					nombreMecanico = sc.nextLine();
 					System.out.println("Cédula del mecánico: ");
 					long cedulaMecanico = sc.nextLong();
 					if (Mecanico.getMecanicoPorCedula(cedulaMecanico)!=null) {
@@ -1483,16 +1484,19 @@ public class main {
 						long telefonoMecanico = sc.nextLong();
 						System.out.println("Correo del mecánico: ");
 						String correoMecanico = sc.nextLine();
+						correoMecanico = sc.nextLine();
 						System.out.println("Dirección del mecánico: ");
 						String direccionMecanico = sc.nextLine();
 						System.out.println("Salario del mecánico: ");
 						double salarioMecanico = sc.nextDouble();
 						System.out.println("Banco del mecánico: ");
 						String bancoMecanico = sc.nextLine();
+						bancoMecanico = sc.nextLine();
 						System.out.println("Número de cuenta de banco del mecánico: ");
 						long cuentaBancoMecanico = sc.nextLong();
 						System.out.println("Marca de carros que atiende el mecánico: ");
 						String autosMecanico = sc.nextLine();
+						autosMecanico = sc.nextLine();
 						System.out.println("Especialidad del mecánico: ");
 						String especialidadMecanico = sc.nextLine();
 						System.out.println("Valor de mano de obra del mecánico: ");
