@@ -1413,7 +1413,7 @@ public class main {
 					System.out.println("Marca del carro: ");
 					String marca = sc.nextLine();
 					System.out.println("Precio del carro: ");
-					Long precio=sc.nextLong();
+					long precio=sc.nextLong();
 					System.out.println("Cilindraje del carro: ");
 					int cilindraje = sc.nextInt();
 					System.out.println("Color del carro: ");
