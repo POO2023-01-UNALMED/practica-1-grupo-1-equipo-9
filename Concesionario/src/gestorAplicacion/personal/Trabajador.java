@@ -58,13 +58,7 @@ public abstract class Trabajador implements Persona,Serializable{
 	}
 	
 	public void pago(Mecanico mec) {
-		double suma=0;
-		for (TransaccionTaller t: TransaccionTaller.getTransaccionestal()) {
-			if (t.getMecanico()==mec) {
-				suma+=(t.getIngreso())*0.15;
-			}
-		}
-		mec.setSalario(suma+mec.getSalario());
+		mec.setSalario(mec.getManoObra()+mec.getSalario());
 	}
 	
 	public void pago(Vendedor vend, Auto a) {
