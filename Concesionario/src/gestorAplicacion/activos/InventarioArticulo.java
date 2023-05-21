@@ -56,16 +56,31 @@ public class InventarioArticulo implements Serializable{
             System.out.println(articulo.articulosDisponibles());
         }
     }
-   public static ArrayList<Articulo> articuloDispo(Mecanico mecanico) {
- 	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
- 	    for (Articulo articulo : getArticulos()) {
- 	        if (mecanico.getEspecialidad().equals(articulo.getEspecialidad())&& articulo.getCantidad()>=1) {
- 	            prods.add(articulo);
- 	        }
- 	    }
- 	    return prods;
- 		
- 	}
+    public static ArrayList<Articulo> articuloDispo(Mecanico mecanico) {
+  	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
+  	    for (Articulo articulo : getArticulos()) {
+  	    	if (mecanico.getEspecialidad().equalsIgnoreCase("ModificacionPintura") && articulo.getEspecialidad().equalsIgnoreCase("Pintura") && articulo.getCantidad()>=1 ) {
+  	    		prods.add(articulo);
+  	    	}
+  	    	else if (mecanico.getEspecialidad().equalsIgnoreCase("ModificacionLlantas") && articulo.getEspecialidad().equalsIgnoreCase("Llantas") && articulo.getCantidad()>=1) {
+  	    		prods.add(articulo);
+  	    	}
+  	    	else if (mecanico.getEspecialidad().equalsIgnoreCase("ModificacionSonido") && articulo.getEspecialidad().equalsIgnoreCase("Sonido") && articulo.getCantidad()>=1) {
+  	    		prods.add(articulo);
+  	    	}
+  	    	else if (mecanico.getEspecialidad().equalsIgnoreCase("ModificacionFrenos") && articulo.getEspecialidad().equalsIgnoreCase("Frenos") && articulo.getCantidad()>=1) {
+  	    		prods.add(articulo);
+  	    	}
+  	    	else if (mecanico.getEspecialidad().equalsIgnoreCase("ModificacionEscape") && articulo.getEspecialidad().equalsIgnoreCase("Escape") && articulo.getCantidad()>=1) {
+  	    		prods.add(articulo);
+  	    	}
+  	    	else if (mecanico.getEspecialidad().equals(articulo.getEspecialidad())&& articulo.getCantidad()>=1) {
+  	            prods.add(articulo);
+  	        }
+  	    }
+  	    return prods;
+  		
+  	}
     public static ArrayList<Articulo> selectorEspecial() {
 
 		String salir=null;
