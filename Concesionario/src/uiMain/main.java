@@ -9,6 +9,18 @@ import java.time.format.TextStyle;
 
 public class main {
 	public static void main(String[] args) {
+		Mecanico mecanico18 = new Mecanico("Juan David Alzate", 1234567902L, 9876543218L, "juandavidalzate@example.com", "Calle 267", 5000.0, "Banco Z", 5678901234567755L, "Chevrolet", "ModificacionPintura",50000);
+		Mecanico mecanico19 = new Mecanico("Miranda Catrillon", 1234567903L, 9876543219L, "mirandacastrillon@example.com", "Calle 486", 5000.0, "Banco Y", 5678901234567756L, "Mazda", "ModificacionPintura",50000);
+		Mecanico mecanico20 = new Mecanico("Nicolas Diaz", 1234567904L, 9876543217L, "nicolasdiaz@example.com", "Calle 762", 5000.0, "Banco Y", 5678901234567757L, "Toyota", "ModificacionPintra",50000);
+		Mecanico mecanico21 = new Mecanico("Carlos Alzate", 1234567905L, 9876543218L, "carlosalzate@example.com", "Calle 267", 5000.0, "Banco Y", 5678901234567758L, "Chevrolet", "ModificacionLlantas",30000);
+		Mecanico mecanico22 = new Mecanico("Virginia Maldonado", 1234567906L, 9876543219L, "virginiamaldonado@example.com", "Calle 486", 5000.0, "Banco X", 5678901234567759L, "Mazda", "ModificacionLlantas",30000);
+		Mecanico mecanico23 = new Mecanico("Alejandro Narvaez", 1234567907L, 9876543217L, "alejandronarvaez@example.com", "Calle 762", 5000.0, "Banco Y", 5678901234567760L, "Toyota", "ModificacionLlantas",30000);
+		Mecanico mecanico24 = new Mecanico("Argemiro Sanchez", 1234567908L, 9876543218L, "argemirosanchez@example.com", "Calle 764", 5000.0, "Banco Z", 56789012345677561L, "Chevrolet", "ModificacionSonido",40000);
+		Mecanico mecanico25 = new Mecanico("Pink Floyd", 1234567909L, 9876543219L, "pinkfloyd@example.com", "Calle 136", 5000.0, "Banco Y", 5678901234567762L, "Mazda", "ModificacionSonido",40000);
+		Mecanico mecanico26 = new Mecanico("Sara Bolivar", 1234567904L, 9876543217L, "sarabolivar@example.com", "Calle 746", 5000.0, "Banco X", 5678901234567763L, "Toyota", "ModificacionSonido",40000);
+		Mecanico mecanico27 = new Mecanico("Juan Corrales", 1234567910L, 9876543218L, "juancorrales@example.com", "Calle 365", 5000.0, "Banco Y", 5678901234567764L, "Chevrolet", "ModificacionFrenos",20000);
+		Mecanico mecanico28 = new Mecanico("Sara Orrego", 1234567911L, 9876543219L, "saraorrego@example.com", "Calle 148", 5000.0, "Banco Y", 5678901234567765L, "Mazda", "ModificacionFrenos",20000);
+		Mecanico mecanico29 = new Mecanico("Josue Saenz", 1234567912L, 9876543217L, "josuesaenz@example.com", "Calle 167", 5000.0, "Banco Z", 5678901234567766L, "Toyota", "ModificacionFrenos",20000);
 		
 		Scanner sc = new Scanner(System.in);	
 		boolean volverAlMenuPrincipal = true;
@@ -95,7 +107,7 @@ public class main {
 	            break;
 			default:
 				System.out.print("\nHasta pronto"+"\n"+"\n");
-				System.out.print("App realizada por:"+"\n"+"Juan Jose Alzate"+"\n"+"Santiago Florez"+"\n"+"Felipe Velez Fernandez"+"\n"+"Jonatan "+"\n"+"Copyright (c) 2023"+"\n"+"All Rights Reserved"+"\n"+"\n"+"This product is protected by copyright and distributed under"+"\n"+"licenses restricting copying, distribution, and decompilation.");
+				System.out.print("App realizada por:"+"\n"+"Juan Jose Alzate"+"\n"+"Santiago Florez"+"\n"+"Felipe Velez Fernandez"+"\n"+"Jonatan Sanchez "+"\n"+"Copyright (c) 2023"+"\n"+"All Rights Reserved"+"\n"+"\n"+"This product is protected by copyright and distributed under"+"\n"+"licenses restricting copying, distribution, and decompilation.");
 				Serializador.serializarArrays();
 	            volverAlMenuPrincipal = false;
 				break;
