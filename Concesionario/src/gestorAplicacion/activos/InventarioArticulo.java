@@ -128,6 +128,52 @@ public class InventarioArticulo implements Serializable{
         	        salir="si";
         	    }
                 break;
+            case 5: 
+            	especialidad="Pintura";
+            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 6: 
+            	especialidad="Llanta";
+            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 7: 
+            	especialidad="Sonido";
+            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 8: 
+            	especialidad="Frenos";
+            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+            case 9: 
+            	especialidad="Escape";
+            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+        	        if (especialidad.equals(articulo.getEspecialidad())) {
+        	            artic.add(articulo);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+         
 			default:
 				System.out.print("\n¿Salir? (si/no)");
 				salir = sc.nextLine();
@@ -215,4 +261,3 @@ public class InventarioArticulo implements Serializable{
 		return articul;
    }	
 }
-

@@ -1270,9 +1270,78 @@ public class main {
 	            System.out.println("No hay mecánicos disponibles para atender " + auto.getMarca());
 	        }
 	    } 
-	    // else if (opcionTaller.equalsIgnoreCase("vendedor")) {
-	    //     // Agrega aquí el código correspondiente al caso "vendedor"
-	    // }
+	    else if (opcionTaller.equalsIgnoreCase("vendedor")) {
+	    	System.out.println("Ha seleccionado utilizar nuestro menu de ventas de articulos");
+	    	 System.out.println("\n\nQue deseas hacerle al Vehiculo");
+	    	 System.out.println("5. Modificacion de pintura");
+		     System.out.println("6. Modificacion de Llantas");
+		     System.out.println("7. Modificacion del sonido");
+		     System.out.println("8. Modificacion de frenos");
+		     System.out.println("9. Modificacion del escape");
+		     System.out.print("Ingrese el número de la opción que va a utilizar: ");
+		        
+		        
+		     ArrayList<Articulo> productos = InventarioArticulo.selectorEspecial();
+		     
+		     System.out.println("porfavor ingrese lel numero para la calidad que desea para su producto");
+		     System.out.println("1.Basico");
+		     System.out.println("2.Premium");
+		     ArrayList<Articulo> calidad = InventarioArticulo.selectorCalidad(productos);
+		     int numero=0;
+		     System.out.println("Porfavor seleccione el numero del producto qe desea llevar");
+		     for (Articulo articulo : calidad) {
+		            System.out.println(numero + "." + articulo.getTipoArticulo());
+		            numero+=1;
+		        }
+		     
+		     
+		     
+	    	
+		    /* ArrayList<Vendedor> vendedores = Vendedor.selectorVend(auto);
+		     
+	        
+	        
+	        
+	        if (vendedores.size() >= 1) {
+	            System.out.println("\nLos vendedores disponibles son:");
+	            for (int i = 0; i < vendedores.size(); i++) {
+	                System.out.println((i + 1) + ". " + vendedores.get(i).getNombre());
+	            }
+	            
+	            int num;
+	            
+	            do {
+	                System.out.print("Seleccione el número del vendedor [1-" + vendedores.size() + "]: ");
+	                num = sc.nextInt();
+	                sc.nextLine();
+	                if (num < 1 || num > vendedores.size()) {
+	                    System.out.println("Opción inválida. Introduzca un número válido.");
+	                }
+	            } while (num < 1 || num > vendedores.size());
+	            
+	            Vendedor vendedor = vendedores.get(num - 1);
+	            
+	            System.out.print("\n¿Confirma el vendedor seleccionado? (si/no): ");
+	            String confirmar = sc.nextLine();
+	            
+	            if (confirmar.equalsIgnoreCase("si")) {
+	                TransaccionModificacion nuevaTransaccion = new TransaccionModificacion(auto, propietario, vendedor, opcion);
+	                
+	                auto.actualizarPersonalizacion(opcion);
+	                
+	                System.out.println("\nDetalles de la transacción:");
+	                System.out.println(nuevaTransaccion);
+	                
+	                vendedor.confirmarVenta();
+	            } else {
+	                System.out.println("Transacción cancelada.");
+	            }
+	        } else {
+	            System.out.println("No hay vendedores disponibles para el vehículo seleccionado.");
+	        }
+	    }*/
+	               
+	}
 
 	    sc.close();
 	}
