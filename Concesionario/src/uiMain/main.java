@@ -1006,7 +1006,7 @@ public class main {
 			break;
 			
 		case 3:
-			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
+			System.out.println("Estado de resultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
 			
 			String[] rubros = new String[4];
 			rubros[0] = "+ Ventas Totales: ";
@@ -1048,7 +1048,7 @@ public class main {
 	
 		case 4:
 
-			System.out.println("Estado de reaultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
+			System.out.println("Estado de resultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
 			long[] listaFinanzas2 = new long[4];
 			String[] rubros2 = new String[4];
 			rubros2[0] = "+ Ventas Totales: ";
@@ -1069,18 +1069,23 @@ public class main {
 				if(n==0) {
 					System.out.print("  "+rubros2[n]);
 					System.out.println(listaFinanzas[n]);
-					System.out.println("      Autos vendidos:");
+					System.out.println("      Ingresos por concepto de venta de autos:");
 					for (Auto a:TransaccionVenta.getAutosV()) {
 						System.out.println("        Auto de marca "+a.getMarca()+", modelo "+a.getModelo()+": "+a.getPrecio());
 					}
-					System.out.println("      Servicios taller:");
+					System.out.println("      Ingresos por concepto de servicios taller:");
 					for (TransaccionTaller t:TransaccionTaller.getTransaccionestal()) {
 						System.out.println("        Mecánico(a) "+t.getMecanico().getNombre()+", con valor de: "+t.getIngreso());
 					}
-					System.out.println("      Venta de articulos taller:");
-					for (TransaccionVentaTaller t:TransaccionVentaTaller.getTransaccionesven()) {
-			        	System.out.println("        Venta de "+t.getArticulo().getMarca()+" con valor de: "+t.getIngreso());
+					System.out.println("      Ingresos por concepto de venta de articulos taller:");
+					for (TransaccionVentaTaller f:TransaccionVentaTaller.getTransaccionesven()) {
+			        	System.out.println("        Venta de "+f.getArticulo().getMarca()+" con valor de: "+f.getIngreso());
 					}
+					System.out.println("      Ingresos por concepto de modificaciones:");
+					for (TransaccionModificacion m:TransaccionModificacion.getTransaccionesmod()) {
+			        	System.out.println("        Modificacion de "+m.getArticulo().getMarca()+ " a auto "+m.getAuto().getMarca()+" con valor de: "+m.getIngreso());
+					}
+					
 					System.out.print("  "+rubros2[n+1]);
 					System.out.println(listaFinanzas[n+1]);
 					
