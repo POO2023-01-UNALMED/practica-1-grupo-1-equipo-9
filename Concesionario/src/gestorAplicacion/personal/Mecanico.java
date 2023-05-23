@@ -238,4 +238,5 @@ public class Mecanico extends Trabajador implements Serializable{
 		String texto = "Nombre del Mecanico: " + getNombre() + "\n";
 		return texto;
 	}
+	
 }

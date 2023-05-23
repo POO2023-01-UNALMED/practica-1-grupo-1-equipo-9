@@ -156,4 +156,5 @@ public class Vendedor extends Trabajador implements Serializable{
 	public void setDireccion(String direccion) {
 		this.direccion=direccion;
 	}
+	
 }
