@@ -32,7 +32,7 @@ public class main {
 			System.out.println("1. Venta de Autos");
 			System.out.println("2. Venta de Repuestos");
 			System.out.println("3. Taller");
-			System.out.println("4. Consultar estadisticas de ventas");
+			System.out.println("4. Consultar estadisticas / finanzas");
 			System.out.println("5. Personalizar su auto");
 			System.out.println("6. Crear nuevo usuario (Comprador)");	
 			System.out.println("7. Administración");	
@@ -861,14 +861,15 @@ public class main {
 		
 		System.out.println("¿Qué estadisticas / info financiera quiere consultar?");
 		//static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
-		System.out.println("1. Ventas - Vendedor");
-		System.out.println("2. Ventas - Autos");
-		System.out.println("3. Estado de Resultados");
-		System.out.println("4. Estado de Resultados Detallado");
+		System.out.println("1. Estado de Resultados");
+		System.out.println("2. Estado de Resultados Detallado");
+		System.out.println("3. Ventas - Vendedor");
+		System.out.println("4. Ventas - Autos");
+		
 		System.out.println("Selecciona: [1-4]");
 		opcion = sc.nextByte();
 		switch (opcion){
-		case 1:
+		case 3:
 			
 			ArrayList<TransaccionVenta> transaccionesActuales = TransaccionVenta.getTransaccionesven();
 			
@@ -938,7 +939,7 @@ public class main {
 			
 			break;
 			
-		case 2:
+		case 4:
 			
 			ArrayList<Auto> autosIniciales = TransaccionVenta.getAutosV();
 			ArrayList<Auto> autosVendidosMarca = TransaccionVenta.AutosVendidos(autosIniciales); //#2
@@ -1005,7 +1006,7 @@ public class main {
 			
 			break;
 			
-		case 3:
+		case 1:
 			System.out.println("Estado de resultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
 			
 			String[] rubros = new String[4];
@@ -1022,6 +1023,7 @@ public class main {
 			utilidades[3] = "UTILIDAD NETA";
 			
 			long[] listaFinanzas = new long[4];
+			
 			listaFinanzas = Transaccion.estResults(listaFinanzas); // #3
 			
 			long res=0;
@@ -1046,9 +1048,9 @@ public class main {
 			
 		break;
 	
-		case 4:
+		case 2:
 
-			System.out.println("Estado de resultados desde el 1 hasta el " + dia + " de " + nombreMes + ":");
+			System.out.println("Estado de resultados detallado desde el 1 hasta el " + dia + " de " + nombreMes + ":");
 			long[] listaFinanzas2 = new long[4];
 			String[] rubros2 = new String[4];
 			rubros2[0] = "+ Ventas Totales: ";
