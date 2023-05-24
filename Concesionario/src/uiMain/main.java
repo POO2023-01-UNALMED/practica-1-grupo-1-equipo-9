@@ -1186,14 +1186,27 @@ public class main {
 	    String confirmarVendedor;
 		if (opcionTaller.equalsIgnoreCase("taller")) {
 	        System.out.println("Hola");
-	        ArrayList<Mecanico> mecanicos1 = Mecanico.getMecanicos();
+	        System.out.println("Ha seleccionado utilizar nuestro menu de ventas de articulos");
+	    	System.out.println("\n\nQue deseas hacerle al Vehiculo");
+	    	System.out.println("5. Modificacion de pintura");
+		    System.out.println("6. Modificacion de Llantas");
+		    System.out.println("7. Modificacion del sonido");
+		    System.out.println("8. Modificacion de frenos");
+		    System.out.println("9. Modificacion del escape");
+		    System.out.print("Ingrese el número de la opción que va a utilizar: ");
+	        ArrayList<Mecanico> mecanicosDisp = Mecanico.mecanicoDisponible(propietario.getAuto());
 	        int tamañoMecanicos=1;
-	        if (mecanicos1.size() >= 1) {
+	        int numero1=1;
+	    	 for (Mecanico mecanicos : mecanicosDisp) {
+	    		   System.out.println(numero1 + "." + mecanicos.getNombre() + " precio:");
+	    		   numero1+=1;
+	    	   }
+	        if (mecanicosDisp.size() >= 1) {
 	            System.out.println("\nLos mecánicos disponibles que atienden " + auto.getMarca() + " son:");
-	            for (int i = 0; i < mecanicos1.size(); i++) {
-	            	if(mecanicos1.get(i).getEspecialidad().equalsIgnoreCase("ModificacionPintura") || mecanicos1.get(i).getEspecialidad().equalsIgnoreCase("ModificacionLlantas")
-	            			|| mecanicos1.get(i).getEspecialidad().equalsIgnoreCase("ModificacionSonido") || mecanicos1.get(i).getEspecialidad().equalsIgnoreCase("ModificacionFrenos") || mecanicos1.get(i).getEspecialidad().equalsIgnoreCase("ModificacionEscape")) {
-	            		System.out.println((i + 1) + ". " + mecanicos1.get(i).getNombre() + "y su especialidad especialidad es" + mecanicos1.get(i).getEspecialidad());
+	            for (int i = 1; i < mecanicosDisp.size(); i++) {
+	            	if(mecanicosDisp.get(i).getEspecialidad().equalsIgnoreCase("ModificacionPintura") || mecanicosDisp.get(i).getEspecialidad().equalsIgnoreCase("ModificacionLlantas")
+	            			|| mecanicosDisp.get(i).getEspecialidad().equalsIgnoreCase("ModificacionSonido") || mecanicosDisp.get(i).getEspecialidad().equalsIgnoreCase("ModificacionFrenos") || mecanicosDisp.get(i).getEspecialidad().equalsIgnoreCase("ModificacionEscape")) {
+	            		System.out.println((i) + ". " + mecanicosDisp.get(i).getNombre() + "y su especialidad especialidad es" + mecanicosDisp.get(i).getEspecialidad());
             			tamañoMecanicos += 1;
 	            	}
 	            			
@@ -1201,7 +1214,7 @@ public class main {
 
 	            int opcion;
 	            do {
-	                System.out.print("Seleccione el número del mecánico [1-" + tamañoMecanicos + "]: ");
+	                System.out.print("Seleccione el número del mecánico [1-" + (tamañoMecanicos-1) + "]: ");
 	                opcion = sc.nextInt();
 	                sc.nextLine();
 
@@ -1210,11 +1223,33 @@ public class main {
 	                }
 	            } while (opcion < 1 || opcion > tamañoMecanicos);
 
-	            Mecanico mecanico = mecanicos1.get(opcion - 1);
+	            Mecanico mecanico = mecanicosDisp.get(opcion - 1);
 
 	            ArrayList<Articulo> productos = InventarioArticulo.articuloDispo(mecanico);
-
-	            if (productos.size() >= 1) {
+	            Articulo producto=null;
+	            if (productos.get(0).getEspecialidad().equalsIgnoreCase("Llantas")) {
+			    	 System.out.println("Porfavor seleeccione el tipo de llantas que desea llevar");
+			    	 System.out.println("1. Llanta todo terreno");		    	 
+			    	 System.out.println("2. Llanta terreno de barro");
+			    	 System.out.println("3. Llanta terreno de asfalto");
+			    	 ArrayList<Articulo> tipoLlantas = InventarioArticulo.selectorTipoLlantas(productos);
+			    	 System.out.println(tipoLlantas);
+			    	 
+			    	 System.out.println("Porfavor ingrese el numero del producto que desea llevar para su modificacion");
+			    	 int numero11=1;
+			    	 for (Articulo articulo : tipoLlantas) {
+			    		   System.out.println(numero11 + "." + articulo.getMarca() + " precio:" + articulo.getPrecio());
+			    		   numero11+=1;
+			    	   }
+			    	 
+			    	 int opcion2=sc.nextInt();
+			    		 producto=tipoLlantas.get(opcion2-1);
+			    		 System.out.println(producto.getMarca());
+			    		 
+			    		 //int costoTotal=tipoLlantas0).getPrecio();
+			    		 //new TransaccionModificaacion()
+			    	 
+			    	} else if (productos.size() >= 1) {
 	                System.out.println("\nLos productos disponibles para " + mecanico.getNombre() + " son:");
 	                for (int i = 0; i < productos.size(); i++) {
 	                    System.out.println((i + 1) + ". " + productos.get(i).getTipoArticulo());
@@ -1231,7 +1266,7 @@ public class main {
 	                    }
 	                } while (opcionProd < 1 || opcionProd > productos.size());
 
-	                Articulo producto = productos.get(opcionProd - 1);
+	                producto = productos.get(opcionProd - 1);
 
 	                System.out.print("¿Confirma el procedimiento, el mecánico y el producto? (si/no): ");
 	                String confirmarTrans = sc.nextLine();
@@ -1262,7 +1297,7 @@ public class main {
 	                    System.out.println("El costo total de la transacción es: " + costoTotal);
 	                  //Reune todos los objetos y crea un objeto llamado transaccion.
     					int transfer = (int) (Math.random() * 1000);
-    					System.out.print(new TransaccionModificacion("Personalizacion de auto con taller",costoTotal,propietario,propietario.getAuto(), mecanico, producto, transfer).info()+"\n");
+    					System.out.print(new TransaccionModificacion("Personalizacion de auto con taller",costoTotal,propietario,propietario.getAuto(), mecanico, producto, transfer).info2()+"\n");
     					mecanico.pagoSvcs+=mecanico.getManoObra();
 	                }
 	            } else {
@@ -1308,7 +1343,7 @@ public class main {
 		    		 //new TransaccionModificaacion()
 		    	 
 		    	}else {
-		    		System.out.println("Porfavor seleccione del producto que desea llevar");
+		    		System.out.println("Porfavor seleccione del producto que desea llevar para su modificacion");
 		    		int numero=1;
 		    		for (Articulo articulo : productos) {
 			    		   System.out.println(numero + "." + articulo.getTipoArticulo() + "de la marca" + articulo.getMarca() + " con precio: " + articulo.getPrecio());
@@ -1352,7 +1387,7 @@ public class main {
 	               
 	}
 
-	    sc.close();
+	   // sc.close();
 	}
 
 		 	  
