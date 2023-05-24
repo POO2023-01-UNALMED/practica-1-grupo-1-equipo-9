@@ -8,7 +8,7 @@ import gestorAplicacion.activos.*;
 public class Cliente implements Persona, Serializable{
 
 	private static final long serialVersionUID = 1L;
-	static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+	protected static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	protected String nombre;
 	protected long cedula;
 	protected long telefono;

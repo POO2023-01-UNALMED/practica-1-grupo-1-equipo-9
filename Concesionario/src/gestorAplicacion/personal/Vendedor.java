@@ -6,10 +6,10 @@ import gestorAplicacion.activos.*;
 
 public class Vendedor extends Trabajador implements Serializable{
 	private static final long serialVersionUID = 1L;
-	static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
+	protected static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
 	int ventas = 0;
 	protected String puesto; 
-	final static double comision = 0.02;
+	final static double COMISION = 0.02;
 	
 
 	public Vendedor(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
@@ -57,7 +57,7 @@ public class Vendedor extends Trabajador implements Serializable{
 
 	@Override
 	int calcularSalario() {
-		return (int) (getSalario()+(ventas*comision));
+		return (int) (getSalario()+(ventas*COMISION));
 	}
 	@Override
 	public String info() {
@@ -79,17 +79,7 @@ public class Vendedor extends Trabajador implements Serializable{
 		}
 			return vendedores;		
 	}
-	public static ArrayList<Vendedor> selectorVendedor(Articulo o) {
-		String vende=null;
-		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
-			vende="Vitrina";
-			for (Vendedor vendedor : getVendedores()) {
-    	        if (vende.equals(vendedor.getPuesto())) {
-    	            vendedores.add(vendedor);
-    	        }
-		}
-			return vendedores;		
-	}
+
 	public static ArrayList<Vendedor> selectorVend(Articulo o) {
 		String vende=null;
 		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();

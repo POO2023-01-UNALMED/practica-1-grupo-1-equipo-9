@@ -63,11 +63,11 @@ public abstract class Trabajador implements Persona,Serializable{
 	}
 	
 	public static void pago(Vendedor vend, Auto a) {
-		vend.setSalario(vend.getSalario()+((a.getPrecio())*Vendedor.comision));
+		vend.setSalario(vend.getSalario()+((a.getPrecio())*Vendedor.COMISION));
 		
 	}
 	public static void pago(Vendedor vend, Articulo a) {
-		vend.setSalario(vend.getSalario()+((a.getPrecio())*Vendedor.comision));
+		vend.setSalario(vend.getSalario()+((a.getPrecio())*Vendedor.COMISION));
 	}
 	@Override
 	public String getNombre() {
