@@ -260,4 +260,47 @@ public class InventarioArticulo implements Serializable{
 		}while(salir==null);
 		return articul;
    }	
+    public static ArrayList<Articulo> selectorTipoLlantas(ArrayList<Articulo> llantas) {
+    	String salir=null;
+		 byte input;
+		 String tipoLlanta=null;
+		 ArrayList<Articulo> articul = new ArrayList<Articulo>();
+		do {
+	        input = sc.nextByte();
+	        switch (input) {
+	        case 1:
+               tipoLlanta="Llanta todo terreno";
+	       	    for (Articulo ar : llantas) {
+	       	        if (tipoLlanta.equals(ar.getTipoArticulo())) {
+	       	            articul.add(ar);
+	       	        }
+	       	    }
+	       	 salir="si";
+	       	    
+               break;
+           case 2:
+        	   tipoLlanta="Llanta terreno de barro";
+	       	    for (Articulo ar : llantas) {
+	       	        if (tipoLlanta.equals(ar.getTipoArticulo())) {
+	       	            articul.add(ar);
+	       	        }
+	       	    }
+	       	 salir="si";
+	       	    
+               break;
+           case 3:
+        	   tipoLlanta="Llanta terreno de asfalto";
+	       	    for (Articulo ar : llantas) {
+	       	        if (tipoLlanta.equals(ar.getTipoArticulo())) {
+	       	            articul.add(ar);
+	       	        }
+	       	    }
+	       	 salir="si";
+			default:
+				System.out.print("\n¿Salir? (si/no)");
+				salir = sc.nextLine();
+			} 
+		}while(salir==null);
+		return articul;
+   }
 }

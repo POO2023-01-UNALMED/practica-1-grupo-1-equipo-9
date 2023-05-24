@@ -1282,20 +1282,69 @@ public class main {
 		     System.out.println("8. Modificacion de frenos");
 		     System.out.println("9. Modificacion del escape");
 		     System.out.print("Ingrese el número de la opción que va a utilizar: ");
-		        
+		     
 		        
 		     ArrayList<Articulo> productos = InventarioArticulo.selectorEspecial();
+		     Articulo producto = null;
+		     if (productos.get(0).getEspecialidad().equalsIgnoreCase("Llantas")) {
+		    	 System.out.println("Porfavor seleeccione el tipo de llantas que desea llevar");
+		    	 System.out.println("1. Llanta todo terreno");		    	 
+		    	 System.out.println("2. Llanta terreno de barro");
+		    	 System.out.println("3. Llanta terreno de asfalto");
+		    	 ArrayList<Articulo> tipoLlantas = InventarioArticulo.selectorTipoLlantas(productos);
+		    	 System.out.println(tipoLlantas);
+		    	 
+		    	 System.out.println("Porfavor ingrese el numero del producto que desea llevar para su modificacion");
+		    	 int numero1=1;
+		    	 for (Articulo articulo : tipoLlantas) {
+		    		   System.out.println(numero1 + "." + articulo.getMarca() + " precio:" + articulo.getPrecio());
+		    		   numero1+=1;
+		    	   }
+		    	 
+		    	 int opcion2=sc.nextInt();
+		    		 producto=tipoLlantas.get(opcion2-1);
+		    		 System.out.println(producto.getMarca());
+		    		 
+		    		 //int costoTotal=tipoLlantas0).getPrecio();
+		    		 //new TransaccionModificaacion()
+		    	 
+		    	}else {
+		    		System.out.println("Porfavor seleccione del producto que desea llevar");
+		    		int numero=1;
+		    		for (Articulo articulo : productos) {
+			    		   System.out.println(numero + "." + articulo.getTipoArticulo() + "de la marca" + articulo.getMarca() + " con precio: " + articulo.getPrecio());
+			    		   numero+=1;
+			    	   }
+		    		int opcion = sc.nextInt();
+		    		producto = productos.get(opcion-1);
+		    		System.out.println("usted ha seleccionaldo" + producto.getTipoArticulo() + "de la marca" + producto.getMarca());
+		    		
+		    	}
+		     
+		     ArrayList<Vendedor> vendedorVitrina= Vendedor.selectorVendedor(producto);
+		     System.out.println("Porfavor seleccione el vendedor que desea para su compra");
+		     int numero2=1;
+		     for (Vendedor vendedor : vendedorVitrina) {
+		    	 System.out.println(numero2 + "." + vendedor.getNombre());
+		    	 numero2+=1;
+		     }
+		     int opcion=sc.nextInt();
+		     Vendedor VendedorModificacion = vendedorVitrina.get(opcion-1);
+		     
 		     
 		     System.out.println("porfavor ingrese lel numero para la calidad que desea para su producto");
 		     System.out.println("1.Basico");
 		     System.out.println("2.Premium");
-		     ArrayList<Articulo> calidad = InventarioArticulo.selectorCalidad(productos);
+		     /*ArrayList<Articulo> calidad = InventarioArticulo.selectorCalidad(productos);
 		     int numero=0;
 		     System.out.println("Porfavor seleccione el numero del producto qe desea llevar");
 		     for (Articulo articulo : calidad) {
 		            System.out.println(numero + "." + articulo.getTipoArticulo());
 		            numero+=1;
 		        }
+		     int opcionProducto = sc.nextInt();
+		     
+		     
 		     
 		     
 		     
