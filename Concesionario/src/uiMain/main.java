@@ -258,6 +258,8 @@ public class main {
 										System.out.println(new TransaccionVenta("efectivo", auto.getPrecio(), comprador, auto, vendedor,transfer).info());
 										System.out.print("");
 										gestorAplicacion.personal.Trabajador.pago(vendedor, auto);
+										presupuestoInsuficiente = true;
+										break;
 									}
 								}
 							/*CREADOR DE TRANSACCION*/
@@ -329,6 +331,8 @@ public class main {
 									System.out.println(new TransaccionVenta("efectivo", auto.getPrecio(), comprador, auto, vendedor,transfer).info());
 									System.out.print("");
 									gestorAplicacion.personal.Trabajador.pago(vendedor, auto);
+									presupuestoInsuficiente = true;
+									break;
 								}
 							}else {break;}
 							/*CREADOR DE TRANSACCION*/
@@ -395,6 +399,8 @@ public class main {
 									System.out.println(new TransaccionVenta("efectivo", auto.getPrecio(), comprador, auto, vendedor,transfer).info());
 									System.out.print("");
 									gestorAplicacion.personal.Trabajador.pago(vendedor, auto);
+									presupuestoInsuficiente = true;
+									break;
 								}
 							}else {break;}
 							/*CREADOR DE TRANSACCION*/
@@ -450,6 +456,8 @@ public class main {
 						System.out.println(new TransaccionVenta("efectivo", auto.getPrecio(), comprador, auto, vendedor,transfer).info());
 						System.out.print("");
 						gestorAplicacion.personal.Trabajador.pago(vendedor, auto);
+						presupuestoInsuficiente = true;
+						break;
 					}
 				}
 				/*CREADOR DE TRANSACCION*/
