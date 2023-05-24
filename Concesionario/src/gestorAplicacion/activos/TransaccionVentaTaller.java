@@ -7,8 +7,8 @@ import gestorAplicacion.personal.*;
 
 public class TransaccionVentaTaller extends Transaccion implements Serializable{
 	private static final long serialVersionUID = 1L;
-	Articulo articulo;
-	Vendedor vendedor;
+	private Articulo articulo;
+	private Vendedor vendedor;
 	static ArrayList<TransaccionVentaTaller> transaccionesvental = new ArrayList<TransaccionVentaTaller>();
 	
 	public TransaccionVentaTaller(String tipo, long  ingreso, Cliente cliente, Articulo articulo, Vendedor vendedor, int transfer) {

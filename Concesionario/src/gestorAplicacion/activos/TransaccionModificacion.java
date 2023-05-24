@@ -7,9 +7,10 @@ import gestorAplicacion.personal.*;
 
 public class TransaccionModificacion extends Transaccion implements Serializable{
 	private static final long serialVersionUID = 1L;
-	Auto auto;
-	Mecanico mecanico;
-	Vendedor vendedor;
+	private Auto auto;
+	private Mecanico mecanico;
+	private Vendedor vendedor;
+	static ArrayList<TransaccionModificacion> transaccionesmod = new ArrayList<TransaccionModificacion>();
 	
 	public TransaccionModificacion(String tipo, long ingreso, Cliente cliente, Auto auto, Mecanico mecanico, Articulo articulo, int transfer) {
 		super(tipo, ingreso, cliente, transfer);
@@ -22,13 +23,13 @@ public class TransaccionModificacion extends Transaccion implements Serializable
 	public TransaccionModificacion(String tipo, long ingreso, Cliente cliente, Auto auto, Vendedor vendedor, Articulo articulo, int transfer) {
 		super(tipo, ingreso, cliente, transfer);
 		this.auto=auto;
-		this.vendedor=vendedor;
+		this.setVendedor(vendedor);
 		this.articulo=articulo;
 		TransaccionModificacion.transaccionesmod.add(this);
 		
 	}
 	
-	static ArrayList<TransaccionModificacion> transaccionesmod = new ArrayList<TransaccionModificacion>();
+
 	
 	@Override
 	public String info() {
@@ -94,6 +95,12 @@ public class TransaccionModificacion extends Transaccion implements Serializable
 
 	public static ArrayList<TransaccionModificacion> getTransaccionesmod() {
 	    return transaccionesmod;
+	}
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
 	}
 
 	

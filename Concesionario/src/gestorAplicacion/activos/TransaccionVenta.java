@@ -7,8 +7,8 @@ import gestorAplicacion.personal.*;
 
 public class TransaccionVenta extends Transaccion implements Serializable{
 	private static final long serialVersionUID = 1L;
-	Auto auto;
-	Vendedor vendedor;
+	private Auto auto;
+	private Vendedor vendedor;
 	static ArrayList<TransaccionVenta> transaccionesven = new ArrayList<TransaccionVenta>();
 	static ArrayList<Auto> autosV = new ArrayList<Auto>();
 	
