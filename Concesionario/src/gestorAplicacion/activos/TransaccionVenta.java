@@ -11,6 +11,8 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 	private Vendedor vendedor;
 	static ArrayList<TransaccionVenta> transaccionesven = new ArrayList<TransaccionVenta>();
 	static ArrayList<Auto> autosV = new ArrayList<Auto>();
+	static ArrayList<Vendedor> vend = new ArrayList<Vendedor>();
+	static ArrayList<String> marcas = new ArrayList<>();
 	
 	public TransaccionVenta(String tipo, long ingreso, Cliente cliente, Auto auto, Vendedor vendedor, int transfer) {
 		super(tipo, ingreso, cliente, transfer);
@@ -80,18 +82,16 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 	
 	// metodo para obtener los vendedores de las ventas realizadas y agregarlos a la lista "vendedores"
 	public static ArrayList<Vendedor> vendedoresVentas(ArrayList<TransaccionVenta> ventas) {
-	    ArrayList<Vendedor> vendedores = new ArrayList<>();
 	    for (TransaccionVenta transacc: ventas) {
-	    	if (vendedores.contains(transacc.getVendedor())) {
+	    	if (vend.contains(transacc.getVendedor())) {
 	    	} else {
-	    		vendedores.add(transacc.getVendedor());
+	    		vend.add(transacc.getVendedor());
 	    	}
 	    }
-	    return vendedores;
+	    return vend;
 	}
 	
 	public static ArrayList<String> marcasVentas(ArrayList<Auto> autosIniciales){
-		ArrayList<String> marcas = new ArrayList<>();
 		for (Auto a: autosIniciales) {
 			if (marcas.contains(a.getMarca())) {
 			} else {
@@ -113,4 +113,19 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 		}
 		return 0;
 	}
+    public static ArrayList<Vendedor> getVend() {
+        return vend;
+    }
+
+    public static void setVend(ArrayList<Vendedor> vendedores) {
+        vend = vendedores;
+    }
+
+    public static ArrayList<String> getMarcas() {
+        return marcas;
+    }
+
+    public static void setMarcas(ArrayList<String> listaMarcas) {
+        marcas = listaMarcas;
+    }
 }

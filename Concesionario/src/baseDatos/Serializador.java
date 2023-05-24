@@ -49,6 +49,8 @@ public class Serializador {
 		Serializador.serializarArrays(TransaccionTaller.getTransaccionestal(), "TransaccionesTaller");
 		Serializador.serializarArrays(TransaccionModificacion.getTransaccionesmod(), "TransaccionesModificacion");
 		Serializador.serializarArrays(TransaccionVenta.getAutosV(), "AutosV");
+		Serializador.serializarArrays(TransaccionVenta.getMarcas(), "Marcas");
+		Serializador.serializarArrays(TransaccionVenta.getVend(), "Vend");
 		
 	}
 	
