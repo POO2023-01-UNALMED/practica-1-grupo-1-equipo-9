@@ -943,7 +943,7 @@ public class main {
 		case 4:
 			
 			ArrayList<Auto> autosIniciales = TransaccionVenta.getAutosV();
-			ArrayList<Auto> autosVendidosMarca = TransaccionVenta.AutosVendidos(autosIniciales); //#2
+			ArrayList<String> marcasVentas = TransaccionVenta.marcasVentas(autosIniciales); //#2
 			
 			float numA = ((float)autosIniciales.size() / (InventarioAuto.getAutos().size())) * 100;
 			int roundedNumA = Math.round(numA);
@@ -952,22 +952,12 @@ public class main {
 			for (Auto a: autosIniciales){
 				System.out.println(a.info());
 			}
-
-			//marcas carros vendidos
-			ArrayList<String> marcasVentas = new ArrayList<>();
-			for (Auto a: autosIniciales){
-				if (marcasVentas.contains(a.getMarca())) {
-				} else {
-					marcasVentas.add(a.getMarca());
-				}
-			}
 			
 			//suma ($) y numero (#) total ventas
 			long sumaTotal2=0;
 			int contadorTotal2=0;
 			for (Transaccion trans1: TransaccionVenta.getTransaccionesven())
 				{
-				//System.out.println(trans1.getIngreso());
 				sumaTotal2+=trans1.getIngreso();
 				contadorTotal2+=1;
 				}

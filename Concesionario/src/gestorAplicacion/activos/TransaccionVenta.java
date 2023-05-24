@@ -90,15 +90,15 @@ public class TransaccionVenta extends Transaccion implements Serializable{
 	    return vendedores;
 	}
 	
-	public static ArrayList<Auto> AutosVendidos(ArrayList<Auto> autosIniciales){
-		ArrayList<Auto> autosvend = new ArrayList<>();
+	public static ArrayList<String> marcasVentas(ArrayList<Auto> autosIniciales){
+		ArrayList<String> marcas = new ArrayList<>();
 		for (Auto a: autosIniciales) {
-			if (autosvend.contains(a)) {
+			if (marcas.contains(a.getMarca())) {
 			} else {
-				autosvend.add(a);
+				marcas.add(a.getMarca());
 			}
 		}
-		return autosvend;
+		return marcas;
 	}
 	
 	public static ArrayList<Auto> getAutosV(){
