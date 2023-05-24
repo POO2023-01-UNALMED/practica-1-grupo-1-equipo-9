@@ -49,13 +49,6 @@ public class InventarioArticulo implements Serializable{
     public static void setArticulos(ArrayList<Articulo> Articulos) {
     	InventarioArticulo.articulos = Articulos;
     }
-    // Método para mostrar la información de todos los artículos en el inventario
-    public static void mostrarInventario() {
-        System.out.println("Inventario de Artículos:");
-        for (Articulo articulo : articulos) {
-            System.out.println(articulo.articulosDisponibles());
-        }
-    }
     public static ArrayList<Articulo> articuloDispo(Mecanico mecanico) {
   	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
   	    for (Articulo articulo : getArticulos()) {
