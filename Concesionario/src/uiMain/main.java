@@ -123,8 +123,10 @@ public class main {
 					System.out.println("La cédula ingresada no se encuentra registrada. Por favor, vuelva a ingresarla.");
 				}
 			}
-			if (comprador.getPresupuesto()<3500000) {
+			if (comprador.getPresupuesto()<35000000) {
 				presupuestoInsuficiente = true;
+				System.out.println("Usted no tiene el presupuesto mínimo para comprar algún carro del inventario.");
+				break;
 			}
 			
 			/*Selección del carro*/
