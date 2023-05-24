@@ -1175,7 +1175,8 @@ public class main {
 	    System.out.print("\n¿Desea utilizar el taller con mecánicos o solo desea asignar un vendedor? (taller/vendedor): ");
 	    String opcionTaller = sc.nextLine();
 
-	    if (opcionTaller.equalsIgnoreCase("taller")) {
+	    String confirmarVendedor;
+		if (opcionTaller.equalsIgnoreCase("taller")) {
 	        System.out.println("Hola");
 	        ArrayList<Mecanico> mecanicos1 = Mecanico.getMecanicos();
 	        int tamañoMecanicos=1;
@@ -1253,7 +1254,7 @@ public class main {
 	                    System.out.println("El costo total de la transacción es: " + costoTotal);
 	                  //Reune todos los objetos y crea un objeto llamado transaccion.
     					int transfer = (int) (Math.random() * 1000);
-    					System.out.print(new TransaccionModificacion("Personalizacion de auto",costoTotal,propietario,propietario.getAuto(), mecanico, producto, transfer).info()+"\n");
+    					System.out.print(new TransaccionModificacion("Personalizacion de auto con taller",costoTotal,propietario,propietario.getAuto(), mecanico, producto, transfer).info()+"\n");
     					mecanico.pagoSvcs+=mecanico.getManoObra();
 	                }
 	            } else {
@@ -1312,76 +1313,34 @@ public class main {
 		    	}
 		     
 		     ArrayList<Vendedor> vendedorVitrina= Vendedor.selectorVendedor(producto);
-		     System.out.println("Porfavor seleccione el vendedor que desea para su compra");
+		     System.out.println("Porfavor seleccione el del numero vendedor que desea para su compra");
 		     int numero2=1;
 		     for (Vendedor vendedor : vendedorVitrina) {
 		    	 System.out.println(numero2 + "." + vendedor.getNombre());
 		    	 numero2+=1;
 		     }
 		     int opcion=sc.nextInt();
-		     Vendedor VendedorModificacion = vendedorVitrina.get(opcion-1);
-		     
-		     
-		     System.out.println("porfavor ingrese lel numero para la calidad que desea para su producto");
-		     System.out.println("1.Basico");
-		     System.out.println("2.Premium");
-		     /*ArrayList<Articulo> calidad = InventarioArticulo.selectorCalidad(productos);
-		     int numero=0;
-		     System.out.println("Porfavor seleccione el numero del producto qe desea llevar");
-		     for (Articulo articulo : calidad) {
-		            System.out.println(numero + "." + articulo.getTipoArticulo());
-		            numero+=1;
-		        }
-		     int opcionProducto = sc.nextInt();
-		     
-		     
-		     
-		     
-		     
-	    	
-		    /* ArrayList<Vendedor> vendedores = Vendedor.selectorVend(auto);
-		     
-	        
-	        
-	        
-	        if (vendedores.size() >= 1) {
-	            System.out.println("\nLos vendedores disponibles son:");
-	            for (int i = 0; i < vendedores.size(); i++) {
-	                System.out.println((i + 1) + ". " + vendedores.get(i).getNombre());
-	            }
-	            
-	            int num;
-	            
-	            do {
-	                System.out.print("Seleccione el número del vendedor [1-" + vendedores.size() + "]: ");
-	                num = sc.nextInt();
-	                sc.nextLine();
-	                if (num < 1 || num > vendedores.size()) {
-	                    System.out.println("Opción inválida. Introduzca un número válido.");
-	                }
-	            } while (num < 1 || num > vendedores.size());
-	            
-	            Vendedor vendedor = vendedores.get(num - 1);
-	            
-	            System.out.print("\n¿Confirma el vendedor seleccionado? (si/no): ");
-	            String confirmar = sc.nextLine();
-	            
-	            if (confirmar.equalsIgnoreCase("si")) {
-	                TransaccionModificacion nuevaTransaccion = new TransaccionModificacion(auto, propietario, vendedor, opcion);
-	                
-	                auto.actualizarPersonalizacion(opcion);
-	                
-	                System.out.println("\nDetalles de la transacción:");
-	                System.out.println(nuevaTransaccion);
-	                
-	                vendedor.confirmarVenta();
-	            } else {
-	                System.out.println("Transacción cancelada.");
-	            }
-	        } else {
-	            System.out.println("No hay vendedores disponibles para el vehículo seleccionado.");
-	        }
-	    }*/
+		     Vendedor vendedorModificacion = vendedorVitrina.get(opcion-1);
+		     System.out.print("¿Confirmar vendedor? (si/no)");
+				confirmarVendedor = sc.nextLine();
+				confirmarVendedor = sc.nextLine();
+		 	   if(!confirmarVendedor.equals("no")) {
+		 		   	String confirmarTrans=null;
+		 		    System.out.println("El costo total de la transacción es: " + producto.getPrecio());
+					System.out.print("¿Desea confirmar la transaccion? (si/no)");
+					confirmarTrans= sc.nextLine();
+		 		   if(!confirmarTrans.equals("no")) {
+		 	        vendedorModificacion.confirmarVenta();
+					producto.cantidad--;
+					Trabajador.pago(vendedorModificacion,producto);
+					int transfer = (int) (Math.random() * 1000);
+					System.out.println(new TransaccionModificacion("Personalizacion de auto sin taller", producto.getPrecio(), propietario, propietario.getAuto(), vendedorModificacion, producto, transfer).info());
+		 	   }
+		 		   else {
+						System.out.print("Transaccion cancelada"+"\n");
+		 		   }
+	
+		 	   }
 	               
 	}
 
