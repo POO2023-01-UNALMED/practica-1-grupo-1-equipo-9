@@ -1298,6 +1298,13 @@ public class main {
 	                  //Reune todos los objetos y crea un objeto llamado transaccion.
     					int transfer = (int) (Math.random() * 1000);
     					System.out.print(new TransaccionModificacion("Personalizacion de auto con taller",costoTotal,propietario,propietario.getAuto(), mecanico, producto, transfer).info2()+"\n");
+    					if(producto.getEspecialidad().equals("Llantas")) {
+    						producto.cantidad-=4;
+    						auto.setLlantas(producto);
+    					}
+    					else {
+    						producto.cantidad--;
+    					}
     					mecanico.pagoSvcs+=mecanico.getManoObra();
 	                }
 	            } else {
@@ -1378,6 +1385,13 @@ public class main {
 					Trabajador.pago(vendedorModificacion,producto);
 					int transfer = (int) (Math.random() * 1000);
 					System.out.println(new TransaccionModificacion("Personalizacion de auto sin taller", producto.getPrecio(), propietario, propietario.getAuto(), vendedorModificacion, producto, transfer).info());
+					if(producto.getEspecialidad().equals("Llantas")) {
+						producto.cantidad-=4;
+						auto.setLlantas(producto);
+					}
+					else {
+						producto.cantidad--;
+					}
 		 	   }
 		 		   else {
 						System.out.print("Transaccion cancelada"+"\n");
