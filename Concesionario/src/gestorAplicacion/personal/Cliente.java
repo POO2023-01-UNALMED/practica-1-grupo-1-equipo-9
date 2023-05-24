@@ -9,11 +9,11 @@ public class Cliente implements Persona, Serializable{
 
 	private static final long serialVersionUID = 1L;
 	static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-	String nombre;
-	long cedula;
-	long telefono;
-	String correo;
-	String direccion;
+	protected String nombre;
+	protected long cedula;
+	protected long telefono;
+	protected String correo;
+	protected String direccion;
 	private String modeloInteres;
 	private long presupuesto;
 	private Auto auto;

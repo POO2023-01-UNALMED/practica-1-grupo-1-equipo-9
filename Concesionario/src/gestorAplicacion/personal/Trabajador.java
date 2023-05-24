@@ -8,14 +8,14 @@ import gestorAplicacion.activos.TransaccionTaller;
 
 public abstract class Trabajador implements Persona,Serializable{
 	private static final long serialVersionUID = 1L;
-	String nombre;
-	long cedula;
-	long telefono;
-	String correo;
-	String direccion;
-	double salario;
-	String banco;
-	long cuentaBanco;
+	protected String nombre;
+	protected long cedula;
+	protected long telefono;
+	protected String correo;
+	protected String direccion;
+	protected double salario;
+	private String banco;
+	private long cuentaBanco;
 
 	public Trabajador(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
 			String banco, long cuentaBanco) {

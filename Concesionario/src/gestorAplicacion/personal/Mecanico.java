@@ -8,10 +8,10 @@ import gestorAplicacion.activos.*;
 public class Mecanico extends Trabajador implements Serializable{
 	private static final long serialVersionUID = 1L;
 	static ArrayList<Mecanico> mecanicos = new ArrayList<Mecanico>();
-	String autos;
-	String especialidad;
+	protected String autos;
+	protected String especialidad;
 	public long pagoSvcs=0;
-	long manoObra;
+	protected long manoObra;
 	ArrayList<String> horario=new ArrayList<String>() {{add("9:00-11:00");add("11:00-1:00");add("2:00-4:00");add("4:00-6:00");}};
 
 	public Mecanico(String nombre, long cedula, long telefono, String correo, String direccion, double salario,
