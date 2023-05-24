@@ -621,6 +621,7 @@ public class main {
 						articulo.cantidad--;
 					}
 					System.out.print("");
+					Trabajador.pago(mecanico);
 				}
 				else {
 					System.out.print("Transaccion cancelada"+"\n");
@@ -760,6 +761,7 @@ public class main {
 				 		   if(!confirmarTrans.equals("no")) {
 				 	        vendedor.confirmarVenta();
 							articulo.cantidad--;
+							Trabajador.pago(vendedor,articulo);
 							int transfer = (int) (Math.random() * 1000);
 							System.out.println(new TransaccionVentaTaller("efectivo", articulo.getPrecio(), comprador, articulo, vendedor,transfer).info());
 							System.out.print("La Factura le llegara a el correo: "+ comprador.getCorreo());

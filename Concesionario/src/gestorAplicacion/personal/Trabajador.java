@@ -2,6 +2,7 @@ package gestorAplicacion.personal;
 
 import java.io.Serializable;
 
+import gestorAplicacion.activos.Articulo;
 import gestorAplicacion.activos.Auto;
 import gestorAplicacion.activos.TransaccionTaller;
 
@@ -57,11 +58,15 @@ public abstract class Trabajador implements Persona,Serializable{
 		this.cuentaBanco = cuentaBanco;
 	}
 	
-	public void pago(Mecanico mec) {
+	public static void pago(Mecanico mec) {
 		mec.setSalario(mec.getManoObra()+mec.getSalario());
 	}
 	
-	public void pago(Vendedor vend, Auto a) {
+	public static void pago(Vendedor vend, Auto a) {
+		vend.setSalario(vend.getSalario()+((a.getPrecio())*Vendedor.comision));
+		
+	}
+	public static void pago(Vendedor vend, Articulo a) {
 		vend.setSalario(vend.getSalario()+((a.getPrecio())*Vendedor.comision));
 	}
 	@Override
