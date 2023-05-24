@@ -8,7 +8,7 @@ import gestorAplicacion.personal.*;
 
 public class InventarioArticulo implements Serializable{
 	private static final long serialVersionUID = 1L;
-	static Scanner sc = new Scanner(System.in);
+	protected static Scanner sc = new Scanner(System.in);
     static ArrayList<Articulo> articulos = new ArrayList<>();
     static ArrayList<Articulo> repuestos = new ArrayList<>();
     
@@ -48,13 +48,6 @@ public class InventarioArticulo implements Serializable{
      * con una nueva lista proporcionada.*/
     public static void setArticulos(ArrayList<Articulo> Articulos) {
     	InventarioArticulo.articulos = Articulos;
-    }
-    // Método para mostrar la información de todos los artículos en el inventario
-    public static void mostrarInventario() {
-        System.out.println("Inventario de Artículos:");
-        for (Articulo articulo : articulos) {
-            System.out.println(articulo.articulosDisponibles());
-        }
     }
     public static ArrayList<Articulo> articuloDispo(Mecanico mecanico) {
   	   ArrayList<Articulo> prods = new ArrayList<Articulo>();

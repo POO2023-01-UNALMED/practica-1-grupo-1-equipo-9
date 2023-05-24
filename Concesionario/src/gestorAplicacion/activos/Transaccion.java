@@ -8,12 +8,12 @@ import gestorAplicacion.personal.*;
 public abstract class Transaccion implements Serializable{
 	private static final long serialVersionUID = 1L;
 	static ArrayList<Transaccion> transacciones = new ArrayList<Transaccion>();
-	String tipo;
-	int transfer;
-	Mecanico mecanico;
-	long ingreso;
-	Cliente cliente;
-	Articulo articulo;
+	private String tipo;
+	protected int transfer;
+	protected Mecanico mecanico;
+	protected long ingreso;
+	protected Cliente cliente;
+	protected Articulo articulo;
 	static long numtrans=00000001;
 	
 	

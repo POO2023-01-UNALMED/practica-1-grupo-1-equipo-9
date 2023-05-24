@@ -7,9 +7,9 @@ import gestorAplicacion.personal.*;
 
 public class TransaccionTaller extends Transaccion implements Serializable{
 	private static final long serialVersionUID = 1L;
-	Auto auto;
-	Mecanico mecanico;
-	Articulo articulo;
+	private Auto auto;
+	private Mecanico mecanico;
+	private Articulo articulo;
 	static ArrayList<TransaccionTaller> transaccionestal = new ArrayList<TransaccionTaller>();
 	
 	public TransaccionTaller(String tipo, long ingreso, Cliente cliente, Auto auto,Articulo articulo, Mecanico mecanico, int transfer) {
