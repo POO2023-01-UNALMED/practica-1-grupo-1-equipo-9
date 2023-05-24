@@ -234,6 +234,7 @@ public class Mecanico extends Trabajador implements Serializable{
 	int calcularSalario() {
 		return (int) (pagoSvcs+getSalario());
 	}
+	@Override
 	public String info() {
 		String texto = "Nombre del Mecanico: " + getNombre() + "\n";
 		return texto;

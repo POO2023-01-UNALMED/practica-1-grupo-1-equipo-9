@@ -59,7 +59,7 @@ public class Vendedor extends Trabajador implements Serializable{
 	int calcularSalario() {
 		return (int) (getSalario()+(ventas*comision));
 	}
-	
+	@Override
 	public String info() {
 		String texto = "Nombre del Vendedor: " + getNombre() + "\n";
 		return texto;

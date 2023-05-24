@@ -14,6 +14,7 @@ public interface Persona {
     void setTelefono(long telefono);
     void setCorreo(String correo);
     void setDireccion(String direccion);
+    public String info();
 }
 
 

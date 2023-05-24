@@ -76,7 +76,7 @@ public class Cliente implements Persona, Serializable{
 	public static void setClientes(ArrayList<Cliente> clientes) {
 		Cliente.clientes = clientes;
 	}
-	
+	@Override
 	public String info() {
 		String texto = "Nombre del cliente: " + getNombre() + "\n";
 		return texto;
