@@ -1344,16 +1344,32 @@ public class main {
 		 	        System.out.println("No hay productos disponibles para su vehiculo");
 		 	    }
 	    	
-		     
-		     ArrayList<Vendedor> vendedorVitrina= Vendedor.selectorVendedor(articulo);
-		     System.out.println("Porfavor seleccione el del numero vendedor que desea para su compra");
-		     int numero2=1;
-		     for (Vendedor vendedor : vendedorVitrina) {
-		    	 System.out.println(numero2 + "." + vendedor.getNombre());
-		    	 numero2+=1;
-		     }
-		     int opcion=sc.nextInt();
-		     Vendedor vendedorModificacion = vendedorVitrina.get(opcion-1);
+		 	   Vendedor vendedor=null;
+		 	   ArrayList<Vendedor> vendedores= Vendedor.selectorVend(articulo);
+				String resultado = String.format("%-40s%-15s%n", "   Vendedor", "   Tipo de venta");
+		 	    byte v=0;
+		 	    for (Vendedor vend:vendedores) {
+		 	    	v++;
+	 	            String vendedorinfo = String.format("%-40s%-15s%n", vend.getNombre(), vend.getPuesto());
+	 	            resultado += String.format("%-3d%s", v, vendedorinfo );
+		 	    }if (vendedores.size() >= 1) {
+		 	        System.out.println("Los vendedores de " + vendedores.get(0).getPuesto() + " disponibles son:\n");
+		 	        System.out.println(resultado);
+		 	        int num = 0;
+		 	        while (num <= 0 || num > vendedores.size()) {
+		 	            System.out.println("Seleccione el numero del vendedor" + "[1-" + vendedores.size() + "]: ");
+		 	            if (sc.hasNextInt()) {
+		 	                num = sc.nextInt();
+		 	            } else {
+		 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + vendedores.size() + ".");
+		 	                sc.nextLine(); // Limpiar la entrada no válida
+		 	            }
+		 	        }
+		 	        vendedor = vendedores.get(num - 1);
+
+		 	    } else if (vendedores.size() == 0) {
+		 	        System.out.println("No hay vendedores disponibles para su vehiculo");
+		 	    }
 		     System.out.print("¿Confirmar vendedor? (si/no)");
 				confirmarVendedor = sc.nextLine();
 				confirmarVendedor = sc.nextLine();
@@ -1363,11 +1379,11 @@ public class main {
 					System.out.print("¿Desea confirmar la transaccion? (si/no)");
 					confirmarTrans= sc.nextLine();
 		 		   if(!confirmarTrans.equals("no")) {
-		 	        vendedorModificacion.confirmarVenta();
+		 	        vendedor.confirmarVenta();
 					articulo.cantidad--;
-					Trabajador.pago(vendedorModificacion,articulo);
+					Trabajador.pago(vendedor,articulo);
 					int transfer = (int) (Math.random() * 1000);
-					System.out.println(new TransaccionModificacion("Personalizacion de auto sin taller",articulo.getPrecio(), propietario, propietario.getAuto(), vendedorModificacion, articulo, transfer).info());
+					System.out.println(new TransaccionModificacion("Personalizacion de auto sin taller",articulo.getPrecio(), propietario, propietario.getAuto(), vendedor, articulo, transfer).info());
 					if(articulo.getEspecialidad().equals("Llantas")) {
 						articulo.cantidad-=4;
 						auto.setLlantas(articulo);
