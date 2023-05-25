@@ -123,7 +123,7 @@ public class InventarioArticulo implements Serializable{
                 break;
             case 5: 
             	especialidad="Pintura";
-            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+            	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
         	            artic.add(articulo);
         	        }
@@ -131,8 +131,8 @@ public class InventarioArticulo implements Serializable{
         	    }
                 break;
             case 6: 
-            	especialidad="Llanta";
-            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+            	especialidad="Llantas";
+            	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
         	            artic.add(articulo);
         	        }
@@ -141,7 +141,7 @@ public class InventarioArticulo implements Serializable{
                 break;
             case 7: 
             	especialidad="Sonido";
-            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+            	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
         	            artic.add(articulo);
         	        }
@@ -150,7 +150,7 @@ public class InventarioArticulo implements Serializable{
                 break;
             case 8: 
             	especialidad="Frenos";
-            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+            	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
         	            artic.add(articulo);
         	        }
@@ -159,7 +159,7 @@ public class InventarioArticulo implements Serializable{
                 break;
             case 9: 
             	especialidad="Escape";
-            	for (Articulo articulo : InventarioArticulo.getRepuesto()) {
+            	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
         	            artic.add(articulo);
         	        }
@@ -289,9 +289,6 @@ public class InventarioArticulo implements Serializable{
 	       	        }
 	       	    }
 	       	 salir="si";
-			default:
-				System.out.print("\n¿Salir? (si/no)");
-				salir = sc.nextLine();
 			} 
 		}while(salir==null);
 		return articul;

@@ -1273,7 +1273,8 @@ public class main {
 	                producto = productos.get(opcionProd - 1);
 			    	}
 	                System.out.print("¿Confirma el procedimiento, el mecánico y el producto? (si/no): ");
-	                String confirmarTrans = sc.nextLine();
+	                String confirmarTrans = null;
+	                confirmarTrans = sc.nextLine();
 
 	                if (confirmarTrans.equalsIgnoreCase("si")) {
 	                    int num1;
@@ -1334,7 +1335,6 @@ public class main {
 		    	 System.out.println("2. Llanta terreno de barro");
 		    	 System.out.println("3. Llanta terreno de asfalto");
 		    	 ArrayList<Articulo> tipoLlantas = InventarioArticulo.selectorTipoLlantas(productos);
-		    	 System.out.println(tipoLlantas);
 		    	 
 		    	 System.out.println("Porfavor ingrese el numero del producto que desea llevar para su modificacion");
 		    	 int numero1=1;
@@ -1351,7 +1351,7 @@ public class main {
 		    		 //new TransaccionModificaacion()
 		    	 
 		    	}else {
-		    		System.out.println("Porfavor seleccione del producto que desea llevar para su modificacion");
+		    		System.out.println("Por favor selecione del producto que desea llevar para su modificacion");
 		    		int numero=1;
 		    		for (Articulo articulo : productos) {
 			    		   System.out.println(numero + "." + articulo.getTipoArticulo() + "de la marca" + articulo.getMarca() + " con precio: " + articulo.getPrecio());
