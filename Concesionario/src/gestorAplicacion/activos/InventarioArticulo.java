@@ -121,7 +121,26 @@ public class InventarioArticulo implements Serializable{
         	        salir="si";
         	    }
                 break;
-            case 5: 
+			default:
+				System.out.print("\n¿Salir? (si/no)");
+				salir = sc.nextLine();
+			} 
+		}while(salir==null);
+		return artic;
+    }
+    
+    public static ArrayList<Articulo> selectorModificacion() {
+
+		String salir=null;
+		 byte input;
+		 String especialidad=null;
+		 ArrayList<Articulo> artic = new ArrayList<Articulo>();
+		do {
+
+	        input = sc.nextByte();
+
+	        switch (input) {
+            case 1: 
             	especialidad="Pintura";
             	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
@@ -130,7 +149,7 @@ public class InventarioArticulo implements Serializable{
         	        salir="si";
         	    }
                 break;
-            case 6: 
+            case 2: 
             	especialidad="Llantas";
             	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
@@ -139,7 +158,7 @@ public class InventarioArticulo implements Serializable{
         	        salir="si";
         	    }
                 break;
-            case 7: 
+            case 3: 
             	especialidad="Sonido";
             	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
@@ -148,7 +167,7 @@ public class InventarioArticulo implements Serializable{
         	        salir="si";
         	    }
                 break;
-            case 8: 
+            case 4: 
             	especialidad="Frenos";
             	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
@@ -157,7 +176,7 @@ public class InventarioArticulo implements Serializable{
         	        salir="si";
         	    }
                 break;
-            case 9: 
+            case 5: 
             	especialidad="Escape";
             	for (Articulo articulo : InventarioArticulo.getArticulos()) {
         	        if (especialidad.equals(articulo.getEspecialidad())) {
@@ -174,6 +193,7 @@ public class InventarioArticulo implements Serializable{
 		}while(salir==null);
 		return artic;
     }
+    
     public static ArrayList<Articulo> selectorCalidad(ArrayList<Articulo> artic) {
     	String salir=null;
 		 byte input;

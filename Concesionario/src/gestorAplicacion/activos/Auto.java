@@ -35,6 +35,12 @@ public class Auto implements Serializable{
 		InventarioAuto.autos.add(this);
 	}
 	
+	public enum MarcaAuto {
+		TOYOTA,
+		CHEVROLET,
+		MAZDA
+		}
+	
 	public String getModelo() {
 		return modelo;
 	}
