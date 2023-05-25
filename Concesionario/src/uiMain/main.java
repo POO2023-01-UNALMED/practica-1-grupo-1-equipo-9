@@ -824,34 +824,12 @@ public class main {
 	}
 	
 	public static void stats() {
-		
-		//objetos de prueba
-//		Articulo llantas = Articulo.getArticuloPorReferencia(3001);
-//		Articulo suspension = Articulo.getArticuloPorReferencia(3002);
-//		Articulo sonido = Articulo.getArticuloPorReferencia(3003);
-//		Articulo escape = Articulo.getArticuloPorReferencia(3004);
-//		Cliente c1= new Cliente("Ana González", 12345678, 87654321, "Calle 5ta, #10-23", "Bogotá", "Toyota", 40000000);
-//		Cliente c2= new Cliente("Juan Pérez", 102367459, 300987654, "Carrera 12, #34-56", "Medellín", "Toyota", 35000000);
-//		Auto aa1= new Auto("Hilux", "Toyota", 1000, 2700, "verde fofo", true, true,llantas,suspension,sonido,escape);
-//		Auto aa2= new Auto("Corolla", "Chevrolet", 2000, 2000, "negro", false, true,llantas,suspension,sonido,escape);
-//		Auto aa3= new Auto("Hilux", "Toyota", 3000, 2700, "azul", true, true,llantas,suspension,sonido,escape);
-//		Auto aa4= new Auto("Corolla", "Chevrolet", 4000, 2000, "rosa", false, true,llantas,suspension,sonido,escape);
-//		Vendedor vendedorr1 = new Vendedor("Juan Guaido", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1000.0, "Banco Ejemplo", 987654321,"Vitrina");
-//		Vendedor vendedorr2 = new Vendedor("Pedro Mojica", 987654321, 5554321, "pedro@ejemplo.com", 1500.0, "Banco Otro Ejemplo", 123456789,"Repuestos");
-//		Transaccion trr1=new TransaccionVenta ("efectivo",1000,c1,aa1,vendedorr1,1);
-//		Transaccion trr2=new TransaccionVenta ("efectivo",2000,c2,aa2,vendedorr1,2);
-//		Transaccion trr3=new TransaccionVenta ("efectivo",3000,c1,aa3,vendedorr2,3);
-//		Transaccion trr4=new TransaccionVenta ("efectivo",4000,c2,aa4,vendedorr2,4);
-//		Mecanico mecanico1 = new Mecanico("Juan Pérez", 123456789, 987654321, "juan@example.com", "Calle Principal 123", 2000.0, "Banco A", 12345, "Toyota, Honda", "Mecánica General", 30);
-//		Mecanico mecanico2 = new Mecanico("María Rodríguez", 234567890, 876543210, "maria@example.com", "Avenida Central 456", 1800.0, "Banco B", 9876, "Ford, Chevrolet", "Electricidad Automotriz", 25);
-//		Mecanico mecanico3 = new Mecanico("Carlos Gómez", 345678901, 765432109, "carlos@example.com", "Calle Secundaria 789", 2200.0, "Banco C", 45678, "Nissan, Hyundai", "Transmisiones", 35);
-//		Mecanico mecanico4 = new Mecanico("Laura López", 456789012, 654321098, "laura@example.com", "Avenida Principal 987", 1900.0, "Banco D", 345, "Volkswagen, BMW", "Frenos", 28);
-//		Mecanico mecanico5 = new Mecanico("Pedro Ramírez", 567890123, 543210987, "pedro@example.com", "Calle Central 321", 2100.0, "Banco E", 23456, "Mercedes-Benz, Audi", "Suspensión", 32);
-//		TransaccionTaller transaccion1 = new TransaccionTaller("Reparación", 1000, c1, aa1, llantas, mecanico1, 0);
-//		TransaccionTaller transaccion2 = new TransaccionTaller("Mantenimiento", 500, c2, aa2, suspension, mecanico2, 1);
-//		TransaccionTaller transaccion3 = new TransaccionTaller("Cambio de aceite", 200, c1, aa3, sonido, mecanico3, 0);
-//		TransaccionTaller transaccion4 = new TransaccionTaller("Reemplazo de frenos", 800, c2, aa4, escape, mecanico4, 1);
-//		TransaccionTaller transaccion5 = new TransaccionTaller("Inspección", 300, c1, aa2, llantas, mecanico5, 0);
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Bienvenido al portal de estadisticas de nuestro concesionario"+"\n");
+		System.out.print("Introduzca su cedula"+"\n"); //3355479
+		long cedula=sc.nextLong();
+		Vendedor admin=Vendedor.getVendedorPorCedula(cedula);
+		if(admin!=null&&admin.getPuesto().equals("admin")) {
 		
 		// info servicios
 		Integer[] servicios = new Integer[6];
@@ -885,7 +863,7 @@ public class main {
         valgf[3] = 1200000;
         valgf[4] = 1300000;
         
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		byte opcion;
 		
 		LocalDate fecha = LocalDate.now();
@@ -942,7 +920,10 @@ public class main {
 				}
 				float num2 = ((float)suma / sumaTotal) * 100;
 				int roundedSum = Math.round(num2);
-				System.out.println(vend.getNombre() + ": " + suma + " $, el " + roundedSum + " % del total de ingresos por ventas de autos.");
+				if (suma!=0){
+					System.out.println(vend.getNombre() + ": " + suma + " $, el " + roundedSum + " % del total de ingresos por ventas de autos.");
+				}
+	
 			}
 			
 			// System.out.println("\n" + "-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
@@ -958,7 +939,7 @@ public class main {
 						suma2+=trans1.getIngreso();
 					}
 				}
-				int num3 = (suma2 / contador);
+				
 				float num4 = ((float)contador/contadorTotal)*100;
 				int roundedNum4 = Math.round(num4);
 				//int roundedNum3 = Math.round(num3);
@@ -1152,6 +1133,9 @@ public class main {
 			
 		break;
 		}
+		}else {
+			System.out.print("Usted no es Administrador, por tanto no puede acceder");
+		}
 	}
 	
 	public static byte readByte() {
@@ -1159,7 +1143,7 @@ public class main {
 	    byte num = scanner.nextByte();
 	    return num;
 	    
-	    
+	 
 	}
 	public static void personalizarAuto() {
 	    Scanner sc = new Scanner(System.in);
