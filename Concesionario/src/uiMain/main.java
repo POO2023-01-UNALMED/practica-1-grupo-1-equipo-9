@@ -1273,7 +1273,7 @@ public class main {
 	                producto = productos.get(opcionProd - 1);
 			    	}
 	                System.out.print("¿Confirma el procedimiento, el mecánico y el producto? (si/no): ");
-	                String confirmarTrans = null;
+	                String confirmarTrans = sc.nextLine();
 	                confirmarTrans = sc.nextLine();
 
 	                if (confirmarTrans.equalsIgnoreCase("si")) {
