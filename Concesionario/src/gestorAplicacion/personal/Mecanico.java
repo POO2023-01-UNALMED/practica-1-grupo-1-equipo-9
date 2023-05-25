@@ -162,6 +162,74 @@ public class Mecanico extends Trabajador implements Serializable{
 	    } while(salir.equals(null));
 	    return mechs;
 	}
+	public static ArrayList<Mecanico> mecanicoModif(Auto auto) {
+	    Scanner sc = new Scanner(System.in);
+	    byte input;
+	    String salir = null;
+	    String especialidad=null;
+	    ArrayList<Mecanico> mechs = new ArrayList<Mecanico>();
+	    
+	    do {
+
+	        input = sc.nextByte();
+
+	        switch (input) {
+            case 1:
+                especialidad="ModificacionPintura";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+                
+            case 2:
+                especialidad="ModificacionLlantas";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+                
+            case 3:
+                especialidad="ModificacionSonido";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+                
+            case 4:
+                especialidad="ModificacionFrenos";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+                
+            case 5:
+                especialidad="ModificacionEscape";
+        	    for (Mecanico mecanico : getMecanicos()) {
+        	    	if (especialidad.equals(mecanico.getEspecialidad())&& auto.getMarca().equals(mecanico.getAutos())) {
+        	            mechs.add(mecanico);
+        	        }
+        	        salir="si";
+        	    }
+                break;
+			default:
+				System.out.print("\n¿Salir? (si/no)");
+				salir = sc.nextLine();
+			} 
+	    } while(salir.equals(null));
+	    return mechs;
+	}
 	public static Mecanico getMecanicoPorCedula(long cedula){
 		Mecanico finder = null;
 		for(Mecanico mecanico: mecanicos) {

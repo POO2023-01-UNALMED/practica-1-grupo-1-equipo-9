@@ -1203,11 +1203,8 @@ public class main {
 		    System.out.println("4. Modificacion de frenos");
 		    System.out.println("5. Modificacion del escape");
 		    System.out.print("Ingrese el número de la opción que va a utilizar: ");
-	        ArrayList<Mecanico> mecanicosDisp = Mecanico.mecanicoDisponible(propietario.getAuto());
-
-	        if (mecanicosDisp.size() >= 1) {
-
-	            ArrayList<Mecanico> mecanicos=Mecanico.mecanicoDisponible(auto);
+		    
+	            ArrayList<Mecanico> mecanicos=Mecanico.mecanicoModif(auto);
 				//Selector
 				Scanner sc1 = new Scanner(System.in);
 			    String result = String.format("%-20s%-20s%-10s%-10s%n", "   Nombre","   Cedula", "   Atiende", "   Especialidad");
@@ -1305,7 +1302,7 @@ public class main {
     					mecanico.pagoSvcs+=mecanico.getManoObra();
 	                }
 	            
-	            }
+	            
 	        } 
 	     
 	    else if (opcionTaller.equalsIgnoreCase("vendedor")) {
