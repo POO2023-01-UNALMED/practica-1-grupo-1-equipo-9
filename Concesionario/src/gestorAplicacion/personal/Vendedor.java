@@ -91,17 +91,7 @@ public class Vendedor extends Trabajador implements Serializable{
 		}
 			return vendedores;		
 	}
-	public static ArrayList<Vendedor> selectorVendedor(Articulo o) {
-		String vende=null;
-		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
-			vende="Vitrina";
-			for (Vendedor vendedor : getVendedores()) {
-    	        if (vende.equals(vendedor.getPuesto())) {
-    	            vendedores.add(vendedor);
-    	        }
-		}
-			return vendedores;		
-	}
+
 
 	@Override
 	public String getNombre() {
