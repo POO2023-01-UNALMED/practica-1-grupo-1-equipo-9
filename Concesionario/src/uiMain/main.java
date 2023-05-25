@@ -633,6 +633,7 @@ public class main {
 					System.out.print(new TransaccionTaller("taller",costoTotal,propietario,propietario.getAuto(),articulo, mecanico,transfer).info()+"\n");
 					System.out.print("La Factura le llegara a el correo: "+ propietario.getCorreo());
 					mecanico.pagoSvcs+=mecanico.getManoObra();
+					Trabajador.pago(mecanico);
 					if(articulo.getEspecialidad().equals("Llantas")) {
 						articulo.cantidad-=4;
 						auto.setLlantas(articulo);
@@ -641,7 +642,7 @@ public class main {
 						articulo.cantidad--;
 					}
 					System.out.print("");
-					Trabajador.pago(mecanico);
+					
 				}
 				else {
 					System.out.print("Transaccion cancelada"+"\n");
