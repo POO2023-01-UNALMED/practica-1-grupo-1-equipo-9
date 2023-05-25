@@ -33,12 +33,12 @@ public class TransaccionModificacion extends Transaccion implements Serializable
 	
 	@Override
 	public String info() {
-		String txt = String.format("Transacción " + transfer + getTipo() + "realizada por el vendedor " + vendedor.getNombre() + "para el cliente "  
+		String txt = String.format("Transacción #%08d:" + transfer + getTipo() + "realizada por el vendedor " + vendedor.getNombre() + "para el cliente "  
 				+ cliente.getNombre()+ "que adquirio el producto:  " + articulo.getTipoArticulo()+ " de la marca: " +  articulo.getMarca() + "con precio total de " + getIngreso());
 		return txt;
 	}
 	public String info2() {
-		String txt = String.format("Transacción " + transfer + getTipo() + " realizada por el mecanico " + mecanico.getNombre() + " para el cliente "  
+		String txt = String.format("Transacción #%08d: " + transfer + getTipo() + " realizada por el mecanico " + mecanico.getNombre() + " para el cliente "  
 				+ cliente.getNombre()+ " que adquirio el producto:  " + articulo.getTipoArticulo()+ " de la marca: " +  articulo.getMarca() + " con precio total de " + getIngreso());
 		return txt;
 	}
