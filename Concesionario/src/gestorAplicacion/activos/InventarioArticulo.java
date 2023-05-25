@@ -49,6 +49,15 @@ public class InventarioArticulo implements Serializable{
     public static void setArticulos(ArrayList<Articulo> Articulos) {
     	InventarioArticulo.articulos = Articulos;
     }
+    public static ArrayList<Articulo> articulosDispo(Mecanico mecanico) {
+  	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
+  	    for (Articulo articulo : getArticulos()) {
+  	        if (mecanico.getEspecialidad().equals(articulo.getEspecialidad())&& articulo.getCantidad()>=1) {
+  	            prods.add(articulo);
+  	        }
+  	    }
+  	    return prods;
+    }
     public static ArrayList<Articulo> articuloDispo(Mecanico mecanico) {
   	   ArrayList<Articulo> prods = new ArrayList<Articulo>();
   	    for (Articulo articulo : getArticulos()) {

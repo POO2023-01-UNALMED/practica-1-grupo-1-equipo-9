@@ -573,7 +573,7 @@ public class main {
 			Articulo articulo=null;
 			String confirmarProd=null; 
 			//Ingresa este mecanico que se selecciono y se devuekve una lista de productos
-			ArrayList<Articulo> producto=InventarioArticulo.articuloDispo(mecanico);
+			ArrayList<Articulo> producto=InventarioArticulo.articulosDispo(mecanico);
 			//Selector
 	 	    String resultp = String.format("%-15s%-40s%-25s%-40s%-15s%-15s%n", "   Referencia","   Producto", "   Tipo Vehiculo", "   Marca", "   Precio","Cantidad");
 	 	    byte i=0;
@@ -1316,43 +1316,36 @@ public class main {
 		     System.out.print("Ingrese el número de la opción que va a utilizar: ");
 		     
 		        
-		     ArrayList<Articulo> productos = InventarioArticulo.selectorModificacion();
-		     Articulo producto = null;
-		     if (productos.get(0).getEspecialidad().equalsIgnoreCase("Llantas")) {
-		    	 System.out.println("Porfavor seleeccione el tipo de llantas que desea llevar");
-		    	 System.out.println("1. Llanta todo terreno");		    	 
-		    	 System.out.println("2. Llanta terreno de barro");
-		    	 System.out.println("3. Llanta terreno de asfalto");
-		    	 ArrayList<Articulo> tipoLlantas = InventarioArticulo.selectorTipoLlantas(productos);
-		    	 
-		    	 System.out.println("Porfavor ingrese el numero del producto que desea llevar para su modificacion");
-		    	 int numero1=1;
-		    	 for (Articulo articulo : tipoLlantas) {
-		    		   System.out.println(numero1 + "." + articulo.getMarca() + " precio:" + articulo.getPrecio());
-		    		   numero1+=1;
-		    	   }
-		    	 
-		    	 int opcion2=sc.nextInt();
-		    		 producto=tipoLlantas.get(opcion2-1);
-		    		 System.out.println(producto.getMarca());
-		    		 
-		    		 //int costoTotal=tipoLlantas0).getPrecio();
-		    		 //new TransaccionModificaacion()
-		    	 
-		    	}else {
-		    		System.out.println("Por favor selecione del producto que desea llevar para su modificacion");
-		    		int numero=1;
-		    		for (Articulo articulo : productos) {
-			    		   System.out.println(numero + "." + articulo.getTipoArticulo() + "de la marca" + articulo.getMarca() + " con precio: " + articulo.getPrecio());
-			    		   numero+=1;
-			    	   }
-		    		int opcion = sc.nextInt();
-		    		producto = productos.get(opcion-1);
-		    		System.out.println("usted ha seleccionaldo" + producto.getTipoArticulo() + "de la marca" + producto.getMarca());
-		    		
-		    	}
+		     ArrayList<Articulo> producto = InventarioArticulo.selectorModificacion();
+		     Articulo articulo=null;
+		   //Selector
+		 	    String resultp = String.format("%-15s%-40s%-25s%-40s%-15s%-15s%n", "   Referencia","   Producto", "   Tipo Vehiculo", "   Marca", "   Precio","Cantidad");
+		 	    byte i=0;
+		 	    for (Articulo articuloi:producto) {
+		 	    	i++;
+	 	            String mechInfo = String.format("%-15s%-40s%-25s%-40s%-15s%-15s%n",articuloi.getReferencia() ,articuloi.getTipoArticulo(), articuloi.getTipoVehiculo(),articuloi.getMarca(),articuloi.getPrecio(),articuloi.getCantidad());
+	 	            resultp += String.format("%-3d%s", i, mechInfo);
+		 	    }if (producto.size() >= 1) {
+		 	        System.out.println("Los productos " + producto.get(0).getEspecialidad() + " disponibles son:\n");
+		 	        System.out.println(resultp);
+		 	        int num = 0;
+		 	        while (num <= 0 || num > producto.size()) {
+		 	            System.out.println("Seleccione el numero del producto" + "[1-" + producto.size() + "]: ");
+		 	            if (sc.hasNextInt()) {
+		 	                num = sc.nextInt();
+		 	            } else {
+		 	                System.out.println("Entrada invalida. Introduzca un numero entre 1 y " + producto.size() + ".");
+		 	                sc.nextLine(); // Limpiar la entrada no válida
+		 	            }
+		 	        }
+		 	        articulo = producto.get(num - 1);
+
+		 	    } else if (producto.size() == 0) {
+		 	        System.out.println("No hay productos disponibles para su vehiculo");
+		 	    }
+	    	
 		     
-		     ArrayList<Vendedor> vendedorVitrina= Vendedor.selectorVendedor(producto);
+		     ArrayList<Vendedor> vendedorVitrina= Vendedor.selectorVendedor(articulo);
 		     System.out.println("Porfavor seleccione el del numero vendedor que desea para su compra");
 		     int numero2=1;
 		     for (Vendedor vendedor : vendedorVitrina) {
@@ -1366,21 +1359,21 @@ public class main {
 				confirmarVendedor = sc.nextLine();
 		 	   if(!confirmarVendedor.equals("no")) {
 		 		   	String confirmarTrans=null;
-		 		    System.out.println("El costo total de la transacción es: " + producto.getPrecio());
+		 		    System.out.println("El costo total de la transacción es: " + articulo.getPrecio());
 					System.out.print("¿Desea confirmar la transaccion? (si/no)");
 					confirmarTrans= sc.nextLine();
 		 		   if(!confirmarTrans.equals("no")) {
 		 	        vendedorModificacion.confirmarVenta();
-					producto.cantidad--;
-					Trabajador.pago(vendedorModificacion,producto);
+					articulo.cantidad--;
+					Trabajador.pago(vendedorModificacion,articulo);
 					int transfer = (int) (Math.random() * 1000);
-					System.out.println(new TransaccionModificacion("Personalizacion de auto sin taller", producto.getPrecio(), propietario, propietario.getAuto(), vendedorModificacion, producto, transfer).info());
-					if(producto.getEspecialidad().equals("Llantas")) {
-						producto.cantidad-=4;
-						auto.setLlantas(producto);
+					System.out.println(new TransaccionModificacion("Personalizacion de auto sin taller",articulo.getPrecio(), propietario, propietario.getAuto(), vendedorModificacion, articulo, transfer).info());
+					if(articulo.getEspecialidad().equals("Llantas")) {
+						articulo.cantidad-=4;
+						auto.setLlantas(articulo);
 					}
 					else {
-						producto.cantidad--;
+						articulo.cantidad--;
 					}
 		 	   }
 		 		   else {
@@ -1388,11 +1381,11 @@ public class main {
 		 		   }
 	
 		 	   }
-	               
+	    }
 	}
 
 	   // sc.close();
-	}
+	
 
 		 	  
 	public static void crearUsuario() {
