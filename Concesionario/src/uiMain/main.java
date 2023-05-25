@@ -8,7 +8,9 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 
 public class main {
+
 	public static void main(String[] args) {
+		
 		Scanner sc = new Scanner(System.in);	
 		boolean volverAlMenuPrincipal = true;
 		/*INTERFAZ*/
