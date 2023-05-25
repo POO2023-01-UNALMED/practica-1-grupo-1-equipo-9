@@ -193,6 +193,9 @@ public class main {
 						case 3:
 							marca = "Chevrolet";
 							break;
+						case 4:
+							presupuestoInsuficiente = true;
+							break;
 						}if (marca!="") {
 							ArrayList<Auto> autosMarca = new ArrayList<Auto>();
 							for(Auto auto2:gestorAplicacion.activos.InventarioAuto.getAutosDisponibles()) {
@@ -259,6 +262,12 @@ public class main {
 										gestorAplicacion.personal.Trabajador.pago(vendedor, auto);
 										presupuestoInsuficiente = true;
 										break;
+									}
+									else {
+										presupuestoInsuficiente = true;
+										System.out.println("Usted no tiene el presupuesto mínimo para comprar algún carro del inventario.");
+										break;
+										
 									}
 								}
 							/*CREADOR DE TRANSACCION*/
@@ -332,12 +341,18 @@ public class main {
 									gestorAplicacion.personal.Trabajador.pago(vendedor, auto);
 									presupuestoInsuficiente = true;
 									break;
+								}else {
+									presupuestoInsuficiente = true;
+									System.out.println("Usted no tiene el presupuesto mínimo para comprar algún carro del inventario.");
+									break;
+									
 								}
 							}else {break;}
 							/*CREADOR DE TRANSACCION*/
+						} else {
+							presupuestoInsuficiente = true;
 							break;
 						}
-						break;
 					/*AUTOS POR PRECIO*/
 					/*TODOS LOS AUTOS*/
 					case 3:
@@ -400,14 +415,19 @@ public class main {
 									gestorAplicacion.personal.Trabajador.pago(vendedor, auto);
 									presupuestoInsuficiente = true;
 									break;
+								}else {
+									presupuestoInsuficiente = true;
+									System.out.println("Usted no tiene el presupuesto mínimo para comprar algún carro del inventario.");
+									break;
 								}
+						 	   
 							}else {break;}
 							/*CREADOR DE TRANSACCION*/
-							break;
 						/*TODOS LOS AUTOS*/
 						}
 						
 					case 4:
+						presupuestoInsuficiente = true;
 						break;
 				}
 			}else if (opcion!=0) {
@@ -457,6 +477,10 @@ public class main {
 						gestorAplicacion.personal.Trabajador.pago(vendedor, auto);
 						presupuestoInsuficiente = true;
 						break;
+					}else {
+						presupuestoInsuficiente = true;
+						System.out.println("Usted no tiene el presupuesto mínimo para comprar algún carro del inventario.");
+						break;	
 					}
 				}
 				/*CREADOR DE TRANSACCION*/
