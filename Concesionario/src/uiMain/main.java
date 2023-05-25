@@ -10,6 +10,17 @@ import java.time.format.TextStyle;
 public class main {
 
 	public static void main(String[] args) {
+		Articulo articulo1234 = new Articulo("Basico", "repuesto", "Motor", "Filtro de aire", "automóvil", "Mazda", 45000, 100, "Mazda", 23234);
+
+		Articulo articulo224334 = new Articulo("Basico", "repuesto", "Motor", "Bujía de encendido", "automóvil", "Mazda", 55000, 50, "Mazda", 24566);
+		
+		Articulo articulo45433 = new Articulo("Basico", "repuesto", "Motor", "Filtro de aire", "automóvil", "Toyota", 45000, 100, "Toyota", 20565);
+
+		Articulo articulo2332 = new Articulo("Basico", "repuesto", "Motor", "Bujía de encendido", "automóvil", "Toyota", 55000, 50, "Toyota", 201234);
+
+		Articulo articulo45433d = new Articulo("Basico", "repuesto", "Motor", "Filtro de aire", "automóvil", "Toyota", 45000, 100, "Chevrolet", 20565);
+
+		Articulo articulo23325 = new Articulo("Basico", "repuesto", "Motor", "Bujía de encendido", "automóvil", "Toyota", 55000, 50, "Chevrolet", 201234);
 		
 		Scanner sc = new Scanner(System.in);	
 		boolean volverAlMenuPrincipal = true;
