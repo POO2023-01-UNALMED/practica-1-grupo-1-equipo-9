@@ -883,15 +883,16 @@ public class main {
 			
 			ArrayList<Vendedor> vendedores1 = TransaccionVenta.vendedoresVentas(transaccionesActuales); //#1
 			
-			float num = ((float)vendedores1.size() / ((Vendedor.getVendedores().size()))) * 100;
+			float num = ((float)vendedores1.size() / ((Vendedor.getVendedores().size())));
 			int roundedNum = Math.round(num);
 
-			System.out.println("\n" + "-------- De los " + (Vendedor.getVendedores().size()) + " vendedores, " + vendedores1.size()+ " (el " + roundedNum + "%) han logrado ventas en el mes, son: --------");
+			System.out.println("\n" + "-------- Los " + (Vendedor.getVendedores().size()) + " vendedores, han logrado " +vendedores1.size()+" ventas en el mes, promediando " + num +" ventas por vendedor ---------");
 			
-			for (Vendedor vend: vendedores1)
-			{
-				System.out.println(vend.getNombre());
-			}
+			
+//			for (Vendedor vend: vendedores1)
+//			{
+//				System.out.println(vend.getNombre());
+//			}
 			
 			// para saber la cantidad total de dinero en ventas y # total de ventas:
 			long sumaTotal=0;
@@ -901,7 +902,7 @@ public class main {
 				contadorTotal+=1;}
 			
 			// para saber la cantidad total de dinero en ventas y # total de ventas:
-			System.out.println("\n" + "-------- Suma de dinero en ventas por vendedor: --------");
+			// System.out.println("\n" + "-------- Suma de dinero en ventas por cada venta de cada vendedor: --------");
 			
 			for (Vendedor vend: vendedores1)
 			{
@@ -919,7 +920,7 @@ public class main {
 				System.out.println(vend.getNombre() + ": " + suma + " $, el " + roundedSum + " % del total de ingresos por ventas de autos.");
 			}
 			
-			System.out.println("\n" + "-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
+			// System.out.println("\n" + "-------- # de ventas, y promedio de ingreso por venta de cada vendedor: --------");
 			
 			for (Vendedor vend: vendedores1)
 			{
@@ -937,7 +938,7 @@ public class main {
 				int roundedNum4 = Math.round(num4);
 				//int roundedNum3 = Math.round(num3);
 				
-				System.out.println(vend.getNombre() + ": " + contador + ", el " + roundedNum4 + "% del número total de ventas, promediando " + num3 + " $ por venta.");
+				// System.out.println(vend.getNombre() + ": " + contador + ", el " + roundedNum4 + "% del número total de ventas, promediando " + num3 + " $ por venta.");
 			}
 			
 			float num5 = ((float)sumaTotal/dia);

@@ -8,7 +8,7 @@ public class Vendedor extends Trabajador implements Serializable{
 	private static final long serialVersionUID = 1L;
 	protected static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
 	int ventas = 0;
-	protected String puesto; 
+	protected String puesto;
 	final static double COMISION = 0.02;
 	
 
