@@ -33,15 +33,16 @@ public class TransaccionModificacion extends Transaccion implements Serializable
 	
 	@Override
 	public String info() {
-		String txt = String.format("Transacción #%08d:" + transfer + getTipo() + "realizada por el vendedor " + vendedor.getNombre() + "para el cliente "  
-				+ cliente.getNombre()+ "que adquirio el producto:  " + articulo.getTipoArticulo()+ " de la marca: " +  articulo.getMarca() + "con precio total de " + getIngreso());
+		 String txt = String.format("Transacción #%08d: venta realizada por %s para el cliente %s que adquirio el producto: %s de la marca: %s , con precio total $%d",
+		            transfer, vendedor.getNombre(), cliente.getNombre(), articulo.getTipoArticulo(), articulo.getMarca(),articulo.getPrecio());
 		return txt;
 	}
 	public String info2() {
-		String txt = String.format("Transacción #%08d: " + transfer + getTipo() + " realizada por el mecanico " + mecanico.getNombre() + " para el cliente "  
-				+ cliente.getNombre()+ " que adquirio el producto:  " + articulo.getTipoArticulo()+ " de la marca: " +  articulo.getMarca() + " con precio total de " + getIngreso());
+		 String txt = String.format("Transacción #%08d: taller realizado por %s para el cliente %s que adquirio el producto: %s de la marca: %s , con precio total $%d",
+		            transfer, mecanico.getNombre(), cliente.getNombre(), articulo.getTipoArticulo(), articulo.getMarca(),articulo.getPrecio());
 		return txt;
 	}
+	
 		
 	public static Cliente getClientePorCedula(long cedula){
 		Transaccion finder = null;
