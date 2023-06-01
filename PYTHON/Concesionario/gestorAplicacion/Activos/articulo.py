@@ -3,8 +3,8 @@ class Articulo:
     articulos = []
     repuestos = []
 
-    def __init__(self, calidad, tipo, especialidad, tipoArticulo, tipoVehiculo, marca, precio, cantidad, marcaVehiculo=None, referencia=None):
-        self.marcaVehiculo = marcaVehiculo if marcaVehiculo is not None else "Generico"
+    def __init__(self, calidad, tipo, especialidad, tipoArticulo, tipoVehiculo, marca, precio, cantidad, referencia, marcaVehiculo="Generico"):
+        self.marcaVehiculo = marcaVehiculo 
         self.calidad = calidad
         self.tipo = tipo
         self.tipoArticulo = tipoArticulo
