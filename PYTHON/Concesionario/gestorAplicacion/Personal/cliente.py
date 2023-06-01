@@ -1,12 +1,14 @@
+from persona import Persona
+
 class Cliente(Persona):
     clientes = []
 
-    def __init__(self, nombre, cedula, telefono, correo, direccion, modeloInteres, presupuesto):
+    def __init__(self, nombre, cedula, telefono, correo, modeloInteres, presupuesto, direccion="Medellin"):
         self.nombre = nombre
         self.cedula = cedula
         self.telefono = telefono
         self.correo = correo
-        self.direccion = direccion if direccion is not None else "Medellin"
+        self.direccion = direccion
         self.modeloInteres = modeloInteres
         self.presupuesto = presupuesto
         Cliente.clientes.append(self)
