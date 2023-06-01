@@ -1,5 +1,6 @@
 from Activos import articulo
-
+from trabajador import Trabajador
+from Activos.auto import Auto
 class Vendedor(Trabajador):
     vendedores = []
     COMISION = 0.02
@@ -7,7 +8,7 @@ class Vendedor(Trabajador):
     def __init__(self, nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco, puesto):
         super().__init__(nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco)
         self.puesto = puesto
-        vendedor.vendedores.append(self)
+        Vendedor.vendedores.append(self)
 
     @classmethod
     def getVendedores(cls):
@@ -15,18 +16,18 @@ class Vendedor(Trabajador):
 
     @staticmethod
     def getVendedorPorCedula(cedula):
-        for vendedor in vendedor.vendedores:
+        for vendedor in Vendedor.vendedores:
             if vendedor.getCedula() == cedula:
                 return vendedor
         return None
 
     @staticmethod
     def addVendedor(vendedor):
-        vendedor.vendedores.append(vendedor)
+        Vendedor.vendedores.append(vendedor)
 
     @staticmethod
     def removeVendedor(vendedor):
-        vendedor.vendedores.remove(vendedor)
+        Vendedor.vendedores.remove(vendedor)
 
     def getPuesto(self):
         return self.puesto
@@ -35,7 +36,7 @@ class Vendedor(Trabajador):
         self.puesto = puesto
 
     def calcularSalario(self):
-        return int(self.getSalario() + (self.ventas * vendedor.COMISION))
+        return int(self.getSalario() + (self.ventas * Vendedor.COMISION))
 
     def info(self):
         texto = "Nombre del Vendedor: " + self.getNombre() + "\n"
@@ -52,7 +53,7 @@ class Vendedor(Trabajador):
             vende = "Vitrina"
         elif isinstance(o, articulo):
             vende = "Repuestos"
-        for vendedor in vendedor.getVendedores():
+        for vendedor in Vendedor.getVendedores():
             if vende == vendedor.getPuesto():
                 vendedores.append(vendedor)
         return vendedores

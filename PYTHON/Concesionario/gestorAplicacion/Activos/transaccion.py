@@ -1,4 +1,9 @@
 from abc import ABC, abstractmethod
+from transaccionventa import TransaccionVenta
+from transaccionVentaTaller import TransaccionVentaTaller
+from Personal.mecanico import Mecanico
+from Personal.vendedor import Vendedor
+
 
 class Transaccion(ABC):
     transacciones = []
