@@ -1,3 +1,4 @@
+from transaccion import Transaccion
 class TransaccionVentaTaller(Transaccion):
     transaccionesvental = []
 

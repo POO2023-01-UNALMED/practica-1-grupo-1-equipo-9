@@ -1,4 +1,4 @@
-import Inventario_Articulo
+from inventario_articulo import Inventario_Articulo
 class Articulo:
     articulos = []
     repuestos = []

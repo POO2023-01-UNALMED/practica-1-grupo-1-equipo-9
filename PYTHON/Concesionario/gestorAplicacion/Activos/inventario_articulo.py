@@ -1,37 +1,37 @@
-class InventarioArticulo:
+class Inventario_Articulo:
     articulos = []
     repuestos = []
 
     @staticmethod
     def agregarArticulo(articulo):
-        InventarioArticulo.articulos.append(articulo)
+        Inventario_Articulo.articulos.append(articulo)
 
     def eliminarArticulo(self, articulo):
-        InventarioArticulo.articulos.remove(articulo)
+        Inventario_Articulo.articulos.remove(articulo)
 
     @staticmethod
     def getArticulos():
-        return InventarioArticulo.articulos
+        return Inventario_Articulo.articulos
 
     @staticmethod
     def agregarRepuesto(repuesto):
-        InventarioArticulo.repuestos.append(repuesto)
+        Inventario_Articulo.repuestos.append(repuesto)
 
     def eliminarRepuesto(self, repuesto):
-        InventarioArticulo.repuestos.remove(repuesto)
+        Inventario_Articulo.repuestos.remove(repuesto)
 
     @staticmethod
     def getRepuesto():
-        return InventarioArticulo.repuestos
+        return Inventario_Articulo.repuestos
 
     @staticmethod
     def setArticulos(Articulos):
-        InventarioArticulo.articulos = Articulos
+        Inventario_Articulo.articulos = Articulos
 
     @staticmethod
     def articulosDispo(mecanico):
         prods = []
-        for articulo in InventarioArticulo.getArticulos():
+        for articulo in Inventario_Articulo.getArticulos():
             if mecanico.getEspecialidad() == articulo.getEspecialidad() and articulo.getCantidad() >= 1:
                 prods.append(articulo)
         return prods
@@ -39,7 +39,7 @@ class InventarioArticulo:
     @staticmethod
     def articuloDispo(mecanico):
         prods = []
-        for articulo in InventarioArticulo.getArticulos():
+        for articulo in Inventario_Articulo.getArticulos():
             if (mecanico.getEspecialidad().lower() == "modificacionpintura" and
                     articulo.getEspecialidad().lower() == "pintura" and articulo.getCantidad() >= 1):
                 prods.append(articulo)
@@ -68,25 +68,25 @@ def selectorEspecial():
         
         if input == 1:
             especialidad = "Motor"
-            for articulo in InventarioArticulo.getRepuesto():
+            for articulo in Inventario_Articulo.getRepuesto():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 2:
             especialidad = "Escape"
-            for articulo in InventarioArticulo.getRepuesto():
+            for articulo in Inventario_Articulo.getRepuesto():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 3:
             especialidad = "Sonido"
-            for articulo in InventarioArticulo.getRepuesto():
+            for articulo in Inventario_Articulo.getRepuesto():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 4:
             especialidad = "Suspension"
-            for articulo in InventarioArticulo.getRepuesto():
+            for articulo in Inventario_Articulo.getRepuesto():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
@@ -106,31 +106,31 @@ def selectorModificacion():
         
         if input == 1:
             especialidad = "Pintura"
-            for articulo in InventarioArticulo.getArticulos():
+            for articulo in Inventario_Articulo.getArticulos():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 2:
             especialidad = "Llantas"
-            for articulo in InventarioArticulo.getArticulos():
+            for articulo in Inventario_Articulo.getArticulos():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 3:
             especialidad = "Sonido"
-            for articulo in InventarioArticulo.getArticulos():
+            for articulo in Inventario_Articulo.getArticulos():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 4:
             especialidad = "Frenos"
-            for articulo in InventarioArticulo.getArticulos():
+            for articulo in Inventario_Articulo.getArticulos():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 5:
             especialidad = "Escape"
-            for articulo in InventarioArticulo.getArticulos():
+            for articulo in Inventario_Articulo.getArticulos():
                 if especialidad == articulo.getEspecialidad():
                     artic.append(articulo)
             salir = "si"
