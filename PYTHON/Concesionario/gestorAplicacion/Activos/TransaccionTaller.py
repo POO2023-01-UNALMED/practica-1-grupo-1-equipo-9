@@ -1,3 +1,4 @@
+from transaccion import Transaccion
 class TransaccionTaller(Transaccion):
     transaccionestal = []
 

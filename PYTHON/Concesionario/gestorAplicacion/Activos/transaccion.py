@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from transaccionventa import TransaccionVenta
 from transaccionVentaTaller import TransaccionVentaTaller
+from transaccionTaller import TransaccionTaller
+from transaccionModificacion import TransaccionModificacion
 from Personal.mecanico import Mecanico
 from Personal.vendedor import Vendedor
 

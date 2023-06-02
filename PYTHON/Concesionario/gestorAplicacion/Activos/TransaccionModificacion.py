@@ -1,3 +1,5 @@
+from transaccion import Transaccion
+
 class TransaccionModificacion(Transaccion):
     transaccionesmod = []
 

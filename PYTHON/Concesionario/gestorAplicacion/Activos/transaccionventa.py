@@ -20,11 +20,15 @@ class TransaccionVenta(Transaccion):
     
     @staticmethod
     def get_cliente_por_cedula(cedula):
+        finder = None
         cli = None
+
         for trans in TransaccionVenta.transaccionesven:
-            if trans.get_cliente_ced() == cedula:
-                cli = trans.get_cliente()
+            if trans.getClienteCed() == cedula:
+                finder = trans
+                cli = finder.getCliente()
                 break
+
         return cli
     
     @staticmethod
