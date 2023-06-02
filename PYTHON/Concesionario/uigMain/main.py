@@ -10,7 +10,7 @@ if __name__ == "__main__":
             auto = None
             
             while comprador is None:
-                print("Escriba la cédula del comprador: ")
+                print("Escribaa la cédula del comprador: ")
                 cedula = int(input())
                 comprador = Cliente.getClientePorCedula(cedula)
                 if comprador is None:
