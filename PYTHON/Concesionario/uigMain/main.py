@@ -1,7 +1,7 @@
 import sys
 sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario')
 
-
+from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
 from gestorAplicacion.Personal.cliente import Cliente
 
 if __name__ == "__main__":
@@ -34,7 +34,7 @@ if __name__ == "__main__":
             autosMod = []
             result1 = "{:<20}{:<20}{:<10}\n".format("Modelo", "Precio", "Color")
             j = 0
-            for auto1 in gestorAplicacion.activos.InventarioAuto.getAutosDisponibles():
+            for auto1 in InventarioAuto.getAutosDisponibles():
                 if comprador.getModeloInteres() == auto1.getMarca():
                     j += 1
                     autosMod.append(auto1)

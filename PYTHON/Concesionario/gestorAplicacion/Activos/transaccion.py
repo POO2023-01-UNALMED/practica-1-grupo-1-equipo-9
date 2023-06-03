@@ -1,8 +1,11 @@
 from abc import ABC, abstractmethod
+import sys
+sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario\\gestorAplicacion\\Personal')
+sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario\\gestorAplicacion\\Activos')
 from transaccionventa import TransaccionVenta
 from transaccionVentaTaller import TransaccionVentaTaller
-from transaccionTaller import TransaccionTaller
-from transaccionModificacion import TransaccionModificacion
+from TransaccionTaller import TransaccionTaller
+from TransaccionModificacion import TransaccionModificacion
 from Personal.mecanico import Mecanico
 from Personal.vendedor import Vendedor
 

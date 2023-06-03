@@ -1,6 +1,13 @@
+import sys
+sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario\\gestorAplicacion\\Personal')
+sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario\\gestorAplicacion\\Activos')
+
+
+from trabajador import Trabajador
+
 class Mecanico(Trabajador):
-    mecanicos = ArrayList[Mecanico]()
-    horario = ArrayList[str]()
+    mecanicos = []
+    horario = []
 
     def __init__(self, nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco, autos, especialidad, manoObra):
         super().__init__(nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco)
@@ -51,7 +58,7 @@ class Mecanico(Trabajador):
         input = 0
         salir = None
         especialidad = None
-        mechs = ArrayList[Mecanico]()
+        mechs = []
 
         while salir is None:
             input = int(input())
@@ -112,7 +119,7 @@ class Mecanico(Trabajador):
                     salir = "si"
             else:
                 print("\n¿Salir? (si/no)")
-                salir = sc.nextLine()
+                input()
 
         return mechs
 
@@ -121,7 +128,7 @@ class Mecanico(Trabajador):
         input = 0
         salir = None
         especialidad = None
-        mechs = ArrayList[Mecanico]()
+        mechs =[]
 
         while salir is None:
             input = int(input())
@@ -158,14 +165,14 @@ class Mecanico(Trabajador):
                     salir = "si"
             else:
                 print("\n¿Salir? (si/no)")
-                salir = sc.nextLine()
+                input()
 
         return mechs
 
     @staticmethod
     def getMecanicoPorCedula(cedula):
         finder = None
-        for mecanico in mecanicos:
+        for mecanico in Mecanico.mecanicos:
             if mecanico.getCedula() == cedula:
                 finder = mecanico
 
@@ -176,51 +183,42 @@ class Mecanico(Trabajador):
         num = int(input())
         return num
 
-    @Override
-    def getNombre():
-        return nombre
+    
+    def getNombre(self):
+        return self.nombre
 
-    @Override
-    def getCedula():
-        return cedula
+    def getCedula(self):
+        return self.cedula
 
-    @Override
-    def getTelefono():
-        return telefono
+    def getTelefono(self):
+        return self.telefono
 
-    @Override
-    def getCorreo():
-        return correo
+    def getCorreo(self):
+        return self.correo
 
-    @Override
-    def getDireccion():
-        return direccion
+    def getDireccion(self):
+        return self.direccion
 
-    @Override
-    def setNombre(nombre):
-        this.nombre = nombre
+    def setNombre(self, nombre):
+        self.nombre = nombre
 
-    @Override
-    def setCedula(cedula):
-        this.cedula = cedula
+    def setCedula(self, cedula):
+        self.cedula = cedula
 
-    @Override
-    def setTelefono(telefono):
-        this.telefono = telefono
+    def setTelefono(self, telefono):
+        self.telefono = telefono
 
-    @Override
-    def setCorreo(correo):
-        this.correo = correo
+    def setCorreo(self, correo):
+        self.correo = correo
 
-    @Override
-    def setDireccion(direccion):
-        this.direccion = direccion
+    def setDireccion(self, direccion):
+        self.direccion = direccion
 
-    @Override
-    def calcularSalario():
-        return pagoSvcs + getSalario()
 
-    @Override
-    def info():
-        texto = "Nombre del Mecanico: " + getNombre() + "\n"
+    def calcularSalario(self):
+        return self.pagoSvcs + self.getSalario()
+
+
+    def info(self):
+        texto = "Nombre del Mecanico: " + self.getNombre() + "\n"
         return texto
