@@ -1,6 +1,11 @@
 import sys
-sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario')
-
+import os
+ruta_activos = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Activos'))
+ruta_personal = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Personal'))
+ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(ruta_activos)
+sys.path.append(ruta_personal)
+sys.path.append(ruta_gestor)
 from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
 from gestorAplicacion.Personal.cliente import Cliente
 

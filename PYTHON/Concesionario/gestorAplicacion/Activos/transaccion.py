@@ -1,7 +1,12 @@
 from abc import ABC, abstractmethod
 import sys
-sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario\\gestorAplicacion\\Personal')
-sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario\\gestorAplicacion\\Activos')
+import os
+ruta_activos = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Activos'))
+ruta_personal = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Personal'))
+ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(ruta_activos)
+sys.path.append(ruta_personal)
+sys.path.append(ruta_gestor)
 from transaccionventa import TransaccionVenta
 from transaccionVentaTaller import TransaccionVentaTaller
 from TransaccionTaller import TransaccionTaller
