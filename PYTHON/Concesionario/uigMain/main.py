@@ -1,4 +1,8 @@
+import sys
+sys.path.append('C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\practica-1-grupo-1-equipo-9\\PYTHON\\Concesionario')
 
+
+from gestorAplicacion.Personal.cliente import Cliente
 
 if __name__ == "__main__":
 

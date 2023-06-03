@@ -1,6 +1,5 @@
 from abc import abstractmethod
-from Personal import Vendedor
-
+from Personal.vendedor import Vendedor
 
 class Trabajador:
     def __init__(self, nombre, cedula, telefono, correo, direccion, salario, banco, cuenta_banco):
