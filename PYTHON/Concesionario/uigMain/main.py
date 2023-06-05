@@ -3,12 +3,13 @@ import os
 ruta_activos = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Activos'))
 ruta_personal = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Personal'))
 ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+ruta_Datos=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'baseDatos'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
 from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
 from gestorAplicacion.Personal.cliente import Cliente
-
+from baseDatos.serializador import Serializador
 if __name__ == "__main__":
 
     def procesoVenta():
@@ -65,7 +66,7 @@ if __name__ == "__main__":
 
     volver_al_menu_principal = True
     opcion = None
-    
+    Serializador.serializar_arrays()
     while volver_al_menu_principal:
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
