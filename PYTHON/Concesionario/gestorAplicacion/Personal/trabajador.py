@@ -8,6 +8,7 @@ sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
 
+
 class Trabajador:
     def __init__(self, nombre, cedula, telefono, correo, direccion, salario, banco, cuenta_banco):
         self.nombre = nombre

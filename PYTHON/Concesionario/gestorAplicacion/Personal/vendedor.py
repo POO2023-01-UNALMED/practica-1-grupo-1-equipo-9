@@ -8,7 +8,13 @@ sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
 from Activos import articulo
 from trabajador import Trabajador
+from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
+from gestorAplicacion.Activos.transaccionVentaTaller import TransaccionVentaTaller
+from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
+from gestorAplicacion.Activos.TransaccionModificacion import TransaccionModificacion
 from Activos.auto import Auto
+from mecanico import Mecanico
+
 class Vendedor(Trabajador):
     vendedores = []
     COMISION = 0.02
@@ -95,4 +101,27 @@ class Vendedor(Trabajador):
 
     def setDireccion(self, direccion):
         self.direccion = direccion
+    @staticmethod
+    def estResults(listaFinanzas):
+        ventasautos = sum(transaccauto.getIngreso() for transaccauto in TransaccionVenta.getTransaccionesven())
+        ventastaller = sum(transacctaller.getIngreso() for transacctaller in TransaccionTaller.getTransaccionestal())
+        arttaller = sum(t.getIngreso() for t in TransaccionVentaTaller.getTransaccionesven())
+        transaccmod = sum(m.getIngreso() for m in TransaccionModificacion.getTransaccionesmod())
+
+        ventas = ventasautos + ventastaller + arttaller + transaccmod
+        listaFinanzas[0] = ventas
+
+        pagoEmpleados = sum(vendedor.getSalario() for vendedor in Vendedor.getVendedores())
+        pagoEmpleados += sum(mecanico.getSalario() for mecanico in Mecanico.getMecanicos())
+        listaFinanzas[1] = pagoEmpleados
+
+        gastos = ventasautos * 0.02 + 10000000 + 7000000
+        listaFinanzas[2] = gastos
+
+        if ventas - pagoEmpleados - gastos < 0:
+            listaFinanzas[3] = int((ventas - pagoEmpleados - gastos) * 0.33 * -1)
+        else:
+            listaFinanzas[3] = int((ventas - pagoEmpleados - gastos) * 0.33)
+
+        return listaFinanzas
 

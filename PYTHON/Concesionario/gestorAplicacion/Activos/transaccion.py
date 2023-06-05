@@ -7,12 +7,6 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
-"""from transaccionventa import TransaccionVenta
-from transaccionVentaTaller import TransaccionVentaTaller
-from TransaccionTaller import TransaccionTaller
-from TransaccionModificacion import TransaccionModificacion"""
-from Personal.mecanico import Mecanico
-from Personal.vendedor import Vendedor
 
 class Transaccion(ABC):
     transacciones = []
@@ -78,29 +72,6 @@ class Transaccion(ABC):
     def setNumtrans(numtrans):
         Transaccion.numtrans = numtrans
 
-    @staticmethod
-    def estResults(listaFinanzas):
-        ventasautos = sum(transaccauto.getIngreso() for transaccauto in TransaccionVenta.getTransaccionesven())
-        ventastaller = sum(transacctaller.getIngreso() for transacctaller in TransaccionTaller.getTransaccionestal())
-        arttaller = sum(t.getIngreso() for t in TransaccionVentaTaller.getTransaccionesven())
-        transaccmod = sum(m.getIngreso() for m in TransaccionModificacion.getTransaccionesmod())
-
-        ventas = ventasautos + ventastaller + arttaller + transaccmod
-        listaFinanzas[0] = ventas
-
-        pagoEmpleados = sum(vendedor.getSalario() for vendedor in Vendedor.getVendedores())
-        pagoEmpleados += sum(mecanico.getSalario() for mecanico in Mecanico.getMecanicos())
-        listaFinanzas[1] = pagoEmpleados
-
-        gastos = ventasautos * 0.02 + 10000000 + 7000000
-        listaFinanzas[2] = gastos
-
-        if ventas - pagoEmpleados - gastos < 0:
-            listaFinanzas[3] = int((ventas - pagoEmpleados - gastos) * 0.33 * -1)
-        else:
-            listaFinanzas[3] = int((ventas - pagoEmpleados - gastos) * 0.33)
-
-        return listaFinanzas
 
     @abstractmethod
     def info(self):
