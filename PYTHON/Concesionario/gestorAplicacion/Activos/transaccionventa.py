@@ -6,8 +6,7 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
-from Personal import cliente, vendedor
-from transaccion import Transaccion
+from gestorAplicacion.Activos.transaccion import Transaccion
 
 class TransaccionVenta(Transaccion):
     transaccionesven = []

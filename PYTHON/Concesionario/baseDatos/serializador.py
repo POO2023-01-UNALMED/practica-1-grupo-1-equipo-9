@@ -7,11 +7,20 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
-import gestorAplicacion.Personal
-import gestorAplicacion.Activos
+from gestorAplicacion.Personal.cliente import Cliente
+from gestorAplicacion.Personal.mecanico import Mecanico
+from gestorAplicacion.Personal.vendedor import Vendedor
+from gestorAplicacion.Activos.inventario_articulo import Inventario_Articulo
+from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
+from gestorAplicacion.Activos.transaccion import Transaccion
+from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
+from gestorAplicacion.Activos.transaccionVentaTaller import TransaccionVentaTaller
+from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
+from gestorAplicacion.Activos.TransaccionModificacion import TransaccionModificacion
+
 class Serializador():
     
-    def serializar_arrays(array, name):
+    def serializar_array(array, name):
         ruta = os.path.abspath(f".baseDatos/tmp/{name}.pickle")
 
         try:
@@ -23,17 +32,17 @@ class Serializador():
             print("IOError")
 
     def serializar_arrays():
-        serializar_arrays(gestorAplicacion.Personal.InventarioAuto.getAutos(), "Autos")
-        serializar_arrays(gestorAplicacion.Personal.Cliente.getClientes(), "Clientes")
-        serializar_arrays(gestorAplicacion.Personal.Mecanico.getMecanicos(), "Mecanicos")
-        serializar_arrays(gestorAplicacion.Personal.getVendedores(), "Vendedores")
-        serializar_arrays(gestorAplicacion.Activos.InventarioArticulo.getArticulos(), "Articulos")
-        serializar_arrays(gestorAplicacion.Activos.InventarioArticulo.getRepuesto(), "Repuestos")
-        serializar_arrays(gestorAplicacion.Activos.Transaccion.getTransacciones(), "Transacciones")
-        serializar_arrays(gestorAplicacion.Activos.TransaccionVenta.getTransaccionesven(), "TransaccionesVentas")
-        serializar_arrays(gestorAplicacion.Activos.TransaccionVentaTaller.getTransaccionesven(), "TransaccionesVentaTaller")
-        serializar_arrays(gestorAplicacion.Activos.TransaccionTaller.getTransaccionestal(), "TransaccionesTaller")
-        serializar_arrays(gestorAplicacion.Activos.TransaccionModificacion.getTransaccionesmod(), "TransaccionesModificacion")
-        serializar_arrays(gestorAplicacion.Activos.TransaccionVenta.getAutosV(), "AutosV")
-        serializar_arrays(gestorAplicacion.Activos.TransaccionVenta.getMarcas(), "Marcas")
-        serializar_arrays(gestorAplicacion.Activos.TransaccionVenta.getVend(), "Vend")
+        Serializador.serializar_array(InventarioAuto.getAutos(), "Autos")
+        Serializador.serializar_array(Cliente.getClientes(), "Clientes")
+        Serializador.serializar_array(Mecanico.getMecanicos(), "Mecanicos")
+        Serializador.serializar_array(Vendedor.getVendedores(), "Vendedores")
+        Serializador.serializar_array(Inventario_Articulo.getArticulos(), "Articulos")
+        Serializador.serializar_array(Inventario_Articulo.getRepuesto(), "Repuestos")
+        Serializador.serializar_array(Transaccion.getTransacciones(), "Transacciones")
+        Serializador.serializar_array(TransaccionVenta.get_transaccionesven, "TransaccionesVentas")
+        Serializador.serializar_array(TransaccionVentaTaller.getTransaccionesven, "TransaccionesVentaTaller")
+        Serializador.serializar_array(TransaccionTaller.getTransaccionestal(), "TransaccionesTaller")
+        Serializador.serializar_array(TransaccionModificacion.getTransaccionesmod(), "TransaccionesModificacion")
+        Serializador.serializar_array(TransaccionVenta.get_autosV, "AutosV")
+        Serializador.serializar_array(TransaccionVenta.get_marcas, "Marcas")
+        Serializador.serializar_array(TransaccionVenta.get_vend, "Vend")

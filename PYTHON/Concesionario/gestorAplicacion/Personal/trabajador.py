@@ -7,7 +7,6 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
-from Personal.vendedor import Vendedor
 
 class Trabajador:
     def __init__(self, nombre, cedula, telefono, correo, direccion, salario, banco, cuenta_banco):
@@ -74,11 +73,11 @@ class Trabajador:
     
     @staticmethod
     def pago_vendedor_auto(vend, auto):
-        vend.set_salario(vend.get_salario() + (auto.get_precio() * Vendedor.COMISION))
+        vend.set_salario(vend.get_salario() + (auto.get_precio() * vend.COMISION))
     
     @staticmethod
     def pago_vendedor_articulo(vend, articulo):
-        vend.set_salario(vend.get_salario() + (articulo.get_precio() * Vendedor.COMISION))
+        vend.set_salario(vend.get_salario() + (articulo.get_precio() * vend.COMISION))
     
     @abstractmethod
     def calcular_salario(self):
