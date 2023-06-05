@@ -21,11 +21,11 @@ from gestorAplicacion.Activos.TransaccionModificacion import TransaccionModifica
 class Serializador():
     
     def serializar_array(array, name):
-        ruta = os.path.abspath(f".baseDatos/tmp/{name}.pickle")
+        ruta = os.path.abspath(f"Concesionario/baseDatos/tmp/{name}.pkl")
 
         try:
-            with open(ruta, "wb") as archivo:
-                pickle.dump(array, archivo)
+            archivo= open(ruta, "wb")
+            pickle.dump(array, archivo)
         except FileNotFoundError:
             print("FileNotFound")
         except IOError:
