@@ -41,7 +41,7 @@ class Mecanico(Trabajador):
     def getAutos(self):
         return self.autos
 
-    def setAutos(self, autos):
+    def set_autos(self, autos):
         self.autos = autos
 
     def setEspecialidad(self, especialidad):

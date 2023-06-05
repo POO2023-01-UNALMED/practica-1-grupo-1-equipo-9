@@ -155,13 +155,13 @@ def selectorCalidad(artic):
         if input == 1:
             calidad = "premium"
             for ar in artic:
-                if calidad == ar.getCalidad():
+                if calidad == ar.get_calidad():
                     articul.append(ar)
             salir = "si"
         elif input == 2:
             calidad = "Basico"
             for ar in artic:
-                if calidad == ar.getCalidad():
+                if calidad == ar.getalidad():
                     articul.append(ar)
             salir = "si"
         else:
@@ -177,19 +177,19 @@ def selectorMarca(artic):
         if input == 1:
             marca = "Toyota"
             for ar in artic:
-                if marca == ar.getMarcaVehiculo():
+                if marca == ar.get_marcaVehiculo():
                     articul.append(ar)
             salir = "si"
         elif input == 2:
             marca = "Mazda"
             for ar in artic:
-                if marca == ar.getMarcaVehiculo():
+                if marca == ar.get_marcaVehiculo():
                     articul.append(ar)
             salir = "si"
         elif input == 3:
             marca = "Chevrolet"
             for ar in artic:
-                if marca == ar.getMarcaVehiculo():
+                if marca == ar.get_marcaVehiculo():
                     articul.append(ar)
             salir = "si"
         else:
@@ -205,19 +205,19 @@ def selectorTipoLlantas(llantas):
         if input == 1:
             tipoLlanta = "Llanta todo terreno"
             for ar in llantas:
-                if tipoLlanta == ar.getTipoArticulo():
+                if tipoLlanta == ar.get_tipoArticulo():
                     articul.append(ar)
             salir = "si"
         elif input == 2:
             tipoLlanta = "Llanta terreno de barro"
             for ar in llantas:
-                if tipoLlanta == ar.getTipoArticulo():
+                if tipoLlanta == ar.get_tipoArticulo():
                     articul.append(ar)
             salir = "si"
         elif input == 3:
             tipoLlanta = "Llanta terreno de asfalto"
             for ar in llantas:
-                if tipoLlanta == ar.getTipoArticulo():
+                if tipoLlanta == ar.get_tipoArticulo():
                     articul.append(ar)
             salir = "si"
     return articul

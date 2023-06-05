@@ -23,16 +23,16 @@ class Cliente(Persona):
         self.presupuesto = presupuesto
         Cliente.clientes.append(self)
 
-    def getModeloInteres(self):
+    def get_modeloInteres(self):
         return self.modeloInteres
 
-    def getPresupuesto(self):
+    def get_presupuesto(self):
         return self.presupuesto
 
-    def setModeloInteres(self, modeloInteres):
+    def set_modeloInteres(self, modeloInteres):
         self.modeloInteres = modeloInteres
 
-    def setPresupuesto(self, presupuesto):
+    def set_presupuesto(self, presupuesto):
         self.presupuesto = presupuesto
 
     def setAuto(self, auto):
@@ -49,7 +49,7 @@ class Cliente(Persona):
     def getClientePorCedula(cedula):
         finder = None
         for cliente in Cliente.clientes:
-            if cliente.getCedula() == cedula:
+            if cliente.get_cedula() == cedula:
                 finder = cliente
                 break
         return finder
@@ -59,35 +59,35 @@ class Cliente(Persona):
         Cliente.clientes = clientes
 
     def info(self):
-        texto = "Nombre del cliente: " + self.getNombre() + "\n"
+        texto = "Nombre del cliente: " + self.get_nombre() + "\n"
         return texto
-
-    def getNombre(self):
-        return self.nombre
-
-    def getCedula(self):
+    
+    def get_cedula(self):
         return self.cedula
 
-    def getTelefono(self):
-        return self.telefono
-
-    def getCorreo(self):
+    def get_correo(self):
         return self.correo
 
-    def getDireccion(self):
+    def get_direccion(self):
         return self.direccion
 
-    def setNombre(self, nombre):
-        self.nombre = nombre
+    def get_nombre(self):
+        return self.nombre
 
-    def setCedula(self, cedula):
+    def get_telefono(self):
+        return self.telefono
+
+    def set_cedula(self, cedula):
         self.cedula = cedula
 
-    def setTelefono(self, telefono):
-        self.telefono = telefono
-
-    def setCorreo(self, correo):
+    def set_correo(self, correo):
         self.correo = correo
 
-    def setDireccion(self, direccion):
+    def set_direccion(self, direccion):
         self.direccion = direccion
+
+    def set_nombre(self, nombre):
+        self.nombre = nombre
+
+    def set_telefono(self, telefono):
+        self.telefono = telefono

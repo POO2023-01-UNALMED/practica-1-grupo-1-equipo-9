@@ -52,7 +52,7 @@ class TransaccionModificacion(Transaccion):
 
         return finder
 
-    def setAuto(self, auto):
+    def set_auto(self, auto):
         self.auto = auto
 
     def getAuto(self):

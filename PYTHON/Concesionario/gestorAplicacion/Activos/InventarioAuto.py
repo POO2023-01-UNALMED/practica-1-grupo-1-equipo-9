@@ -20,7 +20,7 @@ class InventarioAuto:
         return InventarioAuto.autos
 
     @staticmethod
-    def setAutos(autos):
+    def set_autos(autos):
         InventarioAuto.autos = autos
 
     @staticmethod

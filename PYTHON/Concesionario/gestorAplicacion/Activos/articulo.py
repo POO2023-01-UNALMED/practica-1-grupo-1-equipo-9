@@ -30,84 +30,84 @@ class Articulo:
             Inventario_Articulo.repuestos.append(self)
             self.marcaVehiculo = "Generico"
 
-    def setTipoArticulo(self, tipoArticulo):
+    def set_tipoArticulo(self, tipoArticulo):
         self.tipoArticulo = tipoArticulo
 
-    def getTipoArticulo(self):
+    def get_tipoArticulo(self):
         return self.tipoArticulo
 
-    def setTipoVehiculo(self, tipoVehiculo):
+    def set_tipoVehiculo(self, tipoVehiculo):
         self.tipoVehiculo = tipoVehiculo
 
-    def getTipoVehiculo(self):
+    def get_tipoVehiculo(self):
         return self.tipoVehiculo
 
-    def setPrecio(self, precio):
+    def set_precio(self, precio):
         self.precio = precio
 
-    def getPrecio(self):
+    def get_precio(self):
         return self.precio
 
-    def setMarca(self, marca):
+    def set_marca(self, marca):
         self.marca = marca
 
-    def getMarca(self):
+    def get_marca(self):
         return self.marca
 
     def articulosDisponibles(self):
         informacion = f"{self.tipoArticulo} {self.tipoVehiculo} {self.marca} {self.precio}\n"
         return informacion
 
-    def setCantidad(self, cantidad):
+    def set_cantidad(self, cantidad):
         self.cantidad = cantidad
 
-    def getCantidad(self):
+    def get_cantidad(self):
         return self.cantidad
 
-    def setEspecialidad(self, especialidad):
+    def set_especialidad(self, especialidad):
         self.especialidad = especialidad
 
-    def getEspecialidad(self):
+    def get_especialidad(self):
         return self.especialidad
 
     def info(self):
-        texto = "Producto: " + self.getTipoArticulo() + "\n"
+        texto = "Producto: " + self.get_tipoArticulo() + "\n"
         return texto
 
-    def setTipo(self, tipo):
+    def set_tipo(self, tipo):
         self.tipo = tipo
 
-    def getTipo(self):
+    def get_tipo(self):
         return self.tipo
 
-    def setCalidad(self, calidad):
+    def set_calidad(self, calidad):
         self.calidad = calidad
 
-    def getCalidad(self):
+    def get_calidad(self):
         return self.calidad
 
-    def setMarcaVehiculo(self, marcaVehiculo):
+    def set_marcaVehiculo(self, marcaVehiculo):
         self.marcaVehiculo = marcaVehiculo
 
-    def getMarcaVehiculo(self):
+    def get_marcaVehiculo(self):
         return self.marcaVehiculo
 
-    def setReferencia(self, referencia):
+    def set_referencia(self, referencia):
         self.referencia = referencia
 
-    def getReferencia(self):
+    def get_referencia(self):
         return self.referencia
 
     @staticmethod
-    def getArticuloPorReferencia(referencia):
+    def get_articuloPorReferencia(referencia):
         for articulo in Inventario_Articulo.articulos:
-            if articulo.getReferencia() == referencia:
+            if articulo.get_referencia() == referencia:
                 return articulo
         return None
 
     @staticmethod
-    def getRepuestoPorReferencia(referencia):
+    def get_repuestoPorReferencia(referencia):
         for articulo in Inventario_Articulo.repuestos:
-            if articulo.getReferencia() == referencia:
+            if articulo.get_Referencia() == referencia:
                 return articulo
         return None

@@ -10,6 +10,7 @@ sys.path.append(ruta_gestor)
 from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
 from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
+from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
 
     def procesoVenta():
@@ -26,14 +27,14 @@ if __name__ == "__main__":
                 if comprador is None:
                     print("La cédula ingresada no se encuentra registrada. Por favor, vuelva a ingresarla.")
 
-            if comprador.getPresupuesto() < 35000000:
+            if comprador.get_presupuesto() < 35000000:
                 presupuestoInsuficiente = True
                 print("Usted no tiene el presupuesto mínimo para comprar algún carro del inventario.")
                 break
             
             # Selección del carro
             opcion = 0
-            print(comprador.info() + "Su presupuesto es: " + str(comprador.getPresupuesto()) + "\n")
+            print(comprador.info() + "Su presupuesto es: " + str(comprador.get_presupuesto()) + "\n")
             print("Estos son los autos de la marca de interés para el cliente disponibles en este momento: ")
             
             # AUTOS POR MODELO
@@ -41,18 +42,18 @@ if __name__ == "__main__":
             result1 = "{:<20}{:<20}{:<10}\n".format("Modelo", "Precio", "Color")
             j = 0
             for auto1 in InventarioAuto.getAutosDisponibles():
-                if comprador.getModeloInteres() == auto1.getMarca():
+                if comprador.get_modeloInteres() == auto1.getMarca():
                     j += 1
                     autosMod.append(auto1)
                     carInfo1 = "{:<20}{:<20}{:<10}\n".format(auto1.getModelo(), auto1.getPrecio(), auto1.getColor())
                     result1 += "{:<3d}{}".format(j, carInfo1)
             
             if len(autosMod) > 1:
-                print("Los carros de la marca " + comprador.getModeloInteres() + " disponibles son:\n")
+                print("Los carros de la marca " + comprador.get_modeloInteres() + " disponibles son:\n")
                 print(result1)
                 print("Seleccione el numero del carro" + "[1-" + str(len(autosMod)) + "] ")
             elif len(autosMod) == 1:
-                print("El unico carro de modelo " + comprador.getModeloInteres() + " disponible es:\n")
+                print("El unico carro de modelo " + comprador.get_modeloInteres() + " disponible es:\n")
                 print(result1)
                 print("Lo desea seleccionar? (y/n): ")
                 resp = input()
@@ -66,7 +67,8 @@ if __name__ == "__main__":
 
     volver_al_menu_principal = True
     opcion = None
-    Serializador.serializar_arrays()
+    Deserializador.deserializar_arrays()
+    
     while volver_al_menu_principal:
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
@@ -84,9 +86,14 @@ if __name__ == "__main__":
             procesoVenta()
             respuesta = input("¿Desea volver al menú principal? (si/no): ")
             if respuesta == "no":
+                Serializador.serializar_arrays()
                 volver_al_menu_principal = False
         elif opcion == 2:
             ##ventaRepuestos()
             respuesta = input("¿Desea volver al menú principal? (si/no): ")
             if respuesta == "no":
                 volver_al_menu_principal = False
+        elif opcion==8:
+            print("Chao pescao")
+            Serializador.serializar_arrays()
+            volver_al_menu_principal = False
