@@ -38,7 +38,7 @@ class Cliente(Persona):
     def set_auto(self, auto):
         self.auto = auto
 
-    def getAuto(self):
+    def get_auto(self):
         return self.auto
 
     @classmethod

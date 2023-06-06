@@ -34,39 +34,39 @@ class TransaccionVentaTaller(Transaccion):
         return cli
 
     @staticmethod
-    def getTransaccionporCedula(cedula):
+    def get_transaccionporCedula(cedula):
         finder = None
 
         for trans in TransaccionVentaTaller.transaccionesvental:
             if trans.get_clienteCed() == cedula:
-                finder = trans.getArticulo()
+                finder = trans.get_articulo()
                 break
 
         return finder
 
-    def setArticulo(self, articulo):
+    def set_articulo(self, articulo):
         self.articulo = articulo
 
-    def getArticulo(self):
+    def get_articulo(self):
         return self.articulo
 
-    def setVendedor(self, vendedor):
+    def set_vendedor(self, vendedor):
         self.vendedor = vendedor
 
-    def getVendedor(self):
+    def get_vendedor(self):
         return self.vendedor
 
     @staticmethod
-    def agregarTransaccion(transaccion):
+    def agregar_transaccion(transaccion):
         TransaccionVentaTaller.transaccionesvental.append(transaccion)
 
     @staticmethod
-    def eliminarTransaccion(transaccion):
+    def eliminar_transaccion(transaccion):
         TransaccionVentaTaller.transaccionesvental.remove(transaccion)
 
-    @staticmethod
-    def get_transaccionesvental():
-        return TransaccionVentaTaller.transaccionesvental
-    @staticmethod
-    def set_transaccionesvental(transss):
-        TransaccionVentaTaller.transaccionesvental=transss
+    @classmethod
+    def get_transaccionesvental(cls):
+        return cls.transaccionesvental
+    @classmethod
+    def set_transaccionesvental(cls,transss):
+        cls.transaccionesvental=transss

@@ -42,12 +42,12 @@ class TransaccionModificacion(Transaccion):
         return client
 
     @staticmethod
-    def getTransaccionporCedula(cedula):
+    def get_transaccionporCedula(cedula):
         finder = None
 
         for trans in TransaccionModificacion.transaccionesmod:
             if trans.get_clienteCed() == cedula:
-                finder = trans.getAuto()
+                finder = trans.get_auto()
                 break
 
         return finder
@@ -55,7 +55,7 @@ class TransaccionModificacion(Transaccion):
     def set_auto(self, auto):
         self.auto = auto
 
-    def getAuto(self):
+    def get_auto(self):
         return self.auto
 
     def set_mecanico(self, mecanico):
@@ -64,18 +64,18 @@ class TransaccionModificacion(Transaccion):
     def get_mecanico(self):
         return self.mecanico
 
-    def setArticulo(self, articulo):
+    def set_articulo(self, articulo):
         self.articulo = articulo
 
-    def getArticulo(self):
+    def get_articulo(self):
         return self.articulo
 
     @staticmethod
-    def agregarTransaccion(transaccion):
+    def agregar_transaccion(transaccion):
         TransaccionModificacion.transaccionesmod.append(transaccion)
 
     @staticmethod
-    def eliminarTransaccion(transaccion):
+    def eliminar_transaccion(transaccion):
         TransaccionModificacion.transaccionesmod.remove(transaccion)
 
     @staticmethod
@@ -85,8 +85,8 @@ class TransaccionModificacion(Transaccion):
     def set_transaccionesmod(qq):
         TransaccionModificacion.transaccionesmod=qq
 
-    def getVendedor(self):
+    def get_vendedor(self):
         return self.vendedor
 
-    def setVendedor(self, vendedor):
+    def set_vendedor(self, vendedor):
         self.vendedor = vendedor

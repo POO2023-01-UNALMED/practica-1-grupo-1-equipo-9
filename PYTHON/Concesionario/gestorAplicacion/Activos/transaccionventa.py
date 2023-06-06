@@ -67,12 +67,12 @@ class TransaccionVenta(Transaccion):
     def eliminar_transaccion(transaccion):
         TransaccionVenta.transaccionesven.remove(transaccion)
     
-    @staticmethod
-    def get_transaccionesven():
-        return TransaccionVenta.transaccionesven
-    @staticmethod
-    def set_transaccionesven(trans):
-        TransaccionVenta.transaccionesven=trans
+    @classmethod
+    def get_transaccionesven(cls):
+        return cls.transaccionesven
+    @classmethod
+    def set_transaccionesven(cls,trans):
+        cls.transaccionesven=trans
     
     @staticmethod
     def vendedores_ventas(ventas):
