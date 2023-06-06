@@ -54,7 +54,7 @@ class Articulo:
     def get_marca(self):
         return self.marca
 
-    def articulosDisponibles(self):
+    def articulos_disponibles(self):
         informacion = f"{self.tipoArticulo} {self.tipoVehiculo} {self.marca} {self.precio}\n"
         return informacion
 

@@ -21,58 +21,58 @@ class Transaccion(ABC):
         self.numtrans = str(int(Transaccion.numtrans) + 1).zfill(8)
 
     @staticmethod
-    def getTransaccionPorTransfer(transfer):
+    def get_transaccionPorTransfer(transfer):
         for t in Transaccion.transacciones:
-            if t.getTransfer() == transfer:
+            if t.get_transfer() == transfer:
                 return t
         return None
 
-    @staticmethod
-    def getTransacciones():
-        return Transaccion.transacciones
-    @staticmethod
-    def set_transacciones(transacciones):
-        Transaccion.transacciones=transacciones
+    @classmethod
+    def get_transacciones(cls):
+        return cls.transacciones
+    @classmethod
+    def set_transacciones(cls,transacc):
+        cls.transacciones=transacc
 
-    def setTipo(self, tipo):
+    def set_tipo(self, tipo):
         self.tipo = tipo
 
-    def setMecanico(self, mecanico):
+    def set_mecanico(self, mecanico):
         self.mecanico = mecanico
 
-    def setIngreso(self, ingreso):
+    def set_ingreso(self, ingreso):
         self.ingreso = ingreso
 
-    def setCliente(self, cliente):
+    def set_cliente(self, cliente):
         self.cliente = cliente
 
-    def getipo(self):
+    def ge_tipo(self):
         return self.tipo
 
-    def setTransfer(self, transfer):
+    def set_transfer(self, transfer):
         self.transfer = transfer
 
-    def getTransfer(self):
+    def get_transfer(self):
         return self.transfer
 
-    def getMecanico(self):
+    def get_mecanico(self):
         return self.mecanico
 
-    def getIngreso(self):
+    def get_ingreso(self):
         return self.ingreso
 
-    def getCliente(self):
+    def get_cliente(self):
         return self.cliente
 
-    def getClienteCed(self):
+    def get_clienteCed(self):
         return self.cliente.get_cedula()
 
     @staticmethod
-    def getNumtrans():
+    def get_numtrans():
         return Transaccion.numtrans
 
     @staticmethod
-    def setNumtrans(numtrans):
+    def set_numtrans(numtrans):
         Transaccion.numtrans = numtrans
 
 

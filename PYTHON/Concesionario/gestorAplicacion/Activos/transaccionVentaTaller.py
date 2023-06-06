@@ -17,7 +17,7 @@ class TransaccionVentaTaller(Transaccion):
         TransaccionVentaTaller.transaccionesvental.append(self)
 
     def info(self):
-        txt = f"Transacción #{self.transfer:08d}: venta realizada por {self.vendedor.get_nombre()} para el cliente {self.cliente.get_nombre()} por un total de ${self.articulo.getPrecio()} por el artículo {self.articulo.getMarca()}"
+        txt = f"Transacción #{self.transfer:08d}: venta realizada por {self.vendedor.get_nombre()} para el cliente {self.cliente.get_nombre()} por un total de ${self.articulo.getPrecio()} por el artículo {self.articulo.get_marca()}"
         return txt
 
     @staticmethod
@@ -26,9 +26,9 @@ class TransaccionVentaTaller(Transaccion):
         cli = None
 
         for trans in TransaccionVentaTaller.transaccionesvental:
-            if trans.getClienteCed() == cedula:
+            if trans.get_clienteCed() == cedula:
                 finder = trans
-                cli = finder.getCliente()
+                cli = finder.get_cliente()
                 break
 
         return cli
@@ -38,7 +38,7 @@ class TransaccionVentaTaller(Transaccion):
         finder = None
 
         for trans in TransaccionVentaTaller.transaccionesvental:
-            if trans.getClienteCed() == cedula:
+            if trans.get_clienteCed() == cedula:
                 finder = trans.getArticulo()
                 break
 
@@ -65,7 +65,7 @@ class TransaccionVentaTaller(Transaccion):
         TransaccionVentaTaller.transaccionesvental.remove(transaccion)
 
     @staticmethod
-    def getTransaccionesvental():
+    def get_transaccionesvental():
         return TransaccionVentaTaller.transaccionesvental
     @staticmethod
     def set_transaccionesvental(transss):

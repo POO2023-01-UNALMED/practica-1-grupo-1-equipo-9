@@ -31,9 +31,9 @@ class TransaccionVenta(Transaccion):
         cli = None
 
         for trans in TransaccionVenta.transaccionesven:
-            if trans.getClienteCed() == cedula:
+            if trans.get_clienteCed() == cedula:
                 finder = trans
-                cli = finder.getCliente()
+                cli = finder.get_cliente()
                 break
 
         return cli

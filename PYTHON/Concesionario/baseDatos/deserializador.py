@@ -34,11 +34,11 @@ class Deserializador():
 
     @classmethod
     def deserializar_arrays(cls):
-        InventarioAuto.setAutos(cls.deserializar_array("Autos"))
+        InventarioAuto.set_autos(cls.deserializar_array("Autos"))
         Cliente.set_clientes(cls.deserializar_array("Clientes"))
-        Mecanico.setMecanicos(cls.deserializar_array("Mecanicos"))
+        Mecanico.set_mecanicos(cls.deserializar_array("Mecanicos"))
         Vendedor.set_vendedores(cls.deserializar_array("Vendedores"))
-        Inventario_Articulo.setArticulos(cls.deserializar_array("Articulos"))
+        Inventario_Articulo.set_articulos(cls.deserializar_array("Articulos"))
         Inventario_Articulo.set_repuestos(cls.deserializar_array("Repuestos"))
         Transaccion.set_transacciones(cls.deserializar_array("Transacciones"))
         TransaccionVenta.set_transaccionesven(cls.deserializar_array("TransaccionesVentas"))

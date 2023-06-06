@@ -23,7 +23,7 @@ if __name__ == "__main__":
             while comprador is None:
                 print("Escriba la cédula del comprador:  ")
                 cedula = int(input())
-                comprador = Cliente.getClientePorCedula(cedula)
+                comprador = Cliente.get_clientePorCedula(cedula)
                 if comprador is None:
                     print("La cédula ingresada no se encuentra registrada. Por favor, vuelva a ingresarla.")
 
@@ -42,8 +42,8 @@ if __name__ == "__main__":
             autosMod = []
             result1 = "{:<20}{:<20}{:<10}\n".format("Modelo", "Precio", "Color")
             j = 0
-            for auto1 in InventarioAuto.get_autosDisponibles():
-                if comprador.get_modeloInteres() == auto1.getMarca():
+            for auto1 in InventarioAuto.get_autos_disponibles():
+                if comprador.get_modeloInteres() == auto1.get_marca():
                     j += 1
                     autosMod.append(auto1)
                     carInfo1 = "{:<20}{:<20}{:<10}\n".format(auto1.getModelo(), auto1.getPrecio(), auto1.getColor())

@@ -47,7 +47,7 @@ class Mecanico(Trabajador):
     def setEspecialidad(self, especialidad):
         self.especialidad = especialidad
 
-    def getEspecialidad(self):
+    def get_especialidad(self):
         return self.especialidad
 
     @staticmethod
@@ -55,7 +55,7 @@ class Mecanico(Trabajador):
         return Mecanico.mecanicos
 
     @staticmethod
-    def setMecanicos(mecanicos):
+    def set_mecanicos(mecanicos):
         Mecanico.mecanicos = mecanicos
 
     @staticmethod
@@ -71,55 +71,55 @@ class Mecanico(Trabajador):
             if input == 1:
                 especialidad = "Pintura"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos() and len(mecanico.get_horario()) >= 1:
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos() and len(mecanico.get_horario()) >= 1:
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 2:
                 especialidad = "Llantas"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 3:
                 especialidad = "Motor"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 4:
                 especialidad = "Frenos"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 5:
                 especialidad = "ModificacionPintura"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 6:
                 especialidad = "ModificacionLlantas"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 7:
                 especialidad = "ModificacionSonido"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 8:
                 especialidad = "ModificacionFrenos"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 9:
                 especialidad = "ModificacionEscape"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             else:
@@ -141,31 +141,31 @@ class Mecanico(Trabajador):
             if input == 1:
                 especialidad = "ModificacionPintura"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 2:
                 especialidad = "ModificacionLlantas"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 3:
                 especialidad = "ModificacionSonido"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 4:
                 especialidad = "ModificacionFrenos"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             elif input == 5:
                 especialidad = "ModificacionEscape"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.getEspecialidad() and auto.getMarca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
                         mechs.add(mecanico)
                     salir = "si"
             else:
@@ -175,7 +175,7 @@ class Mecanico(Trabajador):
         return mechs
 
     @staticmethod
-    def getMecanicoPorCedula(cedula):
+    def get_mecanicoPorCedula(cedula):
         finder = None
         for mecanico in Mecanico.mecanicos:
             if mecanico.get_cedula() == cedula:

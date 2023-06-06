@@ -27,9 +27,9 @@ class TransaccionTaller(Transaccion):
         cli = None
 
         for trans in TransaccionTaller.transaccionestal:
-            if trans.getClienteCed() == cedula:
+            if trans.get_clienteCed() == cedula:
                 finder = trans
-                cli = finder.getCliente()
+                cli = finder.get_cliente()
                 break
 
         return cli
@@ -39,7 +39,7 @@ class TransaccionTaller(Transaccion):
         finder = None
 
         for trans in TransaccionTaller.transaccionestal:
-            if trans.getClienteCed() == cedula:
+            if trans.get_clienteCed() == cedula:
                 finder = trans.getAuto()
                 break
 
@@ -51,10 +51,10 @@ class TransaccionTaller(Transaccion):
     def getAuto(self):
         return self.auto
 
-    def setMecanico(self, mecanico):
+    def set_mecanico(self, mecanico):
         self.mecanico = mecanico
 
-    def getMecanico(self):
+    def get_mecanico(self):
         return self.mecanico
 
     def setArticulo(self, articulo):
@@ -72,7 +72,7 @@ class TransaccionTaller(Transaccion):
         TransaccionTaller.transaccionestal.remove(transaccion)
 
     @staticmethod
-    def getTransaccionestal():
+    def get_transaccionestal():
         return TransaccionTaller.transaccionestal
     @staticmethod
     def set_transaccionestal(pp):

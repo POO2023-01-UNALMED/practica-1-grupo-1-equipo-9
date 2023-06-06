@@ -107,10 +107,10 @@ class Vendedor(Trabajador):
         self.direccion = direccion
     @staticmethod
     def estResults(listaFinanzas):
-        ventasautos = sum(transaccauto.getIngreso() for transaccauto in TransaccionVenta.getTransaccionesven())
-        ventastaller = sum(transacctaller.getIngreso() for transacctaller in TransaccionTaller.getTransaccionestal())
-        arttaller = sum(t.getIngreso() for t in TransaccionVentaTaller.getTransaccionesven())
-        transaccmod = sum(m.getIngreso() for m in TransaccionModificacion.getTransaccionesmod())
+        ventasautos = sum(transaccauto.get_ingreso() for transaccauto in TransaccionVenta.get_transaccionesven())
+        ventastaller = sum(transacctaller.get_ingreso() for transacctaller in TransaccionTaller.get_transaccionestal())
+        arttaller = sum(t.get_ingreso() for t in TransaccionVentaTaller.get_transaccionesven())
+        transaccmod = sum(m.get_ingreso() for m in TransaccionModificacion.get_transaccionesmod())
 
         ventas = ventasautos + ventastaller + arttaller + transaccmod
         listaFinanzas[0] = ventas
