@@ -12,7 +12,7 @@ from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
-    
+
     def procesoVenta():
         presupuestoInsuficiente = False
         while True:
@@ -97,5 +97,6 @@ if __name__ == "__main__":
                 volver_al_menu_principal = False
         elif opcion==8:
             print("Chao pescao")
+            print(Cliente.clientes)
             Serializador.serializar_arrays()
             volver_al_menu_principal = False

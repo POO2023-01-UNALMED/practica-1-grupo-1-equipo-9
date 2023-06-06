@@ -24,25 +24,25 @@ class Serializador():
         ruta = os.path.abspath(f"Concesionario/baseDatos/tmp/{name}.pkl")
 
         try:
-            archivo= open(ruta, "wb")
-            pickle.dump(array, archivo)
+            with open(ruta, "wb") as archivo:
+                pickle.dump(array, archivo)
         except FileNotFoundError:
             print("FileNotFound")
         except IOError:
             print("IOError")
 
     def serializar_arrays():
-        Serializador.serializar_array(InventarioAuto.get_autos, "Autos")
+        Serializador.serializar_array(InventarioAuto.get_autos(), "Autos")
         Serializador.serializar_array(Cliente.getClientes(), "Clientes")
-        Serializador.serializar_array(Mecanico.get_mecanicos, "Mecanicos")
-        Serializador.serializar_array(Vendedor.get_vendedores, "Vendedores")
-        Serializador.serializar_array(Inventario_Articulo.getArticulos, "Articulos")
+        Serializador.serializar_array(Mecanico.get_mecanicos(), "Mecanicos")
+        Serializador.serializar_array(Vendedor.get_vendedores(), "Vendedores")
+        Serializador.serializar_array(Inventario_Articulo.getArticulos(), "Articulos")
         Serializador.serializar_array(Inventario_Articulo.getRepuesto(), "Repuestos")
         Serializador.serializar_array(Transaccion.getTransacciones(), "Transacciones")
-        Serializador.serializar_array(TransaccionVenta.get_transaccionesven, "TransaccionesVentas")
-        Serializador.serializar_array(TransaccionVentaTaller.getTransaccionesvental, "TransaccionesVentaTaller")
+        Serializador.serializar_array(TransaccionVenta.get_transaccionesven(), "TransaccionesVentas")
+        Serializador.serializar_array(TransaccionVentaTaller.getTransaccionesvental(), "TransaccionesVentaTaller")
         Serializador.serializar_array(TransaccionTaller.getTransaccionestal(), "TransaccionesTaller")
         Serializador.serializar_array(TransaccionModificacion.getTransaccionesmod(), "TransaccionesModificacion")
-        Serializador.serializar_array(TransaccionVenta.get_autosV, "AutosV")
-        Serializador.serializar_array(TransaccionVenta.get_marcas, "Marcas")
-        Serializador.serializar_array(TransaccionVenta.get_vend, "Vend")
+        Serializador.serializar_array(TransaccionVenta.get_autosV(), "AutosV")
+        Serializador.serializar_array(TransaccionVenta.get_marcas(), "Marcas")
+        Serializador.serializar_array(TransaccionVenta.get_vend(), "Vend")
