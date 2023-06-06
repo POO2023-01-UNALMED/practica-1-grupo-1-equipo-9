@@ -53,9 +53,9 @@ class Cliente(Persona):
                 break
         return finder
 
-    @staticmethod
-    def set_clientes(clientes):
-        Cliente.clientes = clientes
+    @classmethod
+    def set_clientes(cls,client):
+        Cliente.clientes = client
 
     def info(self):
         texto = "Nombre del cliente: " + self.get_nombre() + "\n"
