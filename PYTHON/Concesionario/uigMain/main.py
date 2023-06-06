@@ -23,7 +23,7 @@ if __name__ == "__main__":
             while comprador is None:
                 print("Escriba la cédula del comprador:  ")
                 cedula = int(input())
-                comprador = Cliente.get_clientePorCedula(cedula)
+                comprador = Cliente.getClientePorCedula(cedula)
                 if comprador is None:
                     print("La cédula ingresada no se encuentra registrada. Por favor, vuelva a ingresarla.")
 
