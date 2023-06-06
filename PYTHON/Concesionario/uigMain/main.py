@@ -27,6 +27,7 @@ if __name__ == "__main__":
                 if comprador is None:
                     print("La cédula ingresada no se encuentra registrada. Por favor, vuelva a ingresarla.")
 
+
             if comprador.get_presupuesto() < 35000000:
                 presupuestoInsuficiente = True
                 print("Usted no tiene el presupuesto mínimo para comprar algún carro del inventario.")
@@ -68,6 +69,7 @@ if __name__ == "__main__":
     volver_al_menu_principal = True
     opcion = None
     Deserializador.deserializar_arrays()
+    
     
     while volver_al_menu_principal:
         print("\n\nMenú principal Concesionario")
