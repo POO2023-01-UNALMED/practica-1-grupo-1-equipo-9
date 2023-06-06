@@ -12,8 +12,7 @@ from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
-    cliente4 = Cliente("Laura Gomez", 321654987, "3216549870", "laura@example.com", "Modelo D", 60000909)
-    
+
     def procesoVenta():
         presupuestoInsuficiente = False
         while True:

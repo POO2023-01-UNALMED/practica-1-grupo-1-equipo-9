@@ -26,12 +26,11 @@ class Serializador():
         try:
             archivo= open(ruta, "wb")
             pickle.dump(array, archivo)
-            archivo.close()
         except FileNotFoundError:
             print("FileNotFound")
         except IOError:
             print("IOError")
-            
+
     def serializar_arrays():
         Serializador.serializar_array(InventarioAuto.get_autos(), "Autos")
         Serializador.serializar_array(Cliente.get_clientes(), "Clientes")

@@ -40,9 +40,8 @@ class Cliente(Persona):
     def getAuto(self):
         return self.auto
 
-    @classmethod
-    def get_clientes(cls):
-        return cls.clientes
+    def get_clientes():
+        return Cliente.clientes
 
     @staticmethod
     def get_clientePorCedula(cedula):
@@ -53,9 +52,8 @@ class Cliente(Persona):
                 break
         return finder
 
-    @classmethod
-    def set_clientes(cls,client):
-        cls.clientes = client
+    def set_clientes(client):
+        Cliente.clientes = client
 
     def info(self):
         texto = "Nombre del cliente: " + self.get_nombre() + "\n"
