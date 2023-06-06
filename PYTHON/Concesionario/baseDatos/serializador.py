@@ -32,11 +32,11 @@ class Serializador():
             print("IOError")
 
     def serializar_arrays():
-        Serializador.serializar_array(InventarioAuto.get_autos(), "Autos")
-        Serializador.serializar_array(Cliente.get_clientes(), "Clientes")
-        Serializador.serializar_array(Mecanico.get_mecanicos(), "Mecanicos")
-        Serializador.serializar_array(Vendedor.get_vendedores(), "Vendedores")
-        Serializador.serializar_array(Inventario_Articulo.getArticulos(), "Articulos")
+        Serializador.serializar_array(InventarioAuto.get_autos, "Autos")
+        Serializador.serializar_array(Cliente.getClientes(), "Clientes")
+        Serializador.serializar_array(Mecanico.get_mecanicos, "Mecanicos")
+        Serializador.serializar_array(Vendedor.get_vendedores, "Vendedores")
+        Serializador.serializar_array(Inventario_Articulo.getArticulos, "Articulos")
         Serializador.serializar_array(Inventario_Articulo.getRepuesto(), "Repuestos")
         Serializador.serializar_array(Transaccion.getTransacciones(), "Transacciones")
         Serializador.serializar_array(TransaccionVenta.get_transaccionesven, "TransaccionesVentas")

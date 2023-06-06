@@ -12,7 +12,7 @@ from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
-
+    
     def procesoVenta():
         presupuestoInsuficiente = False
         while True:
