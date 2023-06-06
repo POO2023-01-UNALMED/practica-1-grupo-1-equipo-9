@@ -12,6 +12,7 @@ from persona import Persona
 
 class Cliente(Persona):
     clientes = []
+
     def __init__(self, nombre, cedula, telefono, correo, modeloInteres, presupuesto, direccion="Medellin"):
         self.nombre = nombre
         self.cedula = cedula
@@ -40,12 +41,22 @@ class Cliente(Persona):
     def getAuto(self):
         return self.auto
 
+<<<<<<< HEAD
     def get_clientes():
         return Cliente.clientes
 
     @staticmethod
     def get_clientePorCedula(cedula):
         finder=None
+=======
+    @staticmethod
+    def getClientes():
+        return Cliente.clientes
+
+    @staticmethod
+    def getClientePorCedula(cedula):
+        finder = None
+>>>>>>> parent of 9ff2476 (no da)
         for cliente in Cliente.clientes:
             if cliente.get_cedula() == cedula:
                 finder = cliente

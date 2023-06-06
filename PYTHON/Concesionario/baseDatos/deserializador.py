@@ -23,6 +23,7 @@ class Deserializador():
         lista = []
         ruta = os.path.abspath(f"Concesionario/baseDatos/tmp/{name}.pkl")
         try:
+<<<<<<< HEAD
             picklefile = open(ruta, "rb")
         except:
             picklefile = open(ruta, "x")
@@ -31,6 +32,10 @@ class Deserializador():
             lista = pickle.load(picklefile)
         picklefile.close()
         return lista
+=======
+            archivo= open(ruta, "rb")
+            array=pickle.load(archivo)
+>>>>>>> parent of 9ff2476 (no da)
 
     @classmethod
     def deserializar_arrays(cls):
