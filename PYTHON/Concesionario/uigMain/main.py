@@ -24,8 +24,12 @@ if __name__ == "__main__":
                 print("Escriba la cédula del comprador: ")
                 cedula = int(input())
 <<<<<<< HEAD
+<<<<<<< HEAD
                 comprador = Cliente.get_clientePorCedula(cedula)
                 
+=======
+                comprador = Cliente.getClientePorCedula(cedula)
+>>>>>>> parent of 9ff2476 (no da)
 =======
                 comprador = Cliente.getClientePorCedula(cedula)
 >>>>>>> parent of 9ff2476 (no da)
