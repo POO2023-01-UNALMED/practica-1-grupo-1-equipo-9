@@ -23,8 +23,9 @@ class Deserializador():
         ruta = os.path.abspath(f"Concesionario/baseDatos/tmp/{name}.pkl")
 
         try:
-            archivo= open(ruta, "rb")
-            array=pickle.load(archivo)
+            objects_file = open(ruta, "rb")
+            pickle.load(objects_file)
+            objects_file.close()
 
         except FileNotFoundError:
             print("FileNotFound")

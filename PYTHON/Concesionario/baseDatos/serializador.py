@@ -26,6 +26,7 @@ class Serializador():
         try:
             archivo= open(ruta, "wb")
             pickle.dump(array, archivo)
+            archivo.close()
         except FileNotFoundError:
             print("FileNotFound")
         except IOError:

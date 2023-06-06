@@ -12,7 +12,6 @@ from persona import Persona
 
 class Cliente(Persona):
     clientes = []
-
     def __init__(self, nombre, cedula, telefono, correo, modeloInteres, presupuesto, direccion="Medellin"):
         self.nombre = nombre
         self.cedula = cedula
@@ -41,13 +40,13 @@ class Cliente(Persona):
     def getAuto(self):
         return self.auto
 
-    @staticmethod
-    def getClientes():
+    @classmethod
+    def getClientes(cls):
         return Cliente.clientes
 
     @staticmethod
     def getClientePorCedula(cedula):
-        finder = None
+        finder=None
         for cliente in Cliente.clientes:
             if cliente.get_cedula() == cedula:
                 finder = cliente
