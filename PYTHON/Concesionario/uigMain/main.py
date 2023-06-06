@@ -13,8 +13,6 @@ from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
 
-
-
     def procesoVenta():
         presupuestoInsuficiente = False
         while True:
@@ -23,13 +21,12 @@ if __name__ == "__main__":
             auto = None
             
             while comprador is None:
-                print("Escriba la cédula del comprador: ")
+                print("Escriba la cédula del comprador:  ")
                 cedula = int(input())
                 comprador = Cliente.get_clientePorCedula(cedula)
-                
                 if comprador is None:
                     print("La cédula ingresada no se encuentra registrada. Por favor, vuelva a ingresarla.")
-            print(comprador.info())
+
             if comprador.get_presupuesto() < 35000000:
                 presupuestoInsuficiente = True
                 print("Usted no tiene el presupuesto mínimo para comprar algún carro del inventario.")
@@ -37,7 +34,7 @@ if __name__ == "__main__":
             
             # Selección del carro
             opcion = 0
-            print(comprador.info() + "Su presupuesto es: " + str(comprador.get_presupuesto()) + "\n")
+            print(comprador.info() + "Suu presupuesto es: " + str(comprador.get_presupuesto()) + "\n")
             print("Estos son los autos de la marca de interés para el cliente disponibles en este momento: ")
             
             # AUTOS POR MODELO
@@ -71,7 +68,7 @@ if __name__ == "__main__":
     volver_al_menu_principal = True
     opcion = None
     Deserializador.deserializar_arrays()
-
+    
     while volver_al_menu_principal:
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
