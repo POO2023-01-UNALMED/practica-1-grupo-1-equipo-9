@@ -27,9 +27,9 @@ class Vendedor(Trabajador):
     @classmethod
     def get_vendedores(cls):
         return cls.vendedores
-    @staticmethod
-    def set_vendedores(vendedo):
-        Vendedor.vendedores=vendedo
+    @classmethod
+    def set_vendedores(cls,vendedo):
+        cls.vendedores=vendedo
         
 
     @staticmethod
@@ -60,7 +60,7 @@ class Vendedor(Trabajador):
         texto = "Nombre del Vendedor: " + self.get_nombre() + "\n"
         return texto
 
-    def confirmarVenta(self):
+    def confirmar_venta(self):
         self.ventas += 1
 
     @staticmethod

@@ -44,7 +44,7 @@ class Mecanico(Trabajador):
     def set_autos(self, autos):
         self.autos = autos
 
-    def setEspecialidad(self, especialidad):
+    def set_especialidad(self, especialidad):
         self.especialidad = especialidad
 
     def get_especialidad(self):
@@ -59,7 +59,7 @@ class Mecanico(Trabajador):
         Mecanico.mecanicos = mecanicos
 
     @staticmethod
-    def mecanicoDisponible(auto):
+    def mecanico_disponible(auto):
         input = 0
         salir = None
         especialidad = None
@@ -129,7 +129,7 @@ class Mecanico(Trabajador):
         return mechs
 
     @staticmethod
-    def mecanicoModif(auto):
+    def mecanico_modif(auto):
         input = 0
         salir = None
         especialidad = None
