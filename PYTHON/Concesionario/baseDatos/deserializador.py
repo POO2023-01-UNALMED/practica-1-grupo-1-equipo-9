@@ -19,12 +19,12 @@ from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
 from gestorAplicacion.Activos.TransaccionModificacion import TransaccionModificacion
 
 class Deserializador():
-    def deserializar_array(arrayf, name):
+    def deserializar_array(array, name):
         ruta = os.path.abspath(f"Concesionario/baseDatos/tmp/{name}.pkl")
 
         try:
             archivo= open(ruta, "rb")
-            pickle.load(archivo)
+            array=pickle.load(archivo)
 
         except FileNotFoundError:
             print("FileNotFound")

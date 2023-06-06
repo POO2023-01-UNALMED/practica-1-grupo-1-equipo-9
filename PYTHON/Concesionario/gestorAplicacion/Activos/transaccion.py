@@ -43,7 +43,7 @@ class Transaccion(ABC):
     def setCliente(self, cliente):
         self.cliente = cliente
 
-    def getTipo(self):
+    def getipo(self):
         return self.tipo
 
     def setTransfer(self, transfer):

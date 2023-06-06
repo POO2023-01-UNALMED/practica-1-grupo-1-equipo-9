@@ -35,7 +35,7 @@ class Cliente(Persona):
     def set_presupuesto(self, presupuesto):
         self.presupuesto = presupuesto
 
-    def setAuto(self, auto):
+    def set_auto(self, auto):
         self.auto = auto
 
     def getAuto(self):
