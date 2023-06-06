@@ -22,7 +22,7 @@ class TransaccionTaller(Transaccion):
         return txt
 
     @staticmethod
-    def getClientePorCedula(cedula):
+    def get_clientePorCedula(cedula):
         finder = None
         cli = None
 
@@ -74,3 +74,6 @@ class TransaccionTaller(Transaccion):
     @staticmethod
     def getTransaccionestal():
         return TransaccionTaller.transaccionestal
+    @staticmethod
+    def set_transaccionestal(pp):
+        TransaccionTaller.transaccionestal=pp

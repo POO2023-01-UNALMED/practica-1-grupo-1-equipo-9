@@ -70,6 +70,9 @@ class TransaccionVenta(Transaccion):
     @staticmethod
     def get_transaccionesven():
         return TransaccionVenta.transaccionesven
+    @staticmethod
+    def set_transaccionesven(trans):
+        TransaccionVenta.transaccionesven=trans
     
     @staticmethod
     def vendedores_ventas(ventas):
@@ -88,6 +91,9 @@ class TransaccionVenta(Transaccion):
     @staticmethod
     def get_autosV():
         return TransaccionVenta.autosV
+    @staticmethod
+    def set_autosV(aut):
+        TransaccionVenta.autosV=aut
     
     @staticmethod
     def get_ingreso_por_auto(auto):

@@ -25,81 +25,85 @@ class Vendedor(Trabajador):
         Vendedor.vendedores.append(self)
 
     @classmethod
-    def getVendedores(cls):
+    def get_vendedores(cls):
         return cls.vendedores
+    @staticmethod
+    def set_vendedores(vendedo):
+        Vendedor.vendedores=vendedo
+        
 
     @staticmethod
-    def getVendedorPorCedula(cedula):
+    def get_vendedorPorCedula(cedula):
         for vendedor in Vendedor.vendedores:
-            if vendedor.getCedula() == cedula:
+            if vendedor.get_cedula() == cedula:
                 return vendedor
         return None
 
     @staticmethod
-    def addVendedor(vendedor):
+    def add_vendedor(vendedor):
         Vendedor.vendedores.append(vendedor)
 
     @staticmethod
-    def removeVendedor(vendedor):
+    def remove_vendedor(vendedor):
         Vendedor.vendedores.remove(vendedor)
 
-    def getPuesto(self):
+    def get_puesto(self):
         return self.puesto
 
-    def setPuesto(self, puesto):
+    def set_puesto(self, puesto):
         self.puesto = puesto
 
-    def calcularSalario(self):
+    def calcular_salario(self):
         return int(self.getSalario() + (self.ventas * Vendedor.COMISION))
 
     def info(self):
-        texto = "Nombre del Vendedor: " + self.getNombre() + "\n"
+        texto = "Nombre del Vendedor: " + self.get_nombre() + "\n"
         return texto
 
     def confirmarVenta(self):
         self.ventas += 1
 
     @staticmethod
-    def selectorVend(o):
+    def selector_vend(o):
         vende = None
         vendedores = []
         if isinstance(o, Auto):
             vende = "Vitrina"
         elif isinstance(o, articulo):
             vende = "Repuestos"
-        for vendedor in Vendedor.getVendedores():
-            if vende == vendedor.getPuesto():
+        for vendedor in Vendedor.get_vendedores():
+            if vende == vendedor.get_puesto():
                 vendedores.append(vendedor)
         return vendedores
 
-    def getNombre(self):
+    def get_nombre(self):
         return self.nombre
 
-    def getCedula(self):
+    def get_cedula(self):
         return self.cedula
 
-    def getTelefono(self):
+    def get_telefono(self):
         return self.telefono
 
-    def getCorreo(self):
+    def get_correo(self):
         return self.correo
 
-    def getDireccion(self):
+    def get_direccion(self):
         return self.direccion
 
-    def setNombre(self, nombre):
+    def set_nombre(self, nombre):
         self.nombre = nombre
 
-    def setCedula(self, cedula):
+    def set_cedula(self, cedula):
         self.cedula = cedula
 
-    def setTelefono(self, telefono):
+    def set_telefono(self, telefono):
         self.telefono = telefono
 
-    def setCorreo(self, correo):
+    def set_correo(self, correo):
         self.correo = correo
 
-    def setDireccion(self, direccion):
+    def set_direccion(self, direccion):
         self.direccion = direccion
     @staticmethod
     def estResults(listaFinanzas):
@@ -111,8 +115,8 @@ class Vendedor(Trabajador):
         ventas = ventasautos + ventastaller + arttaller + transaccmod
         listaFinanzas[0] = ventas
 
-        pagoEmpleados = sum(vendedor.getSalario() for vendedor in Vendedor.getVendedores())
-        pagoEmpleados += sum(mecanico.getSalario() for mecanico in Mecanico.getMecanicos())
+        pagoEmpleados = sum(vendedor.getSalario() for vendedor in Vendedor.get_vendedores())
+        pagoEmpleados += sum(mecanico.getSalario() for mecanico in Mecanico.get_mecanicos())
         listaFinanzas[1] = pagoEmpleados
 
         gastos = ventasautos * 0.02 + 10000000 + 7000000

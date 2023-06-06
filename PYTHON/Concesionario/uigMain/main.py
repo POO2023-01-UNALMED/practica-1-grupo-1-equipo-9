@@ -13,7 +13,6 @@ from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
 
-
     def procesoVenta():
         presupuestoInsuficiente = False
         while True:
@@ -24,7 +23,7 @@ if __name__ == "__main__":
             while comprador is None:
                 print("Escriba la cédula del comprador: ")
                 cedula = int(input())
-                comprador = Cliente.getClientePorCedula(cedula)
+                comprador = Cliente.get_clientePorCedula(cedula)
                 
                 if comprador is None:
                     print("La cédula ingresada no se encuentra registrada. Por favor, vuelva a ingresarla.")
@@ -43,7 +42,7 @@ if __name__ == "__main__":
             autosMod = []
             result1 = "{:<20}{:<20}{:<10}\n".format("Modelo", "Precio", "Color")
             j = 0
-            for auto1 in InventarioAuto.getAutosDisponibles():
+            for auto1 in InventarioAuto.get_autosDisponibles():
                 if comprador.get_modeloInteres() == auto1.getMarca():
                     j += 1
                     autosMod.append(auto1)

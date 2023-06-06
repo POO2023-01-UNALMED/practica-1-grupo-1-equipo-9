@@ -30,6 +30,9 @@ class Transaccion(ABC):
     @staticmethod
     def getTransacciones():
         return Transaccion.transacciones
+    @staticmethod
+    def set_transacciones(transacciones):
+        Transaccion.transacciones=transacciones
 
     def setTipo(self, tipo):
         self.tipo = tipo
@@ -62,7 +65,7 @@ class Transaccion(ABC):
         return self.cliente
 
     def getClienteCed(self):
-        return self.cliente.getCedula()
+        return self.cliente.get_cedula()
 
     @staticmethod
     def getNumtrans():

@@ -16,24 +16,24 @@ class InventarioAuto:
         self.autos.remove(auto)
 
     @staticmethod
-    def getAutos():
+    def get_autos():
         return InventarioAuto.autos
 
     @staticmethod
-    def set_autos(autos):
+    def setAutos(autos):
         InventarioAuto.autos = autos
 
     @staticmethod
     def autosDisponibles():
         cont = 1
         resultado = "Autos Disponibles:\n"
-        for auto in InventarioAuto.getAutosDisponibles():
+        for auto in InventarioAuto.get_autosDisponibles():
             resultado += f"{cont}. {auto.modelo} {auto.marca} {auto.precio} {auto.color}\n"
             cont += 1
         return resultado
 
     @staticmethod
-    def getAutosDisponibles():
+    def get_autosDisponibles():
         disponibles = []
         for auto in InventarioAuto.autos:
             if auto.disponible:
@@ -53,7 +53,7 @@ class InventarioAuto:
     @staticmethod
     def getAutoporModelo(modelo):
         finder = None
-        for auto in InventarioAuto.getAutosDisponibles():
+        for auto in InventarioAuto.get_autosDisponibles():
             if modelo == auto.modelo:
                 finder = auto
             else:
@@ -61,18 +61,18 @@ class InventarioAuto:
         return finder
 
     @staticmethod
-    def getAutosporPrecio(cliente):
+    def get_autosporPrecio(cliente):
         autosPrecio = []
-        for auto in InventarioAuto.getAutosDisponibles():
+        for auto in InventarioAuto.get_autosDisponibles():
             if cliente.presupuesto >= auto.precio:
                 autosPrecio.append(auto)
         autosPrecio.sort(key=lambda x: x.precio)
         return autosPrecio
 
     @staticmethod
-    def getAutosporModelo(modelo):
+    def get_autosporModelo(modelo):
         modelosInteres = []
-        for auto in InventarioAuto.getAutosDisponibles():
+        for auto in InventarioAuto.get_autosDisponibles():
             if modelo == auto.modelo:
                 modelosInteres.append(auto)
         if len(modelosInteres) == 0:

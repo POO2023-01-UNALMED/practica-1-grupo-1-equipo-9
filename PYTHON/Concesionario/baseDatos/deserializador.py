@@ -19,31 +19,32 @@ from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
 from gestorAplicacion.Activos.TransaccionModificacion import TransaccionModificacion
 
 class Deserializador():
-    def deserializar_array(array, name):
+    def deserializar_array(name):
+        lista = []
         ruta = os.path.abspath(f"Concesionario/baseDatos/tmp/{name}.pkl")
-
         try:
-            objects_file = open(ruta, "rb")
-            pickle.load(objects_file)
-            objects_file.close()
+            picklefile = open(ruta, "rb")
+        except:
+            picklefile = open(ruta, "x")
+            picklefile = open(ruta, "rb")
+        if os.path.getsize(ruta) > 0:
+            lista = pickle.load(picklefile)
+        picklefile.close()
+        return lista
 
-        except FileNotFoundError:
-            print("FileNotFound")
-        except IOError:
-            print("IOError")
-
-    def deserializar_arrays():
-        Deserializador.deserializar_array(InventarioAuto.getAutos(), "Autos")
-        Deserializador.deserializar_array(Cliente.getClientes(), "Clientes")
-        Deserializador.deserializar_array(Mecanico.getMecanicos(), "Mecanicos")
-        Deserializador.deserializar_array(Vendedor.getVendedores(), "Vendedores")
-        Deserializador.deserializar_array(Inventario_Articulo.getArticulos(), "Articulos")
-        Deserializador.deserializar_array(Inventario_Articulo.getRepuesto(), "Repuestos")
-        Deserializador.deserializar_array(Transaccion.getTransacciones(), "Transacciones")
-        Deserializador.deserializar_array(TransaccionVenta.get_transaccionesven, "TransaccionesVentas")
-        Deserializador.deserializar_array(TransaccionVentaTaller.getTransaccionesven, "TransaccionesVentaTaller")
-        Deserializador.deserializar_array(TransaccionTaller.getTransaccionestal(), "TransaccionesTaller")
-        Deserializador.deserializar_array(TransaccionModificacion.getTransaccionesmod(), "TransaccionesModificacion")
-        Deserializador.deserializar_array(TransaccionVenta.get_autosV, "AutosV")
-        Deserializador.deserializar_array(TransaccionVenta.get_marcas, "Marcas")
-        Deserializador.deserializar_array(TransaccionVenta.get_vend, "Vend")
+    @classmethod
+    def deserializar_arrays(cls):
+        InventarioAuto.setAutos(cls.deserializar_array("Autos"))
+        Cliente.set_clientes(cls.deserializar_array("Clientes"))
+        Mecanico.setMecanicos(cls.deserializar_array("Mecanicos"))
+        Vendedor.set_vendedores(cls.deserializar_array("Vendedores"))
+        Inventario_Articulo.setArticulos(cls.deserializar_array("Articulos"))
+        Inventario_Articulo.set_repuestos(cls.deserializar_array("Repuestos"))
+        Transaccion.set_transacciones(cls.deserializar_array("Transacciones"))
+        TransaccionVenta.set_transaccionesven(cls.deserializar_array("TransaccionesVentas"))
+        #TransaccionVentaTaller.set_transaccionesvental(cls.deserializar_array("TransaccionesVentaTaller"))
+        TransaccionTaller.set_transaccionestal(cls.deserializar_array("TransaccionesTaller"))
+        TransaccionModificacion.set_transaccionesmod(cls.deserializar_array("TransaccionesModificacion"))
+        TransaccionVenta.set_autosV(cls.deserializar_array("AutosV"))
+        TransaccionVenta.set_marcas(cls.deserializar_array("Marcas"))
+        TransaccionVenta.set_vend(cls.deserializar_array("Vend"))

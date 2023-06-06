@@ -29,7 +29,7 @@ class TransaccionModificacion(Transaccion):
         return txt
 
     @staticmethod
-    def getClientePorCedula(cedula):
+    def get_clientePorCedula(cedula):
         finder = None
         client = None
 
@@ -81,6 +81,9 @@ class TransaccionModificacion(Transaccion):
     @staticmethod
     def getTransaccionesmod():
         return TransaccionModificacion.transaccionesmod
+    @staticmethod
+    def set_transaccionesmod(qq):
+        TransaccionModificacion.transaccionesmod=qq
 
     def getVendedor(self):
         return self.vendedor

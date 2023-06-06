@@ -35,6 +35,9 @@ class Inventario_Articulo:
     @staticmethod
     def setArticulos(Articulos):
         Inventario_Articulo.articulos = Articulos
+    @staticmethod
+    def set_repuestos(repuestos):
+        Inventario_Articulo.repuestos = repuestos
 
     @staticmethod
     def articulosDispo(mecanico):

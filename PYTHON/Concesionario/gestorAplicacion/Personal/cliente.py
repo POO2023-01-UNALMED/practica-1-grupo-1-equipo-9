@@ -40,12 +40,12 @@ class Cliente(Persona):
     def getAuto(self):
         return self.auto
 
-    @classmethod
-    def getClientes(cls):
+    @staticmethod
+    def get_clientes():
         return Cliente.clientes
 
     @staticmethod
-    def getClientePorCedula(cedula):
+    def get_clientePorCedula(cedula):
         finder=None
         for cliente in Cliente.clientes:
             if cliente.get_cedula() == cedula:
@@ -54,7 +54,7 @@ class Cliente(Persona):
         return finder
 
     @staticmethod
-    def setClientes(clientes):
+    def set_clientes(clientes):
         Cliente.clientes = clientes
 
     def info(self):
