@@ -42,7 +42,7 @@ class Deserializador():
         Inventario_Articulo.set_repuestos(cls.deserializar_array("Repuestos"))
         Transaccion.set_transacciones(cls.deserializar_array("Transacciones"))
         TransaccionVenta.set_transaccionesven(cls.deserializar_array("TransaccionesVentas"))
-        #TransaccionVentaTaller.set_transaccionesvental(cls.deserializar_array("TransaccionesVentaTaller"))
+        TransaccionVentaTaller.set_transaccionesvental(cls.deserializar_array("TransaccionesVentaTaller"))
         TransaccionTaller.set_transaccionestal(cls.deserializar_array("TransaccionesTaller"))
         TransaccionModificacion.set_transaccionesmod(cls.deserializar_array("TransaccionesModificacion"))
         TransaccionVenta.set_autosV(cls.deserializar_array("AutosV"))
