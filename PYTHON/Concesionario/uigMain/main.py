@@ -13,7 +13,7 @@ from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
-
+    ####
     def procesoVenta():
         presupuestoInsuficiente = False
         while True:
