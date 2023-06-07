@@ -25,7 +25,7 @@ class Deserializador():
         try:
             picklefile = open(ruta, "rb")
         except:
-            
+            picklefile = open(ruta, "x")
             picklefile = open(ruta, "rb")
         if os.path.getsize(ruta) > 0:
             lista = pickle.load(picklefile)
