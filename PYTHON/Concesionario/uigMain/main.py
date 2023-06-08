@@ -16,6 +16,7 @@ from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
 from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
+
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
     
@@ -80,13 +81,14 @@ if __name__ == "__main__":
     
     while volver_al_menu_principal:
         window = tk.Tk()
+        window.geometry("600x300")
+        window.title("Concesionario")
+        
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
-
         imagenes_concesionario = [imagen1]
         imagen_tk = ImageTk.PhotoImage(imagen1)
         
-        window.geometry("600x300")
-        window.title("Concesionario")
+        
 
         inicio = tk.Button(window, fg="red", text="Inicio")
         inicio.place(relx=0.02, rely=0.005, relwidth=0.1, relheight=0.04)
