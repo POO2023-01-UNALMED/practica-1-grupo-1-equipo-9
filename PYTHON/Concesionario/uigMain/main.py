@@ -2,13 +2,16 @@ import sys
 import os
 import tkinter as tk
 from PIL import ImageTk, Image
+
 ruta_activos = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Activos'))
 ruta_personal = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Personal'))
 ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 ruta_Datos=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'baseDatos'))
+ruta_Imagenes=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
+sys.path.append(ruta_Imagenes)
 from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
 from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
@@ -76,8 +79,7 @@ if __name__ == "__main__":
     
     
     while volver_al_menu_principal:
-        ruta_imagen1 = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', '1.jpg'))
-        imagen1 = Image.open(ruta_imagen1)
+        imagen1 = Image.open(ruta_Imagenes+"1.jpg")
         imagen2 = Image.open("")
         imagen3 = Image.open("")
         imagen4 = Image.open("")
