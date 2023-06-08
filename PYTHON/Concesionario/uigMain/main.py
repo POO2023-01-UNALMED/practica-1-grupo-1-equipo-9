@@ -1,5 +1,7 @@
 import sys
 import os
+import tkinter as tk
+from PIL import ImageTk, Image
 ruta_activos = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Activos'))
 ruta_personal = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Personal'))
 ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -13,6 +15,7 @@ from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
+    
     ####
     def procesoVenta():
         presupuestoInsuficiente = False
@@ -73,6 +76,49 @@ if __name__ == "__main__":
     
     
     while volver_al_menu_principal:
+        ruta_imagen1 = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', '1.jpg'))
+        imagen1 = Image.open(ruta_imagen1)
+        imagen2 = Image.open("")
+        imagen3 = Image.open("")
+        imagen4 = Image.open("")
+        imagen5 = Image.open("")
+        imagenes_concesionario = [imagen1, imagen2, imagen3, imagen4, imagen5]
+        imagen_tk = ImageTk.PhotoImage(imagen1)
+        window = tk.Tk()
+        window.geometry("600x300")
+        window.title("Concesionario")
+
+        inicio = tk.Button(window, fg="red", text="Inicio")
+        inicio.place(relx=0.02, rely=0.005, relwidth=0.1, relheight=0.04)
+
+        p1 = tk.Frame(window, bg="#FFFFFF")
+        p1.place(relx=0, rely=0.05, relwidth=0.5, relheight=0.95)
+
+        p3 = tk.Frame(p1, bg="#454343")
+        p3.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.3)
+
+        bienvenida = tk.Label(p3, text="Bienvenido cabron", bg="red", width="288")
+        bienvenida.pack(expand=True)
+
+        p4 = tk.Frame(p1, bg="#454343")
+        p4.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
+
+        label_imagen = tk.Label(p4, image=imagen_tk)
+        label_imagen.pack()
+        
+        p2 = tk.Frame(window, bg="#FFFFFF")
+        p2.place(relx=0.5, rely=0.05, relwidth=0.5, relheight=0.95)
+
+        p5 = tk.Frame(p2, bg="#454343")
+        p5.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.3)
+
+        p6 = tk.Frame(p2, bg="#454343")
+        p6.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
+        
+
+        window.mainloop()
+
+
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
         print("2. Venta de Repuestos")
@@ -100,3 +146,5 @@ if __name__ == "__main__":
             print("Chao pescao")
             Serializador.serializar_arrays()
             volver_al_menu_principal = False
+
+
