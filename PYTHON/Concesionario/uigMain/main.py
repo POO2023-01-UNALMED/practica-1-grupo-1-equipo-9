@@ -79,14 +79,12 @@ if __name__ == "__main__":
     
     
     while volver_al_menu_principal:
-        imagen1 = Image.open(ruta_Imagenes+"1.jpg")
-        imagen2 = Image.open("")
-        imagen3 = Image.open("")
-        imagen4 = Image.open("")
-        imagen5 = Image.open("")
-        imagenes_concesionario = [imagen1, imagen2, imagen3, imagen4, imagen5]
-        imagen_tk = ImageTk.PhotoImage(imagen1)
         window = tk.Tk()
+        imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
+
+        imagenes_concesionario = [imagen1]
+        imagen_tk = ImageTk.PhotoImage(imagen1)
+        
         window.geometry("600x300")
         window.title("Concesionario")
 
