@@ -87,14 +87,17 @@ if __name__ == "__main__":
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
         imagenes_concesionario = [imagen1]
         imagen_tk = ImageTk.PhotoImage(imagen1)
-        
-        
 
-        inicio = tk.Button(window, fg="red", text="Inicio")
-        inicio.place(relx=0.02, rely=0.005, relwidth=0.1, relheight=0.04)
+
+        inicio = tk.Menu(window, fg="red")
+        window.config(menu=inicio)
+        inicio1 = tk.Menu(inicio)
+        inicio.add_cascade(label="Inicio", menu=inicio1)
+        inicio1.add_command(label="Item 1")
+        inicio1.add_command(label="Item 2")
 
         p1 = tk.Frame(window, bg="#FFFFFF")
-        p1.place(relx=0, rely=0.05, relwidth=0.5, relheight=0.95)
+        p1.place(relx=0, rely=0, relwidth=0.5, relheight=1)
 
         p3 = tk.Frame(p1, bg="#454343")
         p3.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.3)
@@ -105,11 +108,15 @@ if __name__ == "__main__":
         p4 = tk.Frame(p1, bg="#454343")
         p4.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
 
-        label_imagen = tk.Label(p4, image=imagen_tk)
-        label_imagen.pack()
+        label_imagen = tk.Label(p4)
+        label_imagen.config(image=imagen_tk)
+        label_imagen.place(relx=0.5, rely=0.4, anchor=tk.CENTER, relwidth=0.9, relheight=0.7)
+
+        Entrar = tk.Button(p4, text="Entrar al sistema")
+        Entrar.place(relx=0.5, rely=0.95, anchor=tk.S, relwidth=0.4, relheight=0.15)
         
         p2 = tk.Frame(window, bg="#FFFFFF")
-        p2.place(relx=0.5, rely=0.05, relwidth=0.5, relheight=0.95)
+        p2.place(relx=0.5, rely=0, relwidth=0.5, relheight=1)
 
         p5 = tk.Frame(p2, bg="#454343")
         p5.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.3)
