@@ -99,7 +99,16 @@ if __name__ == "__main__":
                 i=0
 
             info_curriculum.config(text=descripciones[i], justify="center", wraplength=280)
-        
+            
+            #imagenes
+            ruta = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', 'juanjose','3.jpg')))
+            images=ImageTk.PhotoImage(ruta)
+            contenedor_imagen1.config(image=images)
+            contenedor_imagen2.config(image=images)
+            contenedor_imagen3.config(image=images)
+            contenedor_imagen4.config(image=images)
+
+
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
         imagenes_concesionario = [imagen1]
         imagen_tk = ImageTk.PhotoImage(imagen1)
@@ -141,9 +150,19 @@ if __name__ == "__main__":
         info_curriculum.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
         info_curriculum.bind("<Button-1>", Curriculums)
 
+
         p6 = tk.Frame(p2, bg="#454343")
+        #p6.pack(anchor='nw', padx=0, pady=0, expand=False, fill='both')
         p6.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
-        
+        contenedor_imagen1 = tk.Label(p6, text='hola')
+        contenedor_imagen2 = tk.Label(p6, text='hola')
+        contenedor_imagen3 = tk.Label(p6, text='hola')
+        contenedor_imagen4 = tk.Label(p6, text='hola')
+
+        contenedor_imagen1.grid(row=0,column=0,padx=2,pady=2)
+        contenedor_imagen2.grid(row=0,column=1,padx=2,pady=2)
+        contenedor_imagen3.grid(row=1,column=0,padx=2,pady=2)
+        contenedor_imagen4.grid(row=1,column=1,padx=2,pady=2)
 
         window.mainloop()
 
