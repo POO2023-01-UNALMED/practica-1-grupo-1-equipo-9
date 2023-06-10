@@ -84,6 +84,22 @@ if __name__ == "__main__":
         window.geometry("600x300")
         window.title("Concesionario")
         
+        i=-1
+        def Curriculums(evento):
+            global i
+            i += 1
+            descripciones = [
+                "Jonatan: Risas contagiosas y calcetines desparejados. Siempre listo para hacer locuras. ¡Cuidado con su teoría de unicornios fluorescentes!",
+                "Santiago: Perdido en su propia casa, confunde frutas. Sentido del humor de un erizo resacoso. Siempre arranca sonrisas con chistes torcidos.",
+                "Felipe: Rey de los tropiezos. En el suelo más que de pie. Su falta de coordinación es legendaria. Blanco perfecto de bromas.",
+                "Juan José: Imán para el caos. Crea problemas de la nada. Historias absurdas, como intentar construir una máquina del tiempo con una tostadora y un cactus."
+            ]
+
+            if i==4:
+                i=0
+
+            info_curriculum.config(text=descripciones[i], justify="center", wraplength=280)
+        
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
         imagenes_concesionario = [imagen1]
         imagen_tk = ImageTk.PhotoImage(imagen1)
@@ -120,6 +136,10 @@ if __name__ == "__main__":
 
         p5 = tk.Frame(p2, bg="#454343")
         p5.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.3)
+        
+        info_curriculum = tk.Label(p5, text='curriculumss', bg='yellow')
+        info_curriculum.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
+        info_curriculum.bind("<Button-1>", Curriculums)
 
         p6 = tk.Frame(p2, bg="#454343")
         p6.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
