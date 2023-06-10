@@ -101,12 +101,27 @@ if __name__ == "__main__":
             info_curriculum.config(text=descripciones[i], justify="center", wraplength=280)
             
             #imagenes
-            ruta = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', 'juanjose','3.jpg')))
-            images=ImageTk.PhotoImage(ruta)
-            contenedor_imagen1.config(image=images)
-            contenedor_imagen2.config(image=images)
-            contenedor_imagen3.config(image=images)
-            contenedor_imagen4.config(image=images)
+            ruta = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', 'juanjose','2.png')))
+            
+            # Crear instancias de PhotoImage para cada imagen
+            image1 = ImageTk.PhotoImage(file=ruta)
+            image2 = ImageTk.PhotoImage(file=ruta)
+            image3 = ImageTk.PhotoImage(file=ruta)
+            image4 = ImageTk.PhotoImage(file=ruta)
+
+            # Asignar las imágenes a los labels correspondientes
+            contenedor_imagen1.config(image=image1)
+            contenedor_imagen2.config(image=image2)
+            contenedor_imagen3.config(image=image3)
+            contenedor_imagen4.config(image=image4)
+
+            # Actualizar las referencias a las imágenes para evitar que sean eliminadas por el recolector de basura
+            '''
+            contenedor_imagen1.image = image1
+            contenedor_imagen2.image = image2
+            contenedor_imagen3.image = image3
+            contenedor_imagen4.image = image4
+            '''
 
 
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
@@ -152,17 +167,23 @@ if __name__ == "__main__":
 
 
         p6 = tk.Frame(p2, bg="#454343")
-        #p6.pack(anchor='nw', padx=0, pady=0, expand=False, fill='both')
         p6.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
+
         contenedor_imagen1 = tk.Label(p6, text='hola')
         contenedor_imagen2 = tk.Label(p6, text='hola')
         contenedor_imagen3 = tk.Label(p6, text='hola')
         contenedor_imagen4 = tk.Label(p6, text='hola')
 
-        contenedor_imagen1.grid(row=0,column=0,padx=2,pady=2)
-        contenedor_imagen2.grid(row=0,column=1,padx=2,pady=2)
-        contenedor_imagen3.grid(row=1,column=0,padx=2,pady=2)
-        contenedor_imagen4.grid(row=1,column=1,padx=2,pady=2)
+        contenedor_imagen1.grid(row=0, column=0, padx=2, pady=2, sticky="nsew")
+        contenedor_imagen2.grid(row=0, column=1, padx=2, pady=2, sticky="nsew")
+        contenedor_imagen3.grid(row=1, column=0, padx=2, pady=2, sticky="nsew")
+        contenedor_imagen4.grid(row=1, column=1, padx=2, pady=2, sticky="nsew")
+
+        p6.grid_rowconfigure(0, weight=1)
+        p6.grid_rowconfigure(1, weight=1)
+        p6.grid_columnconfigure(0, weight=1)
+        p6.grid_columnconfigure(1, weight=1)
+
 
         window.mainloop()
 
