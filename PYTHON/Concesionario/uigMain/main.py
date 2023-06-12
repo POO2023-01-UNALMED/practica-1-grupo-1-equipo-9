@@ -81,9 +81,10 @@ if __name__ == "__main__":
     
     
     while volver_al_menu_principal:
+
         window = tk.Tk()
         window.geometry("600x300")
-        window.title("Concesionario")
+        window.title("Inicio")
 
         def opcion1():
             window.destroy()
@@ -91,6 +92,10 @@ if __name__ == "__main__":
 
         def opcion2():
             info_curriculum.config(text="Dios bendiga mami este arrebato", justify="center", wraplength=280)
+
+        def entrar():
+            window.destroy()
+            window2.mainloop()
 
         
         img_counter_p4 = 0
@@ -195,7 +200,7 @@ if __name__ == "__main__":
         label_imagen.place(relx=0.5, rely=0.4, anchor=tk.CENTER, relwidth=0.9, relheight=0.7)
         label_imagen.bind("<Button-1>", lambda event: cambiar_imagen_p4(event))
 
-        Entrar = tk.Button(p4, text="Entrar al sistema")
+        Entrar = tk.Button(p4, text="Entrar al sistema", command=entrar)
         Entrar.place(relx=0.5, rely=0.95, anchor=tk.S, relwidth=0.4, relheight=0.15)
         
         p2 = tk.Frame(window, bg="#FFFFFF")
@@ -230,6 +235,9 @@ if __name__ == "__main__":
 
         window.mainloop()
 
+        window2 = tk.Tk()
+        window2.geometry("600x300")
+        window2.title("Concesionario")
 
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
