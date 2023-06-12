@@ -20,6 +20,7 @@ from baseDatos.deserializador import Deserializador
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
     
+    
     ####
     def procesoVenta():
         presupuestoInsuficiente = False
@@ -83,10 +84,56 @@ if __name__ == "__main__":
         window = tk.Tk()
         window.geometry("600x300")
         window.title("Concesionario")
+
+        def opcion1():
+            window.destroy()
+            exit()
+
+        def opcion2():
+            info_curriculum.config(text="Dios bendiga mami este arrebato", justify="center", wraplength=280)
+
         
+        img_counter_p4 = 0
+        def cambiar_imagen_p4(evento):
+            global img_counter_p4
+            global imagen_tk
+            global label_imagen
+            if img_counter_p4 == 4:
+                img_counter_p4 = 0
+            else:
+                img_counter_p4 += 1
+            imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
+            label_imagen.config(image=imagen_tk)
+
         i=-1
+        array_rutas = ["jonatan", "santiago", "felipe", "juanjose"]
+        #imagenes
+        ruta1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0],'1.jpg')))
+        ruta2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0],'2.png')))
+        ruta3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0],'3.jpg')))
+        ruta4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0],'4.png')))
+
+        # Crear instancias de PhotoImage para cada imagen
+        image1 = ImageTk.PhotoImage(ruta1)
+        image2 = ImageTk.PhotoImage(ruta2)
+        image3 = ImageTk.PhotoImage(ruta3)
+        image4 = ImageTk.PhotoImage(ruta4)
+        
         def Curriculums(evento):
             global i
+            global contenedor_imagen1
+            global contenedor_imagen2
+            global contenedor_imagen3
+            global contenedor_imagen4
+            global array_rutas
+            global ruta1
+            global ruta2
+            global ruta3
+            global ruta4
+            global image1
+            global image2
+            global image3
+            global image4
             i += 1
             descripciones = [
                 "Jonatan: Risas contagiosas y calcetines desparejados. Siempre listo para hacer locuras. ¡Cuidado con su teoría de unicornios fluorescentes!",
@@ -99,15 +146,6 @@ if __name__ == "__main__":
                 i=0
 
             info_curriculum.config(text=descripciones[i], justify="center", wraplength=280)
-            
-            #imagenes
-            ruta = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', 'juanjose','2.png')))
-            
-            # Crear instancias de PhotoImage para cada imagen
-            image1 = ImageTk.PhotoImage(file=ruta)
-            image2 = ImageTk.PhotoImage(file=ruta)
-            image3 = ImageTk.PhotoImage(file=ruta)
-            image4 = ImageTk.PhotoImage(file=ruta)
 
             # Asignar las imágenes a los labels correspondientes
             contenedor_imagen1.config(image=image1)
@@ -125,16 +163,20 @@ if __name__ == "__main__":
 
 
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
-        imagenes_concesionario = [imagen1]
-        imagen_tk = ImageTk.PhotoImage(imagen1)
+        imagen2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','2.jpg')))
+        imagen3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','3.png')))
+        imagen4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','4.jpg')))
+        imagen5 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','5.jpg')))
+        imagenes_concesionario = [imagen1, imagen2, imagen3, imagen4, imagen5]
+        imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
 
 
         inicio = tk.Menu(window, fg="red")
         window.config(menu=inicio)
         inicio1 = tk.Menu(inicio)
         inicio.add_cascade(label="Inicio", menu=inicio1)
-        inicio1.add_command(label="Item 1")
-        inicio1.add_command(label="Item 2")
+        inicio1.add_command(label="Salir", command=opcion1)
+        inicio1.add_command(label="Descripcion", command=opcion2)
 
         p1 = tk.Frame(window, bg="#FFFFFF")
         p1.place(relx=0, rely=0, relwidth=0.5, relheight=1)
@@ -151,6 +193,7 @@ if __name__ == "__main__":
         label_imagen = tk.Label(p4)
         label_imagen.config(image=imagen_tk)
         label_imagen.place(relx=0.5, rely=0.4, anchor=tk.CENTER, relwidth=0.9, relheight=0.7)
+        label_imagen.bind("<Button-1>", lambda event: cambiar_imagen_p4(event))
 
         Entrar = tk.Button(p4, text="Entrar al sistema")
         Entrar.place(relx=0.5, rely=0.95, anchor=tk.S, relwidth=0.4, relheight=0.15)
@@ -163,16 +206,16 @@ if __name__ == "__main__":
         
         info_curriculum = tk.Label(p5, text='curriculumss', bg='yellow')
         info_curriculum.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
-        info_curriculum.bind("<Button-1>", Curriculums)
+        info_curriculum.bind("<Button-1>", lambda event: Curriculums(event))
 
 
         p6 = tk.Frame(p2, bg="#454343")
         p6.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
 
-        contenedor_imagen1 = tk.Label(p6, text='hola')
-        contenedor_imagen2 = tk.Label(p6, text='hola')
-        contenedor_imagen3 = tk.Label(p6, text='hola')
-        contenedor_imagen4 = tk.Label(p6, text='hola')
+        contenedor_imagen1 = tk.Label(p6, text='1')
+        contenedor_imagen2 = tk.Label(p6, text='2')
+        contenedor_imagen3 = tk.Label(p6, text='3')
+        contenedor_imagen4 = tk.Label(p6, text='4')
 
         contenedor_imagen1.grid(row=0, column=0, padx=2, pady=2, sticky="nsew")
         contenedor_imagen2.grid(row=0, column=1, padx=2, pady=2, sticky="nsew")
