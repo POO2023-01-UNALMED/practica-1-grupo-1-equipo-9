@@ -110,11 +110,11 @@ if __name__ == "__main__":
             imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
             label_imagen.config(image=imagen_tk)
 
-
+        i=-1
         array_rutas = ["jonatan", "santiago", "felipe", "juanjose"]
 
         def Curriculums(evento):
-
+            global i
             global contenedor_imagen1
             global contenedor_imagen2
             global contenedor_imagen3
