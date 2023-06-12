@@ -110,22 +110,11 @@ if __name__ == "__main__":
             imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
             label_imagen.config(image=imagen_tk)
 
-        i=-1
-        array_rutas = ["jonatan", "santiago", "felipe", "juanjose"]
-        #imagenes
-        ruta1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0],'1.jpg')))
-        ruta2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0],'2.png')))
-        ruta3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0],'3.jpg')))
-        ruta4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0],'4.png')))
 
-        # Crear instancias de PhotoImage para cada imagen
-        image1 = ImageTk.PhotoImage(ruta1)
-        image2 = ImageTk.PhotoImage(ruta2)
-        image3 = ImageTk.PhotoImage(ruta3)
-        image4 = ImageTk.PhotoImage(ruta4)
-        
+        array_rutas = ["jonatan", "santiago", "felipe", "juanjose"]
+
         def Curriculums(evento):
-            global i
+
             global contenedor_imagen1
             global contenedor_imagen2
             global contenedor_imagen3
@@ -152,20 +141,21 @@ if __name__ == "__main__":
 
             info_curriculum.config(text=descripciones[i], justify="center", wraplength=280)
 
+            ruta1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'1.jpg')))
+            ruta2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'2.png')))
+            ruta3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'3.jpg')))
+            ruta4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'4.png')))
+
+            image1 = ImageTk.PhotoImage(ruta1)
+            image2 = ImageTk.PhotoImage(ruta2)
+            image3 = ImageTk.PhotoImage(ruta3)
+            image4 = ImageTk.PhotoImage(ruta4)
+
             # Asignar las imágenes a los labels correspondientes
             contenedor_imagen1.config(image=image1)
             contenedor_imagen2.config(image=image2)
             contenedor_imagen3.config(image=image3)
             contenedor_imagen4.config(image=image4)
-
-            # Actualizar las referencias a las imágenes para evitar que sean eliminadas por el recolector de basura
-            '''
-            contenedor_imagen1.image = image1
-            contenedor_imagen2.image = image2
-            contenedor_imagen3.image = image3
-            contenedor_imagen4.image = image4
-            '''
-
 
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
         imagen2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','2.jpg')))
