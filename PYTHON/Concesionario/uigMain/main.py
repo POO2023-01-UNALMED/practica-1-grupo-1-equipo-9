@@ -107,7 +107,7 @@ if __name__ == "__main__":
                 img_counter_p4 = 0
             else:
                 img_counter_p4 += 1
-            imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
+            imagen_tk = imagenes_concesionario[img_counter_p4]
             label_imagen.config(image=imagen_tk)
             label_imagen.image = imagen_tk
 
@@ -177,10 +177,10 @@ if __name__ == "__main__":
             contenedor_imagen4.image = image_tk4
 
             # Ubicar los contenedores en la interfaz
-            contenedor_imagen1.place(x=0, y=0, width=ancho_contenedor, height=alto_contenedor)
-            contenedor_imagen2.place(x=ancho_contenedor, y=0, width=ancho_contenedor, height=alto_contenedor)
-            contenedor_imagen3.place(x=0, y=alto_contenedor, width=ancho_contenedor, height=alto_contenedor)
-            contenedor_imagen4.place(x=ancho_contenedor, y=alto_contenedor, width=ancho_contenedor, height=alto_contenedor)
+            contenedor_imagen1.grid(row=0, column=0, padx=2, pady=2, sticky="nsew")
+            contenedor_imagen2.grid(row=0, column=1, padx=2, pady=2, sticky="nsew")
+            contenedor_imagen3.grid(row=1, column=0, padx=2, pady=2, sticky="nsew")
+            contenedor_imagen4.grid(row=1, column=1, padx=2, pady=2, sticky="nsew")
 
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
         imagen2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','2.jpg')))
@@ -213,18 +213,24 @@ if __name__ == "__main__":
         label_imagen.bind("<Button-1>", lambda event: cambiar_imagen_p4(event))
         # Obtener el tamaño de los contenedores
 
-        ancho_contenedor = label_imagen.winfo_width()
-        alto_contenedor = label_imagen.winfo_height()
+        ancho_contenedor = p4.winfo_width()
+        alto_contenedor = p4.winfo_height()
 
         # Redimensionar las imágenes al tamaño de los contenedores
-        imagen_tk1 = imagen1.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagen_tk2 = imagen2.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagen_tk3 = imagen3.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagen_tk4 = imagen4.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagen_tk5 = imagen5.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagenred_1 = imagen1.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagenred_2 = imagen2.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagenred_3 = imagen3.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagenred_4 = imagen4.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagenred_5 = imagen5.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+
+        imagen_tk1 = ImageTk.PhotoImage(imagenred_1)
+        imagen_tk2 = ImageTk.PhotoImage(imagenred_2)
+        imagen_tk3 = ImageTk.PhotoImage(imagenred_3)
+        imagen_tk4 = ImageTk.PhotoImage(imagenred_4)
+        imagen_tk5 = ImageTk.PhotoImage(imagenred_5)
 
         imagenes_concesionario = [imagen_tk1, imagen_tk2, imagen_tk3, imagen_tk4, imagen_tk5]
-        imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
+        imagen_tk = imagenes_concesionario[img_counter_p4]
         label_imagen.config(image=imagen_tk)
         label_imagen.image = imagen_tk
 
@@ -267,6 +273,29 @@ if __name__ == "__main__":
         window2 = tk.Tk()
         window2.geometry("600x300")
         window2.title("Concesionario")
+
+        menu_master = tk.Menu(window2)
+        window2.config(menu=menu_master)
+        sub_archivo = tk.Menu(menu_master)
+        menu_master.add_cascade(label="Archivo", menu=sub_archivo)
+        sub_archivo.add_command(label="Aplicación")
+        sub_archivo.add_command(label="Salir")
+        window2.config(menu=menu_master)
+        sub_procesos = tk.Menu(menu_master)
+        menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
+        sub_procesos.add_command(label="Venta de Autos")
+        sub_procesos.add_command(label="Venta de Repuestos")
+        sub_procesos.add_command(label="Taller")
+        sub_procesos.add_command(label="Consultar estadisticas / finanzas")
+        sub_procesos.add_command(label="Personalizar su auto")
+        sub_procesos.add_command(label="Crear nuevo usuario (Comprador)")
+        sub_procesos.add_command(label="Administración")
+        ayuda = tk.Menu(menu_master)
+        menu_master.add_cascade(label="Ayuda", menu=ayuda)
+        ayuda.add_command(label="Acerda de:")
+
+
+
 
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
