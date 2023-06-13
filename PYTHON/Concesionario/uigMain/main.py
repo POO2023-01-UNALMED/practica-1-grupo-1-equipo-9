@@ -146,25 +146,46 @@ if __name__ == "__main__":
             ruta3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'3.jpg')))
             ruta4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'4.png')))
 
-            image1 = ImageTk.PhotoImage(ruta1)
-            image2 = ImageTk.PhotoImage(ruta2)
-            image3 = ImageTk.PhotoImage(ruta3)
-            image4 = ImageTk.PhotoImage(ruta4)
 
-            # Asignar las imágenes a los labels correspondientes
-            contenedor_imagen1.config(image=image1)
-            contenedor_imagen2.config(image=image2)
-            contenedor_imagen3.config(image=image3)
-            contenedor_imagen4.config(image=image4)
+            # Obtener el tamaño de los contenedores
+            ancho_contenedor = contenedor_imagen1.winfo_width()
+            alto_contenedor = contenedor_imagen1.winfo_height()
+
+            # Redimensionar las imágenes al tamaño de los contenedores
+            image1_redimensionada = ruta1.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+            image2_redimensionada = ruta2.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+            image3_redimensionada = ruta3.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+            image4_redimensionada = ruta4.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+
+            # Convertir las imágenes a objetos ImageTk para su visualización en tkinter
+            image_tk1 = ImageTk.PhotoImage(image1_redimensionada)
+            image_tk2 = ImageTk.PhotoImage(image2_redimensionada)
+            image_tk3 = ImageTk.PhotoImage(image3_redimensionada)
+            image_tk4 = ImageTk.PhotoImage(image4_redimensionada)
+
+            # Asignar las imágenes redimensionadas a los contenedores
+            contenedor_imagen1.config(image=image_tk1)
+            contenedor_imagen2.config(image=image_tk2)
+            contenedor_imagen3.config(image=image_tk3)
+            contenedor_imagen4.config(image=image_tk4)
+
+            # Ajustar el tamaño de las imágenes al tamaño de los contenedores
+            contenedor_imagen1.image = image_tk1  # Guardar referencia para evitar que la imagen sea eliminada
+            contenedor_imagen2.image = image_tk2
+            contenedor_imagen3.image = image_tk3
+            contenedor_imagen4.image = image_tk4
+
+            # Ubicar los contenedores en la interfaz
+            contenedor_imagen1.place(x=0, y=0, width=ancho_contenedor, height=alto_contenedor)
+            contenedor_imagen2.place(x=ancho_contenedor, y=0, width=ancho_contenedor, height=alto_contenedor)
+            contenedor_imagen3.place(x=0, y=alto_contenedor, width=ancho_contenedor, height=alto_contenedor)
+            contenedor_imagen4.place(x=ancho_contenedor, y=alto_contenedor, width=ancho_contenedor, height=alto_contenedor)
 
         imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
         imagen2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','2.jpg')))
         imagen3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','3.png')))
         imagen4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','4.jpg')))
         imagen5 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','5.jpg')))
-        imagenes_concesionario = [imagen1, imagen2, imagen3, imagen4, imagen5]
-        imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
-
 
         inicio = tk.Menu(window, fg="red")
         window.config(menu=inicio)
@@ -186,9 +207,35 @@ if __name__ == "__main__":
         p4.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
 
         label_imagen = tk.Label(p4)
-        label_imagen.config(image=imagen_tk)
+        
         label_imagen.place(relx=0.5, rely=0.4, anchor=tk.CENTER, relwidth=0.9, relheight=0.7)
         label_imagen.bind("<Button-1>", lambda event: cambiar_imagen_p4(event))
+        # Obtener el tamaño de los contenedores
+
+        ancho_contenedor = label_imagen.winfo_width()
+        alto_contenedor = label_imagen.winfo_height()
+
+        # Redimensionar las imágenes al tamaño de los contenedores
+        imagen1_redimensionada = imagen1.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagen2_redimensionada = imagen2.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagen3_redimensionada = imagen3.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagen4_redimensionada = imagen4.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagen5_redimensionada = imagen5.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+
+        # Convertir las imágenes a objetos ImageTk para su visualización en tkinter
+        imagen_tk1 = ImageTk.PhotoImage(imagen1_redimensionada)
+        imagen_tk2 = ImageTk.PhotoImage(imagen2_redimensionada)
+        imagen_tk3 = ImageTk.PhotoImage(imagen3_redimensionada)
+        imagen_tk4 = ImageTk.PhotoImage(imagen4_redimensionada)
+        imagen_tk5 = ImageTk.PhotoImage(imagen5_redimensionada)
+
+        imagenes_concesionario = [imagen_tk1, imagen_tk2, imagen_tk3, imagen_tk4, imagen_tk5]
+        if img_counter_p4 >= len(imagenes_concesionario):
+            img_counter_p4 = 0
+
+        imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
+        label_imagen.config(image=imagen_tk)
+        
 
         Entrar = tk.Button(p4, text="Entrar al sistema", command=entrar)
         Entrar.place(relx=0.5, rely=0.95, anchor=tk.S, relwidth=0.4, relheight=0.15)
