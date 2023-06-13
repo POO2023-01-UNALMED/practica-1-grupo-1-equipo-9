@@ -109,10 +109,10 @@ if __name__ == "__main__":
                 img_counter_p4 += 1
             imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
             label_imagen.config(image=imagen_tk)
+            label_imagen.image = imagen_tk
+
 
         i=-1
-        array_rutas = ["jonatan", "santiago", "felipe", "juanjose"]
-
         def Curriculums(evento):
             global i
             global contenedor_imagen1
@@ -128,6 +128,7 @@ if __name__ == "__main__":
             global image2
             global image3
             global image4
+            array_rutas = ["jonatan", "santiago", "felipe", "juanjose"]
             i += 1
             descripciones = [
                 "Jonatan: Risas contagiosas y calcetines desparejados. Siempre listo para hacer locuras. ¡Cuidado con su teoría de unicornios fluorescentes!",
@@ -216,26 +217,17 @@ if __name__ == "__main__":
         alto_contenedor = label_imagen.winfo_height()
 
         # Redimensionar las imágenes al tamaño de los contenedores
-        imagen1_redimensionada = imagen1.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagen2_redimensionada = imagen2.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagen3_redimensionada = imagen3.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagen4_redimensionada = imagen4.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagen5_redimensionada = imagen5.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-
-        # Convertir las imágenes a objetos ImageTk para su visualización en tkinter
-        imagen_tk1 = ImageTk.PhotoImage(imagen1_redimensionada)
-        imagen_tk2 = ImageTk.PhotoImage(imagen2_redimensionada)
-        imagen_tk3 = ImageTk.PhotoImage(imagen3_redimensionada)
-        imagen_tk4 = ImageTk.PhotoImage(imagen4_redimensionada)
-        imagen_tk5 = ImageTk.PhotoImage(imagen5_redimensionada)
+        imagen_tk1 = imagen1.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagen_tk2 = imagen2.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagen_tk3 = imagen3.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagen_tk4 = imagen4.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagen_tk5 = imagen5.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
 
         imagenes_concesionario = [imagen_tk1, imagen_tk2, imagen_tk3, imagen_tk4, imagen_tk5]
-        if img_counter_p4 >= len(imagenes_concesionario):
-            img_counter_p4 = 0
-
         imagen_tk = ImageTk.PhotoImage(imagenes_concesionario[img_counter_p4])
         label_imagen.config(image=imagen_tk)
-        
+        label_imagen.image = imagen_tk
+
 
         Entrar = tk.Button(p4, text="Entrar al sistema", command=entrar)
         Entrar.place(relx=0.5, rely=0.95, anchor=tk.S, relwidth=0.4, relheight=0.15)
