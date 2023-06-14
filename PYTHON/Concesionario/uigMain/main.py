@@ -2,6 +2,7 @@ import sys
 import os
 import tkinter as tk
 from PIL import ImageTk, Image
+from tkinter import messagebox
 
 ruta_activos = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Activos'))
 ruta_personal = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Personal'))
@@ -277,19 +278,31 @@ if __name__ == "__main__":
 
         window.mainloop()
 
+        def mostrar_informacion():
+            messagebox.showinfo("Aplicación Consesionario", "Esta aplicación realiza diversas funcionalidades referentes al todos los procesos del consesionario.")
+
+        def salir():
+            window2.destroy()
+
+        def mostrar_autores():
+            messagebox.showinfo("Acerca de", "Autores: Santiago,  Jonatan, Felipe Juan Jose ")
+
+        # Crear ventana principal
         window2 = tk.Tk()
         window2.geometry("600x300")
         window2.title("Concesionario")
 
         menu_master = tk.Menu(window2)
         window2.config(menu=menu_master)
+
+        # Menú Archivo
         sub_archivo = tk.Menu(menu_master)
+        sub_archivo.add_command(label="Aplicación", command=mostrar_informacion)
+        sub_archivo.add_command(label="Salir", command=salir)
         menu_master.add_cascade(label="Archivo", menu=sub_archivo)
-        sub_archivo.add_command(label="Aplicación")
-        sub_archivo.add_command(label="Salir")
-        window2.config(menu=menu_master)
+
+        # Menú Procesos y Consultas
         sub_procesos = tk.Menu(menu_master)
-        menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
         sub_procesos.add_command(label="Venta de Autos")
         sub_procesos.add_command(label="Venta de Repuestos")
         sub_procesos.add_command(label="Taller")
@@ -297,9 +310,19 @@ if __name__ == "__main__":
         sub_procesos.add_command(label="Personalizar su auto")
         sub_procesos.add_command(label="Crear nuevo usuario (Comprador)")
         sub_procesos.add_command(label="Administración")
+        menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
+
+        # Menú Ayuda
         ayuda = tk.Menu(menu_master)
+        ayuda.add_command(label="Acerca de:", command=mostrar_autores)
         menu_master.add_cascade(label="Ayuda", menu=ayuda)
-        ayuda.add_command(label="Acerda de:")
+
+        # Zona de interacción usuario
+        zona_interaccion = tk.Frame(window2)
+        zona_interaccion.pack(pady=20)
+
+        etiqueta_resultado = tk.Label(zona_interaccion, text="Aquí se mostrarán los diálogos y resultados")
+        etiqueta_resultado.pack()
 
         
         print("\n\nMenú principal Concesionario")
