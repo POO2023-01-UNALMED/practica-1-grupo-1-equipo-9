@@ -94,7 +94,7 @@ if __name__ == "__main__":
         def opcion2():
             info_curriculum.config(text="Dios bendiga mami este arrebato", justify="center", wraplength=280)
 
-        def entrar():
+        def entrar(event):
             window.destroy()
             app = Application(master=window2)
             window2.mainloop()
@@ -207,30 +207,30 @@ if __name__ == "__main__":
 
         p4 = tk.Frame(p1, bg="#454343")
         p4.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
-
         label_imagen = tk.Label(p4)
         label_imagen.place(relx=0.5, rely=0.4, anchor=tk.CENTER, relwidth=0.9, relheight=0.7)
-        label_imagen.bind("<Button-1>", lambda event: cambiar_imagen_p4(event))
+        label_imagen.bind("<Enter>", lambda event: cambiar_imagen_p4(event))
+        label_imagen.bind("<Button-1>", entrar)
 
         window.update()
 
-        imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
-        imagen2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','2.jpg')))
+        imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.png')))
+        imagen2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','2.png')))
         imagen3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','3.png')))
-        imagen4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','4.jpg')))
-        imagen5 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','5.jpg')))
+        imagen4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','4.png')))
+        imagen5 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','5.png')))
 
         # Obtener el tamaño de los contenedores
 
-        ancho_contenedor = label_imagen.winfo_width()
-        alto_contenedor = label_imagen.winfo_height()
+        ancho_label = label_imagen.winfo_width()
+        alto_label = label_imagen.winfo_height()
 
         # Redimensionar las imágenes al tamaño de los contenedores
-        imagenred_1 = imagen1.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagenred_2 = imagen2.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagenred_3 = imagen3.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagenred_4 = imagen4.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
-        imagenred_5 = imagen5.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
+        imagenred_1 = imagen1.resize((ancho_label, alto_label), Image.LANCZOS)
+        imagenred_2 = imagen2.resize((ancho_label, alto_label), Image.LANCZOS)
+        imagenred_3 = imagen3.resize((ancho_label, alto_label), Image.LANCZOS)
+        imagenred_4 = imagen4.resize((ancho_label, alto_label), Image.LANCZOS)
+        imagenred_5 = imagen5.resize((ancho_label, alto_label), Image.LANCZOS)
 
         imagen_tk1 = ImageTk.PhotoImage(imagenred_1)
         imagen_tk2 = ImageTk.PhotoImage(imagenred_2)
@@ -241,10 +241,11 @@ if __name__ == "__main__":
         imagenes_concesionario = [imagen_tk1, imagen_tk2, imagen_tk3, imagen_tk4, imagen_tk5]
         imagen_tk = imagenes_concesionario[0]
         label_imagen.config(image=imagen_tk)
+        label_imagen.image = imagen_tk
+        
 
-
-        Entrar = tk.Button(p4, text="Entrar al sistema", command=entrar)
-        Entrar.place(relx=0.5, rely=0.95, anchor=tk.S, relwidth=0.4, relheight=0.15)
+        #Entrar = tk.Button(p4, text="Entrar al sistema", command=entrar)
+        #Entrar.place(relx=0.5, rely=0.95, anchor=tk.S, relwidth=0.4, relheight=0.15)
         
         p2 = tk.Frame(window, bg="#FFFFFF")
         p2.place(relx=0.5, rely=0, relwidth=0.5, relheight=1)
@@ -275,7 +276,7 @@ if __name__ == "__main__":
         p6.grid_columnconfigure(0, weight=1)
         p6.grid_columnconfigure(1, weight=1)
 
-
+        window.update()
         window.mainloop()
 
         def mostrar_informacion():
