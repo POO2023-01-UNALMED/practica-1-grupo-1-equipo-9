@@ -95,6 +95,7 @@ if __name__ == "__main__":
 
         def entrar():
             window.destroy()
+            app = Application(master=window2)
             window2.mainloop()
 
         
@@ -328,81 +329,5 @@ if __name__ == "__main__":
             print("Chao pescao")
             Serializador.serializar_arrays()
             volver_al_menu_principal = False
-        from tkinter import *
 
-class FieldFrame(Frame):
-    def __init__(self, tituloCriterios, criterios, tituloValores, valores, habilitado):
-        super().__init__()
-        self.grid(sticky=NSEW)
-        self.criterios = criterios
-        self.valores = valores
-        self.habilitado = habilitado
 
-        # Etiqueta para el título de los criterios
-        Label(self, text=tituloCriterios, font=("Arial", 10, "bold")).grid(row=0, column=0, sticky=W)
-
-        # Etiqueta para el título de los valores
-        Label(self, text=tituloValores, font=("Arial", 10, "bold")).grid(row=0, column=1, sticky=W)
-
-        # Campos de entrada de texto para los criterios y valores
-        for i, criterio in enumerate(criterios):
-            Label(self, text=criterio).grid(row=i+1, column=0, sticky=W)
-            entry = Entry(self, state='normal' if habilitado[i] else 'disabled')
-            entry.grid(row=i+1, column=1, sticky=W)
-            if valores[i]:
-                entry.insert(0, valores[i])
-
-    def getValue(self, criterio):
-        index = self.criterios.index(criterio)
-        entry = self.grid_slaves(row=index+1, column=1)[0]
-        return entry.get()
-
-class Application(Frame):
-    def __init__(self, master=None):
-        super().__init__(master)
-        self.master = master
-        self.grid(sticky=NSEW)
-        self.create_widgets()
-
-    def create_widgets(self):
-        # Menú superior
-        menubar = Menu(self.master)
-        self.master.config(menu=menubar)
-
-        archivo_menu = Menu(menubar, tearoff=0)
-        archivo_menu.add_command(label="Aplicación", command=self.mostrar_informacion)
-        archivo_menu.add_command(label="Salir", command=self.master.quit)
-        menubar.add_cascade(label="Archivo", menu=archivo_menu)
-
-        procesos_menu = Menu(menubar, tearoff=0)
-        procesos_menu.add_command(label="Listar Procesos y Consultas", command=self.listar_procesos_consultas)
-        menubar.add_cascade(label="Procesos y Consultas", menu=procesos_menu)
-
-        ayuda_menu = Menu(menubar, tearoff=0)
-        ayuda_menu.add_command(label="Acerca de", command=self.mostrar_autores)
-        menubar.add_cascade(label="Ayuda", menu=ayuda_menu)
-
-        # Zona de interacción usuario
-        self.dialogo_texto = Text(self, state='disabled')
-        self.dialogo_texto.grid(row=1, column=0, columnspan=2, sticky=NSEW)
-
-    def mostrar_informacion(self):
-        # Lógica para mostrar la ventana de diálogo con la información básica de la aplicación
-        pass
-
-    def listar_procesos_consultas(self):
-        # Lógica para listar los procesos y consultas disponibles
-        pass
-
-    def mostrar_autores(self):
-        # Lógica para mostrar la ventana de diálogo con los nombres de los autores de la aplicación
-        pass
-
-root = Tk()
-app = Application(master=root)
-app.mainloop()
-
-def crear_ventana():
-    window2 = Tk()
-    app2 = Application(master=window2)
-    app2.mainloop()
