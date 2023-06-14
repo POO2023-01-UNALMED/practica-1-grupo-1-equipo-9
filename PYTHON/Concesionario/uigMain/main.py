@@ -103,13 +103,17 @@ if __name__ == "__main__":
             global img_counter_p4
             global imagen_tk
             global label_imagen
+            global ancho_contenedor
+            global alto_contenedor
             if img_counter_p4 == 4:
                 img_counter_p4 = 0
             else:
                 img_counter_p4 += 1
+            
+            ancho_contenedor = label_imagen.winfo_width()
+            alto_contenedor = label_imagen.winfo_height()
             imagen_tk = imagenes_concesionario[img_counter_p4]
             label_imagen.config(image=imagen_tk)
-            label_imagen.image = imagen_tk
 
 
         i=-1
@@ -182,12 +186,6 @@ if __name__ == "__main__":
             contenedor_imagen3.grid(row=1, column=0, padx=2, pady=2, sticky="nsew")
             contenedor_imagen4.grid(row=1, column=1, padx=2, pady=2, sticky="nsew")
 
-        imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
-        imagen2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','2.jpg')))
-        imagen3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','3.png')))
-        imagen4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','4.jpg')))
-        imagen5 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','5.jpg')))
-
         inicio = tk.Menu(window, fg="red")
         window.config(menu=inicio)
         inicio1 = tk.Menu(inicio)
@@ -208,13 +206,21 @@ if __name__ == "__main__":
         p4.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
 
         label_imagen = tk.Label(p4)
-        
         label_imagen.place(relx=0.5, rely=0.4, anchor=tk.CENTER, relwidth=0.9, relheight=0.7)
         label_imagen.bind("<Button-1>", lambda event: cambiar_imagen_p4(event))
+
+        window.update()
+
+        imagen1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','1.jpg')))
+        imagen2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','2.jpg')))
+        imagen3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','3.png')))
+        imagen4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','4.jpg')))
+        imagen5 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes','5.jpg')))
+
         # Obtener el tamaño de los contenedores
 
-        ancho_contenedor = p4.winfo_width()
-        alto_contenedor = p4.winfo_height()
+        ancho_contenedor = label_imagen.winfo_width()
+        alto_contenedor = label_imagen.winfo_height()
 
         # Redimensionar las imágenes al tamaño de los contenedores
         imagenred_1 = imagen1.resize((ancho_contenedor, alto_contenedor), Image.LANCZOS)
@@ -230,9 +236,8 @@ if __name__ == "__main__":
         imagen_tk5 = ImageTk.PhotoImage(imagenred_5)
 
         imagenes_concesionario = [imagen_tk1, imagen_tk2, imagen_tk3, imagen_tk4, imagen_tk5]
-        imagen_tk = imagenes_concesionario[img_counter_p4]
+        imagen_tk = imagenes_concesionario[0]
         label_imagen.config(image=imagen_tk)
-        label_imagen.image = imagen_tk
 
 
         Entrar = tk.Button(p4, text="Entrar al sistema", command=entrar)
