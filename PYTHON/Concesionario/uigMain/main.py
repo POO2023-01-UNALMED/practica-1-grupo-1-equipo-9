@@ -133,6 +133,7 @@ if __name__ == "__main__":
             global image3
             global image4
             array_rutas = ["jonatan", "santiago", "felipe", "juanjose"]
+            array_imgs=["1.jpg", "2.png", "3.jpg", "4.png"] 
             i += 1
             descripciones = [
                 "Jonatan: Risas contagiosas y calcetines desparejados. Siempre listo para hacer locuras. ¡Cuidado con su teoría de unicornios fluorescentes!",
@@ -146,10 +147,10 @@ if __name__ == "__main__":
 
             info_curriculum.config(text=descripciones[i], justify="center", wraplength=280)
 
-            ruta1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'1.jpg')))
-            ruta2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'2.png')))
-            ruta3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'3.jpg')))
-            ruta4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i],'4.png')))
+            ruta1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0], array_imgs[i])))
+            ruta2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[1], array_imgs[i])))
+            ruta3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[2], array_imgs[i])))
+            ruta4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[3], array_imgs[i])))
 
 
             # Obtener el tamaño de los contenedores
