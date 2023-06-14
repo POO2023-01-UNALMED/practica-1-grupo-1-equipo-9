@@ -208,7 +208,7 @@ if __name__ == "__main__":
         p4 = tk.Frame(p1, bg="#454343")
         p4.place(relx=0.02, rely=0.36, relwidth=0.96, relheight=0.6)
         label_imagen = tk.Label(p4)
-        label_imagen.place(relx=0.5, rely=0.4, anchor=tk.CENTER, relwidth=0.9, relheight=0.7)
+        label_imagen.place(relx=0.5, rely=0.5, anchor=tk.CENTER, relwidth=1, relheight=1,)
         label_imagen.bind("<Enter>", lambda event: cambiar_imagen_p4(event))
         label_imagen.bind("<Button-1>", entrar)
 
@@ -280,13 +280,13 @@ if __name__ == "__main__":
         window.mainloop()
 
         def mostrar_informacion():
-            messagebox.showinfo("Aplicación Consesionario", "Esta aplicación realiza diversas funcionalidades referentes al todos los procesos del consesionario.")
+            messagebox.showinfo("Aplicación Consesionario: ", "Esta aplicación realiza diversas funcionalidades referentes al todos los procesos del consesionario.")
 
         def salir():
             window2.destroy()
 
         def mostrar_autores():
-            messagebox.showinfo("Acerca de", "Autores: Santiago,  Jonatan, Felipe Juan Jose ")
+            messagebox.showinfo("Acerca de", "Autores: Santiago,  Jonatan, Felipe, Juan Jose ")
 
         # Crear ventana principal
         window2 = tk.Tk()
