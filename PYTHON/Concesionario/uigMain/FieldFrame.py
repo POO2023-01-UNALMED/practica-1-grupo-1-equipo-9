@@ -36,22 +36,7 @@ class Application(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        # Menú superior
-        menubar = tk.Menu(self.master)
-        self.master.config(menu=menubar)
-
-        archivo_menu = tk.Menu(menubar, tearoff=0)
-        archivo_menu.add_command(label="Aplicación", command=self.mostrar_informacion)
-        archivo_menu.add_command(label="Salir", command=self.master.quit)
-        menubar.add_cascade(label="Archivo", menu=archivo_menu)
-
-        procesos_menu = tk.Menu(menubar, tearoff=0)
-        procesos_menu.add_command(label="Listar Procesos y Consultas", command=self.listar_procesos_consultas)
-        menubar.add_cascade(label="Procesos y Consultas", menu=procesos_menu)
-
-        ayuda_menu = tk.Menu(menubar, tearoff=0)
-        ayuda_menu.add_command(label="Acerca de", command=self.mostrar_autores)
-        menubar.add_cascade(label="Ayuda", menu=ayuda_menu)
+        
 
         # Zona de interacción usuario
         self.dialogo_texto = tk.Text(self, state='disabled')
@@ -61,19 +46,4 @@ class Application(tk.Frame):
         field_frame = FieldFrame("Criterios", ["Criterio 1", "Criterio 2"], "Valores", ["Valor 1", "Valor 2"], [True, False])
         field_frame.grid(row=2, column=0, columnspan=2, sticky=tk.NSEW)
 
-    def mostrar_informacion(self):
-        messagebox.showinfo("Información", "Esta es una aplicación para la gestion de un concesionario.")
-
-    def listar_procesos_consultas(self):
-        messagebox.showinfo("Procesos y Consultas", "Lista de procesos y consultas:\n1. Venta de Autos\n2. Venta de Repuestos")
-
-    def mostrar_autores(self):
-        messagebox.showinfo("Acerca de", "Autores: Santiago, Juan Jose, Felipe, Jonatan")
-
-window2 = tk.Tk()
-window2.geometry("600x300")
-window2.title("Concesionario")
-
-app = Application(master=window2)
-window2.mainloop()
 
