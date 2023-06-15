@@ -3,6 +3,7 @@ import os
 import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import messagebox
+from tkinter import ttk
 
 ruta_activos = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Activos'))
 ruta_personal = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Personal'))
@@ -279,14 +280,17 @@ if __name__ == "__main__":
         window.update()
         window.mainloop()
 
+        def mostrar_proceso(nombre_proceso):
+            etiqueta.config(text=nombre_proceso)
+
         def mostrar_informacion():
-            messagebox.showinfo("Aplicación Consesionario: ", "Esta aplicación realiza diversas funcionalidades referentes al todos los procesos del consesionario.")
+            messagebox.showinfo("Aplicación Consesionario", "Esta aplicación realiza diversas funcionalidades referentes a todos los procesos del consesionario.")
 
         def salir():
             window2.destroy()
 
         def mostrar_autores():
-            messagebox.showinfo("Acerca de", "Autores: Santiago,  Jonatan, Felipe, Juan Jose ")
+            messagebox.showinfo("Acerca de", "Autores: Santiago, Jonatan, Felipe, Juan Jose")
 
         # Crear ventana principal
         window2 = tk.Tk()
@@ -304,13 +308,13 @@ if __name__ == "__main__":
 
         # Menú Procesos y Consultas
         sub_procesos = tk.Menu(menu_master)
-        sub_procesos.add_command(label="Venta de Autos")
-        sub_procesos.add_command(label="Venta de Repuestos")
-        sub_procesos.add_command(label="Taller")
-        sub_procesos.add_command(label="Consultar estadisticas / finanzas")
-        sub_procesos.add_command(label="Personalizar su auto")
-        sub_procesos.add_command(label="Crear nuevo usuario (Comprador)")
-        sub_procesos.add_command(label="Administración")
+        sub_procesos.add_command(label="Venta de Autos", command=lambda: mostrar_proceso("Venta de Autos"))
+        sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
+        sub_procesos.add_command(label="Taller", command=lambda: mostrar_proceso("Taller"))
+        sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: mostrar_proceso("Consultar estadisticas / finanzas"))
+        sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su aut"))
+        sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
+        sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
         menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
 
         # Menú Ayuda
@@ -318,12 +322,22 @@ if __name__ == "__main__":
         ayuda.add_command(label="Acerca de:", command=mostrar_autores)
         menu_master.add_cascade(label="Ayuda", menu=ayuda)
 
-        # Zona de interacción usuario
-        zona_interaccion = tk.Frame(window2)
-        zona_interaccion.pack(pady=20)
+        
+        # Crear la zona de interacción para la muestra del nombre de procesos y consultas
+        zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
+        zona_interaccion.pack(side="top", pady=10)
 
-        etiqueta_resultado = tk.Label(zona_interaccion, text="Aquí se mostrarán los diálogos y resultados")
-        etiqueta_resultado.pack()
+        # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
+        etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
+        etiqueta.pack(side="top")
+
+         # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+        zona_interaccion2 = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
+        zona_interaccion2.pack(side="top")
+
+        # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
+        etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
+        etiqueta2.pack(side="top", pady=7)
 
         
         print("\n\nMenú principal Concesionario")
