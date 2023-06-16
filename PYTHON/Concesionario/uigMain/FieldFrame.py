@@ -1,49 +1,52 @@
-import tkinter as tk
-from tkinter import messagebox
+from tkinter import *
 
-class FieldFrame(tk.Frame):
-    def __init__(self, tituloCriterios, criterios, tituloValores, valores, habilitado):
+class FieldFrame(Frame):
+    def __init__(self, tituloCriterios, criterios, tituloValores, valores=None, habilitado=None):
         super().__init__()
-        self.grid(sticky=tk.NSEW)
+
         self.criterios = criterios
-        self.valores = valores
-        self.habilitado = habilitado
+        self.valores = valores if valores else ["" for _ in criterios]
+        self.habilitado = habilitado if habilitado else [True for _ in criterios]
 
-        # Etiqueta para el título de los criterios
-        tk.Label(self, text=tituloCriterios, font=("Arial", 10, "bold")).grid(row=0, column=0, sticky=tk.W)
+        # Configuración del marco de ventana
+        self.master.title("FieldFrame")
+        self.grid()
 
-        # Etiqueta para el título de los valores
-        tk.Label(self, text=tituloValores, font=("Arial", 10, "bold")).grid(row=0, column=1, sticky=tk.W)
+        # Creación de componentes
+        titulo_criterios_label = Label(self, text=tituloCriterios)
+        titulo_criterios_label.grid(row=0, column=0)
 
-        # Campos de entrada de texto para los criterios y valores
-        for i, criterio in enumerate(criterios):
-            tk.Label(self, text=criterio).grid(row=i+1, column=0, sticky=tk.W)
-            entry = tk.Entry(self, state='normal' if habilitado[i] else 'disabled')
-            entry.grid(row=i+1, column=1, sticky=tk.W)
-            if valores[i]:
-                entry.insert(0, valores[i])
+        titulo_valores_label = Label(self, text=tituloValores)
+        titulo_valores_label.grid(row=0, column=1)
+
+        self.entries = []
+        for i, criterio in enumerate(self.criterios):
+            criterio_label = Label(self, text=criterio)
+            criterio_label.grid(row=i+1, column=0)
+
+            valor_entry = Entry(self)
+            valor_entry.insert(END, self.valores[i])
+            valor_entry.configure(state='readonly' if not self.habilitado[i] else 'normal')
+            valor_entry.grid(row=i+1, column=1)
+
+            self.entries.append(valor_entry)
 
     def getValue(self, criterio):
         index = self.criterios.index(criterio)
-        entry = self.grid_slaves(row=index+1, column=1)[0]
-        return entry.get()
+        return self.entries[index].get()
 
-class Application(tk.Frame):
-    def __init__(self, master=None):
-        super().__init__(master)
-        self.master = master
-        self.grid(sticky=tk.NSEW)
-        self.create_widgets()
+criterios = ["Cedula", "Nombre", "Descripción", "Ubicación"]
+valores_iniciales = ["3455", "", "", ""]
+habilitados = [True, False, False, False]
 
-    def create_widgets(self):
-        
+root = Tk()
+fp = FieldFrame("Criterio", criterios, "Valor", valores_iniciales, habilitados)
+fp.pack()
 
-        # Zona de interacción usuario
-        self.dialogo_texto = tk.Text(self, state='disabled')
-        self.dialogo_texto.grid(row=1, column=0, columnspan=2, sticky=tk.NSEW)
+# Ejecución del bucle principal de la interfaz gráfica
+root.mainloop()
 
-        # Aplicar FieldFrame a window2
-        field_frame = FieldFrame("Criterios", ["Criterio 1", "Criterio 2"], "Valores", ["Valor 1", "Valor 2"], [True, False])
-        field_frame.grid(row=2, column=0, columnspan=2, sticky=tk.NSEW)
-
+# Obtener el valor de un campo específico utilizando el método getValue
+valor_cedula = fp.getValue("Cedula")
+print("Valor de Cedula:", valor_cedula)
 
