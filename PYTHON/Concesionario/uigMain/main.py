@@ -4,7 +4,9 @@ import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import messagebox
 from tkinter import ttk
+import FieldFrame
 
+ruta_FieldFrame = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'uigMain'))
 ruta_activos = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Activos'))
 ruta_personal = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'gestorAplicacion', 'Personal'))
 ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -14,10 +16,12 @@ sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
 sys.path.append(ruta_Imagenes)
+sys.path.append(ruta_FieldFrame)
 from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
 from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
+from FieldFrame import FieldFrame
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
@@ -83,6 +87,42 @@ if __name__ == "__main__":
     
     
     while volver_al_menu_principal:
+
+        def comprobar_cliente(event):
+            global valor_cedula
+            global valores_iniciales
+            global cliente
+
+            valor_cedula = fp.getValue("Cedula")
+
+            print(valor_cedula)
+
+            cliente = Cliente.get_clientePorCedula(valor_cedula)
+            print(cliente)
+            if cliente!=None:
+                nombre_cliente = cliente.get_nombre()
+                telefono_cliente = cliente.get_telefono()
+                correo_cliente = cliente.get_cliente()
+                valores_iniciales.insert(1, nombre_cliente)
+                valores_iniciales.insert(2, telefono_cliente)
+                valores_iniciales.insert(3, correo_cliente)
+            elif cliente==None:
+                raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
+        
+
+        criterios = ["Cedula", "Nombre", "Teléfono", "Correo"]
+        valores_iniciales = ["3455", "", "", ""]
+        habilitados = [True, False, False, False]
+
+        root = tk.Tk()
+        fp = FieldFrame("Criterio", criterios, "Valor", valores_iniciales, habilitados)
+        fp.pack(side="top")
+        comprobar = tk.Button(root, text="Comprobar")
+        comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+        comprobar.pack(side="bottom", padx=5, pady=5)
+
+    # Ejecución del bucle principal de la interfaz gráfica
+        root.mainloop()
 
         window = tk.Tk()
         window.geometry("600x300")
@@ -292,6 +332,8 @@ if __name__ == "__main__":
         def mostrar_autores():
             messagebox.showinfo("Acerca de", "Autores: Santiago, Jonatan, Felipe, Juan Jose")
 
+
+
         # Crear ventana principal
         window2 = tk.Tk()
         window2.geometry("600x300")
@@ -312,7 +354,7 @@ if __name__ == "__main__":
         sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
         sub_procesos.add_command(label="Taller", command=lambda: mostrar_proceso("Taller"))
         sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: mostrar_proceso("Consultar estadisticas / finanzas"))
-        sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su aut"))
+        sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
         sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
         sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
         menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
@@ -324,7 +366,7 @@ if __name__ == "__main__":
 
         
         # Crear la zona de interacción para la muestra del nombre de procesos y consultas
-        zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
+        zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue", bg="red")
         zona_interaccion.pack(side="top", pady=10)
 
         # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
