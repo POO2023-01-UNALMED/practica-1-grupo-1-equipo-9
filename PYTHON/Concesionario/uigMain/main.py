@@ -2,7 +2,7 @@ import sys
 import os
 import tkinter as tk
 from PIL import ImageTk, Image
-from tkinter import messagebox
+from tkinter import END, messagebox
 from tkinter import ttk
 import FieldFrame
 
@@ -103,15 +103,19 @@ if __name__ == "__main__":
                 nombre_cliente = cliente.get_nombre()
                 telefono_cliente = cliente.get_telefono()
                 correo_cliente = cliente.get_correo()
-                valores_iniciales.insert(1, nombre_cliente)
-                valores_iniciales.insert(2, telefono_cliente)
-                valores_iniciales.insert(3, correo_cliente)
+                label_1 = fp.entries[1]
+                label_2 = fp.entries[2]
+                label_3 = fp.entries[3]
+                print(label_1)
+                label_1.insert(END, nombre_cliente)
+                label_2.insert(END, telefono_cliente)
+                label_3.insert(END, correo_cliente)
             elif cliente==None:
                 raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
         
 
         criterios = ["Cedula", "Nombre", "Teléfono", "Correo"]
-        valores_iniciales = ["", "", "", ""]
+        valores_iniciales = ["", "asdas", "", ""]
         habilitados = [True, False, False, False]
 
         root = tk.Tk()
