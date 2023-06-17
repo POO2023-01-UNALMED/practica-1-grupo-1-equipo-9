@@ -88,6 +88,16 @@ if __name__ == "__main__":
     
     while volver_al_menu_principal:
 
+        def cancel(event):
+            root.destroy()
+            
+
+        def confirmar_cliente(event, proceso):
+            global cliente
+            root.destroy()
+            mostrar_proceso(proceso)
+
+
         def comprobar_cliente(event):
             global valor_cedula
             global valores_iniciales
@@ -114,6 +124,18 @@ if __name__ == "__main__":
                 label_1.insert(END, nombre_cliente)
                 label_2.insert(END, telefono_cliente)
                 label_3.insert(END, correo_cliente)
+                
+                label_1.configure(state="disabled")
+                label_2.configure(state="disabled")
+                label_3.configure(state="disabled")
+
+                comprobar.configure(text="¿Confirmar?")
+                comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
+                cancelar = tk.Button(root, text="Cancelar")
+                cancelar.bind("<Button-1>", lambda event: cancel(event))
+                cancelar.pack(padx=5, pady=5)
+
+
             elif cliente==None:
                 raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
         
@@ -127,7 +149,7 @@ if __name__ == "__main__":
         fp.pack(side="top")
         comprobar = tk.Button(root, text="Comprobar")
         comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
-        comprobar.pack(side="bottom", padx=5, pady=5)
+        comprobar.pack(padx=5, pady=5)
 
     # Ejecución del bucle principal de la interfaz gráfica
         root.mainloop()
