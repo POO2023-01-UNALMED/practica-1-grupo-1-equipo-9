@@ -99,14 +99,18 @@ if __name__ == "__main__":
 
             cliente = Cliente.get_clientePorCedula(int(valor_cedula))
             print(cliente)
-            if cliente!= None:
+            if cliente != None:
                 nombre_cliente = cliente.get_nombre()
                 telefono_cliente = cliente.get_telefono()
                 correo_cliente = cliente.get_correo()
-                label_1 = fp.entries[1]
-                label_2 = fp.entries[2]
-                label_3 = fp.entries[3]
-                print(label_1)
+                label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
+                label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
+                label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
+
+                label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
+                label_2.delete(0, END)
+                label_3.delete(0, END)
+
                 label_1.insert(END, nombre_cliente)
                 label_2.insert(END, telefono_cliente)
                 label_3.insert(END, correo_cliente)
@@ -115,8 +119,8 @@ if __name__ == "__main__":
         
 
         criterios = ["Cedula", "Nombre", "Teléfono", "Correo"]
-        valores_iniciales = ["", "asdas", "", ""]
-        habilitados = [True, False, False, False]
+        valores_iniciales = ["", "", "", ""]
+        habilitados = [True, True, True, True]
 
         root = tk.Tk()
         fp = FieldFrame("Criterio", criterios, "Valor", valores_iniciales, habilitados)
