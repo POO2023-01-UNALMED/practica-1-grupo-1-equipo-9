@@ -206,12 +206,12 @@ if __name__ == "__main__":
             global image3
             global image4
             array_rutas = ["jonatan", "santiago", "felipe", "juanjose"]
-            array_imgs=["1.jpg", "2.png", "3.jpg", "4.png"] 
+            array_imgs=["1.png", "2.png", "3.png", "4.png"] 
             i += 1
             descripciones = [
                 "Jonatan: Risas contagiosas y calcetines desparejados. Siempre listo para hacer locuras. ¡Cuidado con su teoría de unicornios fluorescentes!",
                 "Santiago: Perdido en su propia casa, confunde frutas. Sentido del humor de un erizo resacoso. Siempre arranca sonrisas con chistes torcidos.",
-                "Felipe: Rey de los tropiezos. En el suelo más que de pie. Su falta de coordinación es legendaria. Blanco perfecto de bromas.",
+                "Felipe, Tecnico en Linea de Avion, 24 años, apasionado por la Tecnologia, El campo y la Aviacion, Estuante de 4 semestre de Ingenieria de Sistemas en la Universidad Nacional",
                 "Juan José: Imán para el caos. Crea problemas de la nada. Historias absurdas, como intentar construir una máquina del tiempo con una tostadora y un cactus."
             ]
 
@@ -220,10 +220,10 @@ if __name__ == "__main__":
 
             info_curriculum.config(text=descripciones[i], justify="center", wraplength=280)
 
-            ruta1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[0], array_imgs[i])))
-            ruta2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[1], array_imgs[i])))
-            ruta3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[2], array_imgs[i])))
-            ruta4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[3], array_imgs[i])))
+            ruta1 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i], array_imgs[0])))
+            ruta2 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i], array_imgs[1])))
+            ruta3 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i], array_imgs[2])))
+            ruta4 = Image.open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'imagenes', array_rutas[i], array_imgs[3])))
 
 
             # Obtener el tamaño de los contenedores
