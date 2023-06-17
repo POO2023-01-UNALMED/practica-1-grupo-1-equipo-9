@@ -106,43 +106,49 @@ if __name__ == "__main__":
             valor_cedula = fp.getValue("Cedula")
 
             print(valor_cedula)
+            if fp.entries[0].get()!="":
+                cliente = Cliente.get_clientePorCedula(int(valor_cedula))
+                print(cliente)
+            
 
-            cliente = Cliente.get_clientePorCedula(int(valor_cedula))
-            print(cliente)
-            if cliente != None:
-                nombre_cliente = cliente.get_nombre()
-                telefono_cliente = cliente.get_telefono()
-                correo_cliente = cliente.get_correo()
-                label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
-                label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
-                label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
+                if cliente != None:
+                    nombre_cliente = cliente.get_nombre()
+                    telefono_cliente = cliente.get_telefono()
+                    correo_cliente = cliente.get_correo()
+                    label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
+                    label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
+                    label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
 
-                label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
-                label_2.delete(0, END)
-                label_3.delete(0, END)
+                    label_1.configure(state="normal")
+                    label_2.configure(state="normal")
+                    label_3.configure(state="normal")
 
-                label_1.insert(END, nombre_cliente)
-                label_2.insert(END, telefono_cliente)
-                label_3.insert(END, correo_cliente)
-                
-                label_1.configure(state="disabled")
-                label_2.configure(state="disabled")
-                label_3.configure(state="disabled")
+                    label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
+                    label_2.delete(0, END)
+                    label_3.delete(0, END)
 
-                comprobar.configure(text="¿Confirmar?")
-                comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
-                cancelar = tk.Button(root, text="Cancelar")
-                cancelar.bind("<Button-1>", lambda event: cancel(event))
-                cancelar.pack(padx=5, pady=5)
+                    label_1.insert(END, nombre_cliente)
+                    label_2.insert(END, telefono_cliente)
+                    label_3.insert(END, correo_cliente)
+                    
+                    label_1.configure(state="disabled")
+                    label_2.configure(state="disabled")
+                    label_3.configure(state="disabled")
 
-
-            elif cliente==None:
-                raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
+                    comprobar.configure(text="¿Confirmar?")
+                    comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
+                    cancelar = tk.Button(root, text="Cancelar")
+                    cancelar.bind("<Button-1>", lambda event: cancel(event))
+                    cancelar.pack(padx=5, pady=5)
+                elif cliente==None:
+                    raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
+            else:
+                raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
         
-
+        #Plantilla de ingresar cédula cliente
         criterios = ["Cedula", "Nombre", "Teléfono", "Correo"]
         valores_iniciales = ["", "", "", ""]
-        habilitados = [True, True, True, True]
+        habilitados = [True, False, False, False]
 
         root = tk.Tk()
         fp = FieldFrame("Criterio", criterios, "Valor", valores_iniciales, habilitados)
@@ -150,6 +156,7 @@ if __name__ == "__main__":
         comprobar = tk.Button(root, text="Comprobar")
         comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
         comprobar.pack(padx=5, pady=5)
+        #####
 
     # Ejecución del bucle principal de la interfaz gráfica
         root.mainloop()
