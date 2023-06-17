@@ -369,6 +369,55 @@ if __name__ == "__main__":
         def mostrar_autores():
             messagebox.showinfo("Acerca de", "Autores: Santiago, Jonatan, Felipe, Juan Jose")
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        def stats(nombre_proceso):
+            etiqueta.config(text=nombre_proceso)
+
+            '''# validar que sea la cedula de administrador
+            # label bienvenida
+            lbadmin1=tk.Label(window2, text="Bienvenido al portal de estadisticas de nuestro concesionario")
+            lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
+
+            # contenedor
+            containeradmin = tk.Frame(window2)
+            containeradmin.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+            
+            # label, entry y button de cedula admin
+            lbadmin = tk.Label(containeradmin, text="Introduzca su cedula", justify="left")
+            entryadmin = tk.Entry(containeradmin)
+            botonadmin = tk.Button(containeradmin, text= "hola")
+            lbadmin.pack(side='left', padx=0, pady=0)
+            entryadmin.pack(side='left', padx=15, pady=0)
+            botonadmin.pack(side='left', padx=5, pady=0)'''
+
+            '''if entryadmin.get()!=3355479:
+                print("d")
+            else:
+                # crear labels iniciales y posicionarlos
+                lbstats1 = tk.Label(window2, text="¿Qué estadísticas / información financiera quieres consultar?", justify="left")
+                lbstats2 = tk.Label(window2, text="1. Estado de Resultados", justify="left")
+                lbstats3 = tk.Label(window2, text="2. Estado de Resultados Detallado", justify="left")
+                lbstats4 = tk.Label(window2, text="3. Ventas - Vendedor", justify="left")
+                lbstats5 = tk.Label(window2, text="4. Ventas - Autos", justify="left")
+
+                lbstats1.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
+                lbstats2.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                lbstats3.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                lbstats4.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                lbstats5.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
+                # crear el último label con el entry de 1-4
+                containerinicio = tk.Frame(window2)
+                containerinicio.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-4]", justify="left")
+                entrytats1 = tk.Entry(containerinicio)
+                lbstats6.pack(side='left', padx=0, pady=0)
+                entrytats1.pack(side='left', padx=15, pady=0)'''
+=======
+>>>>>>> f62d439e83fccf65ab00d5c92703bb87db9c7017
+>>>>>>> Stashed changes
 
 
         # Crear ventana principal
@@ -390,8 +439,18 @@ if __name__ == "__main__":
         sub_procesos.add_command(label="Venta de Autos", command=lambda: mostrar_proceso("Venta de Autos"))
         sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
         sub_procesos.add_command(label="Taller", command=lambda: mostrar_proceso("Taller"))
+<<<<<<< Updated upstream
         sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: mostrar_proceso("Consultar estadisticas / finanzas"))
         sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
+=======
+<<<<<<< HEAD
+        sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: stats("Consultar estadisticas / finanzas"))
+        sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su aut"))
+=======
+        sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: mostrar_proceso("Consultar estadisticas / finanzas"))
+        sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
+>>>>>>> f62d439e83fccf65ab00d5c92703bb87db9c7017
+>>>>>>> Stashed changes
         sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
         sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
         menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
@@ -417,7 +476,6 @@ if __name__ == "__main__":
         # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
         etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
         etiqueta2.pack(side="top", pady=7)
-
         
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
