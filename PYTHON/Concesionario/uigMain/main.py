@@ -97,12 +97,12 @@ if __name__ == "__main__":
 
             print(valor_cedula)
 
-            cliente = Cliente.get_clientePorCedula(valor_cedula)
+            cliente = Cliente.get_clientePorCedula(int(valor_cedula))
             print(cliente)
-            if cliente!=None:
+            if cliente!= None:
                 nombre_cliente = cliente.get_nombre()
                 telefono_cliente = cliente.get_telefono()
-                correo_cliente = cliente.get_cliente()
+                correo_cliente = cliente.get_correo()
                 valores_iniciales.insert(1, nombre_cliente)
                 valores_iniciales.insert(2, telefono_cliente)
                 valores_iniciales.insert(3, correo_cliente)
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         
 
         criterios = ["Cedula", "Nombre", "Teléfono", "Correo"]
-        valores_iniciales = ["3455", "", "", ""]
+        valores_iniciales = ["", "", "", ""]
         habilitados = [True, False, False, False]
 
         root = tk.Tk()
@@ -373,7 +373,7 @@ if __name__ == "__main__":
         etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
         etiqueta.pack(side="top")
 
-         # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+        # Crear la zona de interacción para deescripción del detalle de procesos o consultas
         zona_interaccion2 = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
         zona_interaccion2.pack(side="top")
 

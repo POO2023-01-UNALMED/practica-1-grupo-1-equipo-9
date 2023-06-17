@@ -80,20 +80,6 @@ def comprobar_cliente(event):
     elif cliente==None:
         raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
     
-
-criterios = ["Cedula", "Nombre", "Teléfono", "Correo"]
-valores_iniciales = ["3455", "", "", ""]
-habilitados = [True, False, False, False]
-
-root = Tk()
-fp = FieldFrame("Criterio", criterios, "Valor", valores_iniciales, habilitados)
-fp.pack(side="top")
-comprobar = tk.Button(root, text="Comprobar")
-comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
-comprobar.pack(side="bottom", padx=5, pady=5)
-
-# Ejecución del bucle principal de la interfaz gráfica
-root.mainloop()
     
 
 
