@@ -211,7 +211,7 @@ if __name__ == "__main__":
             descripciones = [
                 "Jonatan: Risas contagiosas y calcetines desparejados. Siempre listo para hacer locuras. ¡Cuidado con su teoría de unicornios fluorescentes!",
                 "Santiago: Perdido en su propia casa, confunde frutas. Sentido del humor de un erizo resacoso. Siempre arranca sonrisas con chistes torcidos.",
-                "Felipe, Tecnico en Linea de Avion, 24 años, apasionado por la Tecnologia, El campo y la Aviacion, Estuante de 4 semestre de Ingenieria de Sistemas en la Universidad Nacional",
+                "Felipe, Tecnico en Linea de Avion, 24 años, apasionado por la Tecnologia, El campo y la Aviacion, Estudiante de 4 semestre de Ingenieria de Sistemas en la Universidad Nacional",
                 "Juan José: Imán para el caos. Crea problemas de la nada. Historias absurdas, como intentar construir una máquina del tiempo con una tostadora y un cactus."
             ]
 
