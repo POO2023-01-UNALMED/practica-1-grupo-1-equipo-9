@@ -175,8 +175,54 @@ if __name__ == "__main__":
             info_curriculum.config(text="Dios bendiga mami este arrebato", justify="center", wraplength=280)
 
         def entrar(event):
+            global window2
             window.destroy()
-            app = Application(master=window2)
+            # Crear ventana principal
+            window2 = tk.Tk()
+            window2.geometry("600x300")
+            window2.title("Concesionario")
+
+            menu_master = tk.Menu(window2)
+            window2.config(menu=menu_master)
+
+            # Menú Archivo
+            sub_archivo = tk.Menu(menu_master)
+            sub_archivo.add_command(label="Aplicación", command=mostrar_informacion)
+            sub_archivo.add_command(label="Salir", command=salir)
+            menu_master.add_cascade(label="Archivo", menu=sub_archivo)
+
+            # Menú Procesos y Consultas
+            sub_procesos = tk.Menu(menu_master)
+            sub_procesos.add_command(label="Venta de Autos", command=lambda: mostrar_proceso("Venta de Autos"))
+            sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
+            sub_procesos.add_command(label="Taller", command=lambda: procesoTaller("Taller"))
+            sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
+            sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: stats("Consultar estadisticas / finanzas"))
+            sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
+            sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
+            menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
+
+            # Menú Ayuda
+            ayuda = tk.Menu(menu_master)
+            ayuda.add_command(label="Acerca de:", command=mostrar_autores)
+            menu_master.add_cascade(label="Ayuda", menu=ayuda)
+
+            
+            # Crear la zona de interacción para la muestra del nombre de procesos y consultas
+            zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion.pack(side="top", pady=10)
+
+            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
+            etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
+            etiqueta.pack(side="top")
+
+            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+            zona_interaccion2 = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
+            zona_interaccion2.pack(side="top")
+
+            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
+            etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
+            etiqueta2.pack(side="top", pady=7)
             window2.mainloop()
 
         
@@ -356,16 +402,15 @@ if __name__ == "__main__":
         p6.grid_columnconfigure(0, weight=1)
         p6.grid_columnconfigure(1, weight=1)
 
-        window.update()
-        window.mainloop()
-
         def mostrar_proceso(nombre_proceso):
+            global etiqueta
             etiqueta.config(text=nombre_proceso)
 
         def mostrar_informacion():
             messagebox.showinfo("Aplicación Consesionario", "Esta aplicación realiza diversas funcionalidades referentes a todos los procesos del consesionario.")
 
         def salir():
+            global window2
             window2.destroy()
 
         def mostrar_autores():
@@ -373,6 +418,7 @@ if __name__ == "__main__":
         
         
         def procesoTaller(nombre_proceso):
+            global etiqueta
             etiqueta.config(text=nombre_proceso)
             container= tk.Frame(window2)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
@@ -517,57 +563,8 @@ if __name__ == "__main__":
                 entrytats1.pack(side='left', padx=15, pady=0)'''
 
 
-        # Crear ventana principal
-        window2 = tk.Tk()
-        window2.geometry("600x300")
-        window2.title("Concesionario")
-
-        menu_master = tk.Menu(window2)
-        window2.config(menu=menu_master)
-
-        # Menú Archivo
-        sub_archivo = tk.Menu(menu_master)
-        sub_archivo.add_command(label="Aplicación", command=mostrar_informacion)
-        sub_archivo.add_command(label="Salir", command=salir)
-        menu_master.add_cascade(label="Archivo", menu=sub_archivo)
-
-        # Menú Procesos y Consultas
-        sub_procesos = tk.Menu(menu_master)
-        sub_procesos.add_command(label="Venta de Autos", command=lambda: mostrar_proceso("Venta de Autos"))
-        sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
-        sub_procesos.add_command(label="Taller", command=lambda: procesoTaller("Taller"))
-        sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
-        sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: stats("Consultar estadisticas / finanzas"))
-        sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
-        sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
-        menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
-
-        # Menú Ayuda
-        ayuda = tk.Menu(menu_master)
-        ayuda.add_command(label="Acerca de:", command=mostrar_autores)
-        menu_master.add_cascade(label="Ayuda", menu=ayuda)
-
         
-        # Crear la zona de interacción para la muestra del nombre de procesos y consultas
-        zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue", bg="red")
-        zona_interaccion.pack(side="top", pady=10)
-
-        # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
-        etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
-        etiqueta.pack(side="top")
-
-        # Crear la zona de interacción para deescripción del detalle de procesos o consultas
-        zona_interaccion2 = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
-        zona_interaccion2.pack(side="top")
-
-        # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
-        etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
-        etiqueta2.pack(side="top", pady=7)
         
-	
-
-        window.update()
-        window.mainloop()
 
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
