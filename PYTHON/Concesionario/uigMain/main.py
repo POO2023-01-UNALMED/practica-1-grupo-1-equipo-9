@@ -399,6 +399,7 @@ if __name__ == "__main__":
                         telefono_cliente = cliente.get_telefono()
                         auto_cliente = cliente.get_auto().get_marca()
                         
+                        auto_cliente = cliente.get_auto()
                         
                         label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
                         label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
@@ -446,6 +447,33 @@ if __name__ == "__main__":
 
 
         def stats(nombre_proceso):
+
+            def botonadmin(cedula):
+
+                if cedula!=3355479:
+                    print("d")
+                else:
+                    # crear labels iniciales y posicionarlos
+                    lbstats1 = tk.Label(window2, text="¿Qué estadísticas / información financiera quieres consultar?", justify="left")
+                    lbstats2 = tk.Label(window2, text="1. Estado de Resultados", justify="left")
+                    lbstats3 = tk.Label(window2, text="2. Estado de Resultados Detallado", justify="left")
+                    lbstats4 = tk.Label(window2, text="3. Ventas - Vendedor", justify="left")
+                    lbstats5 = tk.Label(window2, text="4. Ventas - Autos", justify="left")
+
+                    lbstats1.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
+                    lbstats2.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                    lbstats3.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                    lbstats4.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                    lbstats5.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
+                    # crear el último label con el entry de 1-4
+                    containerinicio = tk.Frame(window2)
+                    containerinicio.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                    lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-4]", justify="left")
+                    entrytats1 = tk.Entry(containerinicio)
+                    lbstats6.pack(side='left', padx=0, pady=0)
+                    entrytats1.pack(side='left', padx=15, pady=0)
+            
             etiqueta.config(text=nombre_proceso)
 
             # validar que sea la cedula de administrador
@@ -460,12 +488,12 @@ if __name__ == "__main__":
             # label, entry y button de cedula admin
             lbadmin = tk.Label(containeradmin, text="Introduzca su cedula", justify="left")
             entryadmin = tk.Entry(containeradmin)
-            botonadmin = tk.Button(containeradmin, text= "hola")
+            botonadmin = tk.Button(containeradmin, text= "hola", command=botonadmin(entryadmin.get()))
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
             botonadmin.pack(side='left', padx=5, pady=0)
 
-            if entryadmin.get()!=3355479:
+            '''if entryadmin.get()!=3355479:
                 print("d")
             else:
                 # crear labels iniciales y posicionarlos
@@ -487,7 +515,7 @@ if __name__ == "__main__":
                 lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-4]", justify="left")
                 entrytats1 = tk.Entry(containerinicio)
                 lbstats6.pack(side='left', padx=0, pady=0)
-                entrytats1.pack(side='left', padx=15, pady=0)
+                entrytats1.pack(side='left', padx=15, pady=0)'''
 
 
         # Crear ventana principal
@@ -546,6 +574,8 @@ if __name__ == "__main__":
         print(Auto.get_autos())
 	
 
+        window.update()
+        window.mainloop()
 
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
