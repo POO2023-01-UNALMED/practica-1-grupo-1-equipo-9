@@ -29,12 +29,7 @@ from FieldFrame import FieldFrame
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
-    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001);
-    sonido=  Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002);
-    escape=  Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003);
-    suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004);
 
-    a1=  Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
 
     def limpiar(contenedor):
             for widget in contenedor.winfo_children():
@@ -209,7 +204,7 @@ if __name__ == "__main__":
             sub_procesos = tk.Menu(menu_master)
             sub_procesos.add_command(label="Venta de Autos", command=lambda: mostrar_proceso("Venta de Autos"))
             sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
-            sub_procesos.add_command(label="Taller", command=lambda: procesoTaller("Taller"))
+            sub_procesos.add_command(label="Taller", command=lambda: proceso_taller("Taller"))
             sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
             sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: stats("Consultar estadisticas / finanzas"))
             sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
@@ -431,7 +426,7 @@ if __name__ == "__main__":
             messagebox.showinfo("Acerca de", "Autores: Santiago, Jonatan, Felipe, Juan Jose")
         
         
-        def procesoTaller(nombre_proceso):
+        def proceso_taller(nombre_proceso):
             global etiqueta
             global window2
             global ventana_funcionalidad
@@ -463,8 +458,8 @@ if __name__ == "__main__":
             def confirmar_cliente(event, proceso):
                 global cliente
                 mostrar_proceso(proceso)
-            '''def cancel(event):
-                root.destroy()'''
+            def cancel(event):
+                limpiar(ventana_funcionalidad)
 
             def comprobar_cliente(event):
                 global valor_cedula
@@ -481,7 +476,12 @@ if __name__ == "__main__":
                     if cliente != None:
                         nombre_cliente = cliente.get_nombre()
                         telefono_cliente = cliente.get_telefono()
-                        auto_cliente = cliente.get_auto().get_marca()
+                        try:
+                            auto_cliente = cliente.get_auto().get_marca()
+                        except AttributeError:
+                            (messagebox.showinfo("Cliente sin Vehiculo", "Este cliente no posee en vehiculo comprado"))
+                            limpiar(ventana_funcionalidad)
+                            return
                 
                         
                         label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
@@ -517,7 +517,7 @@ if __name__ == "__main__":
                     raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
                 
 
-            criterios = ["Cedula", "Nombre", "Auto/Marca", "Correo"]
+            criterios = ["Cedula", "Nombre","Telefono" , "Auto/Marca"]
             valores_iniciales = ["", "", "", ""]
             habilitados = [True, False, False, False]
 
