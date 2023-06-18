@@ -434,7 +434,7 @@ if __name__ == "__main__":
         def stats(nombre_proceso):
             etiqueta.config(text=nombre_proceso)
 
-            '''# validar que sea la cedula de administrador
+            # validar que sea la cedula de administrador
             # label bienvenida
             lbadmin1=tk.Label(window2, text="Bienvenido al portal de estadisticas de nuestro concesionario")
             lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
@@ -449,9 +449,9 @@ if __name__ == "__main__":
             botonadmin = tk.Button(containeradmin, text= "hola")
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
-            botonadmin.pack(side='left', padx=5, pady=0)'''
+            botonadmin.pack(side='left', padx=5, pady=0)
 
-            '''if entryadmin.get()!=3355479:
+            if entryadmin.get()!=3355479:
                 print("d")
             else:
                 # crear labels iniciales y posicionarlos
@@ -473,7 +473,7 @@ if __name__ == "__main__":
                 lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-4]", justify="left")
                 entrytats1 = tk.Entry(containerinicio)
                 lbstats6.pack(side='left', padx=0, pady=0)
-                entrytats1.pack(side='left', padx=15, pady=0)'''
+                entrytats1.pack(side='left', padx=15, pady=0)
 
 
         # Crear ventana principal
