@@ -17,6 +17,8 @@ sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
 sys.path.append(ruta_Imagenes)
 sys.path.append(ruta_FieldFrame)
+from gestorAplicacion.Activos.auto import Auto
+from gestorAplicacion.Activos.articulo import Articulo
 from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
 from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
@@ -25,6 +27,15 @@ from FieldFrame import FieldFrame
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
+    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001);
+    sonido=  Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002);
+    escape=  Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003);
+    suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004);
+    a1=  Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
+
+        
+
+    
     
     
     ####
@@ -88,14 +99,14 @@ if __name__ == "__main__":
     
     while volver_al_menu_principal:
 
-        '''def cancel(event):
+        def cancel(event):
             root.destroy()
             
 
         def confirmar_cliente(event, proceso):
             global cliente
             root.destroy()
-            mostrar_proceso(proceso)'''
+            mostrar_proceso(proceso)
 
 
         '''def comprobar_cliente(event):
@@ -375,10 +386,9 @@ if __name__ == "__main__":
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
             def confirmar_cliente(event, proceso):
                 global cliente
-                root.destroy()
                 mostrar_proceso(proceso)
-            def cancel(event):
-                root.destroy()
+            '''def cancel(event):
+                root.destroy()'''
 
             def comprobar_cliente(event):
                 global valor_cedula
@@ -395,8 +405,8 @@ if __name__ == "__main__":
                     if cliente != None:
                         nombre_cliente = cliente.get_nombre()
                         telefono_cliente = cliente.get_telefono()
-                        auto_cliente = cliente.get_auto()
-                        if cliente 
+                        auto_cliente = cliente.get_auto().get_marca()
+                        
                         
                         label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
                         label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
