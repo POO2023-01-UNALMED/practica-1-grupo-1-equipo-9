@@ -30,6 +30,10 @@ from FieldFrame import FieldFrame
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
 
+    def limpiar(contenedor):
+        for widgets in contenedor.winfo_children():
+            widgets.destroy()
+            
     ####
     def procesoVenta():
         presupuestoInsuficiente = False
