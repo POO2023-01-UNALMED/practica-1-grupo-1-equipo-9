@@ -565,13 +565,6 @@ if __name__ == "__main__":
         etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
         etiqueta2.pack(side="top", pady=7)
         
-        llanta=Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
-        sonido=Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
-        escape=Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
-        suspension=Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004)
-        mecanico6 = Mecanico("Andres Castro", 1234567896, 9876543216, "andres.castro@gmail.com", "Calle 89 #01-23", 1450000, "Bancolombia", 1234567890123462, "Toyota", "Motor", 15000)
-        a1=  Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape)
-        print(Auto.get_autos())
 	
 
         window.update()
