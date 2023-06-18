@@ -435,10 +435,14 @@ if __name__ == "__main__":
             # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
             etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
             etiqueta2.pack(side="top", pady=7)
+
             etiqueta2.config(text=descripcion, justify="center", wraplength=280)
+
             etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
+            
             container= tk.Frame(window2)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
             def confirmar_cliente(event, proceso):
                 global cliente
                 mostrar_proceso(proceso)
