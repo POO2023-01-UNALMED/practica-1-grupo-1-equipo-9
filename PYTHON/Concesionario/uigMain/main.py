@@ -398,8 +398,7 @@ if __name__ == "__main__":
                         nombre_cliente = cliente.get_nombre()
                         telefono_cliente = cliente.get_telefono()
                         auto_cliente = cliente.get_auto().get_marca()
-                        
-                        auto_cliente = cliente.get_auto()
+                
                         
                         label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
                         label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
