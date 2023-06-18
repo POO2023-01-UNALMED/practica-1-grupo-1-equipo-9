@@ -405,12 +405,9 @@ if __name__ == "__main__":
                     if cliente != None:
                         nombre_cliente = cliente.get_nombre()
                         telefono_cliente = cliente.get_telefono()
-<<<<<<< Updated upstream
                         auto_cliente = cliente.get_auto().get_marca()
                         
-=======
                         auto_cliente = cliente.get_auto()
->>>>>>> Stashed changes
                         
                         label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
                         label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
