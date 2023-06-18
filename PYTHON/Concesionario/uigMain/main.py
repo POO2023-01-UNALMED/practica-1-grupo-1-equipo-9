@@ -367,10 +367,19 @@ if __name__ == "__main__":
 
         def mostrar_autores():
             messagebox.showinfo("Acerca de", "Autores: Santiago, Jonatan, Felipe, Juan Jose")
+        
+        
         def procesoTaller(nombre_proceso):
             etiqueta.config(text=nombre_proceso)
             container= tk.Frame(window2)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+            def confirmar_cliente(event, proceso):
+                global cliente
+                root.destroy()
+                mostrar_proceso(proceso)
+            def cancel(event):
+                root.destroy()
+
             def comprobar_cliente(event):
                 global valor_cedula
                 global valores_iniciales
@@ -387,6 +396,7 @@ if __name__ == "__main__":
                         nombre_cliente = cliente.get_nombre()
                         telefono_cliente = cliente.get_telefono()
                         auto_cliente = cliente.get_auto()
+                        if cliente 
                         
                         label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
                         label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
@@ -415,6 +425,8 @@ if __name__ == "__main__":
                         cancelar.pack(padx=5, pady=5)
                     elif cliente==None:
                         raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
+    
+    
                 else:
                     raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
                 
@@ -495,13 +507,8 @@ if __name__ == "__main__":
         sub_procesos.add_command(label="Venta de Autos", command=lambda: mostrar_proceso("Venta de Autos"))
         sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
         sub_procesos.add_command(label="Taller", command=lambda: procesoTaller("Taller"))
-        sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: mostrar_proceso("Consultar estadisticas / finanzas"))
         sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
         sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: stats("Consultar estadisticas / finanzas"))
-        sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su aut"))
-
-        sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: mostrar_proceso("Consultar estadisticas / finanzas"))
-        sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
         sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
         sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
         menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
