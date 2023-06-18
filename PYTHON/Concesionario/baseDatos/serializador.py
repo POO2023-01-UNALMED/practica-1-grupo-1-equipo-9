@@ -17,6 +17,8 @@ from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
 from gestorAplicacion.Activos.transaccionVentaTaller import TransaccionVentaTaller
 from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
 from gestorAplicacion.Activos.TransaccionModificacion import TransaccionModificacion
+from gestorAplicacion.Activos.articulo import Articulo
+from gestorAplicacion.Activos.auto import Auto
 
 class Serializador():
     
@@ -32,12 +34,12 @@ class Serializador():
             print("IOError")
 
     def serializar_arrays():
-        Serializador.serializar_array(InventarioAuto.get_autos(), "Autos")
+        Serializador.serializar_array(Auto.get_autos(), "Autos")
         Serializador.serializar_array(Cliente.get_clientes(), "Clientes")
         Serializador.serializar_array(Mecanico.get_mecanicos(), "Mecanicos")
         Serializador.serializar_array(Vendedor.get_vendedores(), "Vendedores")
-        Serializador.serializar_array(Inventario_Articulo.get_articulos(), "Articulos")
-        Serializador.serializar_array(Inventario_Articulo.get_repuesto(), "Repuestos")
+        Serializador.serializar_array(Articulo.get_articulos(), "Articulos")
+        Serializador.serializar_array(Articulo.get_repuesto(), "Repuestos")
         Serializador.serializar_array(Transaccion.get_transacciones(), "Transacciones")
         Serializador.serializar_array(TransaccionVenta.get_transaccionesven(), "TransaccionesVentas")
         Serializador.serializar_array(TransaccionVentaTaller.get_transaccionesvental(), "TransaccionesVentaTaller")

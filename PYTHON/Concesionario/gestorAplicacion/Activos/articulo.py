@@ -24,11 +24,25 @@ class Articulo:
         self.referencia = referencia
 
         if tipo == "taller":
-            Inventario_Articulo.articulos.append(self)
+            Articulo.articulos.append(self)
             
         elif tipo == "repuesto":
-            Inventario_Articulo.repuestos.append(self)
+            Articulo.repuestos.append(self)
             
+    @classmethod
+    def get_articulos(cls):
+        return cls.articulos
+    @classmethod
+    def get_repuesto(cls):
+        return cls.repuestos
+    
+    @classmethod
+    def set_articulos(cls,Articulos):
+        cls.articulos = Articulos
+
+    @classmethod
+    def set_repuestos(cls,repuestos):
+        cls.repuestos = repuestos
 
     def set_tipoArticulo(self, tipoArticulo):
         self.tipoArticulo = tipoArticulo

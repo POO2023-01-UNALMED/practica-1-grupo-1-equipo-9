@@ -32,12 +32,14 @@ class Auto:
         self.disponible = disponible
         self.dueno = None
         Auto.autos.append(self)
+        
     @classmethod
     def get_autos(cls):
         return cls.autos
+
     @classmethod
     def set_autos(cls,aut):
-        cls.autos=aut
+        cls.autos = aut
     
     def get_modelo(self):
         return self.modelo
