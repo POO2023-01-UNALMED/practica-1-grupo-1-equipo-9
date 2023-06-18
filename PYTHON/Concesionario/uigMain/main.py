@@ -101,14 +101,14 @@ if __name__ == "__main__":
     
     while volver_al_menu_principal:
 
-        def cancel(event):
+        '''def cancel(event):
             root.destroy()
             
 
         def confirmar_cliente(event, proceso):
             global cliente
             root.destroy()
-            mostrar_proceso(proceso)
+            mostrar_proceso(proceso)'''
 
 
         '''def comprobar_cliente(event):
@@ -459,11 +459,14 @@ if __name__ == "__main__":
             container= tk.Frame(ventana_funcionalidad)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
-            def confirmar_cliente(event, proceso):
+            def confirmar_cliente(event):
                 global cliente
-                mostrar_proceso(proceso)
-            '''def cancel(event):
-                root.destroy()'''
+                print("PASO")
+                fp.forget()
+                comprobar.destroy()
+
+            def cancel(event):
+                limpiar(ventana_funcionalidad)
 
             def comprobar_cliente(event):
                 global valor_cedula
@@ -563,8 +566,8 @@ if __name__ == "__main__":
                 comprobar.destroy()
                 
                 
-            '''def cancel(event):
-                root.destroy()'''
+            def cancel(event):
+                ventana_funcionalidad.destroy()
 
             def comprobar_cliente(event):
                 global valor_cedula
@@ -581,7 +584,12 @@ if __name__ == "__main__":
                     if cliente != None:
                         nombre_cliente = cliente.get_nombre()
                         telefono_cliente = cliente.get_telefono()
-                        auto_cliente = cliente.get_auto().get_marca()
+                        try:
+                            auto_cliente = cliente.get_auto().get_marca()
+                        except AttributeError:
+                            (messagebox.showinfo("Cliente sin Vehiculo", "Este cliente no posee en vehiculo comprado"))
+                            limpiar(ventana_funcionalidad)
+                            return
                 
                         
                         label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
