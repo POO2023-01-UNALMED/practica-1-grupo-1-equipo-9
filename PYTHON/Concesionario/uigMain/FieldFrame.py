@@ -31,10 +31,6 @@ class FieldFrame(Frame):
         self.valores = valores if valores else ["" for _ in criterios]
         self.habilitado = habilitado if habilitado else [True for _ in criterios]
 
-        # Configuración del marco de ventana
-        self.master.title("FieldFrame")
-        self.grid()
-
         # Creación de componentes
         titulo_criterios_label = Label(self, text=tituloCriterios)
         titulo_criterios_label.grid(row=0, column=0)
@@ -58,27 +54,6 @@ class FieldFrame(Frame):
         index = self.criterios.index(criterio)
         return self.entries[index].get()
 
-
-def comprobar_cliente(event):
-    global valor_cedula
-    global valores_iniciales
-    global cliente
-
-    valor_cedula = fp.getValue("Cedula")
-
-    print(valor_cedula)
-
-    cliente = Cliente.get_clientePorCedula(valor_cedula)
-    print(cliente)
-    if cliente!=None:
-        nombre_cliente = cliente.get_nombre()
-        telefono_cliente = cliente.get_telefono()
-        correo_cliente = cliente.get_cliente()
-        valores_iniciales.insert(1, nombre_cliente)
-        valores_iniciales.insert(2, telefono_cliente)
-        valores_iniciales.insert(3, correo_cliente)
-    elif cliente==None:
-        raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
     
     
 

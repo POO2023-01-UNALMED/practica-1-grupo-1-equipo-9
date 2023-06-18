@@ -105,11 +105,10 @@ if __name__ == "__main__":
 
             valor_cedula = fp.getValue("Cedula")
 
-            print(valor_cedula)
+
             if fp.entries[0].get()!="":
+
                 cliente = Cliente.get_clientePorCedula(int(valor_cedula))
-                print(cliente)
-            
 
                 if cliente != None:
                     nombre_cliente = cliente.get_nombre()
@@ -160,7 +159,7 @@ if __name__ == "__main__":
 
     # Ejecución del bucle principal de la interfaz gráfica
         root.mainloop()
-
+    # WINDOW PRINCIPAL
         window = tk.Tk()
         window.geometry("600x300")
         window.title("Inicio")
@@ -368,10 +367,69 @@ if __name__ == "__main__":
 
         def mostrar_autores():
             messagebox.showinfo("Acerca de", "Autores: Santiago, Jonatan, Felipe, Juan Jose")
+        def procesoTaller(nombre_proceso):
+            etiqueta.config(text=nombre_proceso)
+            container= tk.Frame(window2)
+            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+            def comprobar_cliente(event):
+                global valor_cedula
+                global valores_iniciales
+                global cliente
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+                valor_cedula = fp.getValue("Cedula")
+
+
+                if fp.entries[0].get()!="":
+
+                    cliente = Cliente.get_clientePorCedula(int(valor_cedula))
+
+                    if cliente != None:
+                        nombre_cliente = cliente.get_nombre()
+                        telefono_cliente = cliente.get_telefono()
+                        correo_cliente = cliente.get_correo()
+                        label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
+                        label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
+                        label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
+
+                        label_1.configure(state="normal")
+                        label_2.configure(state="normal")
+                        label_3.configure(state="normal")
+
+                        label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
+                        label_2.delete(0, END)
+                        label_3.delete(0, END)
+
+                        label_1.insert(END, nombre_cliente)
+                        label_2.insert(END, telefono_cliente)
+                        label_3.insert(END, correo_cliente)
+                        
+                        label_1.configure(state="disabled")
+                        label_2.configure(state="disabled")
+                        label_3.configure(state="disabled")
+
+                        comprobar.configure(text="¿Confirmar?")
+                        comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
+                        cancelar = tk.Button(container, text="Cancelar")
+                        cancelar.bind("<Button-1>", lambda event: cancel(event))
+                        cancelar.pack(padx=5, pady=5)
+                    elif cliente==None:
+                        raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
+                else:
+                    raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
+                
+
+            criterios = ["Cedula", "Nombre", "Auto/Marca", "Correo"]
+            valores_iniciales = ["", "", "", ""]
+            habilitados = [True, False, False, False]
+
+
+            fp = FieldFrame("Criterio", criterios, "Valor", valores_iniciales, habilitados)
+            fp.pack(side="top")
+            comprobar = tk.Button(container, text="Comprobar")
+            comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+            comprobar.pack(padx=5, pady=5)
+
+
         def stats(nombre_proceso):
             etiqueta.config(text=nombre_proceso)
 
@@ -415,9 +473,6 @@ if __name__ == "__main__":
                 entrytats1 = tk.Entry(containerinicio)
                 lbstats6.pack(side='left', padx=0, pady=0)
                 entrytats1.pack(side='left', padx=15, pady=0)'''
-=======
->>>>>>> f62d439e83fccf65ab00d5c92703bb87db9c7017
->>>>>>> Stashed changes
 
 
         # Crear ventana principal
@@ -438,19 +493,14 @@ if __name__ == "__main__":
         sub_procesos = tk.Menu(menu_master)
         sub_procesos.add_command(label="Venta de Autos", command=lambda: mostrar_proceso("Venta de Autos"))
         sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
-        sub_procesos.add_command(label="Taller", command=lambda: mostrar_proceso("Taller"))
-<<<<<<< Updated upstream
+        sub_procesos.add_command(label="Taller", command=lambda: procesoTaller("Taller"))
         sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: mostrar_proceso("Consultar estadisticas / finanzas"))
         sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
-=======
-<<<<<<< HEAD
         sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: stats("Consultar estadisticas / finanzas"))
         sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su aut"))
-=======
+
         sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: mostrar_proceso("Consultar estadisticas / finanzas"))
         sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
->>>>>>> f62d439e83fccf65ab00d5c92703bb87db9c7017
->>>>>>> Stashed changes
         sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
         sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
         menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
