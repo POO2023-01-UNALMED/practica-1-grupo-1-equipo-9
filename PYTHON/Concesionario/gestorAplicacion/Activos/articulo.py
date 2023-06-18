@@ -25,10 +25,10 @@ class Articulo:
 
         if tipo == "taller":
             Inventario_Articulo.articulos.append(self)
-            self.marcaVehiculo = "Generico"
+            
         elif tipo == "repuesto":
             Inventario_Articulo.repuestos.append(self)
-            self.marcaVehiculo = "Generico"
+            
 
     def set_tipoArticulo(self, tipoArticulo):
         self.tipoArticulo = tipoArticulo

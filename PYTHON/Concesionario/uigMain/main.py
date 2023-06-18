@@ -17,6 +17,8 @@ sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
 sys.path.append(ruta_Imagenes)
 sys.path.append(ruta_FieldFrame)
+from gestorAplicacion.Personal.mecanico import Mecanico
+from gestorAplicacion.Activos.inventario_articulo import Inventario_Articulo
 from gestorAplicacion.Activos.auto import Auto
 from gestorAplicacion.Activos.articulo import Articulo
 from gestorAplicacion.Activos.InventarioAuto import InventarioAuto
@@ -27,17 +29,7 @@ from FieldFrame import FieldFrame
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
-    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001);
-    sonido=  Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002);
-    escape=  Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003);
-    suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004);
-    a1=  Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
 
-        
-
-    
-    
-    
     ####
     def procesoVenta():
         presupuestoInsuficiente = False
@@ -545,6 +537,16 @@ if __name__ == "__main__":
         etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
         etiqueta2.pack(side="top", pady=7)
         
+        llanta=Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
+        sonido=Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
+        escape=Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
+        suspension=Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004)
+        mecanico6 = Mecanico("Andres Castro", 1234567896, 9876543216, "andres.castro@gmail.com", "Calle 89 #01-23", 1450000, "Bancolombia", 1234567890123462, "Toyota", "Motor", 15000)
+        a1=  Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape)
+        print(Auto.get_autos())
+	
+
+
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
         print("2. Venta de Repuestos")
@@ -572,5 +574,8 @@ if __name__ == "__main__":
             print("Chao pescao")
             Serializador.serializar_arrays()
             volver_al_menu_principal = False
+
+
+
 
 

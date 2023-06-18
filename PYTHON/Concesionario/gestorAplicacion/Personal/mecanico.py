@@ -20,7 +20,7 @@ class Mecanico(Trabajador):
         self.especialidad = especialidad
         self.pagoSvcs = 0
         self.manoObra = manoObra
-        Mecanico.mecanicos.add(self)
+        Mecanico.mecanicos.append(self)
         self.horario.append("9:00-11:00")
         self.horario.append("11:00-1:00")
         self.horario.append("2:00-4:00")

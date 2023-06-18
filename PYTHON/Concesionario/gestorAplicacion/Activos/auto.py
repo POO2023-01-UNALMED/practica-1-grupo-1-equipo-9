@@ -8,8 +8,9 @@ sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
 from Personal.cliente import Cliente
 
-class Auto:
 
+class Auto:
+    autos=[]
     #revisar
     class MarcaAuto():
         TOYOTA = 1
@@ -30,7 +31,14 @@ class Auto:
         self.fullEquipo = fullEquipo
         self.disponible = disponible
         self.dueno = None
-
+        Auto.autos.append(self)
+    @classmethod
+    def get_autos(cls):
+        return cls.autos
+    @classmethod
+    def set_autos(cls,aut):
+        cls.autos=aut
+    
     def get_modelo(self):
         return self.modelo
 
