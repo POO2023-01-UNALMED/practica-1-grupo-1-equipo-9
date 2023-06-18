@@ -24,8 +24,8 @@ from baseDatos.deserializador import Deserializador
 
 
 class FieldFrame(Frame):
-    def __init__(self, tituloCriterios, criterios, tituloValores, valores=None, habilitado=None):
-        super().__init__()
+    def __init__(self,contenedor, tituloCriterios, criterios, tituloValores, valores=None, habilitado=None):
+        super().__init__(contenedor)
 
         self.criterios = criterios
         self.valores = valores if valores else ["" for _ in criterios]

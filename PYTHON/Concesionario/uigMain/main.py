@@ -31,8 +31,8 @@ if __name__ == "__main__":
     Deserializador.deserializar_arrays()
 
     def limpiar(contenedor):
-        for widgets in contenedor.winfo_children():
-            widgets.destroy()
+            for widget in contenedor.winfo_children():
+                widget.destroy()
             
     ####
     def procesoVenta():
@@ -180,11 +180,15 @@ if __name__ == "__main__":
 
         def entrar(event):
             global window2
+            global ventana_funcionalidad
             window.destroy()
             # Crear ventana principal
             window2 = tk.Tk()
             window2.geometry("600x300")
             window2.title("Concesionario")
+
+            ventana_funcionalidad=tk.Frame(window2)
+            ventana_funcionalidad.pack(expand=True)
 
             menu_master = tk.Menu(window2)
             window2.config(menu=menu_master)
@@ -424,8 +428,11 @@ if __name__ == "__main__":
         def procesoTaller(nombre_proceso):
             global etiqueta
             global window2
+            global ventana_funcionalidad
+
+            limpiar(ventana_funcionalidad)
             descripcion="Este proceso esta diseñado para atender vehiculos comprados en nuestro consecionario, aca podras reparar, hacer revisiones y separar citas para ser atendido por un mecanico"
-            zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
             
             # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
@@ -433,7 +440,7 @@ if __name__ == "__main__":
             etiqueta.pack(side="top")
 
             # Crear la zona de interacción para deescripción del detalle de procesos o consultas
-            zona_interaccion2 = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
+            zona_interaccion2 = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
             zona_interaccion2.pack(side="top")
 
             # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
@@ -444,7 +451,7 @@ if __name__ == "__main__":
 
             etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
             
-            container= tk.Frame(window2)
+            container= tk.Frame(ventana_funcionalidad)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
             def confirmar_cliente(event, proceso):
@@ -509,7 +516,7 @@ if __name__ == "__main__":
             habilitados = [True, False, False, False]
 
 
-            fp = FieldFrame("Criterio", criterios, "Valor", valores_iniciales, habilitados)
+            fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
             fp.pack(side="top")
             comprobar = tk.Button(container, text="Comprobar")
             comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
@@ -517,6 +524,31 @@ if __name__ == "__main__":
 
 
         def stats(nombre_proceso):
+            global ventana_funcionalidad
+            limpiar(ventana_funcionalidad)
+
+            descripcion="ESTADISTICAS"
+            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion.pack(side="top", pady=10)
+            
+            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
+            etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
+            etiqueta.pack(side="top")
+
+            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+            zona_interaccion2 = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
+            zona_interaccion2.pack(side="top")
+
+            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
+            etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
+            etiqueta2.pack(side="top", pady=7)
+
+            etiqueta2.config(text=descripcion, justify="center", wraplength=280)
+
+            etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
+            
+            container= tk.Frame(ventana_funcionalidad)
+            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
             def botonadmin(cedula):
 
@@ -548,17 +580,15 @@ if __name__ == "__main__":
 
             # validar que sea la cedula de administrador
             # label bienvenida
-            lbadmin1=tk.Label(window2, text="Bienvenido al portal de estadisticas de nuestro concesionario")
+            lbadmin1=tk.Label(ventana_funcionalidad, text="Bienvenido al portal de estadisticas de nuestro concesionario")
             lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
 
-            # contenedor
-            containeradmin = tk.Frame(window2)
-            containeradmin.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
             
             # label, entry y button de cedula admin
-            lbadmin = tk.Label(containeradmin, text="Introduzca su cedula", justify="left")
-            entryadmin = tk.Entry(containeradmin)
-            botonadmin = tk.Button(containeradmin, text= "hola", command=botonadmin(entryadmin.get()))
+            lbadmin = tk.Label(ventana_funcionalidad, text="Introduzca su cedula", justify="left")
+            entryadmin = tk.Entry(ventana_funcionalidad)
+            botonadmin = tk.Button(ventana_funcionalidad, text= "hola", command=botonadmin(entryadmin.get()))
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
             botonadmin.pack(side='left', padx=5, pady=0)
