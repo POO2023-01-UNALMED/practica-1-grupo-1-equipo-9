@@ -455,9 +455,13 @@ if __name__ == "__main__":
             container= tk.Frame(ventana_funcionalidad)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
-            def confirmar_cliente(event, proceso):
+            def confirmar_cliente(event):
                 global cliente
-                mostrar_proceso(proceso)
+                print("PASO")
+                fp.forget()
+                comprobar.destroy()
+                
+                
             def cancel(event):
                 limpiar(ventana_funcionalidad)
 
@@ -503,7 +507,7 @@ if __name__ == "__main__":
                         label_1.configure(state="disabled")
                         label_2.configure(state="disabled")
                         label_3.configure(state="disabled")
-
+                        
                         comprobar.configure(text="¿Confirmar?")
                         comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
                         cancelar = tk.Button(container, text="Cancelar")
@@ -524,6 +528,7 @@ if __name__ == "__main__":
 
             fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
             fp.pack(side="top")
+
             comprobar = tk.Button(container, text="Comprobar")
             comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
             comprobar.pack(padx=5, pady=5)
