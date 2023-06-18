@@ -88,17 +88,17 @@ if __name__ == "__main__":
     
     while volver_al_menu_principal:
 
-        def cancel(event):
+        '''def cancel(event):
             root.destroy()
             
 
         def confirmar_cliente(event, proceso):
             global cliente
             root.destroy()
-            mostrar_proceso(proceso)
+            mostrar_proceso(proceso)'''
 
 
-        def comprobar_cliente(event):
+        '''def comprobar_cliente(event):
             global valor_cedula
             global valores_iniciales
             global cliente
@@ -158,7 +158,7 @@ if __name__ == "__main__":
         #####
 
     # Ejecución del bucle principal de la interfaz gráfica
-        root.mainloop()
+        root.mainloop()'''
     # WINDOW PRINCIPAL
         window = tk.Tk()
         window.geometry("600x300")
@@ -386,7 +386,8 @@ if __name__ == "__main__":
                     if cliente != None:
                         nombre_cliente = cliente.get_nombre()
                         telefono_cliente = cliente.get_telefono()
-                        correo_cliente = cliente.get_correo()
+                        auto_cliente = cliente.get_auto()
+                        
                         label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
                         label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
                         label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
@@ -401,7 +402,7 @@ if __name__ == "__main__":
 
                         label_1.insert(END, nombre_cliente)
                         label_2.insert(END, telefono_cliente)
-                        label_3.insert(END, correo_cliente)
+                        label_3.insert(END, auto_cliente)
                         
                         label_1.configure(state="disabled")
                         label_2.configure(state="disabled")

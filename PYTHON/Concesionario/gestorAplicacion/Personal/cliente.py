@@ -13,7 +13,7 @@ from persona import Persona
 class Cliente(Persona):
     clientes = []
 
-    def __init__(self, nombre, cedula, telefono, correo, modeloInteres, presupuesto, direccion="Medellin"):
+    def __init__(self, nombre, cedula, telefono, correo, modeloInteres, presupuesto, direccion="Medellin",auto=None):
         self.nombre = nombre
         self.cedula = cedula
         self.telefono = telefono
@@ -21,6 +21,7 @@ class Cliente(Persona):
         self.direccion = direccion
         self.modeloInteres = modeloInteres
         self.presupuesto = presupuesto
+        self.auto=auto
         Cliente.clientes.append(self)
 
     def get_modeloInteres(self):
