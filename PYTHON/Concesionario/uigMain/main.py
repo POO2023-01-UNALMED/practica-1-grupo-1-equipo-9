@@ -209,20 +209,20 @@ if __name__ == "__main__":
 
             
             # Crear la zona de interacción para la muestra del nombre de procesos y consultas
-            zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue", bg="red")
+            '''zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
 
             # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
             etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
-            etiqueta.pack(side="top")
+            etiqueta.pack(side="top")'''
 
-            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+            '''# Crear la zona de interacción para deescripción del detalle de procesos o consultas
             zona_interaccion2 = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
             zona_interaccion2.pack(side="top")
 
             # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
             etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
-            etiqueta2.pack(side="top", pady=7)
+            etiqueta2.pack(side="top", pady=7)'''
             window2.mainloop()
 
         
@@ -419,7 +419,24 @@ if __name__ == "__main__":
         
         def procesoTaller(nombre_proceso):
             global etiqueta
-            etiqueta.config(text=nombre_proceso)
+            global window2
+            descripcion="Este proceso esta diseñado para atender vehiculos comprados en nuestro consecionario, aca podras reparar, hacer revisiones y separar citas para ser atendido por un mecanico"
+            zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion.pack(side="top", pady=10)
+            
+            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
+            etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
+            etiqueta.pack(side="top")
+
+            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+            zona_interaccion2 = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
+            zona_interaccion2.pack(side="top")
+
+            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
+            etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
+            etiqueta2.pack(side="top", pady=7)
+            etiqueta2.config(text=descripcion, justify="center", wraplength=280)
+            etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
             container= tk.Frame(window2)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
             def confirmar_cliente(event, proceso):
@@ -561,7 +578,6 @@ if __name__ == "__main__":
                 entrytats1 = tk.Entry(containerinicio)
                 lbstats6.pack(side='left', padx=0, pady=0)
                 entrytats1.pack(side='left', padx=15, pady=0)'''
-
 
         
         
