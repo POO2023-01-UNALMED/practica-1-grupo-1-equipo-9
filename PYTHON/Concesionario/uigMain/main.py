@@ -518,15 +518,16 @@ if __name__ == "__main__":
                 global cliente
                 global carro_confirmado
                 global carro_elegido
+                global carros_encontrados
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son los carros de la marca {marca}\n"
-                autos = []
+                carros_encontrados = []
                 info2 = ""
                 cont = 1
                 indices = []
                 for i in InventarioAuto.get_autosporModelo(marca):
                     indices.append(cont)
-                    autos.append(i)
+                    carros_encontrados.append(i)
                     linea = str(cont)+ ".   " + i.info()+"\n"
                     info2 += linea
                     cont += 1
@@ -563,15 +564,16 @@ if __name__ == "__main__":
                 global cliente
                 global carro_confirmado
                 global carro_elegido
+                global carros_encontrados
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son los carros ordenados según su presupuesto\n"
-                autos = []
+                carros_encontrados = []
                 info2 = ""
                 cont = 1
                 indices = []
                 for i in InventarioAuto.get_autosporPrecio(cliente):
                     indices.append(cont)
-                    autos.append(i)
+                    carros_encontrados.append(i)
                     linea = str(cont)+ ".   " + i.info()+"\n"
                     info2 += linea
                     cont += 1
@@ -596,15 +598,16 @@ if __name__ == "__main__":
                 global cliente
                 global carro_confirmado
                 global carro_elegido
+                global carros_encontrados
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son todos los carros disponibles\n"
-                autos = []
+                carros_encontrados = []
                 info2 = ""
                 cont = 1
                 indices = []
                 for i in InventarioAuto.get_autos_disponibles():
                     indices.append(cont)
-                    autos.append(i)
+                    carros_encontrados.append(i)
                     linea = str(cont)+ ".   " + i.info()+"\n"
                     info2 += linea
                     cont += 1
