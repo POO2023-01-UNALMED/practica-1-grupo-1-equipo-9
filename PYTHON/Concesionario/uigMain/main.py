@@ -435,14 +435,12 @@ if __name__ == "__main__":
                 global combobox_lista_marca
                 global campo_texto
 
-                carro_elegido = Auto(combobox_lista_marca.get())
+                carro_elegido = combobox_lista_marca.get()
 
                 info = f"El carro elegido es {carro_elegido.get_modelo()} \n"
                 info2 = f"Por favor, seleccione el vendedor que lo ha atendido \n"
                 texto = info + info2
                 campo_texto.config(text=texto)
-                combobox_lista_marca['values']= ("Vendedores", Vendedor.get_vendedores())
-                combobox_lista_marca.current(0)
 
 
             def opciones_busqueda_carro(event):
@@ -487,20 +485,27 @@ if __name__ == "__main__":
                 texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
                 texto_presupuesto_cliente = f"Su presupuesto es: {cliente.get_presupuesto()} \n"
                 texto_marca_cliente = f"Los carros de la marca {cliente.get_modeloInteres()} de interés del cliente son: \n"
-                texto = texto_nombre_cliente + texto_presupuesto_cliente + texto_marca_cliente
-                campo_texto = tk.Label(frame_carros_marca, text=texto)
-                combobox_lista_marca = ttk.Combobox(frame_carros_marca)
-                valores = ["Autos"]
+                texto_titulo_marca_autos = "{:<20} {:<20} {:<20} {:<20}\n".format("", "Modelo", "Precio", "Color")
+                contador = 1
+                texto_lista = ""
                 for i in InventarioAuto.get_autosporModelo(cliente.get_modeloInteres()):
+                    linea = "{:<20} {:<20} {:<20} {:<20}\n".format(contador, i.get_modelo(), i.get_precio(), i.get_color())
+                    contador += 1
+                    texto_lista += linea
+                texto = texto_nombre_cliente + texto_presupuesto_cliente + texto_marca_cliente + texto_titulo_marca_autos + texto_lista
+                campo_texto = tk.Label(frame_carros_marca, text=texto)
+                seleccionar_auto = ttk.Combobox(frame_carros_marca)
+                valores = []
+                for i in range(1, contador):
                     valores.append(i)
-                combobox_lista_marca['values']=valores
-                combobox_lista_marca.current(0)
-                campo_texto.pack()
+                seleccionar_auto['values']=valores
+                seleccionar_auto.current(0)
                 boton_aceptar = tk.Button(frame_carros_marca, text="Confirmar selección")
                 boton_opciones = tk.Button(frame_carros_marca, text="Más opciones de busqueda")
                 boton_aceptar.bind("<Button-1>", lambda event: confirmar_carro(event))
                 boton_opciones.bind("<Button-1>", lambda event: opciones_busqueda_carro(event))
-                combobox_lista_marca.pack(pady=10)
+                campo_texto.pack(pady=10)
+                seleccionar_auto.pack()
                 boton_aceptar.pack(pady=10)
                 boton_opciones.pack(pady=10)
                 
