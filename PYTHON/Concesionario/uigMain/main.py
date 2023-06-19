@@ -1352,15 +1352,21 @@ if __name__ == "__main__":
                     # infovendedores
                     ventas=""
                     ingresosautos=0
+
+                    # para saber ingresos por venta de autos
                     for venta in TransaccionVenta.get_transaccionesven():
-                        ventas += venta.get_vendedor + ": " + venta.get_ingreso() +"\n"
                         ingresosautos += venta.get_ingreso()
+
+                    # para hacer el string de ventas hechas por vendedores
+                    for venta in TransaccionVenta.get_transaccionesven():
+                        ventas += str(venta.get_vendedor().get_nombre()) + ": " + str(venta.get_ingreso()) 
+                        + ", el " + + " del total de ingresos por venta de autos" +"\n"
                     if ventas=="":
                         infovendedores.config(
                             text="No se han realizado ventas de vehículos hasta el momento")
                     else:
                         infovendedores.config(text=ventas)
-                    
+
                     # infoingresos (calcular suma de ingresos)
                     infoingresos.config(
                         text="Suma de ingresos: " + 
@@ -1380,7 +1386,7 @@ if __name__ == "__main__":
                                    text="De los " + str(len(Auto.get_autos())) 
                                    + " autos que se tenían a comienzos del mes de junio, " + 
                                    str(len(TransaccionVenta.get_transaccionesven())) 
-                                   + " (el " + str((len(TransaccionVenta.get_transaccionesven()))/(len(Auto.get_autos())))
+                                   + " (el " + str(round((len(TransaccionVenta.get_transaccionesven()))/(len(Auto.get_autos())),2))
                                    + "%) se han vendido, son:",
                                    justify="left")
                     infoventacarros=tk.Label(container_4, text="info de cada venta de carro", justify="left")
@@ -1402,6 +1408,19 @@ if __name__ == "__main__":
 
                     # metiendo la info a la plantilla 4
                     # infoventacarros
+                    ventascarros = ""
+                    for ventacarro in TransaccionVenta.get_transaccionesven():
+                        ventascarros += Auto.info(ventacarro.get_auto()) + "\n"
+                    
+                    if ventascarros=="":
+                        infoventacarros.config(
+                            text="No se han realizado ventas de vehículos hasta el momento")
+                    else:
+                        infoventacarros.config(text=ventascarros)
+
+
+
+
 
                     infoventacarros.config(text="")
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
