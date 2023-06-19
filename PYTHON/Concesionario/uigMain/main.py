@@ -439,10 +439,26 @@ if __name__ == "__main__":
             global ventana_funcionalidad
             global carros_encontrados
 
+            def confirmar_compra(event):
+                global carro_confirmado
+                global vendedores_encontrados
+                global seleccionar_auto
+
+                vendedor_elegido = int(seleccionar_auto.get())-1
+
+                vendedor_confirmado = vendedores_encontrados[vendedor_elegido]
+
+                info = f"El vendedor es: {vendedor_confirmado.info()} \n"
+
+
+
             def confirmar_carro(event):
                 global carro_elegido
                 global seleccionar_auto
                 global campo_texto
+                global boton_aceptar
+                global carro_confirmado
+                global vendedores_encontrados
 
                 carro_elegido = int(seleccionar_auto.get())-1
 
@@ -453,15 +469,20 @@ if __name__ == "__main__":
                 i = 1
                 vendedores_encontrados = []
                 texto1 = ""
+                indices = []
                 for c in Vendedor.selector_vend(carro_confirmado):
                     vendedores_encontrados.append(i)
                     linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
                     i += 1
                     texto1 += linea
-
+                for f in range(1, i):
+                    indices.append(f)
+                seleccionar_auto['values']=indices
                 texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Tipo de venta")
                 texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_compra(event))
+
 
 
             def opciones_busqueda_carro(event):
@@ -496,7 +517,7 @@ if __name__ == "__main__":
                 global seleccionar_auto
                 global campo_texto
                 global carros_encontrados
-                print("PASO", InventarioAuto.get_autos_disponibles())
+                global boton_aceptar
                 
                 fp.forget()
                 comprobar.destroy()
@@ -613,22 +634,23 @@ if __name__ == "__main__":
 
                 proceso_elegido = int(seleccionar_proceso.get())-1
 
-                proceso_confirmado = procesos[carro_elegido]
+                proceso_confirmado = procesos[proceso_elegido]
 
-                info = f"El carro elegido es {carro_confirmado.info()} \n"
-                info2 = f"Por favor, seleccione el vendedor que lo ha atendido \n"
-                i = 1
-                vendedores_encontrados = []
+                info = f"El proceso elegido es {proceso_confirmado} \n"
+                info2 = f"Por favor, seleccione el Mecanico que lo va a atender \n"
+                j = 1
+                mecanicos_encontrados = []
                 texto1 = ""
-                for c in Vendedor.selector_vend(carro_confirmado):
-                    vendedores_encontrados.append(i)
-                    linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
-                    i += 1
+                for c in Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get())):
+                    mecanicos_encontrados.append(j)
+                    linea = "{:<20} {:<20} {:<20}\n".format(j, c.get_nombre(), c.get_especialidad())
+                    j += 1
                     texto1 += linea
 
-                texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Tipo de venta")
+                texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Especialidad")
                 texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
+                seleccionar_proceso.destroy()
 
 
             def opciones_busqueda_carro(event):
@@ -662,6 +684,9 @@ if __name__ == "__main__":
                 global cliente
                 global combobox_lista_marca
                 global campo_texto
+                global procesos
+                global seleccionar_proceso
+                global i
                 
                 fp.forget()
                 comprobar.destroy()
@@ -690,13 +715,10 @@ if __name__ == "__main__":
                 seleccionar_proceso['values']=valores
                 seleccionar_proceso.current(0)
                 boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
-                boton_opciones = tk.Button(frame_procesos, text="Más opciones de busqueda")
                 boton_aceptar.bind("<Button-1>", lambda event: confirmar_proceso(event))
-                boton_opciones.bind("<Button-1>", lambda event: opciones_busqueda_carro(event))
                 campo_texto.pack(pady=10)
-                seleccionar_auto.pack()
+                seleccionar_proceso.pack()
                 boton_aceptar.pack(pady=10)
-                boton_opciones.pack(pady=10)
                 
                 
             def cancel(event):
