@@ -1309,8 +1309,20 @@ if __name__ == "__main__":
 
                     # metiendo la info a la plantilla 4
                     # infoventacarros
+                    ventascarros = ""
+                    for ventacarro in TransaccionVenta.get_transaccionesven():
+                        ventascarros += Auto.info(ventacarro.get_auto()) + "\n"
+                    
+                    if ventascarros=="":
+                        infoventacarros.config(
+                            text="No se han realizado ventas de vehículos hasta el momento")
+                    else:
+                        infoventacarros.config(text=ventascarros)
 
-                    infoventacarros.config(text="")
+                    
+
+
+
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
 
