@@ -29,6 +29,7 @@ from baseDatos.deserializador import Deserializador
 from FieldFrame import FieldFrame
 from gestorAplicacion.Personal.vendedor import Vendedor
 from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
+from gestorAplicacion.Personal.trabajador import Trabajador
 import datetime
 
 if __name__ == "__main__":
@@ -451,19 +452,22 @@ if __name__ == "__main__":
 
                 vendedor_confirmado = vendedores_encontrados[vendedor_elegido]
 
-                carro_confirmado.set_dueno(cliente)
-                carro_confirmado.set_disponible(False)
-                cliente.set_auto(carro_confirmado)
-                vendedor_confirmado.confirmar_venta()
-                deducido = cliente.get_presupuesto()-carro_confirmado.get_precio()
-                cliente.set_presupuesto(deducido)
-                transfer = int(random.random() * 1000)
-
-                info = f"El vendedor es: {vendedor_confirmado.info()} \n"
-                info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
-                texto = info + info2
-                campo_texto.config(text=texto)
-                boton_aceptar.destroy()
+                if(cliente.get_presupuesto()>=carro_confirmado.get_precio()):
+                    carro_confirmado.set_dueno(cliente)
+                    carro_confirmado.set_disponible(False)
+                    cliente.set_auto(carro_confirmado)
+                    vendedor_confirmado.confirmar_venta()
+                    deducido = cliente.get_presupuesto()-carro_confirmado.get_precio()
+                    cliente.set_presupuesto(deducido)
+                    transfer = int(random.random() * 1000)
+                    info = f"El vendedor es: {vendedor_confirmado.info()} \n"
+                    info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
+                    Trabajador.pago(vendedor_confirmado, carro_confirmado)
+                    texto = info + info2
+                    campo_texto.config(text=texto)
+                    boton_aceptar.destroy()
+                else:
+                    Exception(messagebox.showwarning("Presupuesto insuficiente", "El cliente no tiene el presupuesto suficiente."))
 
 
 
@@ -1326,8 +1330,20 @@ if __name__ == "__main__":
 
                     # metiendo la info a la plantilla 4
                     # infoventacarros
+                    ventascarros = ""
+                    for ventacarro in TransaccionVenta.get_transaccionesven():
+                        ventascarros += Auto.info(ventacarro.get_auto()) + "\n"
+                    
+                    if ventascarros=="":
+                        infoventacarros.config(
+                            text="No se han realizado ventas de vehículos hasta el momento")
+                    else:
+                        infoventacarros.config(text=ventascarros)
 
-                    infoventacarros.config(text="")
+                    
+
+
+
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
 
