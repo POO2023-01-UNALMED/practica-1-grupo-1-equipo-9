@@ -945,7 +945,7 @@ if __name__ == "__main__":
             descripcion="ESTADISTICAS"
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
-            
+
             # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
             etiquetatitulo = tk.Label(zona_interaccion, text="Bienvenido al portal de estadisticas de nuestro concesionario")
             etiquetatitulo.pack(side="top")
@@ -961,7 +961,7 @@ if __name__ == "__main__":
             ##etiqueta2.config(text="ESTADISTICAS", justify="center", wraplength=280)
             ##etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
 
-            container= tk.Frame(ventana_funcionalidad)
+            container= tk.Frame(zona_interaccion2)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
             # label bienvenida
@@ -969,42 +969,12 @@ if __name__ == "__main__":
             ##lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
             
             # label, entry y button de cedula admin
-            lbadmin = tk.Label(ventana_funcionalidad, text="Introduzca su cedula", justify="left")
-            entryadmin = tk.Entry(ventana_funcionalidad)
-            botonadmin = tk.Button(ventana_funcionalidad, text= "hola", command=botonadmin(entryadmin.get()))
+            lbadmin = tk.Label(container, text="Introduzca su cedula", justify="left")
+            entryadmin = tk.Entry(container)
+            botonadmin = tk.Button(container, text= "hola", command=botonadmin(entryadmin.get()))
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
             botonadmin.pack(side='left', padx=5, pady=0)
-
-            
-            
-            
-
-            '''if entryadmin.get()!=3355479:
-                print("d")
-            else:
-                # crear labels iniciales y posicionarlos
-                lbstats1 = tk.Label(window2, text="¿Qué estadísticas / información financiera quieres consultar?", justify="left")
-                lbstats2 = tk.Label(window2, text="1. Estado de Resultados", justify="left")
-                lbstats3 = tk.Label(window2, text="2. Estado de Resultados Detallado", justify="left")
-                lbstats4 = tk.Label(window2, text="3. Ventas - Vendedor", justify="left")
-                lbstats5 = tk.Label(window2, text="4. Ventas - Autos", justify="left")
-
-                lbstats1.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
-                lbstats2.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                lbstats3.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                lbstats4.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                lbstats5.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-
-                # crear el último label con el entry de 1-4
-                containerinicio = tk.Frame(window2)
-                containerinicio.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-4]", justify="left")
-                entrytats1 = tk.Entry(containerinicio)
-                lbstats6.pack(side='left', padx=0, pady=0)
-                entrytats1.pack(side='left', padx=15, pady=0)'''
-
-
 
 
         print("\n\nMenú principal Concesionario")
