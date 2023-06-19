@@ -30,12 +30,6 @@ from gestorAplicacion.Personal.vendedor import Vendedor
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
-    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001);
-    sonido=  Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002);
-    escape=  Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003);
-    suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004);
-
-    a1=  Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
 
     def limpiar(contenedor):
             for widget in contenedor.winfo_children():
@@ -776,8 +770,7 @@ if __name__ == "__main__":
                 lbstats6.pack(side='left', padx=0, pady=0)
                 entrytats1.pack(side='left', padx=15, pady=0)'''
 
-        
-        
+
 
         print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")

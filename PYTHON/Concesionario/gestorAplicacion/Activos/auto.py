@@ -18,7 +18,7 @@ class Auto:
         MAZDA = 3
     
 
-    def __init__(self, modelo, marca, precio, cilindraje, color, fullEquipo, disponible, llantas, suspension, sonido, escape):
+    def __init__(self, modelo, marca, precio, cilindraje, color, fullEquipo, disponible, llantas, suspension, sonido, escape,dueno=None):
         self.llantas = llantas
         self.suspension = suspension
         self.sonido = sonido
@@ -30,7 +30,7 @@ class Auto:
         self.color = color
         self.fullEquipo = fullEquipo
         self.disponible = disponible
-        self.dueno = None
+        self.dueno = dueno
         Auto.autos.append(self)
         
     @classmethod
