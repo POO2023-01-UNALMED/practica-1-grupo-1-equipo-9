@@ -628,15 +628,29 @@ if __name__ == "__main__":
             global ventana_funcionalidad
             def confirmar_proceso(event):
                 global proceso_elegido
-                global combobox_lista_marca
+                global seleccionar_proceso
                 global campo_texto
+                
 
-                proceso_elegido = combobox_lista_marca.get()
+                proceso_elegido = int(seleccionar_proceso.get())-1
 
-                info = f"El Proceso elegido es {proceso_elegido.get()} \n"
-                info2 = f"Por favor, seleccione el Mecanico que desea que desarrolle el servicio\n"
-                texto = info + info2
+                proceso_confirmado = procesos[proceso_elegido]
+
+                info = f"El proceso elegido es {proceso_confirmado} \n"
+                info2 = f"Por favor, seleccione el Mecanico que lo va a atender \n"
+                j = 1
+                mecanicos_encontrados = []
+                texto1 = ""
+                for c in Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get())):
+                    mecanicos_encontrados.append(j)
+                    linea = "{:<20} {:<20} {:<20}\n".format(j, c.get_nombre(), c.get_especialidad())
+                    j += 1
+                    texto1 += linea
+
+                texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Especialidad")
+                texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
+                seleccionar_proceso.destroy()
 
 
             def opciones_busqueda_carro(event):
@@ -670,6 +684,9 @@ if __name__ == "__main__":
                 global cliente
                 global combobox_lista_marca
                 global campo_texto
+                global procesos
+                global seleccionar_proceso
+                global i
                 
                 fp.forget()
                 comprobar.destroy()
@@ -691,20 +708,17 @@ if __name__ == "__main__":
                     texto_lista += linea
                 texto = texto_nombre_cliente + texto_auto_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
                 campo_texto = tk.Label(frame_procesos, text=texto)
-                seleccionar_auto = ttk.Combobox(frame_procesos)
+                seleccionar_proceso = ttk.Combobox(frame_procesos)
                 valores = []
                 for i in range(1, contador):
                     valores.append(i)
-                seleccionar_auto['values']=valores
-                seleccionar_auto.current(0)
+                seleccionar_proceso['values']=valores
+                seleccionar_proceso.current(0)
                 boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
-                boton_opciones = tk.Button(frame_procesos, text="Más opciones de busqueda")
                 boton_aceptar.bind("<Button-1>", lambda event: confirmar_proceso(event))
-                boton_opciones.bind("<Button-1>", lambda event: opciones_busqueda_carro(event))
                 campo_texto.pack(pady=10)
-                seleccionar_auto.pack()
+                seleccionar_proceso.pack()
                 boton_aceptar.pack(pady=10)
-                boton_opciones.pack(pady=10)
                 
                 
             def cancel(event):
@@ -966,7 +980,7 @@ if __name__ == "__main__":
             descripcion="ESTADISTICAS"
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
-            
+
             # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
             etiquetatitulo = tk.Label(zona_interaccion, text="Bienvenido al portal de estadisticas de nuestro concesionario")
             etiquetatitulo.pack(side="top")
@@ -982,7 +996,7 @@ if __name__ == "__main__":
             ##etiqueta2.config(text="ESTADISTICAS", justify="center", wraplength=280)
             ##etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
 
-            container= tk.Frame(ventana_funcionalidad)
+            container= tk.Frame(zona_interaccion2)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
             # label bienvenida
@@ -990,42 +1004,12 @@ if __name__ == "__main__":
             ##lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
             
             # label, entry y button de cedula admin
-            lbadmin = tk.Label(ventana_funcionalidad, text="Introduzca su cedula", justify="left")
-            entryadmin = tk.Entry(ventana_funcionalidad)
-            botonadmin = tk.Button(ventana_funcionalidad, text= "hola", command=botonadmin(entryadmin.get()))
+            lbadmin = tk.Label(container, text="Introduzca su cedula", justify="left")
+            entryadmin = tk.Entry(container)
+            botonadmin = tk.Button(container, text= "hola", command=botonadmin(entryadmin.get()))
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
             botonadmin.pack(side='left', padx=5, pady=0)
-
-            
-            
-            
-
-            '''if entryadmin.get()!=3355479:
-                print("d")
-            else:
-                # crear labels iniciales y posicionarlos
-                lbstats1 = tk.Label(window2, text="¿Qué estadísticas / información financiera quieres consultar?", justify="left")
-                lbstats2 = tk.Label(window2, text="1. Estado de Resultados", justify="left")
-                lbstats3 = tk.Label(window2, text="2. Estado de Resultados Detallado", justify="left")
-                lbstats4 = tk.Label(window2, text="3. Ventas - Vendedor", justify="left")
-                lbstats5 = tk.Label(window2, text="4. Ventas - Autos", justify="left")
-
-                lbstats1.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
-                lbstats2.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                lbstats3.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                lbstats4.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                lbstats5.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-
-                # crear el último label con el entry de 1-4
-                containerinicio = tk.Frame(window2)
-                containerinicio.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-4]", justify="left")
-                entrytats1 = tk.Entry(containerinicio)
-                lbstats6.pack(side='left', padx=0, pady=0)
-                entrytats1.pack(side='left', padx=15, pady=0)'''
-
-
 
 
         print("\n\nMenú principal Concesionario")
