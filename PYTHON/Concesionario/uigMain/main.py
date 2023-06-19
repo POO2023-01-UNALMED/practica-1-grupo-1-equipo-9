@@ -213,7 +213,7 @@ if __name__ == "__main__":
             sub_procesos.add_command(label="Venta de Autos", command=lambda: proceso_venta("Venta de Autos"))
             sub_procesos.add_command(label="Venta de Repuestos", command=lambda: mostrar_proceso("Venta de Repuestos"))
             sub_procesos.add_command(label="Taller", command=lambda: procesoTaller("Taller"))
-            sub_procesos.add_command(label="Personalizar su auto", command=lambda: mostrar_proceso("Personalizar su auto"))
+            sub_procesos.add_command(label="Personalizar su auto", command=lambda: proceso_personalizar_auto("Personalizar su auto"))
             sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: stats("Consultar estadisticas / finanzas"))
             sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
             sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
@@ -770,20 +770,20 @@ if __name__ == "__main__":
             comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
             comprobar.pack(padx=5, pady=5)
 
-
-        def stats(nombre_proceso):
+        def proceso_personalizar_auto(nombre_proceso):
+            global etiqueta
+            global window2
             global ventana_funcionalidad
-            limpiar(ventana_funcionalidad)
 
-            descripcion="ESTADISTICAS"
+            limpiar(ventana_funcionalidad)
+            descripcion = "Este proceso está diseñado para atender vehículos comprados en nuestro concesionario. Aquí podrás comprar artículos para personalizar tu automóvil y, si así lo deseas, podrás utilizar nuestro taller y separar citas para que un mecánico modifique tu auto."
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
-            
-            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
-            etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
-            etiqueta.pack(side="top")
 
-            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
+            etiqueta = tk.Label(zona_interaccion, text="Personalización automovilística")
+
+            # Crear la zona de interacción para descripción del detalle de procesos o consultas
             zona_interaccion2 = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
             zona_interaccion2.pack(side="top")
 
@@ -793,10 +793,139 @@ if __name__ == "__main__":
 
             etiqueta2.config(text=descripcion, justify="center", wraplength=280)
 
-            etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
-            
-            container= tk.Frame(ventana_funcionalidad)
+            etiqueta.config(text=nombre_proceso, justify="center", wraplength=280)
+
+            container = tk.Frame(ventana_funcionalidad)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
+            def confirmar_cliente(event):
+                global cliente
+                print("PASO")
+                fp.forget()
+                comprobar.destroy()
+                pregunta_taller.pack_forget()
+                opcion_taller_mecanicos.pack_forget()
+                opcion_asignar_vendedor.pack_forget()
+
+            def cancel(event):
+                ventana_funcionalidad.destroy()
+
+            def comprobar_cliente(event):
+                global valor_cedula
+                global valores_iniciales
+                global cliente
+
+                valor_cedula = fp.getValue("Cedula")
+
+                if fp.entries[0].get() != "":
+                    cliente = Cliente.get_clientePorCedula(int(valor_cedula))
+
+                    if cliente is not None:
+                        nombre_cliente = cliente.get_nombre()
+                        telefono_cliente = cliente.get_telefono()
+                        try:
+                            auto_cliente = cliente.get_auto().get_marca()
+                        except AttributeError:
+                            (messagebox.showinfo("Cliente sin Vehículo", "Este cliente no posee un vehículo comprado"))
+                            limpiar(ventana_funcionalidad)
+                            return
+
+                        label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
+                        label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
+                        label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
+
+                        label_1.configure(state="normal")
+                        label_2.configure(state="normal")
+                        label_3.configure(state="normal")
+
+                        label_1.delete(0, tk.END)  # Borra el contenido actual del campo de entrada
+                        label_2.delete(0, tk.END)
+                        label_3.delete(0, tk.END)
+
+                        label_1.insert(tk.END, nombre_cliente)
+                        label_2.insert(tk.END, telefono_cliente)
+                        label_3.insert(tk.END, auto_cliente)
+
+                        label_1.configure(state="disabled")
+                        label_2.configure(state="disabled")
+                        label_3.configure(state="disabled")
+
+                        comprobar.configure(text="¿Confirmar?")
+                        comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
+                        cancelar = tk.Button(container, text="Cancelar")
+                        cancelar.bind("<Button-1>", lambda event: cancel(event))
+                        cancelar.pack(padx=5, pady=5)
+
+                        # Crear la pregunta y opciones
+                        pregunta_taller = tk.Label(container, text="¿Desea utilizar el taller con mecánicos o solo desea asignar un vendedor?")
+                        pregunta_taller.pack(padx=5, pady=5)
+
+                        opcion_taller_mecanicos = tk.Button(container, text="Utilizar taller con mecánicos")
+                        opcion_taller_mecanicos.bind("<Button-1>", lambda event: utilizar_taller_mecanicos(event))
+
+                        opcion_asignar_vendedor = tk.Button(container, text="Asignar vendedor")
+                        opcion_asignar_vendedor.bind("<Button-1>", lambda event: asignar_vendedor(event))
+
+                        opcion_taller_mecanicos.pack(padx=5, pady=5)
+                        opcion_asignar_vendedor.pack(padx=5, pady=5)
+                    elif cliente is None:
+                        messagebox.showinfo("Cliente no encontrado", "Esta cédula no está registrada en nuestro concesionario.")
+
+                else:
+                    messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto.")
+
+            def utilizar_taller_mecanicos(event):
+                # Create the components for the interface
+                servicio_label = tk.Label(window, text="Seleccione el servicio:")
+                servicio_combobox = ttk.Combobox(window)
+                servicio_combobox['values'] = ("Modificación de pintura", "Modificación de llantas", "Modificación del sonido",
+                                            "Modificación de frenos", "Modificación del escape")
+
+                mecanicos_label = tk.Label(window, text="Mecánicos disponibles:")
+                mecanicos_listbox = tk.Listbox(window)
+
+                productos_label = tk.Label(window, text="Productos disponibles:")
+                productos_listbox = tk.Listbox(window)
+
+                seleccionar_servicio_button = tk.Button(window, text="Seleccionar Servicio", command=seleccionar_servicio)
+                seleccionar_mecanico_button = tk.Button(window, text="Seleccionar Mecánico", command=seleccionar_mecanico)
+                seleccionar_producto_button = tk.Button(window, text="Seleccionar Producto", command=seleccionar_producto)
+
+                # Position the components in the window
+                servicio_label.pack()
+                servicio_combobox.pack()
+                seleccionar_servicio_button.pack()
+
+                mecanicos_label.pack()
+                mecanicos_listbox.pack()
+                seleccionar_mecanico_button.pack()
+
+                productos_label.pack()
+                productos_listbox.pack()
+                seleccionar_producto_button.pack()
+
+                # Add your logic here for the functionality of selecting services, mechanics, and products
+
+
+            def asignar_vendedor(event):
+                # Lógica para asignar un vendedor
+                print("Asignar vendedor")
+
+            criterios = ["Cedula", "Nombre", "Auto/Marca", "Correo"]
+            valores_iniciales = ["", "", "", ""]
+            habilitados = [True, False, False, False]
+
+            fp = FieldFrame(ventana_funcionalidad, "Criterio", criterios, "Valor", valores_iniciales, habilitados)
+            fp.pack(side="top")
+
+            comprobar = tk.Button(container, text="Comprobar")
+            comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+            comprobar.pack(padx=5, pady=5)
+
+
+        def stats(nombre_proceso):
+            global ventana_funcionalidad
+            limpiar(ventana_funcionalidad)
 
             def botonadmin(cedula):
 
@@ -823,15 +952,34 @@ if __name__ == "__main__":
                     entrytats1 = tk.Entry(containerinicio)
                     lbstats6.pack(side='left', padx=0, pady=0)
                     entrytats1.pack(side='left', padx=15, pady=0)
+
             
-            etiqueta.config(text=nombre_proceso)
+            ### se crea el espacio para las estadísticas
+            descripcion="ESTADISTICAS"
+            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion.pack(side="top", pady=10)
+            
+            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
+            etiquetatitulo = tk.Label(zona_interaccion, text="Bienvenido al portal de estadisticas de nuestro concesionario")
+            etiquetatitulo.pack(side="top")
 
-            # validar que sea la cedula de administrador
+            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+            zona_interaccion2 = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
+            zona_interaccion2.pack(side="top")
+
+            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
+            etiqueta2 = tk.Label(zona_interaccion2, text="ESTADISTICAS")
+            etiqueta2.pack(side="top", pady=7)
+
+            ##etiqueta2.config(text="ESTADISTICAS", justify="center", wraplength=280)
+            ##etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
+
+            container= tk.Frame(ventana_funcionalidad)
+            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
             # label bienvenida
-            lbadmin1=tk.Label(ventana_funcionalidad, text="Bienvenido al portal de estadisticas de nuestro concesionario")
-            lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
-
-
+            ##lbadmin1=tk.Label(ventana_funcionalidad, text="Bienvenido al portal de estadisticas de nuestro concesionario")
+            ##lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
             
             # label, entry y button de cedula admin
             lbadmin = tk.Label(ventana_funcionalidad, text="Introduzca su cedula", justify="left")
@@ -840,6 +988,10 @@ if __name__ == "__main__":
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
             botonadmin.pack(side='left', padx=5, pady=0)
+
+            
+            
+            
 
             '''if entryadmin.get()!=3355479:
                 print("d")
