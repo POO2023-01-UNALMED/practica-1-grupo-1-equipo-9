@@ -33,16 +33,8 @@ import datetime
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
-
-    '''llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
-    sonido= Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
-    escape= Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
-    suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004)
-
-    a1= Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
-    cc1 =  Cliente("Mikaela Yankee", 1029384756, 3209876543, "mikaelachupona@mail.com", "Toyota", 150000000);
-    cc1.set_auto(a1)'''
-
+    
+    
     def limpiar(contenedor):
             for widget in contenedor.winfo_children():
                 widget.destroy()
@@ -197,7 +189,7 @@ if __name__ == "__main__":
             window.destroy()
             # Crear ventana principal
             window2 = tk.Tk()
-            window2.geometry("600x300")
+            window2.geometry("900x450")
             window2.title("Concesionario")
 
             ventana_funcionalidad=tk.Frame(window2)
@@ -811,14 +803,43 @@ if __name__ == "__main__":
             def confirmar_mecanico(event):
                 global proceso_confirmado
                 global mecanicos_encontrados
-                global seleccionar_mecanico
                 global campo_texto
                 global seleccionar_proceso
+                global articulos_encontrados
 
                 mecanico_elegido = int(seleccionar_proceso.get())-1
 
                 mecanico_confirmado = mecanicos_encontrados[mecanico_elegido]
                 info = ("El Mecanico es: " +mecanico_confirmado.get_nombre()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
+                texto=info
+                campo_texto.config(text=texto)
+                info2 = f"Por favor, seleccione el Articulo A Instalar en su Vehiculo \n"
+                j = 1
+                articulos_encontrados = Inventario_Articulo.articulo_dispo(mecanico_confirmado)
+                texto1 = ""
+                indices = []
+                for c in articulos_encontrados:
+                    linea = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format(j, c.get_referencia(), c.get_tipo(),c.get_marca(),c.get_precio())
+                    j += 1
+                    texto1 += linea
+                for f in range(1, j):
+                    indices.append(f)
+                seleccionar_proceso['values']=indices
+                texto2 = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format("", "Referencia", "Tipo","Marca","Precio")
+                texto = info + info2 + texto2 + texto1
+                campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_articulo(event))
+            
+            def confirmar_articulo(event):
+                global proceso_confirmado
+                global articulos_encontrados
+                global campo_texto
+                global seleccionar_proceso
+
+                articulo_elegido = int(seleccionar_proceso.get())-1
+
+                articulo_confirmado = articulos_encontrados[articulo_elegido]
+                info = ("El Articulo es: " +articulo_confirmado.get_tipo()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
                 texto=info
                 campo_texto.config(text=texto)
 

@@ -6,6 +6,7 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
+from gestorAplicacion.Activos.articulo import Articulo
 class Inventario_Articulo:
     articulos = []
     repuestos = []
@@ -44,7 +45,7 @@ class Inventario_Articulo:
     @staticmethod
     def articulos_dispo(mecanico):
         prods = []
-        for articulo in Inventario_Articulo.get_articulos():
+        for articulo in Articulo.get_articulos():
             if mecanico.get_especialidad() == articulo.get_especialidad() and articulo.get_cantidad() >= 1:
                 prods.append(articulo)
         return prods
@@ -52,7 +53,7 @@ class Inventario_Articulo:
     @staticmethod
     def articulo_dispo(mecanico):
         prods = []
-        for articulo in Inventario_Articulo.get_articulos():
+        for articulo in Articulo.get_articulos():
             if (mecanico.get_especialidad().lower() == "modificacionpintura" and
                     articulo.get_especialidad().lower() == "pintura" and articulo.get_cantidad() >= 1):
                 prods.append(articulo)
@@ -81,25 +82,25 @@ def selector_especial():
         
         if input == 1:
             especialidad = "Motor"
-            for articulo in Inventario_Articulo.get_repuesto():
+            for articulo in Articulo.get_respuesto():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 2:
             especialidad = "Escape"
-            for articulo in Inventario_Articulo.get_repuesto():
+            for articulo in Articulo.get_respuesto():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 3:
             especialidad = "Sonido"
-            for articulo in Inventario_Articulo.get_repuesto():
+            for articulo in Articulo.get_respuesto():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 4:
             especialidad = "Suspension"
-            for articulo in Inventario_Articulo.get_repuesto():
+            for articulo in Articulo.get_respuesto():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"
@@ -119,31 +120,31 @@ def selector_modificacion():
         
         if input == 1:
             especialidad = "Pintura"
-            for articulo in Inventario_Articulo.get_articulos():
+            for articulo in Articulo.get_articulos():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 2:
             especialidad = "Llantas"
-            for articulo in Inventario_Articulo.get_articulos():
+            for articulo in Articulo.get_articulos():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 3:
             especialidad = "Sonido"
-            for articulo in Inventario_Articulo.get_articulos():
+            for articulo in Articulo.get_articulos():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 4:
             especialidad = "Frenos"
-            for articulo in Inventario_Articulo.get_articulos():
+            for articulo in Articulo.get_articulos():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"
         elif input == 5:
             especialidad = "Escape"
-            for articulo in Inventario_Articulo.get_articulos():
+            for articulo in Articulo.get_articulos():
                 if especialidad == articulo.get_especialidad():
                     artic.append(articulo)
             salir = "si"

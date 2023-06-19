@@ -6,7 +6,6 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
-from inventario_articulo import Inventario_Articulo
 class Articulo:
     articulos = []
     repuestos = []
@@ -114,14 +113,14 @@ class Articulo:
 
     @staticmethod
     def get_articuloPorReferencia(referencia):
-        for articulo in Inventario_Articulo.articulos:
+        for articulo in Articulo.articulos:
             if articulo.get_referencia() == referencia:
                 return articulo
         return None
 
     @staticmethod
     def get_repuestoPorReferencia(referencia):
-        for articulo in Inventario_Articulo.repuestos:
+        for articulo in Articulo.repuestos:
             if articulo.get_referencia() == referencia:
                 return articulo
         return None
