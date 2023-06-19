@@ -439,10 +439,26 @@ if __name__ == "__main__":
             global ventana_funcionalidad
             global carros_encontrados
 
+            def confirmar_compra(event):
+                global carro_confirmado
+                global vendedores_encontrados
+                global seleccionar_auto
+
+                vendedor_elegido = int(seleccionar_auto.get())-1
+
+                vendedor_confirmado = vendedores_encontrados[vendedor_elegido]
+
+                info = f"El vendedor es: {vendedor_confirmado.info()} \n"
+
+
+
             def confirmar_carro(event):
                 global carro_elegido
                 global seleccionar_auto
                 global campo_texto
+                global boton_aceptar
+                global carro_confirmado
+                global vendedores_encontrados
 
                 carro_elegido = int(seleccionar_auto.get())-1
 
@@ -453,15 +469,20 @@ if __name__ == "__main__":
                 i = 1
                 vendedores_encontrados = []
                 texto1 = ""
+                indices = []
                 for c in Vendedor.selector_vend(carro_confirmado):
                     vendedores_encontrados.append(i)
                     linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
                     i += 1
                     texto1 += linea
-
+                for f in range(1, i):
+                    indices.append(f)
+                seleccionar_auto['values']=indices
                 texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Tipo de venta")
                 texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_compra(event))
+
 
 
             def opciones_busqueda_carro(event):
@@ -496,7 +517,7 @@ if __name__ == "__main__":
                 global seleccionar_auto
                 global campo_texto
                 global carros_encontrados
-                print("PASO", InventarioAuto.get_autos_disponibles())
+                global boton_aceptar
                 
                 fp.forget()
                 comprobar.destroy()
