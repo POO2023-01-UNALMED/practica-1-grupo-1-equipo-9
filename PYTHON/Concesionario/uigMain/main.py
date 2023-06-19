@@ -33,6 +33,7 @@ import datetime
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
+
     llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
     sonido= Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
     escape= Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
@@ -451,6 +452,7 @@ if __name__ == "__main__":
                 global cliente
                 global campo_texto
                 global boton_aceptar
+                global vendedor_confirmado
 
                 vendedor_elegido = int(seleccionar_auto.get())-1
 
@@ -465,7 +467,7 @@ if __name__ == "__main__":
                 transfer = int(random.random() * 1000)
 
                 info = f"El vendedor es: {vendedor_confirmado.info()} \n"
-                info2 = TransaccionVenta("efectivo", carro_confirmado.getPrecio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
+                info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
                 texto = info + info2
                 campo_texto.config(text=texto)
                 boton_aceptar.destroy()
