@@ -26,6 +26,7 @@ from gestorAplicacion.Personal.cliente import Cliente
 from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 from FieldFrame import FieldFrame
+from gestorAplicacion.Personal.vendedor import Vendedor
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
