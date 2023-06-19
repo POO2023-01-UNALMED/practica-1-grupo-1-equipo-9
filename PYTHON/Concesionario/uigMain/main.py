@@ -34,14 +34,14 @@ import datetime
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
 
-    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
+    '''llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
     sonido= Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
     escape= Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
     suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004)
 
     a1= Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
     cc1 =  Cliente("Mikaela Yankee", 1029384756, 3209876543, "mikaelachupona@mail.com", "Toyota", 150000000);
-    cc1.set_auto(a1)
+    cc1.set_auto(a1)'''
 
     def limpiar(contenedor):
             for widget in contenedor.winfo_children():
@@ -432,6 +432,7 @@ if __name__ == "__main__":
 
         def salir():
             global window2
+            Serializador.serializar_arrays()
             window2.destroy()
 
         def mostrar_autores():
