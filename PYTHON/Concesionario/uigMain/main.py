@@ -429,17 +429,30 @@ if __name__ == "__main__":
             global etiqueta
             global window2
             global ventana_funcionalidad
+            global carros_encontrados
 
             def confirmar_carro(event):
                 global carro_elegido
-                global combobox_lista_marca
+                global seleccionar_auto
                 global campo_texto
 
-                carro_elegido = combobox_lista_marca.get()
+                carro_elegido = int(seleccionar_auto.get())-1
 
-                info = f"El carro elegido es {carro_elegido.get_modelo()} \n"
+                carro_confirmado = carros_encontrados[carro_elegido]
+
+                info = f"El carro elegido es {carro_confirmado.info()} \n"
                 info2 = f"Por favor, seleccione el vendedor que lo ha atendido \n"
-                texto = info + info2
+                i = 1
+                vendedores_encontrados = []
+                texto1 = ""
+                for c in Vendedor.selector_vend(carro_confirmado):
+                    vendedores_encontrados.append(i)
+                    linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
+                    i += 1
+                    texto1 += linea
+
+                texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Tipo de venta")
+                texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
 
 
@@ -472,8 +485,9 @@ if __name__ == "__main__":
 
             def confirmar_cliente(event):
                 global cliente
-                global combobox_lista_marca
+                global seleccionar_auto
                 global campo_texto
+                global carros_encontrados
                 print("PASO", InventarioAuto.get_autos_disponibles())
                 
                 fp.forget()
@@ -488,7 +502,9 @@ if __name__ == "__main__":
                 texto_titulo_marca_autos = "{:<20} {:<20} {:<20} {:<20}\n".format("", "Modelo", "Precio", "Color")
                 contador = 1
                 texto_lista = ""
+                carros_encontrados = []
                 for i in InventarioAuto.get_autosporModelo(cliente.get_modeloInteres()):
+                    carros_encontrados.append(i)
                     linea = "{:<20} {:<20} {:<20} {:<20}\n".format(contador, i.get_modelo(), i.get_precio(), i.get_color())
                     contador += 1
                     texto_lista += linea
