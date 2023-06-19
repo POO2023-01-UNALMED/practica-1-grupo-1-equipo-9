@@ -6,9 +6,8 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
-from Activos.auto import Auto
+from gestorAplicacion.Activos.auto import Auto
 class InventarioAuto:
-    autos = []
 
     def agregarAuto(self, auto):
         self.autos.append(auto)

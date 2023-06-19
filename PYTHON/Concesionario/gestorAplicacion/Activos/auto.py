@@ -116,6 +116,13 @@ class Auto:
 
     def set_escape(self, escape):
         self.escape = escape
+    @staticmethod
+    def get_autos_disponibles():
+        disponibles = []
+        for auto in Auto.autos:
+            if auto.disponible:
+                disponibles.append(auto)
+        return disponibles
 
 class Sortbyroll:
     def compare(self, a, b):
