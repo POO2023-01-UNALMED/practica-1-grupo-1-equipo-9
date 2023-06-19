@@ -435,6 +435,24 @@ if __name__ == "__main__":
             global window2
             global ventana_funcionalidad
 
+            def confirmar_carro(event):
+                global carro_elegido
+                global combobox_lista_marca
+                global campo_texto
+
+                carro_elegido = Auto(combobox_lista_marca.get())
+
+                info = f"El carro elegido es {carro_elegido.get_modelo()} \n"
+                info2 = f"Por favor, seleccione el vendedor que lo ha atendido \n"
+                texto = info + info2
+                campo_texto.config(text=texto)
+                combobox_lista_marca['values']= ("Vendedores", Vendedor.get_vendedores())
+                combobox_lista_marca.current(0)
+
+
+            def opciones_busqueda_carro(event):
+                pass
+
             limpiar(ventana_funcionalidad)
             descripcion="Esta funcionalidad permite a los clientes buscar y elegir un auto para su compra."
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
@@ -457,13 +475,38 @@ if __name__ == "__main__":
             etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
             
             container= tk.Frame(ventana_funcionalidad)
-            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+            container.pack(side='bottom', anchor='s', padx=120, pady=0, expand=False)
 
             def confirmar_cliente(event):
                 global cliente
+                global combobox_lista_marca
+                global campo_texto
                 print("PASO")
                 fp.forget()
                 comprobar.destroy()
+
+                frame_carros_marca = tk.Frame(ventana_funcionalidad)
+                frame_carros_marca.pack(side="top", anchor="center")
+
+                texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
+                texto_presupuesto_cliente = f"Su presupuesto es: {cliente.get_presupuesto()} \n"
+                texto_marca_cliente = f"Los carros de la marca {cliente.get_modeloInteres()} de interés del cliente son: \n"
+                texto = texto_nombre_cliente + texto_presupuesto_cliente + texto_marca_cliente
+                campo_texto = tk.Label(frame_carros_marca, text=texto)
+                combobox_lista_marca = ttk.Combobox(frame_carros_marca)
+                combobox_lista_marca['values']=("Autos", InventarioAuto.get_autoporModelo(cliente.get_modeloInteres()))
+                combobox_lista_marca.current(0)
+                campo_texto.pack()
+                boton_aceptar = tk.Button(frame_carros_marca, text="Confirmar selección")
+                boton_opciones = tk.Button(frame_carros_marca, text="Más opciones de busqueda")
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_carro(event))
+                boton_opciones.bind("<Button-1>", lambda event: opciones_busqueda_carro(event))
+                combobox_lista_marca.pack(pady=10)
+                boton_aceptar.pack(pady=10)
+                boton_opciones.pack(pady=10)
+                
+
+
 
             def cancel(event):
                 limpiar(ventana_funcionalidad)
@@ -482,7 +525,7 @@ if __name__ == "__main__":
 
                     if cliente != None:
                         nombre_cliente = cliente.get_nombre()
-                        telefono_cliente = cliente.get_telefono()
+                        presupuesto_cliente = cliente.get_presupuesto()
                         correo_cliente = cliente.get_correo()
                 
                         
@@ -499,7 +542,7 @@ if __name__ == "__main__":
                         label_3.delete(0, END)
 
                         label_1.insert(END, nombre_cliente)
-                        label_2.insert(END, telefono_cliente)
+                        label_2.insert(END, presupuesto_cliente)
                         label_3.insert(END, correo_cliente)
                         
                         label_1.configure(state="disabled")
@@ -508,9 +551,9 @@ if __name__ == "__main__":
 
                         comprobar.configure(text="¿Confirmar?")
                         comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
-                        cancelar = tk.Button(container, text="Cancelar")
+                        cancelar = tk.Button(container, text="Salir")
                         cancelar.bind("<Button-1>", lambda event: cancel(event))
-                        cancelar.pack(padx=5, pady=5)
+                        cancelar.pack(padx=5, pady=10)
                     elif cliente==None:
                         raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
     
@@ -519,7 +562,7 @@ if __name__ == "__main__":
                     raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
                 
 
-            criterios = ["Cedula", "Nombre", "Teléfono", "Correo"]
+            criterios = ["Cedula", "Nombre", "Presupuesto", "Correo"]
             valores_iniciales = ["", "", "", ""]
             habilitados = [True, False, False, False]
 
