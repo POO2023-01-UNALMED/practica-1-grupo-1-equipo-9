@@ -29,6 +29,7 @@ from baseDatos.deserializador import Deserializador
 from FieldFrame import FieldFrame
 from gestorAplicacion.Personal.vendedor import Vendedor
 from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
+import datetime
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
