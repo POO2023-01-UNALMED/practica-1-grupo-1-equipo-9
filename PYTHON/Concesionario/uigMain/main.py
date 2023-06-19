@@ -607,14 +607,27 @@ if __name__ == "__main__":
             global ventana_funcionalidad
             def confirmar_proceso(event):
                 global proceso_elegido
-                global combobox_lista_marca
+                global seleccionar_proceso
                 global campo_texto
+                
 
-                proceso_elegido = combobox_lista_marca.get()
+                proceso_elegido = int(seleccionar_proceso.get())-1
 
-                info = f"El Proceso elegido es {proceso_elegido.get()} \n"
-                info2 = f"Por favor, seleccione el Mecanico que desea que desarrolle el servicio\n"
-                texto = info + info2
+                proceso_confirmado = procesos[carro_elegido]
+
+                info = f"El carro elegido es {carro_confirmado.info()} \n"
+                info2 = f"Por favor, seleccione el vendedor que lo ha atendido \n"
+                i = 1
+                vendedores_encontrados = []
+                texto1 = ""
+                for c in Vendedor.selector_vend(carro_confirmado):
+                    vendedores_encontrados.append(i)
+                    linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
+                    i += 1
+                    texto1 += linea
+
+                texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Tipo de venta")
+                texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
 
 
@@ -670,12 +683,12 @@ if __name__ == "__main__":
                     texto_lista += linea
                 texto = texto_nombre_cliente + texto_auto_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
                 campo_texto = tk.Label(frame_procesos, text=texto)
-                seleccionar_auto = ttk.Combobox(frame_procesos)
+                seleccionar_proceso = ttk.Combobox(frame_procesos)
                 valores = []
                 for i in range(1, contador):
                     valores.append(i)
-                seleccionar_auto['values']=valores
-                seleccionar_auto.current(0)
+                seleccionar_proceso['values']=valores
+                seleccionar_proceso.current(0)
                 boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
                 boton_opciones = tk.Button(frame_procesos, text="Más opciones de busqueda")
                 boton_aceptar.bind("<Button-1>", lambda event: confirmar_proceso(event))
