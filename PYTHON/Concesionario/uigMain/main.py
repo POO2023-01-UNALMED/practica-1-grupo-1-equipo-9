@@ -33,14 +33,15 @@ import datetime
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
-    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
+
+    '''llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
     sonido= Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
     escape= Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
     suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004)
 
     a1= Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
     cc1 =  Cliente("Mikaela Yankee", 1029384756, 3209876543, "mikaelachupona@mail.com", "Toyota", 150000000);
-    cc1.set_auto(a1)
+    cc1.set_auto(a1)'''
 
     def limpiar(contenedor):
             for widget in contenedor.winfo_children():
@@ -431,6 +432,7 @@ if __name__ == "__main__":
 
         def salir():
             global window2
+            Serializador.serializar_arrays()
             window2.destroy()
 
         def mostrar_autores():
@@ -451,6 +453,7 @@ if __name__ == "__main__":
                 global cliente
                 global campo_texto
                 global boton_aceptar
+                global vendedor_confirmado
 
                 vendedor_elegido = int(seleccionar_auto.get())-1
 
@@ -465,7 +468,7 @@ if __name__ == "__main__":
                 transfer = int(random.random() * 1000)
 
                 info = f"El vendedor es: {vendedor_confirmado.info()} \n"
-                info2 = TransaccionVenta("efectivo", carro_confirmado.getPrecio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
+                info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
                 texto = info + info2
                 campo_texto.config(text=texto)
                 boton_aceptar.destroy()
@@ -1245,7 +1248,7 @@ if __name__ == "__main__":
                     infoingresos.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     ## fin plantilla base (3):
 
-                    # metiendo la info a la plantilla
+                    # metiendo la info a la plantilla 3
                     # infovendedores
                     ventas=""
                     ingresosautos=0
@@ -1267,13 +1270,18 @@ if __name__ == "__main__":
                 if opcion == "3":
                     
                     etiqueta2.config(text="ESTADISTICAS DE VENTAS POR MARCA DE AUTO")
+
                     ## plantilla base (4):
                     container_4=tk.Frame(zona_interaccion2)
                     container_4.pack(side='top', anchor='c', padx=10, pady=10) #, expand=False)
 
                     # creando los labels donde irá la info
                     info1_4=tk.Label(container_4, 
-                                   text="De los # autos que se tenían a comienzos del mes de junio, # (el #%) se han vendido, son:",
+                                   text="De los " + str(len(Auto.get_autos())) 
+                                   + " autos que se tenían a comienzos del mes de junio, " + 
+                                   str(len(TransaccionVenta.get_transaccionesven())) 
+                                   + " (el " + str((len(TransaccionVenta.get_transaccionesven()))/(len(Auto.get_autos())))
+                                   + "%) se han vendido, son:",
                                    justify="left")
                     infoventacarros=tk.Label(container_4, text="info de cada venta de carro", justify="left")
 
@@ -1290,7 +1298,12 @@ if __name__ == "__main__":
                     info2_4.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     infoventasmarca.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     infoingresos2.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    ## fin plantilla base (4):
 
+                    # metiendo la info a la plantilla 4
+                    # infoventacarros
+
+                    infoventacarros.config(text="")
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
 
