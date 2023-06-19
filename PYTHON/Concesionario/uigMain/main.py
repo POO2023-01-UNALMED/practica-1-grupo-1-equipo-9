@@ -33,14 +33,15 @@ import datetime
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
-    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
+
+    '''llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
     sonido= Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
     escape= Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
     suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004)
 
     a1= Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
     cc1 =  Cliente("Mikaela Yankee", 1029384756, 3209876543, "mikaelachupona@mail.com", "Toyota", 150000000);
-    cc1.set_auto(a1)
+    cc1.set_auto(a1)'''
 
     def limpiar(contenedor):
             for widget in contenedor.winfo_children():
@@ -431,6 +432,7 @@ if __name__ == "__main__":
 
         def salir():
             global window2
+            Serializador.serializar_arrays()
             window2.destroy()
 
         def mostrar_autores():
@@ -451,6 +453,7 @@ if __name__ == "__main__":
                 global cliente
                 global campo_texto
                 global boton_aceptar
+                global vendedor_confirmado
 
                 vendedor_elegido = int(seleccionar_auto.get())-1
 
@@ -465,7 +468,7 @@ if __name__ == "__main__":
                 transfer = int(random.random() * 1000)
 
                 info = f"El vendedor es: {vendedor_confirmado.info()} \n"
-                info2 = TransaccionVenta("efectivo", carro_confirmado.getPrecio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
+                info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
                 texto = info + info2
                 campo_texto.config(text=texto)
                 boton_aceptar.destroy()
@@ -507,23 +510,24 @@ if __name__ == "__main__":
 
             def mostrar_marca(event, marca):
                 global frame_carros_marca
-                global carro_elegido
                 global seleccionar_auto
                 global campo_texto
                 global boton_aceptar
-                global carro_confirmado
                 global vendedores_encontrados
                 global boton_opciones
                 global cliente
+                global carro_confirmado
+                global carro_elegido
+                global carros_encontrados
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son los carros de la marca {marca}\n"
-                autos = []
+                carros_encontrados = []
                 info2 = ""
                 cont = 1
                 indices = []
                 for i in InventarioAuto.get_autosporModelo(marca):
                     indices.append(cont)
-                    autos.append(i)
+                    carros_encontrados.append(i)
                     linea = str(cont)+ ".   " + i.info()+"\n"
                     info2 += linea
                     cont += 1
@@ -537,6 +541,7 @@ if __name__ == "__main__":
                 boton_aceptar.bind("<Button-1>", lambda event: confirmar_carro(event))
                 seleccionar_auto.pack()
                 boton_aceptar.pack(pady=10)
+                
 
             def mostrar_marcas(event):
                 global boton1
@@ -551,23 +556,24 @@ if __name__ == "__main__":
 
             def mostrar_por_precios(event):
                 global frame_carros_marca
-                global carro_elegido
                 global seleccionar_auto
                 global campo_texto
                 global boton_aceptar
-                global carro_confirmado
                 global vendedores_encontrados
                 global boton_opciones
                 global cliente
+                global carro_confirmado
+                global carro_elegido
+                global carros_encontrados
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son los carros ordenados según su presupuesto\n"
-                autos = []
+                carros_encontrados = []
                 info2 = ""
                 cont = 1
                 indices = []
                 for i in InventarioAuto.get_autosporPrecio(cliente):
                     indices.append(cont)
-                    autos.append(i)
+                    carros_encontrados.append(i)
                     linea = str(cont)+ ".   " + i.info()+"\n"
                     info2 += linea
                     cont += 1
@@ -584,23 +590,24 @@ if __name__ == "__main__":
 
             def mostrar_todos(event):
                 global frame_carros_marca
-                global carro_elegido
                 global seleccionar_auto
                 global campo_texto
                 global boton_aceptar
-                global carro_confirmado
                 global vendedores_encontrados
                 global boton_opciones
                 global cliente
+                global carro_confirmado
+                global carro_elegido
+                global carros_encontrados
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son todos los carros disponibles\n"
-                autos = []
+                carros_encontrados = []
                 info2 = ""
                 cont = 1
                 indices = []
                 for i in InventarioAuto.get_autos_disponibles():
                     indices.append(cont)
-                    autos.append(i)
+                    carros_encontrados.append(i)
                     linea = str(cont)+ ".   " + i.info()+"\n"
                     info2 += linea
                     cont += 1
