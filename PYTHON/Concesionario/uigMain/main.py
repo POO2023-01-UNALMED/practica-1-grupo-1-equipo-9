@@ -30,6 +30,14 @@ from gestorAplicacion.Personal.vendedor import Vendedor
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
+    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
+    sonido= Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
+    escape= Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
+    suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004)
+
+    a1= Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
+    cc1 =  Cliente("Mikaela Yankee", 1029384756, 3209876543, "mikaelachupona@mail.com", "Toyota", 150000000);
+    cc1.set_auto(a1)
 
     def limpiar(contenedor):
             for widget in contenedor.winfo_children():
@@ -429,17 +437,30 @@ if __name__ == "__main__":
             global etiqueta
             global window2
             global ventana_funcionalidad
+            global carros_encontrados
 
             def confirmar_carro(event):
                 global carro_elegido
-                global combobox_lista_marca
+                global seleccionar_auto
                 global campo_texto
 
-                carro_elegido = combobox_lista_marca.get()
+                carro_elegido = int(seleccionar_auto.get())-1
 
-                info = f"El carro elegido es {carro_elegido.get_modelo()} \n"
+                carro_confirmado = carros_encontrados[carro_elegido]
+
+                info = f"El carro elegido es {carro_confirmado.info()} \n"
                 info2 = f"Por favor, seleccione el vendedor que lo ha atendido \n"
-                texto = info + info2
+                i = 1
+                vendedores_encontrados = []
+                texto1 = ""
+                for c in Vendedor.selector_vend(carro_confirmado):
+                    vendedores_encontrados.append(i)
+                    linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
+                    i += 1
+                    texto1 += linea
+
+                texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Tipo de venta")
+                texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
 
 
@@ -472,8 +493,9 @@ if __name__ == "__main__":
 
             def confirmar_cliente(event):
                 global cliente
-                global combobox_lista_marca
+                global seleccionar_auto
                 global campo_texto
+                global carros_encontrados
                 print("PASO", InventarioAuto.get_autos_disponibles())
                 
                 fp.forget()
@@ -488,7 +510,9 @@ if __name__ == "__main__":
                 texto_titulo_marca_autos = "{:<20} {:<20} {:<20} {:<20}\n".format("", "Modelo", "Precio", "Color")
                 contador = 1
                 texto_lista = ""
+                carros_encontrados = []
                 for i in InventarioAuto.get_autosporModelo(cliente.get_modeloInteres()):
+                    carros_encontrados.append(i)
                     linea = "{:<20} {:<20} {:<20} {:<20}\n".format(contador, i.get_modelo(), i.get_precio(), i.get_color())
                     contador += 1
                     texto_lista += linea
@@ -581,6 +605,21 @@ if __name__ == "__main__":
             global etiqueta
             global window2
             global ventana_funcionalidad
+            def confirmar_proceso(event):
+                global proceso_elegido
+                global combobox_lista_marca
+                global campo_texto
+
+                proceso_elegido = combobox_lista_marca.get()
+
+                info = f"El Proceso elegido es {proceso_elegido.get()} \n"
+                info2 = f"Por favor, seleccione el Mecanico que desea que desarrolle el servicio\n"
+                texto = info + info2
+                campo_texto.config(text=texto)
+
+
+            def opciones_busqueda_carro(event):
+                pass
 
             limpiar(ventana_funcionalidad)
             descripcion="Este proceso esta diseñado para atender vehiculos comprados en nuestro consecionario, aca podras reparar, hacer revisiones y separar citas para ser atendido por un mecanico"
@@ -608,9 +647,43 @@ if __name__ == "__main__":
 
             def confirmar_cliente(event):
                 global cliente
-                print("PASO")
+                global combobox_lista_marca
+                global campo_texto
+                
                 fp.forget()
                 comprobar.destroy()
+
+                frame_procesos = tk.Frame(ventana_funcionalidad)
+                frame_procesos.pack(side="top", anchor="center")
+
+                procesos=["Latoneria y pintura","Servicio de llantas","Cambio de Aceite","Cambio de Frenos"]
+
+                texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
+                texto_auto_cliente = f"Su Auto es: {cliente.get_auto().get_modelo()} \n"
+                texto_proceso_cliente = f"Que proceso desea hacerle al vehiculo\n"
+                texto_titulo_procesos = "\n{:<40} {:<40}  \n".format( "Seleccion", "Proceso")
+                contador = 1
+                texto_lista = ""
+                for i in procesos:
+                    linea = "{:<40} {:<40}  \n".format(contador, i)
+                    contador += 1
+                    texto_lista += linea
+                texto = texto_nombre_cliente + texto_auto_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
+                campo_texto = tk.Label(frame_procesos, text=texto)
+                seleccionar_auto = ttk.Combobox(frame_procesos)
+                valores = []
+                for i in range(1, contador):
+                    valores.append(i)
+                seleccionar_auto['values']=valores
+                seleccionar_auto.current(0)
+                boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
+                boton_opciones = tk.Button(frame_procesos, text="Más opciones de busqueda")
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_proceso(event))
+                boton_opciones.bind("<Button-1>", lambda event: opciones_busqueda_carro(event))
+                campo_texto.pack(pady=10)
+                seleccionar_auto.pack()
+                boton_aceptar.pack(pady=10)
+                boton_opciones.pack(pady=10)
                 
                 
             def cancel(event):
