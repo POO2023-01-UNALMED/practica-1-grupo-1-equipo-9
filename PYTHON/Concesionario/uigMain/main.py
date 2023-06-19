@@ -507,14 +507,14 @@ if __name__ == "__main__":
 
             def mostrar_marca(event, marca):
                 global frame_carros_marca
-                global carro_elegido
                 global seleccionar_auto
                 global campo_texto
                 global boton_aceptar
-                global carro_confirmado
                 global vendedores_encontrados
                 global boton_opciones
                 global cliente
+                global carro_confirmado
+                global carro_elegido
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son los carros de la marca {marca}\n"
                 autos = []
@@ -537,6 +537,7 @@ if __name__ == "__main__":
                 boton_aceptar.bind("<Button-1>", lambda event: confirmar_carro(event))
                 seleccionar_auto.pack()
                 boton_aceptar.pack(pady=10)
+                
 
             def mostrar_marcas(event):
                 global boton1
@@ -551,14 +552,14 @@ if __name__ == "__main__":
 
             def mostrar_por_precios(event):
                 global frame_carros_marca
-                global carro_elegido
                 global seleccionar_auto
                 global campo_texto
                 global boton_aceptar
-                global carro_confirmado
                 global vendedores_encontrados
                 global boton_opciones
                 global cliente
+                global carro_confirmado
+                global carro_elegido
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son los carros ordenados según su presupuesto\n"
                 autos = []
@@ -584,14 +585,14 @@ if __name__ == "__main__":
 
             def mostrar_todos(event):
                 global frame_carros_marca
-                global carro_elegido
                 global seleccionar_auto
                 global campo_texto
                 global boton_aceptar
-                global carro_confirmado
                 global vendedores_encontrados
                 global boton_opciones
                 global cliente
+                global carro_confirmado
+                global carro_elegido
                 limpiar(frame_carros_marca)
                 info1 = f"Estos son todos los carros disponibles\n"
                 autos = []
