@@ -620,7 +620,7 @@ if __name__ == "__main__":
                 j = 1
                 mecanicos_encontrados = []
                 texto1 = ""
-                for c in Mecanico.mecanico_disponible(cliente.get_auto(),i):
+                for c in Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get())):
                     mecanicos_encontrados.append(j)
                     linea = "{:<20} {:<20} {:<20}\n".format(j, c.get_nombre(), c.get_especialidad())
                     j += 1
@@ -629,6 +629,7 @@ if __name__ == "__main__":
                 texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Especialidad")
                 texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
+                seleccionar_proceso.destroy()
 
 
             def opciones_busqueda_carro(event):
