@@ -924,20 +924,27 @@ if __name__ == "__main__":
 
 
         def stats(nombre_proceso):
+            global container
             global ventana_funcionalidad
             limpiar(ventana_funcionalidad)
 
-            def botonadmin(cedula):
 
-                if cedula!=3355479:
-                    print("d")
+            def botonadmin1():
+                
+                cedula = entryadmin.get()
+                #global botonadmin
+                if cedula!="3355479":
+                    container.destroy()
+                    lbno = tk.Label(zona_interaccion2, text="No es la cédula del admin", justify="left")
+                    lbno.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
                 else:
+                    container.destroy()
                     # crear labels iniciales y posicionarlos
-                    lbstats1 = tk.Label(window2, text="¿Qué estadísticas / información financiera quieres consultar?", justify="left")
-                    lbstats2 = tk.Label(window2, text="1. Estado de Resultados", justify="left")
-                    lbstats3 = tk.Label(window2, text="2. Estado de Resultados Detallado", justify="left")
-                    lbstats4 = tk.Label(window2, text="3. Ventas - Vendedor", justify="left")
-                    lbstats5 = tk.Label(window2, text="4. Ventas - Autos", justify="left")
+                    lbstats1 = tk.Label(zona_interaccion2, text="¿Qué estadísticas / información financiera quieres consultar?", justify="left")
+                    lbstats2 = tk.Label(zona_interaccion2, text="1. Estado de Resultados", justify="left")
+                    lbstats3 = tk.Label(zona_interaccion2, text="2. Estado de Resultados Detallado", justify="left")
+                    lbstats4 = tk.Label(zona_interaccion2, text="3. Ventas - Vendedor", justify="left")
+                    lbstats5 = tk.Label(zona_interaccion2, text="4. Ventas - Autos", justify="left")
 
                     lbstats1.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
                     lbstats2.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
@@ -946,16 +953,17 @@ if __name__ == "__main__":
                     lbstats5.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
                     # crear el último label con el entry de 1-4
-                    containerinicio = tk.Frame(window2)
+                    containerinicio = tk.Frame(zona_interaccion2)
                     containerinicio.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
+                    # meter label, entry y boton en el container
                     lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-4]", justify="left")
                     entrytats1 = tk.Entry(containerinicio)
+                    boton1_4 = tk.Button(containerinicio, text="enviar") #, command=botonadmin1)
                     lbstats6.pack(side='left', padx=0, pady=0)
                     entrytats1.pack(side='left', padx=15, pady=0)
+                    boton1_4.pack(side='left', padx=5, pady=0)
 
-            
-            ### se crea el espacio para las estadísticas
-            descripcion="ESTADISTICAS"
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
 
@@ -971,20 +979,15 @@ if __name__ == "__main__":
             etiqueta2 = tk.Label(zona_interaccion2, text="ESTADISTICAS")
             etiqueta2.pack(side="top", pady=7)
 
-            ##etiqueta2.config(text="ESTADISTICAS", justify="center", wraplength=280)
-            ##etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
-
+            # Coontainer
             container= tk.Frame(zona_interaccion2)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
-            # label bienvenida
-            ##lbadmin1=tk.Label(ventana_funcionalidad, text="Bienvenido al portal de estadisticas de nuestro concesionario")
-            ##lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
-            
             # label, entry y button de cedula admin
             lbadmin = tk.Label(container, text="Introduzca su cedula", justify="left")
             entryadmin = tk.Entry(container)
-            botonadmin = tk.Button(container, text= "hola", command=botonadmin(entryadmin.get()))
+            botonadmin = tk.Button(container, text="hola", command=botonadmin1)
+            #botonadmin.bind("<botonadmin>", lambda event: botonadmin(entryadmin.get()))
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
             botonadmin.pack(side='left', padx=5, pady=0)
