@@ -12,10 +12,11 @@ from trabajador import Trabajador
 
 class Mecanico(Trabajador):
     mecanicos = []
-    horario = []
+    
 
     def __init__(self, nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco, autos, especialidad, manoObra):
         super().__init__(nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco)
+        self.horario = []
         self.autos = autos
         self.especialidad = especialidad
         self.pagoSvcs = 0
@@ -76,49 +77,49 @@ class Mecanico(Trabajador):
             elif input == 2:
                 especialidad = "Llantas"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos()and len(mecanico.get_horario()) >= 1:
                         mechs.append(mecanico)
                     salir = "si"
             elif input == 3:
                 especialidad = "Motor"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos()and len(mecanico.get_horario()) >= 1:
                         mechs.append(mecanico)
                     salir = "si"
             elif input == 4:
                 especialidad = "Frenos"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos()and len(mecanico.get_horario()) >= 1:
                         mechs.append(mecanico)
                     salir = "si"
             elif input == 5:
                 especialidad = "ModificacionPintura"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos()and len(mecanico.get_horario()) >= 1:
                         mechs.append(mecanico)
                     salir = "si"
             elif input == 6:
                 especialidad = "ModificacionLlantas"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos()and len(mecanico.get_horario()) >= 1:
                         mechs.append(mecanico)
                     salir = "si"
             elif input == 7:
                 especialidad = "ModificacionSonido"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos()and len(mecanico.get_horario()) >= 1:
                         mechs.append(mecanico)
                     salir = "si"
             elif input == 8:
                 especialidad = "ModificacionFrenos"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos()and len(mecanico.get_horario()) >= 1:
                         mechs.append(mecanico)
                     salir = "si"
             elif input == 9:
                 especialidad = "ModificacionEscape"
                 for mecanico in Mecanico.get_mecanicos():
-                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
+                    if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos()and len(mecanico.get_horario()) >= 1:
                         mechs.append(mecanico)
                     salir = "si"
             else:
