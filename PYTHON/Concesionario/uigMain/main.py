@@ -689,29 +689,6 @@ if __name__ == "__main__":
             global ventana_funcionalidad
             limpiar(ventana_funcionalidad)
 
-            descripcion="ESTADISTICAS"
-            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
-            zona_interaccion.pack(side="top", pady=10)
-            
-            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
-            etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
-            etiqueta.pack(side="top")
-
-            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
-            zona_interaccion2 = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
-            zona_interaccion2.pack(side="top")
-
-            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
-            etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
-            etiqueta2.pack(side="top", pady=7)
-
-            etiqueta2.config(text=descripcion, justify="center", wraplength=280)
-
-            etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
-            
-            container= tk.Frame(ventana_funcionalidad)
-            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-
             def botonadmin(cedula):
 
                 if cedula!=3355479:
@@ -737,15 +714,34 @@ if __name__ == "__main__":
                     entrytats1 = tk.Entry(containerinicio)
                     lbstats6.pack(side='left', padx=0, pady=0)
                     entrytats1.pack(side='left', padx=15, pady=0)
+
             
-            etiqueta.config(text=nombre_proceso)
+            ### se crea el espacio para las estadísticas
+            descripcion="ESTADISTICAS"
+            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion.pack(side="top", pady=10)
+            
+            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
+            etiquetatitulo = tk.Label(zona_interaccion, text="Bienvenido al portal de estadisticas de nuestro concesionario")
+            etiquetatitulo.pack(side="top")
 
-            # validar que sea la cedula de administrador
+            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+            zona_interaccion2 = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
+            zona_interaccion2.pack(side="top")
+
+            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
+            etiqueta2 = tk.Label(zona_interaccion2, text="ESTADISTICAS")
+            etiqueta2.pack(side="top", pady=7)
+
+            ##etiqueta2.config(text="ESTADISTICAS", justify="center", wraplength=280)
+            ##etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
+
+            container= tk.Frame(ventana_funcionalidad)
+            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
             # label bienvenida
-            lbadmin1=tk.Label(ventana_funcionalidad, text="Bienvenido al portal de estadisticas de nuestro concesionario")
-            lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
-
-
+            ##lbadmin1=tk.Label(ventana_funcionalidad, text="Bienvenido al portal de estadisticas de nuestro concesionario")
+            ##lbadmin1.pack(side='top', anchor='w', padx=80, pady=10, expand=False)
             
             # label, entry y button de cedula admin
             lbadmin = tk.Label(ventana_funcionalidad, text="Introduzca su cedula", justify="left")
@@ -754,6 +750,10 @@ if __name__ == "__main__":
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
             botonadmin.pack(side='left', padx=5, pady=0)
+
+            
+            
+            
 
             '''if entryadmin.get()!=3355479:
                 print("d")
