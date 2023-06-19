@@ -29,6 +29,7 @@ from baseDatos.deserializador import Deserializador
 from FieldFrame import FieldFrame
 from gestorAplicacion.Personal.vendedor import Vendedor
 from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
+from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
 from gestorAplicacion.Personal.trabajador import Trabajador
 import datetime
 
@@ -452,22 +453,19 @@ if __name__ == "__main__":
 
                 vendedor_confirmado = vendedores_encontrados[vendedor_elegido]
 
-                if(cliente.get_presupuesto()>=carro_confirmado.get_precio()):
-                    carro_confirmado.set_dueno(cliente)
-                    carro_confirmado.set_disponible(False)
-                    cliente.set_auto(carro_confirmado)
-                    vendedor_confirmado.confirmar_venta()
-                    deducido = cliente.get_presupuesto()-carro_confirmado.get_precio()
-                    cliente.set_presupuesto(deducido)
-                    transfer = int(random.random() * 1000)
-                    info = f"El vendedor es: {vendedor_confirmado.info()} \n"
-                    info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
-                    Trabajador.pago(vendedor_confirmado, carro_confirmado)
-                    texto = info + info2
-                    campo_texto.config(text=texto)
-                    boton_aceptar.destroy()
-                else:
-                    Exception(messagebox.showwarning("Presupuesto insuficiente", "El cliente no tiene el presupuesto suficiente."))
+                carro_confirmado.set_dueno(cliente)
+                carro_confirmado.set_disponible(False)
+                cliente.set_auto(carro_confirmado)
+                vendedor_confirmado.confirmar_venta()
+                deducido = cliente.get_presupuesto()-carro_confirmado.get_precio()
+                cliente.set_presupuesto(deducido)
+                transfer = int(random.random() * 1000)
+
+                info = f"El vendedor es: {vendedor_confirmado.info()} \n"
+                info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
+                texto = info + info2
+                campo_texto.config(text=texto)
+                boton_aceptar.destroy()
 
 
 
@@ -780,6 +778,7 @@ if __name__ == "__main__":
                 global campo_texto
                 global boton_aceptar
                 global mecanicos_encontrados
+                global proceso_confirmado
                 
 
                 proceso_elegido = int(seleccionar_proceso.get())-1
@@ -810,6 +809,7 @@ if __name__ == "__main__":
                 global campo_texto
                 global seleccionar_proceso
                 global articulos_encontrados
+                global mecanico_confirmado
 
                 mecanico_elegido = int(seleccionar_proceso.get())-1
 
@@ -839,17 +839,88 @@ if __name__ == "__main__":
                 global articulos_encontrados
                 global campo_texto
                 global seleccionar_proceso
+                global mecanico_confirmado
+                global articulo_confirmado
 
                 articulo_elegido = int(seleccionar_proceso.get())-1
 
                 articulo_confirmado = articulos_encontrados[articulo_elegido]
-                info = ("El Articulo es: " +articulo_confirmado.get_tipo()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
+                info = ("El Articulo es: " +articulo_confirmado.get_marca()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
                 texto=info
+                j = 1
                 campo_texto.config(text=texto)
+                info2 = f"Por favor, seleccione el Horario para realizar su servicio \n"
+                horarios_encontrados = mecanico_confirmado.get_horario()
+                texto1 = ""
+                indices = []
+                for c in horarios_encontrados:
+                    linea = "{:<15} {:<40} \n".format(j, c)
+                    j += 1
+                    texto1 += linea
+                for f in range(1, j):
+                    indices.append(f)
+                seleccionar_proceso['values']=indices
+                texto2 = "{:<15} {:<40}\n".format("", "HORARIO")
+                texto = info + info2 + texto2 + texto1
+                
+                campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_todo(event))
+                
 
 
-            def opciones_busqueda_carro(event):
-                pass
+            def confirmar_todo(event):
+                global proceso_elegido
+                global seleccionar_proceso
+                global campo_texto
+                global boton_aceptar
+                global mecanicos_encontrados
+                global proceso_confirmado
+                global articulos_encontrados
+                global articulo_confirmado
+                global mecanico_confirmado
+                global proceso_confirmado
+                global precio
+                global frame_procesos
+                global boton_confirmar
+
+                mecanico_confirmado.horario.pop(int(seleccionar_proceso.get())-1)
+                
+                precio=int(mecanico_confirmado.get_manoObra()+articulo_confirmado.get_precio())
+                info = ("El Proceso a realizar es: " +" "+proceso_confirmado+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca")+ "\n"+ "Con el Mecanico "+ mecanico_confirmado.get_nombre() + " por un precio de: "+str(precio)+  "\n")
+                texto = info 
+                campo_texto.config(text=texto)
+                seleccionar_proceso.destroy()
+                boton_aceptar.bind("<Button-1>", lambda event: trans(event))
+                
+
+            def trans(event):
+                global proceso_elegido
+                global seleccionar_proceso
+                global campo_texto
+                global mecanicos_encontrados
+                global proceso_confirmado
+                global articulos_encontrados
+                global articulo_confirmado
+                global mecanico_confirmado
+                global proceso_confirmado
+                global precio
+                global cliente
+                global boton_confirmar
+
+                transfer = int(random.random() * 1000)
+
+                info = ("TRANSACCION REALIZADA CON EXITO"  "\n")
+                info2=TransaccionTaller("Taller",precio,cliente,cliente.get_auto(),articulo_confirmado,mecanico_confirmado,transfer).info()
+                texto = info + info2
+                Trabajador.pago(mecanico_confirmado)
+                articulo_confirmado.cantidad=-1
+                
+                campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: limpiar(ventana_funcionalidad))
+            
+
+
+
 
             limpiar(ventana_funcionalidad)
             descripcion="Este proceso esta diseñado para atender vehiculos comprados en nuestro consecionario, aca podras reparar, hacer revisiones y separar citas para ser atendido por un mecanico"
@@ -882,6 +953,7 @@ if __name__ == "__main__":
                 global procesos
                 global seleccionar_proceso
                 global boton_aceptar
+                global frame_procesos
                 
                 fp.forget()
                 comprobar.destroy()
@@ -966,7 +1038,7 @@ if __name__ == "__main__":
                         comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
                         cancelar = tk.Button(container, text="Cancelar")
                         cancelar.bind("<Button-1>", lambda event: cancel(event))
-                        cancelar.pack(padx=5, pady=5)
+                        cancelar.pack(padx=5, pady=5,side="bottom")
                     elif cliente==None:
                         raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
     
@@ -1330,20 +1402,8 @@ if __name__ == "__main__":
 
                     # metiendo la info a la plantilla 4
                     # infoventacarros
-                    ventascarros = ""
-                    for ventacarro in TransaccionVenta.get_transaccionesven():
-                        ventascarros += Auto.info(ventacarro.get_auto()) + "\n"
-                    
-                    if ventascarros=="":
-                        infoventacarros.config(
-                            text="No se han realizado ventas de vehículos hasta el momento")
-                    else:
-                        infoventacarros.config(text=ventascarros)
 
-                    
-
-
-
+                    infoventacarros.config(text="")
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
 
