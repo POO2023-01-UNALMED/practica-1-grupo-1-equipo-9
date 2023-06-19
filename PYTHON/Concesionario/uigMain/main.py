@@ -27,6 +27,7 @@ from baseDatos.serializador import Serializador
 from baseDatos.deserializador import Deserializador
 from FieldFrame import FieldFrame
 from gestorAplicacion.Personal.vendedor import Vendedor
+from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
@@ -975,7 +976,7 @@ if __name__ == "__main__":
                 global entrystats1
                 
                 cedula = entryadmin.get()
-                if cedula!="3355479":
+                if cedula!="1":#"3355479":
                     container.destroy()
                     lbno = tk.Label(zona_interaccion2, text="No es la cédula del admin", justify="left")
                     lbno.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
@@ -1060,10 +1061,14 @@ if __name__ == "__main__":
 
                     # creando los labels donde irá la info
                     info1_3=tk.Label(container_3, 
-                                   text="Los # vendedores, han logrado # ventas en el mes, promediando # ventas por vendedor",
+                                   text="Los " + str(len(Vendedor.get_vendedores())) + " vendedores, han logrado " 
+                                   + str(len(TransaccionVenta.get_transaccionesven())) + 
+                                   " ventas en el mes, promediando "
+                                   + str((len(TransaccionVenta.get_transaccionesven()))/(len(Vendedor.get_vendedores())))
+                                   + " ventas por vendedor",
                                    justify="left")
                     infovendedores=tk.Label(container_3, text="info de cada vendedor", justify="left")
-                    info2_3=tk.Label(container_3, 
+                    info2_3=tk.Label(container_3,
                                    text="Suma de ingresos total, y promedio de ingresos diarios en lo corrido del mes de junio:",
                                    justify="left")
                     infoingresos=tk.Label(container_3,
@@ -1075,6 +1080,14 @@ if __name__ == "__main__":
                     infovendedores.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     info2_3.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     infoingresos.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    ## fin plantilla base (3):
+
+                    # metiendo la info a la plantilla
+                    ventas=[]
+                    for venta in TransaccionVenta.get_transaccionesven():
+                        print(vendedor)
+                        
+                        
 
                 if opcion == "3":
                     
