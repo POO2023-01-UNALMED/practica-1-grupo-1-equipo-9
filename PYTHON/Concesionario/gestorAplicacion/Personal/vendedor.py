@@ -22,6 +22,7 @@ class Vendedor(Trabajador):
     def __init__(self, nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco, puesto):
         super().__init__(nombre, cedula, telefono, correo, direccion, salario, banco, cuentaBanco)
         self.puesto = puesto
+        self.ventas = 0
         Vendedor.vendedores.append(self)
 
     @classmethod
