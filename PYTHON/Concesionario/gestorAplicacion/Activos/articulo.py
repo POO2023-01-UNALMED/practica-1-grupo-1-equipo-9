@@ -122,6 +122,6 @@ class Articulo:
     @staticmethod
     def get_repuestoPorReferencia(referencia):
         for articulo in Inventario_Articulo.repuestos:
-            if articulo.get_Referencia() == referencia:
+            if articulo.get_referencia() == referencia:
                 return articulo
         return None

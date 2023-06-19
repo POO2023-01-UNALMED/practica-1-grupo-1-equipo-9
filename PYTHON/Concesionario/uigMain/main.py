@@ -1,3 +1,4 @@
+import random
 import sys
 import os
 import tkinter as tk
@@ -440,17 +441,34 @@ if __name__ == "__main__":
             global window2
             global ventana_funcionalidad
             global carros_encontrados
+            global cliente
+            
 
             def confirmar_compra(event):
                 global carro_confirmado
                 global vendedores_encontrados
                 global seleccionar_auto
+                global cliente
+                global campo_texto
+                global boton_aceptar
 
                 vendedor_elegido = int(seleccionar_auto.get())-1
 
                 vendedor_confirmado = vendedores_encontrados[vendedor_elegido]
 
+                carro_confirmado.set_dueno(cliente)
+                carro_confirmado.set_disponible(False)
+                cliente.set_auto(carro_confirmado)
+                vendedor_confirmado.confirmar_venta()
+                deducido = cliente.get_presupuesto()-carro_confirmado.get_precio()
+                cliente.set_presupuesto(deducido)
+                transfer = int(random.random() * 1000)
+
                 info = f"El vendedor es: {vendedor_confirmado.info()} \n"
+                info2 = TransaccionVenta("efectivo", carro_confirmado.getPrecio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
+                texto = info + info2
+                campo_texto.config(text=texto)
+                boton_aceptar.destroy()
 
 
 
@@ -461,6 +479,8 @@ if __name__ == "__main__":
                 global boton_aceptar
                 global carro_confirmado
                 global vendedores_encontrados
+                global boton_opciones
+                global cliente
 
                 carro_elegido = int(seleccionar_auto.get())-1
 
@@ -473,7 +493,6 @@ if __name__ == "__main__":
                 texto1 = ""
                 indices = []
                 for c in vendedores_encontrados:
-                    
                     linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
                     i += 1
                     texto1 += linea
@@ -484,11 +503,133 @@ if __name__ == "__main__":
                 texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
                 boton_aceptar.bind("<Button-1>", lambda event: confirmar_compra(event))
+                boton_opciones.destroy()
 
+            def mostrar_marca(event, marca):
+                global frame_carros_marca
+                global carro_elegido
+                global seleccionar_auto
+                global campo_texto
+                global boton_aceptar
+                global carro_confirmado
+                global vendedores_encontrados
+                global boton_opciones
+                global cliente
+                limpiar(frame_carros_marca)
+                info1 = f"Estos son los carros de la marca {marca}\n"
+                autos = []
+                info2 = ""
+                cont = 1
+                indices = []
+                for i in InventarioAuto.get_autosporModelo(marca):
+                    indices.append(cont)
+                    autos.append(i)
+                    linea = str(cont)+ ".   " + i.info()+"\n"
+                    info2 += linea
+                    cont += 1
+                texto = info1 + info2
+                campo_texto = tk.Label(frame_carros_marca, text=texto)
+                campo_texto.pack()
+                seleccionar_auto = ttk.Combobox(frame_carros_marca)
+                seleccionar_auto['values']=indices
+                seleccionar_auto.current(0)
+                boton_aceptar = tk.Button(frame_carros_marca, text="Confirmar selección")
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_carro(event))
+                seleccionar_auto.pack()
+                boton_aceptar.pack(pady=10)
 
+            def mostrar_marcas(event):
+                global boton1
+                global boton2
+                global boton3
+                boton1.config(text="Mazda")
+                boton1.bind("<Button-1>", lambda event: mostrar_marca(event, "Mazda"))
+                boton2.config(text="Toyota")
+                boton2.bind("<Button-1>", lambda event: mostrar_marca(event, "Toyota"))
+                boton3.config(text="Chevrolet")
+                boton3.bind("<Button-1>", lambda event: mostrar_marca(event, "Chevrolet"))
+
+            def mostrar_por_precios(event):
+                global frame_carros_marca
+                global carro_elegido
+                global seleccionar_auto
+                global campo_texto
+                global boton_aceptar
+                global carro_confirmado
+                global vendedores_encontrados
+                global boton_opciones
+                global cliente
+                limpiar(frame_carros_marca)
+                info1 = f"Estos son los carros ordenados según su presupuesto\n"
+                autos = []
+                info2 = ""
+                cont = 1
+                indices = []
+                for i in InventarioAuto.get_autosporPrecio(cliente):
+                    indices.append(cont)
+                    autos.append(i)
+                    linea = str(cont)+ ".   " + i.info()+"\n"
+                    info2 += linea
+                    cont += 1
+                texto = info1 + info2
+                campo_texto = tk.Label(frame_carros_marca, text=texto)
+                campo_texto.pack()
+                seleccionar_auto = ttk.Combobox(frame_carros_marca)
+                seleccionar_auto['values']=indices
+                seleccionar_auto.current(0)
+                boton_aceptar = tk.Button(frame_carros_marca, text="Confirmar selección")
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_carro(event))
+                seleccionar_auto.pack()
+                boton_aceptar.pack(pady=10)
+
+            def mostrar_todos(event):
+                global frame_carros_marca
+                global carro_elegido
+                global seleccionar_auto
+                global campo_texto
+                global boton_aceptar
+                global carro_confirmado
+                global vendedores_encontrados
+                global boton_opciones
+                global cliente
+                limpiar(frame_carros_marca)
+                info1 = f"Estos son todos los carros disponibles\n"
+                autos = []
+                info2 = ""
+                cont = 1
+                indices = []
+                for i in InventarioAuto.get_autos_disponibles():
+                    indices.append(cont)
+                    autos.append(i)
+                    linea = str(cont)+ ".   " + i.info()+"\n"
+                    info2 += linea
+                    cont += 1
+                texto = info1 + info2
+                campo_texto = tk.Label(frame_carros_marca, text=texto)
+                campo_texto.pack()
+                seleccionar_auto = ttk.Combobox(frame_carros_marca)
+                seleccionar_auto['values']=indices
+                seleccionar_auto.current(0)
+                boton_aceptar = tk.Button(frame_carros_marca, text="Confirmar selección")
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_carro(event))
+                seleccionar_auto.pack()
+                boton_aceptar.pack(pady=10)
 
             def opciones_busqueda_carro(event):
-                pass
+                global frame_carros_marca
+                global boton1
+                global boton2
+                global boton3
+                limpiar(frame_carros_marca)
+                boton1 = tk.Button(frame_carros_marca, text="Mostrar carros por marca")
+                boton1.bind("<Button-1>", lambda event: mostrar_marcas(event))
+                boton2 = tk.Button(frame_carros_marca, text="Mostrar carros por precio")
+                boton2.bind("<Button-1>", lambda event: mostrar_por_precios(event))
+                boton3 = tk.Button(frame_carros_marca, text="Todos los carros")
+                boton3.bind("<Button-1>", lambda event: mostrar_todos(event))
+                boton1.pack(pady=5)
+                boton2.pack(pady=5)
+                boton3.pack(pady=5)
 
             limpiar(ventana_funcionalidad)
             descripcion="Esta funcionalidad permite a los clientes buscar y elegir un auto para su compra."
@@ -520,6 +661,8 @@ if __name__ == "__main__":
                 global campo_texto
                 global carros_encontrados
                 global boton_aceptar
+                global boton_opciones
+                global frame_carros_marca
                 
                 fp.forget()
                 comprobar.destroy()
