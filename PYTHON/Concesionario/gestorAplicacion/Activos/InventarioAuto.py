@@ -6,6 +6,7 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
+from Activos.auto import Auto
 class InventarioAuto:
     autos = []
 
@@ -35,7 +36,7 @@ class InventarioAuto:
     @staticmethod
     def get_autos_disponibles():
         disponibles = []
-        for auto in InventarioAuto.autos:
+        for auto in Auto.autos:
             if auto.disponible:
                 disponibles.append(auto)
         return disponibles
@@ -73,7 +74,7 @@ class InventarioAuto:
     def get_autosporModelo(modelo):
         modelosInteres = []
         for auto in InventarioAuto.get_autos_disponibles():
-            if modelo == auto.modelo:
+            if modelo == auto.marca:
                 modelosInteres.append(auto)
         if len(modelosInteres) == 0:
             print("No existen carros de este modelo disponibles en este momento.")

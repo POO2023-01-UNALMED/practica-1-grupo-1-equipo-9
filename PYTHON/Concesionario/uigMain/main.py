@@ -476,7 +476,8 @@ if __name__ == "__main__":
                 global cliente
                 global combobox_lista_marca
                 global campo_texto
-                print("PASO")
+                print("PASO", InventarioAuto.get_autos_disponibles())
+                
                 fp.forget()
                 comprobar.destroy()
 
@@ -489,7 +490,10 @@ if __name__ == "__main__":
                 texto = texto_nombre_cliente + texto_presupuesto_cliente + texto_marca_cliente
                 campo_texto = tk.Label(frame_carros_marca, text=texto)
                 combobox_lista_marca = ttk.Combobox(frame_carros_marca)
-                combobox_lista_marca['values']=("Autos", InventarioAuto.get_autoporModelo(cliente.get_modeloInteres()))
+                valores = ["Autos"]
+                for i in InventarioAuto.get_autosporModelo(cliente.get_modeloInteres()):
+                    valores.append(i)
+                combobox_lista_marca['values']=valores
                 combobox_lista_marca.current(0)
                 campo_texto.pack()
                 boton_aceptar = tk.Button(frame_carros_marca, text="Confirmar selección")
