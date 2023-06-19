@@ -1101,7 +1101,7 @@ if __name__ == "__main__":
                     infoingresos.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     ## fin plantilla base (3):
 
-                    # metiendo la info a la plantilla
+                    # metiendo la info a la plantilla 3
                     # infovendedores
                     ventas=""
                     ingresosautos=0
@@ -1123,13 +1123,18 @@ if __name__ == "__main__":
                 if opcion == "3":
                     
                     etiqueta2.config(text="ESTADISTICAS DE VENTAS POR MARCA DE AUTO")
+
                     ## plantilla base (4):
                     container_4=tk.Frame(zona_interaccion2)
                     container_4.pack(side='top', anchor='c', padx=10, pady=10) #, expand=False)
 
                     # creando los labels donde irá la info
                     info1_4=tk.Label(container_4, 
-                                   text="De los # autos que se tenían a comienzos del mes de junio, # (el #%) se han vendido, son:",
+                                   text="De los " + str(len(Auto.get_autos())) 
+                                   + " autos que se tenían a comienzos del mes de junio, " + 
+                                   str(len(TransaccionVenta.get_transaccionesven())) 
+                                   + " (el " + str((len(TransaccionVenta.get_transaccionesven()))/(len(Auto.get_autos())))
+                                   + "%) se han vendido, son:",
                                    justify="left")
                     infoventacarros=tk.Label(container_4, text="info de cada venta de carro", justify="left")
 
@@ -1146,7 +1151,12 @@ if __name__ == "__main__":
                     info2_4.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     infoventasmarca.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     infoingresos2.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    ## fin plantilla base (4):
 
+                    # metiendo la info a la plantilla 4
+                    # infoventacarros
+
+                    infoventacarros.config(text="")
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
 
