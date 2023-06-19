@@ -467,11 +467,11 @@ if __name__ == "__main__":
                 info = f"El carro elegido es {carro_confirmado.info()} \n"
                 info2 = f"Por favor, seleccione el vendedor que lo ha atendido \n"
                 i = 1
-                vendedores_encontrados = []
+                vendedores_encontrados = Vendedor.selector_vend(carro_confirmado)
                 texto1 = ""
                 indices = []
-                for c in Vendedor.selector_vend(carro_confirmado):
-                    vendedores_encontrados.append(i)
+                for c in vendedores_encontrados:
+                    
                     linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
                     i += 1
                     texto1 += linea
@@ -630,6 +630,8 @@ if __name__ == "__main__":
                 global proceso_elegido
                 global seleccionar_proceso
                 global campo_texto
+                global boton_aceptar
+                global mecanicos_encontrados
                 
 
                 proceso_elegido = int(seleccionar_proceso.get())-1
@@ -639,18 +641,34 @@ if __name__ == "__main__":
                 info = f"El proceso elegido es {proceso_confirmado} \n"
                 info2 = f"Por favor, seleccione el Mecanico que lo va a atender \n"
                 j = 1
-                mecanicos_encontrados = []
+                mecanicos_encontrados = Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get()))
                 texto1 = ""
-                for c in Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get())):
-                    mecanicos_encontrados.append(j)
-                    linea = "{:<20} {:<20} {:<20}\n".format(j, c.get_nombre(), c.get_especialidad())
+                indices = []
+                for c in mecanicos_encontrados:
+                    linea = "{:<20} {:<20} {:<40}{:<20}\n".format(j, c.get_nombre(), c.get_especialidad(),c.get_autos())
                     j += 1
                     texto1 += linea
-
-                texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Especialidad")
+                for f in range(1, j):
+                    indices.append(f)
+                seleccionar_proceso['values']=indices
+                texto2 = "{:<20} {:<20} {:<40}{:<20}\n".format("", "Nombre", "Especialidad","Auto que Atiende")
                 texto = info + info2 + texto2 + texto1
                 campo_texto.config(text=texto)
-                seleccionar_proceso.destroy()
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_mecanico(event))
+                
+            def confirmar_mecanico(event):
+                global proceso_confirmado
+                global mecanicos_encontrados
+                global seleccionar_mecanico
+                global campo_texto
+                global seleccionar_proceso
+
+                mecanico_elegido = int(seleccionar_proceso.get())-1
+
+                mecanico_confirmado = mecanicos_encontrados[mecanico_elegido]
+                info = ("El Mecanico es: " +mecanico_confirmado.get_nombre()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
+                texto=info
+                campo_texto.config(text=texto)
 
 
             def opciones_busqueda_carro(event):
@@ -686,7 +704,7 @@ if __name__ == "__main__":
                 global campo_texto
                 global procesos
                 global seleccionar_proceso
-                global i
+                global boton_aceptar
                 
                 fp.forget()
                 comprobar.destroy()
@@ -697,7 +715,7 @@ if __name__ == "__main__":
                 procesos=["Latoneria y pintura","Servicio de llantas","Cambio de Aceite","Cambio de Frenos"]
 
                 texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
-                texto_auto_cliente = f"Su Auto es: {cliente.get_auto().get_modelo()} \n"
+                texto_auto_cliente = f"Su Auto es: {cliente.get_auto().get_marca()}  {cliente.get_auto().get_modelo()} \n"
                 texto_proceso_cliente = f"Que proceso desea hacerle al vehiculo\n"
                 texto_titulo_procesos = "\n{:<40} {:<40}  \n".format( "Seleccion", "Proceso")
                 contador = 1
@@ -728,7 +746,7 @@ if __name__ == "__main__":
                 global valor_cedula
                 global valores_iniciales
                 global cliente
-
+                
                 valor_cedula = fp.getValue("Cedula")
 
 
@@ -738,9 +756,9 @@ if __name__ == "__main__":
 
                     if cliente != None:
                         nombre_cliente = cliente.get_nombre()
-                        telefono_cliente = cliente.get_telefono()
+                        correo_cliente = cliente.get_correo()
                         try:
-                            auto_cliente = cliente.get_auto().get_marca()
+                            auto_cliente = cliente.get_auto().get_marca()+" " +cliente.get_auto().get_modelo()
                         except AttributeError:
                             (messagebox.showinfo("Cliente sin Vehiculo", "Este cliente no posee en vehiculo comprado"))
                             limpiar(ventana_funcionalidad)
@@ -760,8 +778,8 @@ if __name__ == "__main__":
                         label_3.delete(0, END)
 
                         label_1.insert(END, nombre_cliente)
-                        label_2.insert(END, telefono_cliente)
-                        label_3.insert(END, auto_cliente)
+                        label_2.insert(END, auto_cliente)
+                        label_3.insert(END, correo_cliente)
                         
                         label_1.configure(state="disabled")
                         label_2.configure(state="disabled")
@@ -1114,14 +1132,14 @@ if __name__ == "__main__":
             botonadmin.pack(side='left', padx=5, pady=0)
 
 
-        print("\n\nMenú principal Concesionario")
+        '''print("\n\nMenú principal Concesionario")
         print("1. Venta de Autos")
         print("2. Venta de Repuestos")
         print("3. Taller")
         print("4. Consultar estadisticas / finanzas")
         print("5. Personalizar su auto")
         print("6. Crear nuevo usuario (Comprador)")
-        print("7. Administración")
+        print("7. Administración")'''
         print("8. Salir")
         
         opcion = int(input("Ingrese el número de la opción que va a utilizar: "))
