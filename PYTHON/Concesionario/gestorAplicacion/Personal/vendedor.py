@@ -6,14 +6,14 @@ ruta_gestor = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(ruta_activos)
 sys.path.append(ruta_personal)
 sys.path.append(ruta_gestor)
-from Activos import articulo
+from gestorAplicacion.Activos.articulo import Articulo
 from trabajador import Trabajador
 from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
 from gestorAplicacion.Activos.transaccionVentaTaller import TransaccionVentaTaller
 from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
 from gestorAplicacion.Activos.TransaccionModificacion import TransaccionModificacion
-from Activos.auto import Auto
-from mecanico import Mecanico
+from gestorAplicacion.Activos.auto import Auto
+from gestorAplicacion.Personal.mecanico import Mecanico
 
 class Vendedor(Trabajador):
     vendedores = []
@@ -69,7 +69,7 @@ class Vendedor(Trabajador):
         vendedores = []
         if isinstance(o, Auto):
             vende = "Vitrina"
-        elif isinstance(o, articulo):
+        elif isinstance(o, Articulo):
             vende = "Repuestos"
         for vendedor in Vendedor.get_vendedores():
             if vende == vendedor.get_puesto():
