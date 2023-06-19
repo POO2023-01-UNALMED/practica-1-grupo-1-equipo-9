@@ -948,43 +948,142 @@ if __name__ == "__main__":
         def stats(nombre_proceso):
             global container
             global ventana_funcionalidad
+            global entrystats1
             limpiar(ventana_funcionalidad)
 
 
             def botonadmin1():
+                global containerOpciones
+                global entrystats1
                 
                 cedula = entryadmin.get()
-                #global botonadmin
                 if cedula!="3355479":
                     container.destroy()
                     lbno = tk.Label(zona_interaccion2, text="No es la cédula del admin", justify="left")
                     lbno.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
                 else:
+                    etiquetatitulo.config(text="Por medio de las diferentes opciones de interacción que ofrece este formulario, podrás revisar la información estadística y financiera más relevante del concesionario",
+                                          pady=2, wraplength=300)
                     container.destroy()
                     # crear labels iniciales y posicionarlos
-                    lbstats1 = tk.Label(zona_interaccion2, text="¿Qué estadísticas / información financiera quieres consultar?", justify="left")
-                    lbstats2 = tk.Label(zona_interaccion2, text="1. Estado de Resultados", justify="left")
-                    lbstats3 = tk.Label(zona_interaccion2, text="2. Estado de Resultados Detallado", justify="left")
-                    lbstats4 = tk.Label(zona_interaccion2, text="3. Ventas - Vendedor", justify="left")
-                    lbstats5 = tk.Label(zona_interaccion2, text="4. Ventas - Autos", justify="left")
+                    containerOpciones=tk.Frame(zona_interaccion2)
+                    containerOpciones.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+
+                    lbstats1 = tk.Label(containerOpciones, text="¿Qué estadísticas / información financiera quieres consultar?", justify="left")
+                    lbstats2 = tk.Label(containerOpciones, text="1. Estado de Resultados", justify="left")
+                    #lbstats3 = tk.Label(containerOpciones, text="2. Estado de Resultados Detallado", justify="left")
+                    lbstats4 = tk.Label(containerOpciones, text="2. Ventas - Vendedor", justify="left")
+                    lbstats5 = tk.Label(containerOpciones, text="3. Ventas - Autos", justify="left")
 
                     lbstats1.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
                     lbstats2.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-                    lbstats3.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+                    #lbstats3.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
                     lbstats4.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
                     lbstats5.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
                     # crear el último label con el entry de 1-4
-                    containerinicio = tk.Frame(zona_interaccion2)
+                    containerinicio = tk.Frame(containerOpciones)
                     containerinicio.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
                     # meter label, entry y boton en el container
-                    lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-4]", justify="left")
-                    entrytats1 = tk.Entry(containerinicio)
-                    boton1_4 = tk.Button(containerinicio, text="enviar") #, command=botonadmin1)
+                    lbstats6 = tk.Label(containerinicio, text="Selecciona: [1-3]", justify="left")
+                    entrystats1 = tk.Entry(containerinicio)
+                    boton1_4 = tk.Button(containerinicio, text="enviar", command=opciones) #, command=botonadmin1)
                     lbstats6.pack(side='left', padx=0, pady=0)
-                    entrytats1.pack(side='left', padx=15, pady=0)
+                    entrystats1.pack(side='left', padx=15, pady=0)
                     boton1_4.pack(side='left', padx=5, pady=0)
+
+            def opciones():
+                opcion = entrystats1.get()
+                containerOpciones.destroy()
+                #opcion = entrystats1.get()
+
+                if opcion == "1":
+                    etiqueta2.config(text="ESTADO DE RESULTADOS DEL CONCESIONARIO")
+
+                    container_resultados = tk.Frame(zona_interaccion2)
+                    container_resultados.pack(side='top', anchor='w', padx=10, pady=10)
+
+                    # Ventas Totales
+                    lb_ventas_totales = tk.Label(container_resultados, text="Ventas Totales: #")
+                    lb_ventas_totales.pack(side='top', anchor='w')
+
+                    # Costo de Ventas
+                    lb_costo_ventas = tk.Label(container_resultados, text="Costo de Ventas: #")
+                    lb_costo_ventas.pack(side='top', anchor='w')
+
+                    # Utilidad Operativa
+                    lb_utilidad_operativa = tk.Label(container_resultados, text="UTILIDAD OPERATIVA: #")
+                    lb_utilidad_operativa.pack(side='top', anchor='w')
+
+                    # Gastos Operacionales y de Ventas
+                    lb_gastos_operacionales = tk.Label(container_resultados, text="Gastos Operacionales y de Ventas: #")
+                    lb_gastos_operacionales.pack(side='top', anchor='w')
+
+                    # Utilidad antes de Impuestos
+                    lb_utilidad_impuestos = tk.Label(container_resultados, text="UTILIDAD ANTES DE IMPUESTOS: #")
+                    lb_utilidad_impuestos.pack(side='top', anchor='w')
+
+                    # Impuesto de Renta
+                    lb_impuesto_renta = tk.Label(container_resultados, text="Impuesto de Renta: #")
+                    lb_impuesto_renta.pack(side='top', anchor='w')
+
+                    # Utilidad Neta
+                    lb_utilidad_neta = tk.Label(container_resultados, text="UTILIDAD NETA: #")
+                    lb_utilidad_neta.pack(side='top', anchor='w')
+
+
+                if opcion == "2":
+                    
+                    etiqueta2.config(text="ESTADISTICAS DE VENTAS POR VENDEDOR")
+                    ## plantilla base (3):
+                    container_3=tk.Frame(zona_interaccion2)
+                    container_3.pack(side='top', anchor='w', padx=10, pady=10) #, expand=False)
+
+                    # creando los labels donde irá la info
+                    info1_3=tk.Label(container_3, 
+                                   text="Los # vendedores, han logrado # ventas en el mes, promediando # ventas por vendedor",
+                                   justify="left")
+                    infovendedores=tk.Label(container_3, text="info de cada vendedor", justify="left")
+                    info2_3=tk.Label(container_3, 
+                                   text="Suma de ingresos total, y promedio de ingresos diarios en lo corrido del mes de junio:",
+                                   justify="left")
+                    infoingresos=tk.Label(container_3,
+                                          text="Suma total de ingresos: #, promedio de ingresos diarios en lo corrido del mes de (mes): #.",
+                                          justify="left")
+                    
+                    # metiendo los labels en el container_3
+                    info1_3.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    infovendedores.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    info2_3.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    infoingresos.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+
+                if opcion == "3":
+                    
+                    etiqueta2.config(text="ESTADISTICAS DE VENTAS POR MARCA DE AUTO")
+                    ## plantilla base (4):
+                    container_4=tk.Frame(zona_interaccion2)
+                    container_4.pack(side='top', anchor='c', padx=10, pady=10) #, expand=False)
+
+                    # creando los labels donde irá la info
+                    info1_4=tk.Label(container_4, 
+                                   text="De los # autos que se tenían a comienzos del mes de junio, # (el #%) se han vendido, son:",
+                                   justify="left")
+                    infoventacarros=tk.Label(container_4, text="info de cada venta de carro", justify="left")
+
+                    info2_4=tk.Label(container_4, text="Ventas ($) por marca de auto", justify="left")
+                    infoventasmarca=tk.Label(container_4, text="ventas por marca", justify="left")
+
+                    infoingresos2=tk.Label(container_4,
+                                          text="Suma total de ingresos: #, promedio de ingresos diarios en lo corrido del mes de (mes): #.",
+                                          justify="left")
+                    
+                    # metiendo los labels en el container_4
+                    info1_4.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    infoventacarros.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    info2_4.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    infoventasmarca.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    infoingresos2.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
 
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
@@ -998,7 +1097,7 @@ if __name__ == "__main__":
             zona_interaccion2.pack(side="top")
 
             # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
-            etiqueta2 = tk.Label(zona_interaccion2, text="ESTADISTICAS")
+            etiqueta2 = tk.Label(zona_interaccion2, text="ESTADISTICAS - INFO FINANCIERA")
             etiqueta2.pack(side="top", pady=7)
 
             # Coontainer
@@ -1008,7 +1107,7 @@ if __name__ == "__main__":
             # label, entry y button de cedula admin
             lbadmin = tk.Label(container, text="Introduzca su cedula", justify="left")
             entryadmin = tk.Entry(container)
-            botonadmin = tk.Button(container, text="hola", command=botonadmin1)
+            botonadmin = tk.Button(container, text="enviar", command=botonadmin1)
             #botonadmin.bind("<botonadmin>", lambda event: botonadmin(entryadmin.get()))
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
