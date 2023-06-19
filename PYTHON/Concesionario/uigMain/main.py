@@ -1120,7 +1120,7 @@ if __name__ == "__main__":
                 global entrystats1
                 
                 cedula = entryadmin.get()
-                if cedula!="3355479":
+                if cedula!="1":#"3355479":
                     container.destroy()
                     lbno = tk.Label(zona_interaccion2, text="No es la cédula del admin", justify="left")
                     lbno.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
@@ -1198,6 +1198,24 @@ if __name__ == "__main__":
 
                 if opcion == "2":
                     
+                    # Obtener la fecha y hora actual
+                    fecha_actual = datetime.datetime.now()
+
+                    # Obtener el mes de la fecha actual
+                    mes_actual = fecha_actual.month
+                    dia_actual = fecha_actual.day
+
+                    nombre_mes = fecha_actual.strftime("%B")
+                    print("El mes actual es:", nombre_mes)
+
+                    def traducir_mes(mes_en_ingles):
+                        meses = {
+                            'January': 'enero', 'February': 'febrero', 'March': 'marzo', 'April': 'abril',
+                            'May': 'mayo', 'June': 'junio', 'July': 'julio', 'August': 'agosto',
+                            'September': 'septiembre', 'October': 'octubre', 'November': 'noviembre', 'December': 'diciembre'
+                        }
+                        return meses[mes_en_ingles]
+    
                     etiqueta2.config(text="ESTADISTICAS DE VENTAS POR VENDEDOR")
                     ## plantilla base (3):
                     container_3=tk.Frame(zona_interaccion2)
@@ -1205,14 +1223,18 @@ if __name__ == "__main__":
 
                     # creando los labels donde irá la info
                     info1_3=tk.Label(container_3, 
-                                   text="Los # vendedores, han logrado # ventas en el mes, promediando # ventas por vendedor",
+                                   text="Los " + str(len(Vendedor.get_vendedores())) + " vendedores, han logrado " 
+                                   + str(len(TransaccionVenta.get_transaccionesven())) + 
+                                   " ventas en el mes, promediando "
+                                   + str((len(TransaccionVenta.get_transaccionesven()))/(len(Vendedor.get_vendedores())))
+                                   + " ventas por vendedor",
                                    justify="left")
                     infovendedores=tk.Label(container_3, text="info de cada vendedor", justify="left")
-                    info2_3=tk.Label(container_3, 
-                                   text="Suma de ingresos total, y promedio de ingresos diarios en lo corrido del mes de junio:",
+                    info2_3=tk.Label(container_3,
+                                   text="Suma de ingresos por concepto de venta de autos, y promedio de ingresos en lo corrido del mes de junio:",
                                    justify="left")
                     infoingresos=tk.Label(container_3,
-                                          text="Suma total de ingresos: #, promedio de ingresos diarios en lo corrido del mes de (mes): #.",
+                                          text="Suma de ingresos: #, promedio de ingresos diarios en lo corrido del mes de (mes): #.",
                                           justify="left")
                     
                     # metiendo los labels en el container_3
@@ -1220,6 +1242,26 @@ if __name__ == "__main__":
                     infovendedores.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     info2_3.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
                     infoingresos.pack(side='top', anchor='w', padx=10, pady=10, expand=False)
+                    ## fin plantilla base (3):
+
+                    # metiendo la info a la plantilla
+                    # infovendedores
+                    ventas=""
+                    ingresosautos=0
+                    for venta in TransaccionVenta.get_transaccionesven():
+                        ventas += venta.get_vendedor + ": " + venta.get_ingreso() +"\n"
+                        ingresosautos += venta.get_ingreso()
+                    if ventas=="":
+                        infovendedores.config(
+                            text="No se han realizado ventas de vehículos hasta el momento")
+                    else:
+                        infovendedores.config(text=ventas)
+                    
+                    # infoingresos (calcular suma de ingresos)
+                    infoingresos.config(
+                        text="Suma de ingresos: " + 
+                        str(ingresosautos) + ", promedio de ingresos diarios en lo corrido del mes de "
+                        + traducir_mes(str(nombre_mes)) + ": " + str(ingresosautos/dia_actual))
 
                 if opcion == "3":
                     

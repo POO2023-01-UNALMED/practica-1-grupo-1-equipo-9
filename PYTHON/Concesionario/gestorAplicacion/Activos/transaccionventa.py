@@ -47,6 +47,9 @@ class TransaccionVenta(Transaccion):
                 break
         return finder
 
+    def get_ingreso(self):
+        return self.ingreso
+    
     def set_auto(self, auto):
         self.auto = auto
 
