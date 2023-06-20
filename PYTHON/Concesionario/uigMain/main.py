@@ -1427,7 +1427,7 @@ if __name__ == "__main__":
                                    justify="left")
                     infoventacarros=tk.Label(container_4, text="info de cada venta de carro", justify="left")
 
-                    info2_4=tk.Label(container_4, text="Ventas ($) por marca de auto", justify="left")
+                    info2_4=tk.Label(container_4, text="Total de ingresos por concepto de venta de auto según la marca:", justify="left")
                     infoventasmarca=tk.Label(container_4, text="ventas por marca", justify="left")
 
                     infoingresos2=tk.Label(container_4,
@@ -1446,13 +1446,14 @@ if __name__ == "__main__":
                     # infoventacarros
                     ventascarros = ""
                     for ventacarro in TransaccionVenta.get_transaccionesven():
-                        ventascarros += Auto.info(ventacarro.get_auto()) + "\n"
-                    
-                    if ventascarros=="":
-                        infoventacarros.config(
-                            text="No se han realizado ventas de vehículos hasta el momento")
+                        ventascarros += ventacarro.get_auto().info() + "\n"
+
+                    if ventascarros == "":
+                        infoventacarros.config(text="No se han realizado ventas de vehículos hasta el momento")
                     else:
                         infoventacarros.config(text=ventascarros)
+
+                    print(ventascarros)
 
                     #infoventasmarca
                     ventasToyota = 0
@@ -1495,8 +1496,7 @@ if __name__ == "__main__":
                     
 
 
-                    infoventacarros.config(text="")
-            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
             zona_interaccion.pack(side="top", pady=10)
 
             # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
