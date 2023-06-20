@@ -116,8 +116,8 @@ class Vendedor(Trabajador):
         ventas = ventasautos + ventastaller + arttaller + transaccmod
         listaFinanzas[0] = ventas
 
-        pagoEmpleados = sum(vendedor.get_salario() for vendedor in Vendedor.get_vendedores())
-        pagoEmpleados += sum(mecanico.get_salario() for mecanico in Mecanico.get_mecanicos())
+        pagoEmpleados = sum(float(vendedor.get_salario()) for vendedor in Vendedor.get_vendedores())
+        pagoEmpleados += sum(float(mecanico.get_salario()) for mecanico in Mecanico.get_mecanicos())
         listaFinanzas[1] = pagoEmpleados
 
         gastos = ventasautos * 0.02 + 10000000 + 7000000

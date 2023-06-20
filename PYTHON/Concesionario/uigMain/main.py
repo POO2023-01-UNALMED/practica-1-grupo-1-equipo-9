@@ -37,8 +37,7 @@ import datetime
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
-    
-    
+
     def limpiar(contenedor):
             for widget in contenedor.winfo_children():
                 widget.destroy()
@@ -113,7 +112,7 @@ if __name__ == "__main__":
             exit()
 
         def opcion2():
-            info_curriculum.config(text="Dios bendiga mami este arrebato", justify="center", wraplength=280)
+            info_curriculum.config(text="Sistema de gestión de concesionarios", justify="center", wraplength=280)
 
         def entrar(event):
             global window2
@@ -257,7 +256,7 @@ if __name__ == "__main__":
         p3 = tk.Frame(p1, bg="#454343")
         p3.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.3)
 
-        bienvenida = tk.Label(p3, text="Bienvenido cabron", bg="red", width="288")
+        bienvenida = tk.Label(p3, text="Bienvenido al sistema", bg="red", width="288")
         bienvenida.pack(expand=True)
 
         p4 = tk.Frame(p1, bg="#454343")
@@ -371,7 +370,7 @@ if __name__ == "__main__":
                 carro_confirmado.set_disponible(False)
                 cliente.set_auto(carro_confirmado)
                 vendedor_confirmado.confirmar_venta()
-                deducido = cliente.get_presupuesto()-carro_confirmado.get_precio()
+                deducido = int(cliente.get_presupuesto())-int(carro_confirmado.get_precio())
                 cliente.set_presupuesto(deducido)
                 transfer = int(random.random() * 1000)
 
@@ -1874,8 +1873,6 @@ if __name__ == "__main__":
                     else:
                         infoventacarros.config(text=ventascarros)
 
-                    print(ventascarros)
-
                     #infoventasmarca
                     ventasToyota = 0
                     ventasChevrolet = 0
@@ -1993,7 +1990,7 @@ if __name__ == "__main__":
                 elif any((valor == "" or valor == 0) and indice != 7 for indice, valor in enumerate(list)):
                     messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                 else:
-                    Cliente(list[0]+ "" + list[1], list[2], list[3], list[4], list[5], list[6], list[7])
+                    Cliente(list[0]+ "" + list[1], int(list[2]), int(list[3]), list[4], list[5], int(list[6]), list[7])
                     messagebox.showinfo("Cliente registrado", "Ahora se encuentra registrado.")
 
 
@@ -2134,7 +2131,7 @@ if __name__ == "__main__":
                     elif any((valor == "" or valor == 0) and indice != 8 for indice, valor in enumerate(lista)):
                         messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                     else:
-                        Articulo(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9])
+                        Articulo(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5], int(lista[6]),int(lista[7]),int(lista[8]),lista[9])
                         messagebox.showinfo("Articulo registrado", "Ahora se encuentra registrado.")
 
 
@@ -2183,10 +2180,10 @@ if __name__ == "__main__":
                         messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                     else:
                         if lista[5]=="si":
-                            Auto(lista[0],lista[1],lista[2],lista[3],lista[4],True, True, Articulo.get_articuloPorReferencia(3001), Articulo.get_articuloPorReferencia(3004),Articulo.get_articuloPorReferencia(3002),Articulo.get_articuloPorReferencia(3003))
+                            Auto(lista[0],lista[1],int(lista[2]),int(lista[3]),lista[4],True, True, Articulo.get_articuloPorReferencia(3001), Articulo.get_articuloPorReferencia(3004),Articulo.get_articuloPorReferencia(3002),Articulo.get_articuloPorReferencia(3003))
                             messagebox.showinfo("Auto registrado", "Ahora se encuentra registrado.")
                         elif lista[5]=="no":
-                            Auto(lista[0],lista[1],lista[2],lista[3],lista[4], False, True, Articulo.get_articuloPorReferencia(3001), Articulo.get_articuloPorReferencia(3004),Articulo.get_articuloPorReferencia(3002),Articulo.get_articuloPorReferencia(3003))
+                            Auto(lista[0],lista[1],int(lista[2]),int(lista[3]),lista[4], False, True, Articulo.get_articuloPorReferencia(3001), Articulo.get_articuloPorReferencia(3004),Articulo.get_articuloPorReferencia(3002),Articulo.get_articuloPorReferencia(3003))
                             messagebox.showinfo("Auto registrado", "Ahora se encuentra registrado.")
 
                 criterios = ["Modelo","Marca","Precio","Cilindraje","Color","FullEquipo"]
@@ -2248,7 +2245,7 @@ if __name__ == "__main__":
                     elif any(valor == "" or valor == 0 for valor in lista):
                         messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                     else:
-                        Vendedor(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9])
+                        Vendedor(lista[0],int(lista[1]),int(lista[2]),lista[3],lista[4],int(lista[5]),lista[6],int(lista[7]),lista[8])
                         messagebox.showinfo("Vendedor registrado", "Ahora se encuentra registrado.")
 
                 criterios = ["Nombre","Cédula","Teléfono","Correo","Direccion","Salario", "Banco", "Cuenta Banco", "Puesto"]
@@ -2308,7 +2305,7 @@ if __name__ == "__main__":
                     int(lista[2])
                     int(lista[5])
                     int(lista[7])
-                    int(lista[7])
+                    int(lista[10])
 
                     if Mecanico.get_mecanicoPorCedula(int(lista[1]))!=None:
                         Exception(messagebox.showerror("Usuario ya registrado", "Esta cédula ya se encuentra registrada en el concesionario."))
@@ -2317,7 +2314,8 @@ if __name__ == "__main__":
                     elif any(valor == "" or valor == 0 for valor in lista):
                         messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                     else:
-                        Vendedor(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9], lista[10])
+                        Mecanico(lista[0], int(lista[1]),int(lista[2]),lista[3],lista[4], int(lista[5]),lista[6],int(lista[7]),lista[8],lista[9],  int(lista[10])
+)
                         messagebox.showinfo("Mecánico registrado", "Ahora se encuentra registrado.")
 
                 criterios = ["Nombre","Cédula","Teléfono","Correo","Direccion","Salario", "Banco", "Cuenta Banco", "Autos", "Especialidad", "Mano Obra"]
