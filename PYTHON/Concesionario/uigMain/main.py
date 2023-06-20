@@ -971,14 +971,11 @@ if __name__ == "__main__":
             comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
             comprobar.pack(padx=5, pady=5)
 
+        
         def proceso_personalizar_auto(nombre_proceso):
             global etiqueta
             global window2
             global ventana_funcionalidad
-            if pregunta_taller is not None:
-                pregunta_taller.pack_forget()
-            opcion_taller_mecanicos.pack_forget()
-            opcion_asignar_vendedor.pack_forget()
             def confirmar_proceso(event):
                 global proceso_elegido
                 global seleccionar_proceso
@@ -1079,20 +1076,11 @@ if __name__ == "__main__":
             
             container= tk.Frame(ventana_funcionalidad)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-
-            # Crear la pregunta y opciones
-            pregunta_taller = tk.Label(container, text="¿Desea utilizar el taller con mecánicos o solo desea asignar un vendedor?")
-            pregunta_taller.pack(padx=5, pady=5)
-
-            opcion_taller_mecanicos = tk.Button(container, text="Utilizar taller con mecánicos")
-            opcion_taller_mecanicos.bind("<Button-1>", lambda event: utilizar_taller_mecanicos(event))
-
-            opcion_asignar_vendedor = tk.Button(container, text="Asignar vendedor")
-            opcion_asignar_vendedor.bind("<Button-1>", lambda event: asignar_vendedor(event))
-
-            opcion_taller_mecanicos.pack(padx=5, pady=5)
-            opcion_asignar_vendedor.pack(padx=5, pady=5)
             
+            
+            container = tk.Frame(ventana_funcionalidad)
+            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
             def utilizar_taller_mecanicos(event):
             
                 def confirmar_cliente(event):
@@ -1209,9 +1197,28 @@ if __name__ == "__main__":
                 comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
                 comprobar.pack(padx=5, pady=5)
 
-        def asignar_vendedor(event):
+            def asignar_vendedor(event):
                 # Lógica para asignar un vendedor
                 print("Asignar vendedor")
+            
+            def seleccionar_funcion(event):
+                opcion_elegida = seleccionar_opcion.get()
+
+                if opcion_elegida == "Utilizar taller mecánicos":
+                    utilizar_taller_mecanicos(event)
+                elif opcion_elegida == "Asignar vendedor":
+                    asignar_vendedor(event)
+
+            # Crear la opción para que el usuario elija entre utilizar el taller de mecánicos o asignar un vendedor
+            seleccionar_opcion = ttk.Combobox(container)
+            seleccionar_opcion['values'] = ["Utilizar taller mecánicos", "Asignar vendedor"]
+            seleccionar_opcion.current(0)
+            seleccionar_opcion.pack(pady=10)
+
+            # Agregar un botón para confirmar la selección de opción
+            boton_elegir = tk.Button(container, text="Elegir", command=lambda: seleccionar_funcion(event))
+            boton_elegir.pack(pady=10)
+
 
 
         def stats(nombre_proceso):
