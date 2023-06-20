@@ -1022,7 +1022,7 @@ if __name__ == "__main__":
                     info = f"El proceso elegido es {proceso_confirmado} \n"
                     info2 = f"Por favor, seleccione el Mecanico que lo va a atender \n"
                     j = 1
-                    mecanicos_encontrados = Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get()))
+                    mecanicos_encontrados = Mecanico.mecanico_disponible(cliente.get_auto(),int(( proceso_elegido+4)))
                     texto1 = ""
                     indices = []
                     for c in mecanicos_encontrados:
@@ -1100,7 +1100,7 @@ if __name__ == "__main__":
                     frame_procesos.pack(side="top", anchor="center")
 
                     
-                    procesos=["Modificacion de pintura","Modificacion de Llantas","Modificacion del sonido","Modificacion de frenos", "Modificacion del escape"]
+                    procesos=["ModificacionPintura","ModificacionLlantas","ModificacionSonido","ModificacionFrenos", "ModificacionEscape"]
 
                     texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
                     texto_auto_cliente = f"Su Auto es: {cliente.get_auto().get_marca()}  {cliente.get_auto().get_modelo()} \n"
@@ -1209,8 +1209,10 @@ if __name__ == "__main__":
 
                 if opcion_elegida == "Utilizar taller mecánicos":
                     utilizar_taller_mecanicos(event)
+                    seleccionar_opcion.destroy()
                 elif opcion_elegida == "Asignar vendedor":
                     asignar_vendedor(event)
+                    seleccionar_opcion.destroy()
 
             # Crear la opción para que el usuario elija entre utilizar el taller de mecánicos o asignar un vendedor
             seleccionar_opcion = ttk.Combobox(container)
