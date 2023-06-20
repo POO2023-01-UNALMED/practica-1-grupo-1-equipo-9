@@ -1185,6 +1185,8 @@ if __name__ == "__main__":
                 
                 campo_texto.config(text=texto)
                 boton_aceptar.bind("<Button-1>", lambda event: limpiar(ventana_funcionalidad))
+
+
             limpiar(ventana_funcionalidad)
             descripcion="Este proceso esta diseñado para atender vehiculos comprados en nuestro consecionario, aca podras reparar, hacer revisiones y separar citas para ser atendido por un mecanico"
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
@@ -1949,7 +1951,75 @@ if __name__ == "__main__":
             limpiar(ventana_funcionalidad)
 
             def asignar_horarios(event):
-                pass
+                global comprobar
+                limpiar(ventana_funcionalidad)
+                def asignar(event):
+                    global mecanico
+                    global comprobar
+                    global Pasar
+                    texto = tk.Label(ventana_funcionalidad, text="HORARIOS ORGANIZADOS CON EXITO")
+                    texto.pack(side="top", pady=5)
+                    mecanico.set_horario(["9:00-11:00", "11:00-1:00", "2:00-4:00", "4:00-6:00"])
+                    comprobar.bind("<Button-1>", lambda event: limpiar(ventana_funcionalidad))
+                    
+                    
+                def comprobar_mecanico(event):
+                    global valor_cedula
+                    global valores_iniciales
+                    global mecanico
+                    global comprobar
+                    global Pasar
+                    
+                    valor_cedula = fp.getValue("Cedula")
+
+
+                    if fp.entries[0].get()!="":
+
+                        mecanico = Mecanico.get_mecanicoPorCedula(int(valor_cedula))
+
+                        if mecanico != None:
+                            nombre_cliente = mecanico.get_nombre()
+                    
+                            
+                            label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
+
+                            label_1.configure(state="normal")
+
+
+                            label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
+
+
+                            label_1.insert(END, nombre_cliente)
+
+                            
+                            label_1.configure(state="disabled")
+
+                            comprobar.configure(text="Asignar")
+                            comprobar.bind("<Button-1>", lambda event: asignar(event))
+
+
+
+
+                        elif mecanico==None:
+                            raise Exception(messagebox.showinfo("mecanico no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
+        
+        
+                    else:
+                        raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
+                    
+
+                criterios = ["Cedula", "Nombre"]
+                valores_iniciales = ["", ""]
+                habilitados = [True, False]
+
+                texto = tk.Label(ventana_funcionalidad, text="Escriba sus datos para Encontrar el mecanico")
+                texto.pack(side="top", pady=5)
+                fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+                fp.pack(side="top")
+
+                comprobar = tk.Button(ventana_funcionalidad, text="Comprobar")
+                comprobar.bind("<Button-1>", lambda event: comprobar_mecanico(event))
+                comprobar.pack(padx=5, pady=5)
 
             def anadir_articulo(event):
                 limpiar(ventana_funcionalidad)
