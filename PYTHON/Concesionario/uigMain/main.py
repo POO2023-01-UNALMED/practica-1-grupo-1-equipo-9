@@ -37,6 +37,127 @@ import datetime
 
 if __name__ == "__main__":
     Deserializador.deserializar_arrays()
+    llanta=  Articulo("Basico","taller","Llanta","Serie", "automovil y camioneta", "Serie", 0, 10000,3001)
+    sonido= Articulo("Basico","taller","Sonido","Serie", "automovil y camioneta", "Serie", 0, 10000,3002)
+    escape= Articulo("Basico","taller","Escape","Serie", "automovil y camioneta", "Serie", 0, 10000,3003)
+    suspension=  Articulo("Basico","taller","Suspension","Serie", "automovil y camioneta", "Serie", 0, 10000,3004)
+
+    a1= Auto("Hilux", "Toyota", 230000000, 2700, "verde fofo", True, True,llanta,suspension,sonido,escape);
+    a2= Auto("Corolla", "Chevrolet", 70000000, 2000, "negro", False, True,llanta,suspension,sonido,escape);
+    a3=  Auto("Cx-3", "Mazda", 50000000, 2000, "azul", True, True,llanta,suspension,sonido,escape);
+    a4=  Auto("Highlander", "Toyota", 230000000, 3500, "blanco", False, True,llanta,suspension,sonido,escape);
+    a5=  Auto("Cruze", "Chevrolet",45000000 , 2000, "cafe", True, True,llanta,suspension,sonido,escape);
+    a6=  Auto("Cx-5", "Mazda", 120000000, 2000, "verde", False, True,llanta,suspension,sonido,escape);
+    a7=  Auto("Cx-7", "Mazda", 240000000, 2000, "rosa", False, True,llanta,suspension,sonido,escape);
+    a8=  Auto("Prado", "Toyota", 280000000, 5400, "verde fofo", True, True,llanta,suspension,sonido,escape);
+    a9=  Auto("Spark", "Chevrolet", 45000000, 1000, "negro", False, True,llanta,suspension,sonido,escape);
+    a10=  Auto("Cx-9", "Mazda", 340000000, 3000, "azul", True, True,llanta,suspension,sonido,escape);
+    a11=  Auto("Highlander", "Toyota", 300000000, 2700, "blanco", False, True,llanta,suspension,sonido,escape);
+    a12=  Auto("Captiva", "Chevrolet", 90000000, 1600, "cafe", True, True,llanta,suspension,sonido,escape);
+    a13=  Auto("323", "Mazda", 30000000, 1200, "verde", False, True,llanta,suspension,sonido,escape);
+    a14=  Auto("Miata", "Mazda", 440000000, 2000, "rosa", False, True,llanta,suspension,sonido,escape);
+    
+
+    cc1 =  Cliente("María Conchita Alonso", 11223344, 3209876543, "mariaconchita@mail.com", "Toyota", 150000000);
+    cc3 =  Cliente("Fulanito Pérez", 87654321, 3187654321, "fulanito@mail.com",  "Mazda", 180000000);
+    cc4 =  Cliente("Pedro Picapiedra", 159753, 3056789456, "pedropicapiedra@mail.com",  "Chevrolet", 130000000);
+    cc5 =  Cliente("Mafalda González", 1234567890, 3109876543, "mafalda@mail.com",  "Mazda", 110000000);
+    cc6 =  Cliente("Amparo Grisales", 333444, 3176543210, "amparo@mail.com",  "Toyota", 250000000)
+    c1=  Cliente("Ana González", 12345678, 87654321, "ana@gmail.com",  "Toyota", 40000000)
+    c2=  Cliente("Juan Pérez", 102367459, 300987654, "juan@gmail.com",  "Toyota", 35000000)
+    c3=  Cliente("María Sánchez", 745631982, 500123456, "maria@gmail.com",  "Mazda", 60000000)
+    c4=  Cliente("Javier Castro", 958762341, 900654321, "javi@gmail.com",  "Chevrolet", 55000000)
+    c5=  Cliente("Roberto Palacio", 98765432, 556656, "robert@gmail.com",  "Hybrid", 30000000)
+    c6=  Cliente("Roxanna Corrales", 1034515785, 300475854, "roxylomejor@gmail.com",  "Toyota", 70000000)
+
+    mecanico=  Mecanico("Carlos Martinez", 1234567890, 9876543210, "carlos.martinez@gmail.com", "Carrera 45 #67-89", 1450000, "Bancolombia", 1234567890123456, "Toyota", "Pintura", 340000);
+    mecanico1 =  Mecanico("Laura Hernandez", 1234567891, 9876543211, "laura.hernandez@gmail.com", "Calle 34 #56-78", 1450000, "Bancolombia", 1234567890123457, "Mazda", "Pintura", 340000);
+    mecanico2 =  Mecanico("Mario Gonzalez", 1234567892, 9876543212, "mario.gonzalez@gmail.com", "Avenida 12 #23-45", 1450000, "Bancolombia", 1234567890123458, "Chevrolet", "Pintura", 340000);
+    mecanico3 =  Mecanico("Daniela Ramirez", 1234567893, 9876543213, "daniela.ramirez@gmail.com", "Calle 56 #78-90", 1450000, "Bancolombia", 1234567890123459, "Toyota", "Llantas", 50000);
+    mecanico4 =  Mecanico("Manuel Torres", 1234567894, 9876543214, "manuel.torres@gmail.com", "Carrera 78 #90-12", 1450000, "Bancolombia", 1234567890123460, "Mazda", "Llantas", 50000);
+    mecanico5 =  Mecanico("Lucia Perez", 1234567895, 9876543215, "lucia.perez@gmail.com", "Avenida 23 #45-67", 1450000, "Bancolombia", 1234567890123461, "Chevrolet", "Llantas", 50000);
+    mecanico6 =  Mecanico("Andres Castro", 1234567896, 9876543216, "andres.castro@gmail.com", "Calle 89 #01-23", 1450000, "Bancolombia", 1234567890123462, "Toyota", "Motor", 15000);
+    mecanico7 =  Mecanico("Sofia Hernandez", 1234567897, 9876543217, "sofia.hernandez@gmail.com", "Carrera 12 #34-56", 1450000, "Bancolombia", 1234567890123463, "Mazda", "Motor", 15000);
+    mecanico8 =  Mecanico("Javier Diaz", 1234567898, 9876543218, "javier.diaz@gmail.com", "Avenida 45 #67-89", 1450000, "Bancolombia", 1234567890123464, "Chevrolet", "Motor", 15000);
+    mecanico9 =  Mecanico("Monica Rodriguez", 1234567899, 9876543219, "monica.rodriguez@gmail.com", "Calle 67 #89-01", 1450000, "Bancolombia", 1234567890123465, "Toyota", "Frenos", 57000);
+    mecanico10 =  Mecanico("Juadsadn Perez", 1234567894, 9876543210, "juan.perez@gmail.com", "Carrera 89 #01-23", 1450000, "Bancolombia", 1234567890123456, "Mazda", "Frenos", 57000);
+    mecanico11 =  Mecanico("Juaco Gomez", 1234567895, 9876543211, "juaco.gomez@gmail.com", "Calle 23 #45-67", 1450000, "Bancolombia", 2345678901234567, "Chevrolet", "Frenos", 57000);
+    mecanico12 =  Mecanico("Pedro Rodriguez", 1234567896, 9876543212, "pedro.rodriguez@gmail.com", "Carrera 56 #78-90", 1450000, "Bancolombia", 3456789012345678, "Toyota", "Pintura", 340000);
+    mecanico13 =  Mecanico("Maria Martinez", 1234567897, 9876543213, "maria.martinez@gmail.com", "Avenida 78 #90-12", 1450000, "Bancolombia", 4567890123456789, "Mazda", "Llantas", 50000);
+    mecanico14 =  Mecanico("Juan Lopez", 1234567898, 9876543214, "juan.lopez@gmail.com", "Calle 01 #23-45", 1450000, "Bancolombia", 5678901234567890, "Chevrolet", "Motor", 15000);
+    mecanico15 =  Mecanico("Daniel Hurtado", 1234567899, 987654321, "daniel.hurtado@gmail.com", "Carrera 34 #56-78", 1450000, "Bancolombia", 3456789012345752, "Toyota", "Modificacion", 20000);
+    mecanico16 =  Mecanico("Valentina Sanchez", 1234567900, 9876543216, "valentina.sanchez@gmail.com", "Avenida 67 #89-01", 1450000, "Bancolombia", 4567890123456753, "Mazda", "Modificacion", 20000);
+    mecanico17 =  Mecanico("Diego Jaramillo", 1234567901, 9876543217, "diego.jaramillo@gmail.com", "Calle 90 #12-34", 1450000, "Bancolombia", 5678901234567754, "Chevrolet", "Modificacion", 20000);
+    mecanico18 =  Mecanico("Juan David Alzate", 1234567902, 9876543218, "juandavidalzate@example.com", "Calle 267", 5000000.0, "Banco Z", 5678901234567755, "Chevrolet", "ModificacionPintura",50000);
+    mecanico19 =  Mecanico("Miranda Catrillon", 1234567903, 9876543219, "mirandacastrillon@example.com", "Calle 486", 5000000.0, "Banco Y", 5678901234567756, "Mazda", "ModificacionPintura",50000);
+    mecanico20 =  Mecanico("Nicolas Diaz", 1234567904, 9876543217, "nicolasdiaz@example.com", "Calle 762", 5000000.0, "Banco Y", 5678901234567757, "Toyota", "ModificacionPintura",50000);
+    mecanico21 =  Mecanico("Carlos Alzate", 1234567905, 9876543218, "carlosalzate@example.com", "Calle 267", 5000000.0, "Banco Y", 5678901234567758, "Chevrolet", "ModificacionLlantas",30000);
+    mecanico22 =  Mecanico("Virginia Maldonado", 1234567906, 9876543219, "virginiamaldonado@example.com", "Calle 486", 5000000.0, "Banco X", 5678901234567759, "Mazda", "ModificacionLlantas",30000);
+    mecanico23 =  Mecanico("Alejandro Narvaez", 1234567907, 9876543217, "alejandronarvaez@example.com", "Calle 762", 5000000.0, "Banco Y", 5678901234567760, "Toyota", "ModificacionLlantas",30000);
+    mecanico24 =  Mecanico("Argemiro Sanchez", 1234567908, 9876543218, "argemirosanchez@example.com", "Calle 764", 5000000.0, "Banco Z", 56789012345677561, "Chevrolet", "ModificacionSonido",40000);
+    mecanico25 =  Mecanico("Pink Floyd", 1234567909, 9876543219, "pinkfloyd@example.com", "Calle 136", 5000000.0, "Banco Y", 5678901234567762, "Mazda", "ModificacionSonido",40000);
+    mecanico26 =  Mecanico("Sara Bolivar", 1234567904, 9876543217, "sarabolivar@example.com", "Calle 746", 5000000.0, "Banco X", 5678901234567763, "Toyota", "ModificacionSonido",40000);
+    mecanico27 =  Mecanico("Juan Corrales", 1234567910, 9876543218, "juancorrales@example.com", "Calle 365", 5000000.0, "Banco Y", 5678901234567764, "Chevrolet", "ModificacionFrenos",20000);
+    mecanico28 =  Mecanico("Sara Orrego", 1234567911, 9876543219, "saraorrego@example.com", "Calle 148", 5000000.0, "Banco Y", 5678901234567765, "Mazda", "ModificacionFrenos",20000);
+    mecanico29 =  Mecanico("Josue Saenz", 1234567912, 9876543217, "josuesaenz@example.com", "Calle 167", 5000000.0, "Banco Z", 567890123456776, "Toyota", "ModificacionFrenos",20000);
+    
+
+    vendedor1 =  Vendedor("Juan Guaido", 123456789, 5551234, "juan@ejemplo.com", "Av. Siempre Viva 123", 1200000, "Banco Ejemplo", 987654321,"Vitrina");
+    vendedor2 =  Vendedor("Pedro Mojica", 987654321, 5554321, "pedro@ejemplo.com","Av. Siempre Viva 123", 1200000, "Banco Otro Ejemplo", 123456789,"Repuestos");
+    vendedor3 =  Vendedor("María De la Paz", 456789123, 5557890, "maria@ejemplo.com", "Calle Principal 456", 1200000, "Banco Ejemplo", 654321987,"Vitrina");
+    vendedor4 =  Vendedor("Luis Suarez", 789123456, 5552468, "luis@ejemplo.com", "Av. Siempre Viva 123", 1200000, "Banco Otro Ejemplo", 321654987,"Repuestos");
+    vendedor5 =  Vendedor("Ana Gabriel", 321654987, 5551357, "ana@ejemplo.com", "Avenida Central 789", 1200000, "Banco Ejemplo", 147258369,"Vitrina");
+    vendedor6 =  Vendedor("Jorge Elias", 654789321, 5558642, "jorge@ejemplo.com","Av. Siempre Viva 123",  1200000, "Banco Otro Ejemplo", 963852741,"Repuestos");
+    vendedor7 =  Vendedor("Carla Jimenez", 789654123, 5552795, "carla@ejemplo.com", "Calle Secundaria 321", 1200000, "Banco Ejemplo", 369852147,"Vitrina");
+    admin =  Vendedor("Oscar Velez", 3355479, 5552795, "oscar@ejemplo.com", "Medellin", 11200000, "Bancoquia", 369854317,"admin");
+
+    articulo1=  Articulo("Basico","taller","Motor","aceite mineral", "automovil y camioneta", "SHELL HELIX HX5 15W-50", 45000, 100,1001);
+    articulo2=  Articulo("Basico","taller","Motor","aceite sintetico", "automovil y camioneta", "Aceite 5w20 Mobil 2000 – cuarto", 33900, 100,1002);
+    articulo3=  Articulo("Basico","taller","Motor","aceite semisintetico", "automovil y camioneta", "Aceite 5w40 Mobil 3000 – cuarto", 34900, 100,1003);
+            
+
+    articulo4=  Articulo("Basico","taller","Llantas","Llanta todo terreno", "automovil y camioneta", "GoodYear", 745000, 100,1004);
+    articulo5=  Articulo("Basico","taller","Llantas","Llanta todo terreno", "automovil y camioneta", "Michelin", 1150000, 99,1005);
+    articulo6=  Articulo("Basico","taller","Llantas","Llanta terreno de barro", "automovil y camioneta", "Bridgestone", 750000, 100,1006);
+    articulo7=  Articulo("Basico","taller","Llantas","Llanta terreno de barro", "automovil y camioneta", "Yokohama Geolanda", 1899000, 100,1007);
+    articulo8=  Articulo("Basico","taller","Llantas","Llanta terreno de asfalto", "automovil y camioneta", "Goodyear", 650000, 100,1008);
+    articulo9=  Articulo("Basico","taller","Llantas","Llanta terreno de asfalto", "automovil y camioneta", "michelin", 1000000, 100,1009);
+
+    articulo10 =  Articulo("Basico","taller","Frenos", "Frenos de disco delanteros", "automóvil", "Brembo", 980000, 50,1010);
+    articulo11 =  Articulo("Basico","taller","Frenos", "Frenos de disco traseros", "automóvil", "Ferodo", 640000, 35,1011);
+    articulo12 =  Articulo("Basico","taller","Frenos", "Frenos de tambor delanteros", "automovil y camioneta", "Wabco", 2350000, 25,1012);
+    articulo13 =  Articulo("Basico","taller","Frenos", "Frenos de tambor traseros", "automovil y camioneta", "Bendix", 2150000, 30,1013);
+    articulo14 =  Articulo("Basico","taller","Frenos", "Frenos de disco delanteros y traseros", "automovil y camioneta", "Beringer", 440000, 20,1014);
+    articulo15 =  Articulo("Basico","taller","Frenos", "Frenos de tambor delanteros y traseros", "automovil y camioneta", "Wabco", 88000, 50,1015);
+
+    articulo16 =  Articulo("Basico","taller","Pintura", "Pintura acrílica blanca", "interior y exterior", "Behr", 300000, 50,1016);
+    articulo17 =  Articulo("Basico","taller","Pintura", "Pintura acrílica gris", "interior y exterior", "Sherwin Williams", 250000, 60,1017);
+    articulo18 =  Articulo("Basico","taller","Pintura", "Pintura esmalte roja", "interior y exterior", "Pintuco", 200000, 70,1018);
+    articulo19 =  Articulo("Basico","taller","Pintura", "Pintura para pizarrón negro", "interior", "Rust-Oleum", 100000, 30,1019);
+    articulo20 =  Articulo("Basico","taller","Pintura", "Pintura en spray dorada", "interior y exterior", "Krylon", 50000, 80,1020);
+    articulo21 =  Articulo("Basico","taller","Pintura", "Pintura acrílica verde oliva", "interior y exterior", "Glidden", 280000, 45,1021);
+    
+    articulo22 =  Articulo("premium", "repuesto", "Motor", "Bomba de agua", "automóvil", "Airtex", 350000, 10,2001, "Toyota");
+    articulo23 =  Articulo("premium", "repuesto", "Escape", "Silenciador", "automóvil", "MagnaFlow", 1200000, 5,2002, "Chevrolet");
+    articulo24 =  Articulo("premium", "repuesto", "Sonido", "Sistema de audio", "automóvil", "JBL", 1500000, 3,2003, "Mazda");
+    articulo25 =  Articulo("premium", "repuesto", "Suspension", "Amortiguador", "camioneta", "Bilstein", 850000, 8,2004, "Toyota");
+    articulo26 =  Articulo("premium", "repuesto", "Motor", "Filtro de aire", "automóvil", "K&N", 180000, 20,2005, "Chevrolet");
+    articulo27 =  Articulo("premium", "repuesto", "Escape", "Sistema de escape deportivo", "automóvil", "BORLA", 2500000, 2,2006, "Mazda");
+    articulo28 =  Articulo("premium", "repuesto", "Sonido", "Subwoofer", "automóvil", "Alpine", 650000, 6,2007, "Toyota");
+    articulo29 =  Articulo("premium", "repuesto", "Suspension", "Kit de levante", "camioneta", "Rancho", 3200000, 1,2008, "Chevrolet");
+    articulo30 =  Articulo("premium", "repuesto", "Motor", "Bujías de alto rendimiento", "automóvil", "NGK", 140000, 15,2009, "Mazda");
+    articulo31 =  Articulo("premium", "repuesto", "Escape", "Cabezal de escape", "automóvil", "Gibson", 2100000, 4,2010, "Toyota");
+
+    articulo32 =  Articulo("Basico","repuesto","Motor", "Filtro de aire", "automóvil", "FRAM", 45000, 100,2011, "Mazda");
+    articulo33 =  Articulo("Basico","repuesto","Motor", "Bujías", "automóvil", "NGK", 40000, 80,2012, "Toyota");
+    articulo34 =  Articulo("Basico","repuesto","Escape", "Silenciador", "automóvil", "Walker", 150000, 50,2013, "Chevrolet");
+    articulo35 =  Articulo("Basico","repuesto","Escape", "Tubo de escape", "automóvil", "Bosal", 80000, 60,2014, "Mazda");
+    articulo36 =  Articulo("Basico","repuesto","Sonido", "Radio FM/AM", "automóvil", "Sony", 180000, 30,2015, "Toyota");
+    articulo37 =  Articulo("Basico","repuesto","Sonido", "Parlantes", "automóvil", "Pioneer", 120000, 40,2016, "Chevrolet");
+    articulo38 =  Articulo("Basico","repuesto","Suspension", "Amortiguador", "automóvil", "Monroe", 100000, 70,2017);
+    articulo39 =  Articulo("Basico","repuesto","Suspension", "Esfera de suspensión", "automóvil", "Sachs", 65000, 90,2018);
+    articulo40 =  Articulo("Basico","repuesto","Motor", "Bomba de agua", "automóvil", "Gates", 80000, 60,2019);
+    articulo41 =  Articulo("Basico","repuesto","Motor", "Correa de distribución", "automóvil", "Continental", 60000, 80,2020);
     
     
     def limpiar(contenedor):
