@@ -1588,7 +1588,7 @@ if __name__ == "__main__":
                 global entrystats1
                 
                 cedula = entryadmin.get()
-                if cedula!="1":#"3355479":
+                if cedula!="3355479":
                     container.destroy()
                     lbno = tk.Label(zona_interaccion2, text="No es la cédula del admin", justify="left")
                     lbno.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
@@ -1702,7 +1702,7 @@ if __name__ == "__main__":
                                    + str(len(TransaccionVenta.get_transaccionesven())) + 
                                    " ventas en el mes, promediando "
                                    + str((len(TransaccionVenta.get_transaccionesven()))/(len(Vendedor.get_vendedores())))
-                                   + " ventas por vendedor",
+                                   + " ventas por vendedor:",
                                    justify="left")
                     infovendedores=tk.Label(container_3, text="info de cada vendedor", justify="left")
                     info2_3=tk.Label(container_3,
@@ -1731,7 +1731,7 @@ if __name__ == "__main__":
                     # para hacer el string de ventas hechas por vendedores
                     for venta1 in TransaccionVenta.get_transaccionesven():
                         ventass += str(venta1.get_vendedor().get_nombre()) + ": " + str(venta1.get_ingreso()) \
-                        + ", el " + str((venta1.get_vendedor().ventas/len(TransaccionVenta.get_transaccionesven())*100)) \
+                        + ", el " + str(round((venta1.get_ingreso()/ingresosautos)*100,0)) \
                         + " % del total de ingresos por concepto de venta de autos\n"
 
                     if ventass=="":
@@ -1831,7 +1831,7 @@ if __name__ == "__main__":
 
                     sumaTotal = sumaventasToyota + sumaventasChevrolet + sumaventasMazda
 
-                    StringToyota="Mazda: " + str(sumaventasToyota) + ", "+ str(round((sumaventasToyota/sumaTotal)*100,2)) \
+                    StringToyota="Toyota: " + str(sumaventasToyota) + ", "+ str(round((sumaventasToyota/sumaTotal)*100,2)) \
                     + "% del total de ventas por concepto de venta de autos"
                     StringChevrolet="Chevrolet: " + str(sumaventasChevrolet) + ", " + str(round((sumaventasChevrolet/sumaTotal)*100,2)) \
                     + "% del total de ventas por concepto de venta de autos"
@@ -1872,6 +1872,8 @@ if __name__ == "__main__":
             # label, entry y button de cedula admin
             lbadmin = tk.Label(container, text="Introduzca su cedula", justify="left")
             entryadmin = tk.Entry(container)
+
+
             botonadmin = tk.Button(container, text="enviar", command=botonadmin1)
             #botonadmin.bind("<botonadmin>", lambda event: botonadmin(entryadmin.get()))
             lbadmin.pack(side='left', padx=0, pady=0)
