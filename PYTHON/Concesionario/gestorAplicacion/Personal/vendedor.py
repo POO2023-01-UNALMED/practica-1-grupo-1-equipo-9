@@ -50,7 +50,7 @@ class Vendedor(Trabajador):
 
     def get_puesto(self):
         return self.puesto
-
+    
     def set_puesto(self, puesto):
         self.puesto = puesto
 
@@ -110,14 +110,14 @@ class Vendedor(Trabajador):
     def estResults(listaFinanzas):
         ventasautos = sum(transaccauto.get_ingreso() for transaccauto in TransaccionVenta.get_transaccionesven())
         ventastaller = sum(transacctaller.get_ingreso() for transacctaller in TransaccionTaller.get_transaccionestal())
-        arttaller = sum(t.get_ingreso() for t in TransaccionVentaTaller.get_transaccionesven())
+        arttaller = sum(t.get_ingreso() for t in TransaccionVentaTaller.get_transaccionesvental())
         transaccmod = sum(m.get_ingreso() for m in TransaccionModificacion.get_transaccionesmod())
 
         ventas = ventasautos + ventastaller + arttaller + transaccmod
         listaFinanzas[0] = ventas
 
-        pagoEmpleados = sum(vendedor.getSalario() for vendedor in Vendedor.get_vendedores())
-        pagoEmpleados += sum(mecanico.getSalario() for mecanico in Mecanico.get_mecanicos())
+        pagoEmpleados = sum(vendedor.get_salario() for vendedor in Vendedor.get_vendedores())
+        pagoEmpleados += sum(mecanico.get_salario() for mecanico in Mecanico.get_mecanicos())
         listaFinanzas[1] = pagoEmpleados
 
         gastos = ventasautos * 0.02 + 10000000 + 7000000

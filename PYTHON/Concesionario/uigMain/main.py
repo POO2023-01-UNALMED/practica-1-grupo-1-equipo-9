@@ -378,6 +378,7 @@ if __name__ == "__main__":
                 texto = info + info2
                 campo_texto.config(text=texto)
                 boton_aceptar.destroy()
+                seleccionar_auto.destroy()
 
 
 
@@ -1279,35 +1280,43 @@ if __name__ == "__main__":
                 if opcion == "1":
                     etiqueta2.config(text="ESTADO DE RESULTADOS DEL CONCESIONARIO")
 
+                    datos=Vendedor.estResults([0,0,0,0])
                     container_resultados = tk.Frame(zona_interaccion2)
                     container_resultados.pack(side='top', anchor='w', padx=10, pady=10)
 
                     # Ventas Totales
-                    lb_ventas_totales = tk.Label(container_resultados, text="Ventas Totales: #")
+                    lb_ventas_totales = tk.Label(container_resultados, 
+                    text="Ventas Totales: " + str(datos[0]))
                     lb_ventas_totales.pack(side='top', anchor='w')
 
                     # Costo de Ventas
-                    lb_costo_ventas = tk.Label(container_resultados, text="Costo de Ventas: #")
+                    lb_costo_ventas = tk.Label(container_resultados, 
+                    text="Costo de Ventas: " + str(datos[1]))
                     lb_costo_ventas.pack(side='top', anchor='w')
 
                     # Utilidad Operativa
-                    lb_utilidad_operativa = tk.Label(container_resultados, text="UTILIDAD OPERATIVA: #")
+                    lb_utilidad_operativa = tk.Label(container_resultados, 
+                    text="UTILIDAD OPERATIVA: " + str(datos[0]-datos[1]))
                     lb_utilidad_operativa.pack(side='top', anchor='w')
 
                     # Gastos Operacionales y de Ventas
-                    lb_gastos_operacionales = tk.Label(container_resultados, text="Gastos Operacionales y de Ventas: #")
+                    lb_gastos_operacionales = tk.Label(container_resultados, 
+                    text="Gastos Operacionales y de Ventas: " + str(datos[2]))
                     lb_gastos_operacionales.pack(side='top', anchor='w')
 
                     # Utilidad antes de Impuestos
-                    lb_utilidad_impuestos = tk.Label(container_resultados, text="UTILIDAD ANTES DE IMPUESTOS: #")
+                    lb_utilidad_impuestos = tk.Label(container_resultados, 
+                    text="UTILIDAD ANTES DE IMPUESTOS: " + str(datos[0]-datos[1]-datos[2]))
                     lb_utilidad_impuestos.pack(side='top', anchor='w')
 
                     # Impuesto de Renta
-                    lb_impuesto_renta = tk.Label(container_resultados, text="Impuesto de Renta: #")
+                    lb_impuesto_renta = tk.Label(container_resultados, 
+                    text="Impuesto de Renta: " + str(datos[3]))
                     lb_impuesto_renta.pack(side='top', anchor='w')
 
                     # Utilidad Neta
-                    lb_utilidad_neta = tk.Label(container_resultados, text="UTILIDAD NETA: #")
+                    lb_utilidad_neta = tk.Label(container_resultados, 
+                    text="UTILIDAD NETA: " + str(datos[0]-datos[1]-datos[2]-datos[3]))
                     lb_utilidad_neta.pack(side='top', anchor='w')
 
 
@@ -1329,7 +1338,7 @@ if __name__ == "__main__":
                             'September': 'septiembre', 'October': 'octubre', 'November': 'noviembre', 'December': 'diciembre'
                         }
                         return meses[mes_en_ingles]
-    
+
                     etiqueta2.config(text="ESTADISTICAS DE VENTAS POR VENDEDOR")
                     ## plantilla base (3):
                     container_3=tk.Frame(zona_interaccion2)
@@ -1582,7 +1591,50 @@ if __name__ == "__main__":
             comprobar.pack(padx=5, pady=5)
 
         def administrador(nombre_proceso):
-            pass
+            global etiqueta
+            global window2
+            global ventana_funcionalidad
+            limpiar(ventana_funcionalidad)
+
+            def opciones_administrador(event):
+                texto = tk.Label(ventana_funcionalidad, text="Seleccione una opción de administración")
+                boton1 = tk.Button(ventana_funcionalidad, text="Asignar horarios")
+                boton2 = tk.Button(ventana_funcionalidad, text="Añadir articulo")
+                boton3 = tk.Button(ventana_funcionalidad, text="Añadir auto")
+                boton4 = tk.Button(ventana_funcionalidad, text="Añadir vendedor")
+                boton5 = tk.Button(ventana_funcionalidad, text="Añadir mecánico")
+                texto.pack(pady=5)
+                boton1.pack(pady=5)
+                boton2.pack(pady=5)
+                boton3.pack(pady=5)
+                boton4.pack(pady=5)
+                boton5.pack(pady=5)
+
+            def comprobar_cliente(event):
+                global valor_cedula_admin
+
+                valor_cedula_admin = fp.getValue("Cédula")
+                admin = Vendedor.get_vendedorPorCedula(int(valor_cedula_admin))
+                if admin!=None and admin.get_puesto()=="admin":
+                    pass
+                else:
+                    Exception(messagebox.showwarning("Acceso denegado","Usted no es administrador"))
+
+
+
+            criterios = ["Cédula"]
+            valores_iniciales = [""]
+            habilitados = [True]
+
+            texto = tk.Label(ventana_funcionalidad, text="Escriba sus datos para crear el registro")
+            fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+            texto.pack(side="top", pady=5)
+            fp.pack(side="top")
+            comprobar = tk.Button(ventana_funcionalidad, text="Comprobar")
+            comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+            comprobar.pack(padx=5, pady=5)
+
+
 
 
         '''print("\n\nMenú principal Concesionario")
