@@ -70,7 +70,7 @@ class Trabajador:
     
     @staticmethod
     def pago(mec):
-        mec.set_salario(mec.get_mano_obra() + mec.get_salario())
+        mec.set_salario(mec.get_manoObra() + mec.get_salario())
     
     @staticmethod
     def pago_vendedor_auto(vend, auto):
