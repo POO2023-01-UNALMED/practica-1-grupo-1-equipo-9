@@ -2183,10 +2183,10 @@ if __name__ == "__main__":
                         messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                     else:
                         if lista[5]=="si":
-                            Auto(lista[0],lista[1],lista[2],lista[3],lista[4],True)
+                            Auto(lista[0],lista[1],lista[2],lista[3],lista[4],True, True, Articulo.get_articuloPorReferencia(3001), Articulo.get_articuloPorReferencia(3004),Articulo.get_articuloPorReferencia(3002),Articulo.get_articuloPorReferencia(3003))
                             messagebox.showinfo("Auto registrado", "Ahora se encuentra registrado.")
                         elif lista[5]=="no":
-                            Auto(lista[0],lista[1],lista[2],lista[3],lista[4],False)
+                            Auto(lista[0],lista[1],lista[2],lista[3],lista[4], False, True, Articulo.get_articuloPorReferencia(3001), Articulo.get_articuloPorReferencia(3004),Articulo.get_articuloPorReferencia(3002),Articulo.get_articuloPorReferencia(3003))
                             messagebox.showinfo("Auto registrado", "Ahora se encuentra registrado.")
 
                 criterios = ["Modelo","Marca","Precio","Cilindraje","Color","FullEquipo"]
