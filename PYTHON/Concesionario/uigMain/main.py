@@ -973,86 +973,6 @@ if __name__ == "__main__":
 
         
         def proceso_personalizar_auto(nombre_proceso):
-            global etiqueta
-            global window2
-            global ventana_funcionalidad
-            def confirmar_proceso(event):
-                global proceso_elegido
-                global seleccionar_proceso
-                global campo_texto
-                global boton_aceptar
-                global mecanicos_encontrados
-                
-
-                proceso_elegido = int(seleccionar_proceso.get())-1
-
-                proceso_confirmado = procesos[proceso_elegido]
-
-                info = f"El proceso elegido es {proceso_confirmado} \n"
-                info2 = f"Por favor, seleccione el Mecanico que lo va a atender \n"
-                j = 1
-                mecanicos_encontrados = Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get()))
-                texto1 = ""
-                indices = []
-                for c in mecanicos_encontrados:
-                    linea = "{:<20} {:<20} {:<40}{:<20}\n".format(j, c.get_nombre(), c.get_especialidad(),c.get_autos())
-                    j += 1
-                    texto1 += linea
-                for f in range(1, j):
-                    indices.append(f)
-                seleccionar_proceso['values']=indices
-                texto2 = "{:<20} {:<20} {:<40}{:<20}\n".format("", "Nombre", "Especialidad","Auto que Atiende")
-                texto = info + info2 + texto2 + texto1
-                campo_texto.config(text=texto)
-                boton_aceptar.bind("<Button-1>", lambda event: confirmar_mecanico(event))
-                
-            def confirmar_mecanico(event):
-                global proceso_confirmado
-                global mecanicos_encontrados
-                global campo_texto
-                global seleccionar_proceso
-                global articulos_encontrados
-
-                mecanico_elegido = int(seleccionar_proceso.get())-1
-
-                mecanico_confirmado = mecanicos_encontrados[mecanico_elegido]
-                info = ("El Mecanico es: " +mecanico_confirmado.get_nombre()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
-                texto=info
-                campo_texto.config(text=texto)
-                info2 = f"Por favor, seleccione el Articulo A Instalar en su Vehiculo \n"
-                j = 1
-                articulos_encontrados = Inventario_Articulo.articulo_dispo(mecanico_confirmado)
-                texto1 = ""
-                indices = []
-                for c in articulos_encontrados:
-                    linea = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format(j, c.get_referencia(), c.get_tipo(),c.get_marca(),c.get_precio())
-                    j += 1
-                    texto1 += linea
-                for f in range(1, j):
-                    indices.append(f)
-                seleccionar_proceso['values']=indices
-                texto2 = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format("", "Referencia", "Tipo","Marca","Precio")
-                texto = info + info2 + texto2 + texto1
-                campo_texto.config(text=texto)
-                boton_aceptar.bind("<Button-1>", lambda event: confirmar_articulo(event))
-            
-            def confirmar_articulo(event):
-                global proceso_confirmado
-                global articulos_encontrados
-                global campo_texto
-                global seleccionar_proceso
-
-                articulo_elegido = int(seleccionar_proceso.get())-1
-
-                articulo_confirmado = articulos_encontrados[articulo_elegido]
-                info = ("El Articulo es: " +articulo_confirmado.get_tipo()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
-                texto=info
-                campo_texto.config(text=texto)
-
-
-            def opciones_busqueda_carro(event):
-                pass
-
             limpiar(ventana_funcionalidad)
             descripcion="Este proceso esta diseñado para atender vehiculos comprados en nuestro consecionario, aca podras reparar, hacer revisiones y separar citas para ser atendido por un mecanico"
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
@@ -1082,6 +1002,86 @@ if __name__ == "__main__":
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
             def utilizar_taller_mecanicos(event):
+
+                global etiqueta
+                global window2
+                global ventana_funcionalidad
+                def confirmar_proceso(event):
+                    global proceso_elegido
+                    global seleccionar_proceso
+                    global campo_texto
+                    global boton_aceptar
+                    global mecanicos_encontrados
+                    
+
+                    proceso_elegido = int(seleccionar_proceso.get())-1
+
+                    proceso_confirmado = procesos[proceso_elegido]
+
+                    info = f"El proceso elegido es {proceso_confirmado} \n"
+                    info2 = f"Por favor, seleccione el Mecanico que lo va a atender \n"
+                    j = 1
+                    mecanicos_encontrados = Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get()))
+                    texto1 = ""
+                    indices = []
+                    for c in mecanicos_encontrados:
+                        linea = "{:<20} {:<20} {:<40}{:<20}\n".format(j, c.get_nombre(), c.get_especialidad(),c.get_autos())
+                        j += 1
+                        texto1 += linea
+                    for f in range(1, j):
+                        indices.append(f)
+                    seleccionar_proceso['values']=indices
+                    texto2 = "{:<20} {:<20} {:<40}{:<20}\n".format("", "Nombre", "Especialidad","Auto que Atiende")
+                    texto = info + info2 + texto2 + texto1
+                    campo_texto.config(text=texto)
+                    boton_aceptar.bind("<Button-1>", lambda event: confirmar_mecanico(event))
+                    
+                def confirmar_mecanico(event):
+                    global proceso_confirmado
+                    global mecanicos_encontrados
+                    global campo_texto
+                    global seleccionar_proceso
+                    global articulos_encontrados
+
+                    mecanico_elegido = int(seleccionar_proceso.get())-1
+
+                    mecanico_confirmado = mecanicos_encontrados[mecanico_elegido]
+                    info = ("El Mecanico es: " +mecanico_confirmado.get_nombre()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
+                    texto=info
+                    campo_texto.config(text=texto)
+                    info2 = f"Por favor, seleccione el Articulo A Instalar en su Vehiculo \n"
+                    j = 1
+                    articulos_encontrados = Inventario_Articulo.articulo_dispo(mecanico_confirmado)
+                    texto1 = ""
+                    indices = []
+                    for c in articulos_encontrados:
+                        linea = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format(j, c.get_referencia(), c.get_tipo(),c.get_marca(),c.get_precio())
+                        j += 1
+                        texto1 += linea
+                    for f in range(1, j):
+                        indices.append(f)
+                    seleccionar_proceso['values']=indices
+                    texto2 = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format("", "Referencia", "Tipo","Marca","Precio")
+                    texto = info + info2 + texto2 + texto1
+                    campo_texto.config(text=texto)
+                    boton_aceptar.bind("<Button-1>", lambda event: confirmar_articulo(event))
+                
+                def confirmar_articulo(event):
+                    global proceso_confirmado
+                    global articulos_encontrados
+                    global campo_texto
+                    global seleccionar_proceso
+
+                    articulo_elegido = int(seleccionar_proceso.get())-1
+
+                    articulo_confirmado = articulos_encontrados[articulo_elegido]
+                    info = ("El Articulo es: " +articulo_confirmado.get_tipo()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
+                    texto=info
+                    campo_texto.config(text=texto)
+
+
+                def opciones_busqueda_carro(event):
+                    pass
             
                 def confirmar_cliente(event):
                     global cliente
@@ -1090,6 +1090,7 @@ if __name__ == "__main__":
                     global procesos
                     global seleccionar_proceso
                     global boton_aceptar
+                    
                         
                     fp.forget()
                     comprobar.destroy()
@@ -1202,6 +1203,7 @@ if __name__ == "__main__":
                 print("Asignar vendedor")
             
             def seleccionar_funcion(event):
+                boton_elegir.destroy()
                 opcion_elegida = seleccionar_opcion.get()
 
                 if opcion_elegida == "Utilizar taller mecánicos":
