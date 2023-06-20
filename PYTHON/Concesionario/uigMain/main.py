@@ -1847,46 +1847,46 @@ if __name__ == "__main__":
                     boton_aceptar.bind("<Button-1>", lambda event: limpiar(ventana_funcionalidad))
 
 
-                    def confirmar_cliente(event):
-                        global cliente
-                        global combobox_lista_marca
-                        global campo_texto
-                        global procesos
-                        global seleccionar_proceso
-                        global boton_aceptar
-                        global frame_procesos
-                        
-                        fp.forget()
-                        comprobar.destroy()
-
-                        frame_procesos = tk.Frame(ventana_funcionalidad)
-                        frame_procesos.pack(side="top", anchor="center")
-
-                        procesos=["Repuestos Motor","Escapes","Sonido","Suspension"]
-
-                        texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
+                def confirmar_cliente(event):
+                    global cliente
+                    global combobox_lista_marca
+                    global campo_texto
+                    global procesos
+                    global seleccionar_proceso
+                    global boton_aceptar
+                    global frame_procesos
                     
-                        texto_proceso_cliente = f"Que proceso desea hacerle al vehiculo\n"
-                        texto_titulo_procesos = "\n{:<40} {:<40}  \n".format( "Seleccion", "Proceso")
-                        contador = 1
-                        texto_lista = ""
-                        for i in procesos:
-                            linea = "{:<40} {:<40}  \n".format(contador, i)
-                            contador += 1
-                            texto_lista += linea
-                        texto = texto_nombre_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
-                        campo_texto = tk.Label(frame_procesos, text=texto)
-                        seleccionar_proceso = ttk.Combobox(frame_procesos)
-                        valores = []
-                        for i in range(1, contador):
-                            valores.append(i)
-                        seleccionar_proceso['values']=valores
-                        seleccionar_proceso.current(0)
-                        boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
-                        boton_aceptar.bind("<Button-1>", lambda event: confirmar_proces(event))
-                        campo_texto.pack(pady=10)
-                        seleccionar_proceso.pack()
-                        boton_aceptar.pack(pady=10)
+                    fp.forget()
+                    comprobar.destroy()
+
+                    frame_procesos = tk.Frame(ventana_funcionalidad)
+                    frame_procesos.pack(side="top", anchor="center")
+
+                    procesos=["Repuestos Motor","Escapes","Sonido","Suspension"]
+
+                    texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
+                
+                    texto_proceso_cliente = f"Que proceso desea hacerle al vehiculo\n"
+                    texto_titulo_procesos = "\n{:<40} {:<40}  \n".format( "Seleccion", "Proceso")
+                    contador = 1
+                    texto_lista = ""
+                    for i in procesos:
+                        linea = "{:<40} {:<40}  \n".format(contador, i)
+                        contador += 1
+                        texto_lista += linea
+                    texto = texto_nombre_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
+                    campo_texto = tk.Label(frame_procesos, text=texto)
+                    seleccionar_proceso = ttk.Combobox(frame_procesos)
+                    valores = []
+                    for i in range(1, contador):
+                        valores.append(i)
+                    seleccionar_proceso['values']=valores
+                    seleccionar_proceso.current(0)
+                    boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
+                    boton_aceptar.bind("<Button-1>", lambda event: confirmar_proces(event))
+                    campo_texto.pack(pady=10)
+                    seleccionar_proceso.pack()
+                    boton_aceptar.pack(pady=10)
                         
                         
                 def cancel(event):
