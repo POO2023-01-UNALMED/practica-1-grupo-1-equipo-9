@@ -32,6 +32,7 @@ from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
 from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
 from gestorAplicacion.Personal.trabajador import Trabajador
 from gestorAplicacion.Activos.transaccionVentaTaller import TransaccionVentaTaller
+from gestorAplicacion.Activos.TransaccionModificacion import TransaccionModificacion
 import datetime
 
 if __name__ == "__main__":
@@ -1495,7 +1496,7 @@ if __name__ == "__main__":
                     transfer = int(random.random() * 1000)
 
                     info = ("TRANSACCION REALIZADA CON EXITO"  "\n")
-                    info2=TransaccionTaller("Taller",precio,cliente,cliente.get_auto(),articulo_confirmado,mecanico_confirmado,transfer).info()
+                    info2=TransaccionModificacion("Taller",precio,cliente,cliente.get_auto(),articulo_confirmado,transfer,mecanico_confirmado).info2()
                     texto = info + info2
                     Trabajador.pago(mecanico_confirmado)
                     articulo_confirmado.cantidad=-1
@@ -1620,353 +1621,19 @@ if __name__ == "__main__":
                 comprobar = tk.Button(container, text="Comprobar")
                 comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
                 comprobar.pack(padx=5, pady=5)
-
-            def asignar_vendedor(event):
-                print("Entra")
-                global etiqueta
-                global window2
-                global ventana_funcionalidad
-                def confirmar_proces(event):
-                    global proceso_elegido
-                    global seleccionar_proceso
-                    global campo_texto
-                    global boton_aceptar
-                    global vehiculos
-                    global proceso_confirmado
-                    global repuesto
-                    global procesos
-                    
-
-                    proceso_elegido = int(seleccionar_proceso.get())-1
-
-                    proceso_confirmado = procesos[proceso_elegido]
-
-                    repuesto=Inventario_Articulo.selector_especial(proceso_elegido+1)
-
-                    info = f"El proceso elegido es {proceso_confirmado} \n"
-                    info2 = f"Por favor, seleccione la marca del Vehiculo del repuesto \n"
-                    j = 1
-                    vehiculos = ["Toyota","Mazda","Chevrolet"]
-                    texto2 = ("Seleccione La marca del Vehiculo")
-                    texto1 = ""
-                    texto = info + info2 + texto2 + texto1
-                    indices = []
-                    for c in vehiculos:
-                        linea = "{:<20} {:<20} \n".format(j, c)
-                        j += 1
-                        texto1 += linea
-                    for f in range(1, j):
-                        indices.append(f)
-                    seleccionar_proceso['values']=indices
-                    texto2 = "{:<20} {:<20} \n".format("", "Marca")
-                    texto = info + info2 + texto2 + texto1
-                    campo_texto.config(text=texto)
-                    boton_aceptar.bind("<Button-1>", lambda event: confirmar_marca(event))
-                    
-                def confirmar_marca(event):
-                    global proceso_confirmado
-                    global mecanicos_encontrados
-                    global campo_texto
-                    global seleccionar_proceso
-                    global articulos_encontrados
-                    global mecanico_confirmado
-                    global repuesto
-                    global marca_confirmado
-                    global calidad_encontrados
-                    global marca
-
-                    marca_elegido = int(seleccionar_proceso.get())-1
-
-                    marca_confirmado = vehiculos[marca_elegido]
-                    
-
-                    marca=Inventario_Articulo.selector_marca(repuesto,marca_elegido+1)
-                    
-
-
-                    info = ("El Mecanico es: " +marca_confirmado+ "\n")
-                    texto=info
-                    campo_texto.config(text=texto)
-                    info2 = f"Por favor, seleccione la calidad del Articulo a instalar\n"
-                    j = 1
-                    calidad_encontrados = ["premium","Basico"]
-                    texto1 = ""
-                    indices = []
-                    for c in calidad_encontrados:
-                        linea = "{:<15} {:<40} \n".format(j, c)
-                        j += 1
-                        texto1 += linea
-                    for f in range(1, j):
-                        indices.append(f)
-                    seleccionar_proceso['values']=indices
-                    texto2 = "{:<15} {:<40} \n".format("", "Calidad")
-                    texto = info + info2 + texto2 + texto1
-                    campo_texto.config(text=texto)
-                    boton_aceptar.bind("<Button-1>", lambda event: confirmar_articulo(event))
-                
-                def confirmar_articulo(event):
-                    global proceso_confirmado
-                    global articulos_encontrados
-                    global campo_texto
-                    global seleccionar_proceso
-                    global mecanico_confirmado
-                    global articulo_confirmado
-                    global marca_confirmado
-                    global calidad_encontrados
-                    global calidad_confirmado
-                    global marca
-                    global articulos
-
-                    calidad_elegido = int(seleccionar_proceso.get())-1
-
-                    calidad_confirmado = calidad_encontrados[calidad_elegido]
-                    print(calidad_confirmado)
-                    print(marca_confirmado)
-                    print(proceso_confirmado)
-                    
-
-                    articulos=Inventario_Articulo.selector_calidad(marca,calidad_elegido+1)
-
-                    info = ("El Articulo es calidad : " +calidad_confirmado+" para su vehiculo que es un (a):  "+ marca_confirmado + "\n")
-                    texto=info
-                    j = 1
-                    campo_texto.config(text=texto)
-                    info2 = f"Por favor, seleccione El Articulo: \n"
-                    
-                    texto1 = ""
-                    indices = []
-                    for c in articulos:
-                        linea = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format(j, c.get_referencia(), c.get_tipo(),c.get_marca(),c.get_precio())
-                        j += 1
-                        texto1 += linea
-                    for f in range(1, j):
-                        indices.append(f)
-                    seleccionar_proceso['values']=indices
-                    texto2 = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format("", "Referencia", "Tipo","Marca","Precio")
-                    texto = info + info2 + texto2 + texto1
-                    campo_texto.config(text=texto)
-                    boton_aceptar.bind("<Button-1>", lambda event: confirmar_vendedor(event))
-                    
-
-                def confirmar_vendedor(event):
-                    global proceso_confirmado
-                    global articulos_encontrados
-                    global campo_texto
-                    global seleccionar_proceso
-                    global mecanico_confirmado
-                    global articulo_confirmado
-                    global marca_confirmado
-                    global calidad_encontrados
-                    global calidad_confirmado
-                    global marca
-                    global articulo_elegido
-                    global articulos
-                    global vendedores_encontrados
-
-                    articulo_elegido = int(seleccionar_proceso.get())-1
-
-                    articulo_confirmado = articulos[articulo_elegido]
-
-                    info = f"El Articulo elegido es {articulo_confirmado.info()} \n"
-                    info2 = f"Por favor, seleccione el vendedor que lo ha atendido \n"
-                    i = 1
-                    vendedores_encontrados = Vendedor.selector_vend(articulo_confirmado)
-                    texto1 = ""
-                    indices = []
-                    for c in vendedores_encontrados:
-                        linea = "{:<20} {:<20} {:<20}\n".format(i, c.get_nombre(), c.get_puesto())
-                        i += 1
-                        texto1 += linea
-                    for f in range(1, i):
-                        indices.append(f)
-                    seleccionar_proceso['values']=indices
-                    texto2 = "{:<20} {:<20} {:<20}\n".format("", "Nombre", "Tipo de venta")
-                    texto = info + info2 + texto2 + texto1
-                    campo_texto.config(text=texto)
-                    boton_aceptar.bind("<Button-1>", lambda event: confirmar_todo(event))
-                    
-
-
-                def confirmar_todo(event):
-                    global proceso_elegido
-                    global seleccionar_proceso
-                    global campo_texto
-                    global boton_aceptar
-                    global mecanicos_encontrados
-                    global proceso_confirmado
-                    global articulos_encontrados
-                    global articulo_confirmado
-                    global mecanico_confirmado
-                    global proceso_confirmado
-                    global precio
-                    global frame_procesos
-                    global boton_confirmar
-                    global vendedortal_confirmado
-                    global vendedores_encontrados
-
-
-                    vendedortal_elegido = int(seleccionar_proceso.get())-1
-
-                    vendedortal_confirmado = vendedores_encontrados[vendedortal_elegido]
-                    
-                    vendedortal_confirmado.confirmar_venta()
-                    
-                    precio=int(articulo_confirmado.get_precio())
-                    info = ("Venta Realizada por: "+vendedortal_confirmado.get_nombre() +"de: "+articulo_confirmado.get_tipoArticulo() +"por un precio de: "+str(precio)+  "\n")
-                    texto = info 
-                    campo_texto.config(text=texto)
-                    seleccionar_proceso.destroy()
-                    boton_aceptar.bind("<Button-1>", lambda event: trans(event))
-                    
-
-                def trans(event):
-                    global proceso_elegido
-                    global seleccionar_proceso
-                    global campo_texto
-                    global boton_aceptar
-                    global mecanicos_encontrados
-                    global proceso_confirmado
-                    global articulos_encontrados
-                    global articulo_confirmado
-                    global mecanico_confirmado
-                    global proceso_confirmado
-                    global precio
-                    global frame_procesos
-                    global boton_confirmar
-                    global vendedortal_confirmado
-
-                    transfer = int(random.random() * 1000)
-
-                    info = ("TRANSACCION REALIZADA CON EXITO"  "\n")
-                    info2=TransaccionVentaTaller("Venta",precio,cliente,articulo_confirmado,vendedortal_confirmado,transfer).info()
-                    texto = info + info2
-                    Trabajador.pago_vendedor_articulo(vendedortal_confirmado,articulo_confirmado)
-                    articulo_confirmado.cantidad=-1
-                    
-                    campo_texto.config(text=texto)
-                    boton_aceptar.bind("<Button-1>", lambda event: limpiar(ventana_funcionalidad))
-
-
-                    def confirmar_cliente(event):
-                        global cliente
-                        global combobox_lista_marca
-                        global campo_texto
-                        global procesos
-                        global seleccionar_proceso
-                        global boton_aceptar
-                        global frame_procesos
-                        
-                        fp.forget()
-                        comprobar.destroy()
-
-                        frame_procesos = tk.Frame(ventana_funcionalidad)
-                        frame_procesos.pack(side="top", anchor="center")
-
-                        procesos=["Repuestos Motor","Escapes","Sonido","Suspension"]
-
-                        texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
-                    
-                        texto_proceso_cliente = f"Que proceso desea hacerle al vehiculo\n"
-                        texto_titulo_procesos = "\n{:<40} {:<40}  \n".format( "Seleccion", "Proceso")
-                        contador = 1
-                        texto_lista = ""
-                        for i in procesos:
-                            linea = "{:<40} {:<40}  \n".format(contador, i)
-                            contador += 1
-                            texto_lista += linea
-                        texto = texto_nombre_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
-                        campo_texto = tk.Label(frame_procesos, text=texto)
-                        seleccionar_proceso = ttk.Combobox(frame_procesos)
-                        valores = []
-                        for i in range(1, contador):
-                            valores.append(i)
-                        seleccionar_proceso['values']=valores
-                        seleccionar_proceso.current(0)
-                        boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
-                        boton_aceptar.bind("<Button-1>", lambda event: confirmar_proces(event))
-                        campo_texto.pack(pady=10)
-                        seleccionar_proceso.pack()
-                        boton_aceptar.pack(pady=10)
-                        
-                        
-                def cancel(event):
-                    ventana_funcionalidad.destroy()
-
-                def comprobar_cliente(event):
-                    global valor_cedula
-                    global valores_iniciales
-                    global cliente
-                    
-                    valor_cedula = fp.getValue("Cedula")
-
-
-                    if fp.entries[0].get()!="":
-
-                        cliente = Cliente.get_clientePorCedula(int(valor_cedula))
-
-                        if cliente != None:
-                            nombre_cliente = cliente.get_nombre()
-                            correo_cliente = cliente.get_correo()
-                            telefono_cliente=cliente.get_telefono()
-                    
-                            
-                            label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
-                            label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
-                            label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
-
-                            label_1.configure(state="normal")
-                            label_2.configure(state="normal")
-                            label_3.configure(state="normal")
-
-                            label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
-                            label_2.delete(0, END)
-                            label_3.delete(0, END)
-
-                            label_1.insert(END, nombre_cliente)
-                            label_2.insert(END, correo_cliente)
-                            label_3.insert(END,telefono_cliente)
-                            
-                            label_1.configure(state="disabled")
-                            label_2.configure(state="disabled")
-                            label_3.configure(state="disabled")
-                            
-                            comprobar.configure(text="¿Confirmar?")
-                            comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
-                            cancelar = tk.Button(container, text="Cancelar")
-                            cancelar.bind("<Button-1>", lambda event: limpiar(ventana_funcionalidad))
-                            cancelar.pack(padx=5, pady=5,side="bottom")
-                        elif cliente==None:
-                            raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
-        
-        
-                    else:
-                        raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
-                    
-
-                criterios = ["Cedula", "Nombre", "Correo", "Telefono"]
-                valores_iniciales = ["", "", "", ""]
-                habilitados = [True, False, False, False]
-
-                fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
-                fp.pack(side="top")
-                comprobar = tk.Button(container, text="Comprobar")
-                comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
-                comprobar.pack(padx=5, pady=5)
-            
             def seleccionar_funcion(event):
                 boton_elegir.destroy()
                 opcion_elegida = seleccionar_opcion.get()
 
                 if opcion_elegida == "Utilizar taller mecánicos":
                     utilizar_taller_mecanicos(event)
+                    seleccionar_opcion.destroy()
                     
-                elif opcion_elegida == "Asignar vendedor":
-                    asignar_vendedor(event)
                     
 
             # Crear la opción para que el usuario elija entre utilizar el taller de mecánicos o asignar un vendedor
             seleccionar_opcion = ttk.Combobox(container)
-            seleccionar_opcion['values'] = ["Utilizar taller mecánicos", "Asignar vendedor"]
+            seleccionar_opcion['values'] = ["Utilizar taller mecánicos"]
             seleccionar_opcion.current(0)
             seleccionar_opcion.pack(pady=10)
 
@@ -2719,20 +2386,20 @@ if __name__ == "__main__":
         print("4. Consultar estadisticas / finanzas")
         print("5. Personalizar su auto")
         print("6. Crear nuevo usuario (Comprador)")
-        print("7. Administración")'''
-        print("8. Salir")
+        print("7. Administración")
+        print("8. Salir")'''
         
-        opcion = int(input("Ingrese el número de la opción que va a utilizar: "))
+        opcion = int(input(""))
         
         if opcion == 1:
             procesoVenta()
-            respuesta = input("¿Desea volver al menú principal? (si/no): ")
+            respuesta = input("")
             if respuesta == "no":
                 Serializador.serializar_arrays()
                 volver_al_menu_principal = False
         elif opcion == 2:
             ##ventaRepuestos()
-            respuesta = input("¿Desea volver al menú principal? (si/no): ")
+            respuesta = input(" ")
             if respuesta == "no":
                 volver_al_menu_principal = False
         elif opcion==8:
