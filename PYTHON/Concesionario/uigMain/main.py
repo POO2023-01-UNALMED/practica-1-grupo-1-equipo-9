@@ -1600,7 +1600,7 @@ if __name__ == "__main__":
                             comprobar.configure(text="¿Confirmar?")
                             comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
                             cancelar = tk.Button(container, text="Cancelar")
-                            cancelar.bind("<Button-1>", lambda event: cancel(event))
+                            cancelar.bind("<Button-1>", lambda event: limpiar(ventana_funcionalidad))
                             cancelar.pack(padx=5, pady=5)
 
                         elif cliente==None:
