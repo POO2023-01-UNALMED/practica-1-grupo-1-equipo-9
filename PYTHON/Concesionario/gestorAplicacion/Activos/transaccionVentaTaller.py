@@ -17,7 +17,7 @@ class TransaccionVentaTaller(Transaccion):
         TransaccionVentaTaller.transaccionesvental.append(self)
 
     def info(self):
-        txt = f"Transacción #{self.transfer:08d}: venta realizada por {self.vendedor.get_nombre()} para el cliente {self.cliente.get_nombre()} por un total de ${self.articulo.getPrecio()} por el artículo {self.articulo.get_marca()}"
+        txt = f"Transacción #{self.transfer:08d}: venta realizada por {self.vendedor.get_nombre()} para el cliente {self.cliente.get_nombre()} por un total de ${self.articulo.get_precio()} por el artículo {self.articulo.get_marca()}"
         return txt
 
     @staticmethod
