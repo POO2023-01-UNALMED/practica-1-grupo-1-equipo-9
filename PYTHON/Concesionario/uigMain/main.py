@@ -2515,8 +2515,12 @@ if __name__ == "__main__":
                     if any(valor == "" or valor == 0 for valor in lista):
                         messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                     else:
-                        Auto(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5])
-                        messagebox.showinfo("Auto registrado", "Ahora se encuentra registrado.")
+                        if lista[5]=="si":
+                            Auto(lista[0],lista[1],lista[2],lista[3],lista[4],True)
+                            messagebox.showinfo("Auto registrado", "Ahora se encuentra registrado.")
+                        elif lista[5]=="no":
+                            Auto(lista[0],lista[1],lista[2],lista[3],lista[4],False)
+                            messagebox.showinfo("Auto registrado", "Ahora se encuentra registrado.")
 
                 criterios = ["Modelo","Marca","Precio","Cilindraje","Color","FullEquipo"]
                 valores_iniciales = ["","","","","",""]
