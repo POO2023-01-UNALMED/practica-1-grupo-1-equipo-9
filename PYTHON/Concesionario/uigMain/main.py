@@ -1963,6 +1963,7 @@ if __name__ == "__main__":
                     utilizar_taller_mecanicos(event)
                     seleccionar_opcion.destroy()
                 elif opcion_elegida == "Asignar vendedor":
+                    print("holaaaaaaaaaa")
                     asignar_vendedor(event)
                     seleccionar_opcion.destroy()
 
