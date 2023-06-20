@@ -193,7 +193,7 @@ if __name__ == "__main__":
             array_imgs=["1.png", "2.png", "3.png", "4.png"] 
             i += 1
             descripciones = [
-                "Jonatan: Risas contagiosas y calcetines desparejados. Siempre listo para hacer locuras. ¡Cuidado con su teoría de unicornios fluorescentes!",
+                "Jonatan: Estudiante de ingenieria de sistemas e informatica en al Universidad Nacional, 22 años, apasionado por el deporte, la naturaleza, el senderismo, los videojuegos y la lectura",
                 "Santiago: Técnico en programación de software, 20 años, apasionado por el deporte, la tecnología y los videojuegos,Estudiante de 4 semestre de Ingenieria de Sistemas en la Universidad Nacional",
                 "Felipe, Tecnico en Linea de Avion, 24 años, apasionado por la Tecnologia, El campo y la Aviacion, Estudiante de 4 semestre de Ingenieria de Sistemas en la Universidad Nacional",
                 "Juan José: Administrador financiero, 22 años, apasionado por viajar, el futbol y la tecnología, estudiante de 6 semestre de Ingeniería de Sistemas en la Universidad Nacional"
