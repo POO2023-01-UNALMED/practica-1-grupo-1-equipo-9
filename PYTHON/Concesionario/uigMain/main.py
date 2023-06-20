@@ -378,6 +378,7 @@ if __name__ == "__main__":
                 texto = info + info2
                 campo_texto.config(text=texto)
                 boton_aceptar.destroy()
+                seleccionar_auto.destroy()
 
 
 
@@ -1518,7 +1519,50 @@ if __name__ == "__main__":
             comprobar.pack(padx=5, pady=5)
 
         def administrador(nombre_proceso):
-            pass
+            global etiqueta
+            global window2
+            global ventana_funcionalidad
+            limpiar(ventana_funcionalidad)
+
+            def opciones_administrador(event):
+                texto = tk.Label(ventana_funcionalidad, text="Seleccione una opción de administración")
+                boton1 = tk.Button(ventana_funcionalidad, text="Asignar horarios")
+                boton2 = tk.Button(ventana_funcionalidad, text="Añadir articulo")
+                boton3 = tk.Button(ventana_funcionalidad, text="Añadir auto")
+                boton4 = tk.Button(ventana_funcionalidad, text="Añadir vendedor")
+                boton5 = tk.Button(ventana_funcionalidad, text="Añadir mecánico")
+                texto.pack(pady=5)
+                boton1.pack(pady=5)
+                boton2.pack(pady=5)
+                boton3.pack(pady=5)
+                boton4.pack(pady=5)
+                boton5.pack(pady=5)
+
+            def comprobar_cliente(event):
+                global valor_cedula_admin
+
+                valor_cedula_admin = fp.getValue("Cédula")
+                admin = Vendedor.get_vendedorPorCedula(int(valor_cedula_admin))
+                if admin!=None and admin.get_puesto()=="admin":
+                    pass
+                else:
+                    Exception(messagebox.showwarning("Acceso denegado","Usted no es administrador"))
+
+
+
+            criterios = ["Cédula"]
+            valores_iniciales = [""]
+            habilitados = [True]
+
+            texto = tk.Label(ventana_funcionalidad, text="Escriba sus datos para crear el registro")
+            fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+            texto.pack(side="top", pady=5)
+            fp.pack(side="top")
+            comprobar = tk.Button(ventana_funcionalidad, text="Comprobar")
+            comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+            comprobar.pack(padx=5, pady=5)
+
+
 
 
         '''print("\n\nMenú principal Concesionario")
