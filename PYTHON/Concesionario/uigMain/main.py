@@ -1216,7 +1216,7 @@ if __name__ == "__main__":
             seleccionar_opcion.pack(pady=10)
 
             # Agregar un botón para confirmar la selección de opción
-            boton_elegir = tk.Button(container, text="Elegir", command=lambda: seleccionar_funcion(event))
+            boton_elegir = tk.Button(container, text="Elegir", command=lambda: seleccionar_funcion(None))
             boton_elegir.pack(pady=10)
 
 
