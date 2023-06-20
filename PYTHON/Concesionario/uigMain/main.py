@@ -29,6 +29,7 @@ from baseDatos.deserializador import Deserializador
 from FieldFrame import FieldFrame
 from gestorAplicacion.Personal.vendedor import Vendedor
 from gestorAplicacion.Activos.transaccionventa import TransaccionVenta
+from gestorAplicacion.Activos.TransaccionTaller import TransaccionTaller
 from gestorAplicacion.Personal.trabajador import Trabajador
 import datetime
 
@@ -100,78 +101,6 @@ if __name__ == "__main__":
     
     
     while volver_al_menu_principal:
-
-        '''def cancel(event):
-            root.destroy()
-            
-
-        def confirmar_cliente(event, proceso):
-            global cliente
-            root.destroy()
-            mostrar_proceso(proceso)'''
-
-
-        '''def comprobar_cliente(event):
-            global valor_cedula
-            global valores_iniciales
-            global cliente
-
-            valor_cedula = fp.getValue("Cedula")
-
-
-            if fp.entries[0].get()!="":
-
-                cliente = Cliente.get_clientePorCedula(int(valor_cedula))
-
-                if cliente != None:
-                    nombre_cliente = cliente.get_nombre()
-                    telefono_cliente = cliente.get_telefono()
-                    correo_cliente = cliente.get_correo()
-                    label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
-                    label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
-                    label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
-
-                    label_1.configure(state="normal")
-                    label_2.configure(state="normal")
-                    label_3.configure(state="normal")
-
-                    label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
-                    label_2.delete(0, END)
-                    label_3.delete(0, END)
-
-                    label_1.insert(END, nombre_cliente)
-                    label_2.insert(END, telefono_cliente)
-                    label_3.insert(END, correo_cliente)
-                    
-                    label_1.configure(state="disabled")
-                    label_2.configure(state="disabled")
-                    label_3.configure(state="disabled")
-
-                    comprobar.configure(text="¿Confirmar?")
-                    comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
-                    cancelar = tk.Button(root, text="Cancelar")
-                    cancelar.bind("<Button-1>", lambda event: cancel(event))
-                    cancelar.pack(padx=5, pady=5)
-                elif cliente==None:
-                    raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
-            else:
-                raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
-        
-        #Plantilla de ingresar cédula cliente
-        criterios = ["Cedula", "Nombre", "Teléfono", "Correo"]
-        valores_iniciales = ["", "", "", ""]
-        habilitados = [True, False, False, False]
-
-        root = tk.Tk()
-        fp = FieldFrame("Criterio", criterios, "Valor", valores_iniciales, habilitados)
-        fp.pack(side="top")
-        comprobar = tk.Button(root, text="Comprobar")
-        comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
-        comprobar.pack(padx=5, pady=5)
-        #####
-
-    # Ejecución del bucle principal de la interfaz gráfica
-        root.mainloop()'''
     # WINDOW PRINCIPAL
         window = tk.Tk()
         window.geometry("600x300")
@@ -212,8 +141,8 @@ if __name__ == "__main__":
             sub_procesos.add_command(label="Taller", command=lambda: procesoTaller("Taller"))
             sub_procesos.add_command(label="Personalizar su auto", command=lambda: proceso_personalizar_auto("Personalizar su auto"))
             sub_procesos.add_command(label="Consultar estadisticas / finanzas", command=lambda: stats("Consultar estadisticas / finanzas"))
-            sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: mostrar_proceso("Crear nuevo usuario (Comprador)"))
-            sub_procesos.add_command(label="Administración", command=lambda: mostrar_proceso("Administración"))
+            sub_procesos.add_command(label="Crear nuevo usuario (Comprador)", command=lambda: crear_nuevo_usuario("Crear nuevo usuario (Comprador)"))
+            sub_procesos.add_command(label="Administración", command=lambda: administrador("Administración"))
             menu_master.add_cascade(label="Procesos y consultas", menu=sub_procesos)
 
             # Menú Ayuda
@@ -221,22 +150,6 @@ if __name__ == "__main__":
             ayuda.add_command(label="Acerca de:", command=mostrar_autores)
             menu_master.add_cascade(label="Ayuda", menu=ayuda)
 
-            
-            # Crear la zona de interacción para la muestra del nombre de procesos y consultas
-            '''zona_interaccion = tk.LabelFrame(window2, relief="solid", highlightbackground="blue", bg="red")
-            zona_interaccion.pack(side="top", pady=10)
-
-            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
-            etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
-            etiqueta.pack(side="top")'''
-
-            '''# Crear la zona de interacción para deescripción del detalle de procesos o consultas
-            zona_interaccion2 = tk.LabelFrame(window2, relief="solid", highlightbackground="blue")
-            zona_interaccion2.pack(side="top")
-
-            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
-            etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
-            etiqueta2.pack(side="top", pady=7)'''
             window2.mainloop()
 
         
@@ -452,22 +365,19 @@ if __name__ == "__main__":
 
                 vendedor_confirmado = vendedores_encontrados[vendedor_elegido]
 
-                if(cliente.get_presupuesto()>=carro_confirmado.get_precio()):
-                    carro_confirmado.set_dueno(cliente)
-                    carro_confirmado.set_disponible(False)
-                    cliente.set_auto(carro_confirmado)
-                    vendedor_confirmado.confirmar_venta()
-                    deducido = cliente.get_presupuesto()-carro_confirmado.get_precio()
-                    cliente.set_presupuesto(deducido)
-                    transfer = int(random.random() * 1000)
-                    info = f"El vendedor es: {vendedor_confirmado.info()} \n"
-                    info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
-                    Trabajador.pago(vendedor_confirmado, carro_confirmado)
-                    texto = info + info2
-                    campo_texto.config(text=texto)
-                    boton_aceptar.destroy()
-                else:
-                    Exception(messagebox.showwarning("Presupuesto insuficiente", "El cliente no tiene el presupuesto suficiente."))
+                carro_confirmado.set_dueno(cliente)
+                carro_confirmado.set_disponible(False)
+                cliente.set_auto(carro_confirmado)
+                vendedor_confirmado.confirmar_venta()
+                deducido = cliente.get_presupuesto()-carro_confirmado.get_precio()
+                cliente.set_presupuesto(deducido)
+                transfer = int(random.random() * 1000)
+
+                info = f"El vendedor es: {vendedor_confirmado.info()} \n"
+                info2 = TransaccionVenta("efectivo", carro_confirmado.get_precio(), cliente, carro_confirmado, vendedor_confirmado, transfer).info()
+                texto = info + info2
+                campo_texto.config(text=texto)
+                boton_aceptar.destroy()
 
 
 
@@ -780,6 +690,298 @@ if __name__ == "__main__":
                 global campo_texto
                 global boton_aceptar
                 global mecanicos_encontrados
+                global proceso_confirmado
+                
+
+                proceso_elegido = int(seleccionar_proceso.get())-1
+
+                proceso_confirmado = procesos[proceso_elegido]
+
+                info = f"El proceso elegido es {proceso_confirmado} \n"
+                info2 = f"Por favor, seleccione el Mecanico que lo va a atender \n"
+                j = 1
+                mecanicos_encontrados = Mecanico.mecanico_disponible(cliente.get_auto(),int(seleccionar_proceso.get()))
+                texto1 = ""
+                indices = []
+                for c in mecanicos_encontrados:
+                    linea = "{:<20} {:<20} {:<40}{:<20}\n".format(j, c.get_nombre(), c.get_especialidad(),c.get_autos())
+                    j += 1
+                    texto1 += linea
+                for f in range(1, j):
+                    indices.append(f)
+                seleccionar_proceso['values']=indices
+                texto2 = "{:<20} {:<20} {:<40}{:<20}\n".format("", "Nombre", "Especialidad","Auto que Atiende")
+                texto = info + info2 + texto2 + texto1
+                campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_mecanico(event))
+                
+            def confirmar_mecanico(event):
+                global proceso_confirmado
+                global mecanicos_encontrados
+                global campo_texto
+                global seleccionar_proceso
+                global articulos_encontrados
+                global mecanico_confirmado
+
+                mecanico_elegido = int(seleccionar_proceso.get())-1
+
+                mecanico_confirmado = mecanicos_encontrados[mecanico_elegido]
+                info = ("El Mecanico es: " +mecanico_confirmado.get_nombre()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
+                texto=info
+                campo_texto.config(text=texto)
+                info2 = f"Por favor, seleccione el Articulo A Instalar en su Vehiculo \n"
+                j = 1
+                articulos_encontrados = Inventario_Articulo.articulo_dispo(mecanico_confirmado)
+                texto1 = ""
+                indices = []
+                for c in articulos_encontrados:
+                    linea = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format(j, c.get_referencia(), c.get_tipo(),c.get_marca(),c.get_precio())
+                    j += 1
+                    texto1 += linea
+                for f in range(1, j):
+                    indices.append(f)
+                seleccionar_proceso['values']=indices
+                texto2 = "{:<15} {:<40} {:<40}{:<50}{:<20}\n".format("", "Referencia", "Tipo","Marca","Precio")
+                texto = info + info2 + texto2 + texto1
+                campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_articulo(event))
+            
+            def confirmar_articulo(event):
+                global proceso_confirmado
+                global articulos_encontrados
+                global campo_texto
+                global seleccionar_proceso
+                global mecanico_confirmado
+                global articulo_confirmado
+
+                articulo_elegido = int(seleccionar_proceso.get())-1
+
+                articulo_confirmado = articulos_encontrados[articulo_elegido]
+                info = ("El Articulo es: " +articulo_confirmado.get_marca()+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca") + "\n")
+                texto=info
+                j = 1
+                campo_texto.config(text=texto)
+                info2 = f"Por favor, seleccione el Horario para realizar su servicio \n"
+                horarios_encontrados = mecanico_confirmado.get_horario()
+                texto1 = ""
+                indices = []
+                for c in horarios_encontrados:
+                    linea = "{:<15} {:<40} \n".format(j, c)
+                    j += 1
+                    texto1 += linea
+                for f in range(1, j):
+                    indices.append(f)
+                seleccionar_proceso['values']=indices
+                texto2 = "{:<15} {:<40}\n".format("", "HORARIO")
+                texto = info + info2 + texto2 + texto1
+                
+                campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_todo(event))
+                
+
+
+            def confirmar_todo(event):
+                global proceso_elegido
+                global seleccionar_proceso
+                global campo_texto
+                global boton_aceptar
+                global mecanicos_encontrados
+                global proceso_confirmado
+                global articulos_encontrados
+                global articulo_confirmado
+                global mecanico_confirmado
+                global proceso_confirmado
+                global precio
+                global frame_procesos
+                global boton_confirmar
+
+                mecanico_confirmado.horario.pop(int(seleccionar_proceso.get())-1)
+                
+                precio=int(mecanico_confirmado.get_manoObra()+articulo_confirmado.get_precio())
+                info = ("El Proceso a realizar es: " +" "+proceso_confirmado+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca")+ "\n"+ "Con el Mecanico "+ mecanico_confirmado.get_nombre() + " por un precio de: "+str(precio)+  "\n")
+                texto = info 
+                campo_texto.config(text=texto)
+                seleccionar_proceso.destroy()
+                boton_aceptar.bind("<Button-1>", lambda event: trans(event))
+                
+
+            def trans(event):
+                global proceso_elegido
+                global seleccionar_proceso
+                global campo_texto
+                global mecanicos_encontrados
+                global proceso_confirmado
+                global articulos_encontrados
+                global articulo_confirmado
+                global mecanico_confirmado
+                global proceso_confirmado
+                global precio
+                global cliente
+                global boton_confirmar
+
+                transfer = int(random.random() * 1000)
+
+                info = ("TRANSACCION REALIZADA CON EXITO"  "\n")
+                info2=TransaccionTaller("Taller",precio,cliente,cliente.get_auto(),articulo_confirmado,mecanico_confirmado,transfer).info()
+                texto = info + info2
+                Trabajador.pago(mecanico_confirmado)
+                articulo_confirmado.cantidad=-1
+                
+                campo_texto.config(text=texto)
+                boton_aceptar.bind("<Button-1>", lambda event: limpiar(ventana_funcionalidad))
+            
+
+
+
+
+            limpiar(ventana_funcionalidad)
+            descripcion="Este proceso esta diseñado para atender vehiculos comprados en nuestro consecionario, aca podras reparar, hacer revisiones y separar citas para ser atendido por un mecanico"
+            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion.pack(side="top", pady=10)
+            
+            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
+            etiqueta = tk.Label(zona_interaccion, text="Nombre del proceso o consulta")
+            etiqueta.pack(side="top")
+
+            # Crear la zona de interacción para deescripción del detalle de procesos o consultas
+            zona_interaccion2 = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
+            zona_interaccion2.pack(side="top")
+
+            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
+            etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
+            etiqueta2.pack(side="top", pady=7)
+
+            etiqueta2.config(text=descripcion, justify="center", wraplength=280)
+
+            etiqueta.config(text=nombre_proceso, justify="center",wraplength=280)
+            
+            container= tk.Frame(ventana_funcionalidad)
+            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
+            def confirmar_cliente(event):
+                global cliente
+                global combobox_lista_marca
+                global campo_texto
+                global procesos
+                global seleccionar_proceso
+                global boton_aceptar
+                global frame_procesos
+                
+                fp.forget()
+                comprobar.destroy()
+
+                frame_procesos = tk.Frame(ventana_funcionalidad)
+                frame_procesos.pack(side="top", anchor="center")
+
+                procesos=["Latoneria y pintura","Servicio de llantas","Cambio de Aceite","Cambio de Frenos"]
+
+                texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
+                texto_auto_cliente = f"Su Auto es: {cliente.get_auto().get_marca()}  {cliente.get_auto().get_modelo()} \n"
+                texto_proceso_cliente = f"Que proceso desea hacerle al vehiculo\n"
+                texto_titulo_procesos = "\n{:<40} {:<40}  \n".format( "Seleccion", "Proceso")
+                contador = 1
+                texto_lista = ""
+                for i in procesos:
+                    linea = "{:<40} {:<40}  \n".format(contador, i)
+                    contador += 1
+                    texto_lista += linea
+                texto = texto_nombre_cliente + texto_auto_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
+                campo_texto = tk.Label(frame_procesos, text=texto)
+                seleccionar_proceso = ttk.Combobox(frame_procesos)
+                valores = []
+                for i in range(1, contador):
+                    valores.append(i)
+                seleccionar_proceso['values']=valores
+                seleccionar_proceso.current(0)
+                boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
+                boton_aceptar.bind("<Button-1>", lambda event: confirmar_proceso(event))
+                campo_texto.pack(pady=10)
+                seleccionar_proceso.pack()
+                boton_aceptar.pack(pady=10)
+                
+                
+            def cancel(event):
+                ventana_funcionalidad.destroy()
+
+            def comprobar_cliente(event):
+                global valor_cedula
+                global valores_iniciales
+                global cliente
+                
+                valor_cedula = fp.getValue("Cedula")
+
+
+                if fp.entries[0].get()!="":
+
+                    cliente = Cliente.get_clientePorCedula(int(valor_cedula))
+
+                    if cliente != None:
+                        nombre_cliente = cliente.get_nombre()
+                        correo_cliente = cliente.get_correo()
+                        try:
+                            auto_cliente = cliente.get_auto().get_marca()+" " +cliente.get_auto().get_modelo()
+                        except AttributeError:
+                            (messagebox.showinfo("Cliente sin Vehiculo", "Este cliente no posee en vehiculo comprado"))
+                            limpiar(ventana_funcionalidad)
+                            return
+                
+                        
+                        label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
+                        label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
+                        label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
+
+                        label_1.configure(state="normal")
+                        label_2.configure(state="normal")
+                        label_3.configure(state="normal")
+
+                        label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
+                        label_2.delete(0, END)
+                        label_3.delete(0, END)
+
+                        label_1.insert(END, nombre_cliente)
+                        label_2.insert(END, auto_cliente)
+                        label_3.insert(END, correo_cliente)
+                        
+                        label_1.configure(state="disabled")
+                        label_2.configure(state="disabled")
+                        label_3.configure(state="disabled")
+                        
+                        comprobar.configure(text="¿Confirmar?")
+                        comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
+                        cancelar = tk.Button(container, text="Cancelar")
+                        cancelar.bind("<Button-1>", lambda event: cancel(event))
+                        cancelar.pack(padx=5, pady=5,side="bottom")
+                    elif cliente==None:
+                        raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
+    
+    
+                else:
+                    raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
+                
+
+            criterios = ["Cedula", "Nombre", "Auto/Marca", "Correo"]
+            valores_iniciales = ["", "", "", ""]
+            habilitados = [True, False, False, False]
+
+
+            fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+            fp.pack(side="top")
+
+            comprobar = tk.Button(container, text="Comprobar")
+            comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+            comprobar.pack(padx=5, pady=5)
+
+        
+        def proceso_personalizar_auto(nombre_proceso):
+            global etiqueta
+            global window2
+            global ventana_funcionalidad
+            def confirmar_proceso(event):
+                global proceso_elegido
+                global seleccionar_proceso
+                global campo_texto
+                global boton_aceptar
+                global mecanicos_encontrados
                 
 
                 proceso_elegido = int(seleccionar_proceso.get())-1
@@ -874,270 +1076,149 @@ if __name__ == "__main__":
             
             container= tk.Frame(ventana_funcionalidad)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-
-            def confirmar_cliente(event):
-                global cliente
-                global combobox_lista_marca
-                global campo_texto
-                global procesos
-                global seleccionar_proceso
-                global boton_aceptar
-                
-                fp.forget()
-                comprobar.destroy()
-
-                frame_procesos = tk.Frame(ventana_funcionalidad)
-                frame_procesos.pack(side="top", anchor="center")
-
-                procesos=["Latoneria y pintura","Servicio de llantas","Cambio de Aceite","Cambio de Frenos"]
-
-                texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
-                texto_auto_cliente = f"Su Auto es: {cliente.get_auto().get_marca()}  {cliente.get_auto().get_modelo()} \n"
-                texto_proceso_cliente = f"Que proceso desea hacerle al vehiculo\n"
-                texto_titulo_procesos = "\n{:<40} {:<40}  \n".format( "Seleccion", "Proceso")
-                contador = 1
-                texto_lista = ""
-                for i in procesos:
-                    linea = "{:<40} {:<40}  \n".format(contador, i)
-                    contador += 1
-                    texto_lista += linea
-                texto = texto_nombre_cliente + texto_auto_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
-                campo_texto = tk.Label(frame_procesos, text=texto)
-                seleccionar_proceso = ttk.Combobox(frame_procesos)
-                valores = []
-                for i in range(1, contador):
-                    valores.append(i)
-                seleccionar_proceso['values']=valores
-                seleccionar_proceso.current(0)
-                boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
-                boton_aceptar.bind("<Button-1>", lambda event: confirmar_proceso(event))
-                campo_texto.pack(pady=10)
-                seleccionar_proceso.pack()
-                boton_aceptar.pack(pady=10)
-                
-                
-            def cancel(event):
-                ventana_funcionalidad.destroy()
-
-            def comprobar_cliente(event):
-                global valor_cedula
-                global valores_iniciales
-                global cliente
-                
-                valor_cedula = fp.getValue("Cedula")
-
-
-                if fp.entries[0].get()!="":
-
-                    cliente = Cliente.get_clientePorCedula(int(valor_cedula))
-
-                    if cliente != None:
-                        nombre_cliente = cliente.get_nombre()
-                        correo_cliente = cliente.get_correo()
-                        try:
-                            auto_cliente = cliente.get_auto().get_marca()+" " +cliente.get_auto().get_modelo()
-                        except AttributeError:
-                            (messagebox.showinfo("Cliente sin Vehiculo", "Este cliente no posee en vehiculo comprado"))
-                            limpiar(ventana_funcionalidad)
-                            return
-                
-                        
-                        label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
-                        label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
-                        label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
-
-                        label_1.configure(state="normal")
-                        label_2.configure(state="normal")
-                        label_3.configure(state="normal")
-
-                        label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
-                        label_2.delete(0, END)
-                        label_3.delete(0, END)
-
-                        label_1.insert(END, nombre_cliente)
-                        label_2.insert(END, auto_cliente)
-                        label_3.insert(END, correo_cliente)
-                        
-                        label_1.configure(state="disabled")
-                        label_2.configure(state="disabled")
-                        label_3.configure(state="disabled")
-                        
-                        comprobar.configure(text="¿Confirmar?")
-                        comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
-                        cancelar = tk.Button(container, text="Cancelar")
-                        cancelar.bind("<Button-1>", lambda event: cancel(event))
-                        cancelar.pack(padx=5, pady=5)
-                    elif cliente==None:
-                        raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
-    
-    
-                else:
-                    raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
-                
-
-            criterios = ["Cedula", "Nombre", "Auto/Marca", "Correo"]
-            valores_iniciales = ["", "", "", ""]
-            habilitados = [True, False, False, False]
-
-
-            fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
-            fp.pack(side="top")
-
-            comprobar = tk.Button(container, text="Comprobar")
-            comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
-            comprobar.pack(padx=5, pady=5)
-
-        def proceso_personalizar_auto(nombre_proceso):
-            global etiqueta
-            global window2
-            global ventana_funcionalidad
-
-            limpiar(ventana_funcionalidad)
-            descripcion = "Este proceso está diseñado para atender vehículos comprados en nuestro concesionario. Aquí podrás comprar artículos para personalizar tu automóvil y, si así lo deseas, podrás utilizar nuestro taller y separar citas para que un mecánico modifique tu auto."
-            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
-            zona_interaccion.pack(side="top", pady=10)
-
-            # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
-            etiqueta = tk.Label(zona_interaccion, text="Personalización automovilística")
-
-            # Crear la zona de interacción para descripción del detalle de procesos o consultas
-            zona_interaccion2 = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
-            zona_interaccion2.pack(side="top")
-
-            # Agregar contenido a la zona de interacción para descripción del detalle de procesos o consultas
-            etiqueta2 = tk.Label(zona_interaccion2, text="Descripción del detalle de procesos o consultas")
-            etiqueta2.pack(side="top", pady=7)
-
-            etiqueta2.config(text=descripcion, justify="center", wraplength=280)
-
-            etiqueta.config(text=nombre_proceso, justify="center", wraplength=280)
-
+            
+            
             container = tk.Frame(ventana_funcionalidad)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
 
-            def confirmar_cliente(event):
-                global cliente
-                print("PASO")
-                fp.forget()
-                comprobar.destroy()
-                pregunta_taller.pack_forget()
-                opcion_taller_mecanicos.pack_forget()
-                opcion_asignar_vendedor.pack_forget()
-
-            def cancel(event):
-                ventana_funcionalidad.destroy()
-
-            def comprobar_cliente(event):
-                global valor_cedula
-                global valores_iniciales
-                global cliente
-
-                valor_cedula = fp.getValue("Cedula")
-
-                if fp.entries[0].get() != "":
-                    cliente = Cliente.get_clientePorCedula(int(valor_cedula))
-
-                    if cliente is not None:
-                        nombre_cliente = cliente.get_nombre()
-                        telefono_cliente = cliente.get_telefono()
-                        try:
-                            auto_cliente = cliente.get_auto().get_marca()
-                        except AttributeError:
-                            (messagebox.showinfo("Cliente sin Vehículo", "Este cliente no posee un vehículo comprado"))
-                            limpiar(ventana_funcionalidad)
-                            return
-
-                        label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
-                        label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
-                        label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
-
-                        label_1.configure(state="normal")
-                        label_2.configure(state="normal")
-                        label_3.configure(state="normal")
-
-                        label_1.delete(0, tk.END)  # Borra el contenido actual del campo de entrada
-                        label_2.delete(0, tk.END)
-                        label_3.delete(0, tk.END)
-
-                        label_1.insert(tk.END, nombre_cliente)
-                        label_2.insert(tk.END, telefono_cliente)
-                        label_3.insert(tk.END, auto_cliente)
-
-                        label_1.configure(state="disabled")
-                        label_2.configure(state="disabled")
-                        label_3.configure(state="disabled")
-
-                        comprobar.configure(text="¿Confirmar?")
-                        comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
-                        cancelar = tk.Button(container, text="Cancelar")
-                        cancelar.bind("<Button-1>", lambda event: cancel(event))
-                        cancelar.pack(padx=5, pady=5)
-
-                        # Crear la pregunta y opciones
-                        pregunta_taller = tk.Label(container, text="¿Desea utilizar el taller con mecánicos o solo desea asignar un vendedor?")
-                        pregunta_taller.pack(padx=5, pady=5)
-
-                        opcion_taller_mecanicos = tk.Button(container, text="Utilizar taller con mecánicos")
-                        opcion_taller_mecanicos.bind("<Button-1>", lambda event: utilizar_taller_mecanicos(event))
-
-                        opcion_asignar_vendedor = tk.Button(container, text="Asignar vendedor")
-                        opcion_asignar_vendedor.bind("<Button-1>", lambda event: asignar_vendedor(event))
-
-                        opcion_taller_mecanicos.pack(padx=5, pady=5)
-                        opcion_asignar_vendedor.pack(padx=5, pady=5)
-                    elif cliente is None:
-                        messagebox.showinfo("Cliente no encontrado", "Esta cédula no está registrada en nuestro concesionario.")
-
-                else:
-                    messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto.")
-
             def utilizar_taller_mecanicos(event):
-                # Create the components for the interface
-                servicio_label = tk.Label(window, text="Seleccione el servicio:")
-                servicio_combobox = ttk.Combobox(window)
-                servicio_combobox['values'] = ("Modificación de pintura", "Modificación de llantas", "Modificación del sonido",
-                                            "Modificación de frenos", "Modificación del escape")
+            
+                def confirmar_cliente(event):
+                    global cliente
+                    global combobox_lista_marca
+                    global campo_texto
+                    global procesos
+                    global seleccionar_proceso
+                    global boton_aceptar
+                        
+                    fp.forget()
+                    comprobar.destroy()
 
-                mecanicos_label = tk.Label(window, text="Mecánicos disponibles:")
-                mecanicos_listbox = tk.Listbox(window)
+                    frame_procesos = tk.Frame(ventana_funcionalidad)
+                    frame_procesos.pack(side="top", anchor="center")
 
-                productos_label = tk.Label(window, text="Productos disponibles:")
-                productos_listbox = tk.Listbox(window)
+                    
+                    procesos=["Modificacion de pintura","Modificacion de Llantas","Modificacion del sonido","Modificacion de frenos", "Modificacion del escape"]
 
-                seleccionar_servicio_button = tk.Button(window, text="Seleccionar Servicio", command=seleccionar_servicio)
-                seleccionar_mecanico_button = tk.Button(window, text="Seleccionar Mecánico", command=seleccionar_mecanico)
-                seleccionar_producto_button = tk.Button(window, text="Seleccionar Producto", command=seleccionar_producto)
+                    texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
+                    texto_auto_cliente = f"Su Auto es: {cliente.get_auto().get_marca()}  {cliente.get_auto().get_modelo()} \n"
+                    texto_proceso_cliente = f"Que proceso desea hacerle al vehiculo\n"
+                    texto_titulo_procesos = "\n{:<40} {:<40}  \n".format( "Seleccion", "Proceso")
+                    contador = 1
+                    texto_lista = ""
+                    for i in procesos:
+                        linea = "{:<40} {:<40}  \n".format(contador, i)
+                        contador += 1
+                        texto_lista += linea
+                    texto = texto_nombre_cliente + texto_auto_cliente + texto_proceso_cliente + texto_titulo_procesos + texto_lista
+                    campo_texto = tk.Label(frame_procesos, text=texto)
+                    seleccionar_proceso = ttk.Combobox(frame_procesos)
+                    valores = []
+                    for i in range(1, contador):
+                        valores.append(i)
+                    seleccionar_proceso['values']=valores
+                    seleccionar_proceso.current(0)
+                    boton_aceptar = tk.Button(frame_procesos, text="Confirmar selección")
+                    boton_aceptar.bind("<Button-1>", lambda event: confirmar_proceso(event))
+                    campo_texto.pack(pady=10)
+                    seleccionar_proceso.pack()
+                    boton_aceptar.pack(pady=10)
+                    
+                    
+                def cancel(event):
+                    ventana_funcionalidad.destroy()
 
-                # Position the components in the window
-                servicio_label.pack()
-                servicio_combobox.pack()
-                seleccionar_servicio_button.pack()
+                def comprobar_cliente(event):
+                    global valor_cedula
+                    global valores_iniciales
+                    global cliente
+                    
+                    valor_cedula = fp.getValue("Cedula")
 
-                mecanicos_label.pack()
-                mecanicos_listbox.pack()
-                seleccionar_mecanico_button.pack()
 
-                productos_label.pack()
-                productos_listbox.pack()
-                seleccionar_producto_button.pack()
+                    if fp.entries[0].get()!="":
 
-                # Add your logic here for the functionality of selecting services, mechanics, and products
+                        cliente = Cliente.get_clientePorCedula(int(valor_cedula))
 
+                        if cliente != None:
+                            nombre_cliente = cliente.get_nombre()
+                            correo_cliente = cliente.get_correo()
+                            try:
+                                auto_cliente = cliente.get_auto().get_marca()+" " +cliente.get_auto().get_modelo()
+                            except AttributeError:
+                                (messagebox.showinfo("Cliente sin Vehiculo", "Este cliente no posee en vehiculo comprado"))
+                                limpiar(ventana_funcionalidad)
+                                return
+                    
+                            
+                            label_1 = fp.entries[1]  # Índice 0 para el primer campo de entrada
+                            label_2 = fp.entries[2]  # Índice 1 para el segundo campo de entrada
+                            label_3 = fp.entries[3]  # Índice 2 para el tercer campo de entrada
+
+                            label_1.configure(state="normal")
+                            label_2.configure(state="normal")
+                            label_3.configure(state="normal")
+
+                            label_1.delete(0, END)  # Borra el contenido actual del campo de entrada
+                            label_2.delete(0, END)
+                            label_3.delete(0, END)
+
+                            label_1.insert(END, nombre_cliente)
+                            label_2.insert(END, auto_cliente)
+                            label_3.insert(END, correo_cliente)
+                            
+                            label_1.configure(state="disabled")
+                            label_2.configure(state="disabled")
+                            label_3.configure(state="disabled")
+                            
+                            comprobar.configure(text="¿Confirmar?")
+                            comprobar.bind("<Button-1>", lambda event: confirmar_cliente(event))
+                            cancelar = tk.Button(container, text="Cancelar")
+                            cancelar.bind("<Button-1>", lambda event: cancel(event))
+                            cancelar.pack(padx=5, pady=5)
+
+                        elif cliente==None:
+                            raise Exception(messagebox.showinfo("Cliente no encontrado", "Esta cedula no está registrada en nuestro concesionario."))
+        
+        
+                    else:
+                        raise Exception(messagebox.showinfo("Entrada vacía", "Por favor, escriba una cédula en el campo de texto."))
+                    
+
+                criterios = ["Cedula", "Nombre", "Auto/Marca", "Correo"]
+                valores_iniciales = ["", "", "", ""]
+                habilitados = [True, False, False, False]
+
+
+                fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+                fp.pack(side="top")
+
+                comprobar = tk.Button(container, text="Comprobar")
+                comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+                comprobar.pack(padx=5, pady=5)
 
             def asignar_vendedor(event):
                 # Lógica para asignar un vendedor
                 print("Asignar vendedor")
+            
+            def seleccionar_funcion(event):
+                opcion_elegida = seleccionar_opcion.get()
 
-            criterios = ["Cedula", "Nombre", "Auto/Marca", "Correo"]
-            valores_iniciales = ["", "", "", ""]
-            habilitados = [True, False, False, False]
+                if opcion_elegida == "Utilizar taller mecánicos":
+                    utilizar_taller_mecanicos(event)
+                elif opcion_elegida == "Asignar vendedor":
+                    asignar_vendedor(event)
 
-            fp = FieldFrame(ventana_funcionalidad, "Criterio", criterios, "Valor", valores_iniciales, habilitados)
-            fp.pack(side="top")
+            # Crear la opción para que el usuario elija entre utilizar el taller de mecánicos o asignar un vendedor
+            seleccionar_opcion = ttk.Combobox(container)
+            seleccionar_opcion['values'] = ["Utilizar taller mecánicos", "Asignar vendedor"]
+            seleccionar_opcion.current(0)
+            seleccionar_opcion.pack(pady=10)
 
-            comprobar = tk.Button(container, text="Comprobar")
-            comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
-            comprobar.pack(padx=5, pady=5)
+            # Agregar un botón para confirmar la selección de opción
+            boton_elegir = tk.Button(container, text="Elegir", command=lambda: seleccionar_funcion(event))
+            boton_elegir.pack(pady=10)
+
 
 
         def stats(nombre_proceso):
@@ -1405,6 +1486,7 @@ if __name__ == "__main__":
                     
 
 
+                    infoventacarros.config(text="")
             zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
             zona_interaccion.pack(side="top", pady=10)
 
@@ -1432,6 +1514,73 @@ if __name__ == "__main__":
             lbadmin.pack(side='left', padx=0, pady=0)
             entryadmin.pack(side='left', padx=15, pady=0)
             botonadmin.pack(side='left', padx=5, pady=0)
+
+        def crear_nuevo_usuario(nombre_proceso):
+            global etiqueta
+            global window2
+            global ventana_funcionalidad
+            global cliente
+            limpiar(ventana_funcionalidad)
+
+            def comprobar_cliente(event):
+                global valor_nombre_cliente
+                global valor_apellido_cliente
+                global valor_cedula_cliente
+                global valor_telefono_cliente
+                global valor_correo_cliente
+                global valor_direccion_cliente
+                global valor_marca_cliente
+                global valor_presupuesto_cliente
+
+                valor_nombre_cliente = fp.getValue("Nombre")
+                valor_apellido_cliente = fp.getValue("Apellido")
+                valor_cedula_cliente = fp.getValue("Cédula")##
+                valor_telefono_cliente = fp.getValue("Teléfono")##
+                valor_correo_cliente = fp.getValue("Correo")
+                valor_direccion_cliente = fp.getValue("Direccion")
+                valor_marca_cliente = fp.getValue("Marca de interés")
+                valor_presupuesto_cliente = fp.getValue("Presupuesto")##
+
+                list = [valor_nombre_cliente,valor_apellido_cliente,valor_cedula_cliente,valor_telefono_cliente,valor_correo_cliente,valor_marca_cliente,valor_presupuesto_cliente,valor_direccion_cliente]
+                
+                if list[2]=="":
+                    list[2]=0
+                if list[3]=="":
+                    list[3]=0
+                if list[6]=="":
+                    list[6]=0
+
+                int(list[2])
+                int(list[3])
+                int(list[6])
+
+                if Cliente.get_clientePorCedula(int(list[2]))!=None:
+                    Exception(messagebox.showerror("Usuario ya registrado", "Esta cédula ya se encuentra registrada en el concesionario."))
+                    for i in fp.entries:
+                        i.delete(0, END)
+                elif any((valor == "" or valor == 0) and indice != 7 for indice, valor in enumerate(list)):
+                    messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
+                else:
+                    Cliente(list[0]+ "" + list[1], list[2], list[3], list[4], list[5], list[6], list[7])
+                    messagebox.showinfo("Cliente registrado", "Ahora se encuentra registrado.")
+
+
+
+
+            criterios = ["Nombre", "Apellido", "Cédula", "Teléfono", "Correo", "Direccion", "Marca de interés", "Presupuesto"]
+            valores_iniciales = ["", "", "", "", "", "", "", ""]
+            habilitados = [True, True, True, True, True, True, True, True]
+
+            texto = tk.Label(ventana_funcionalidad, text="Escriba sus datos para crear el registro")
+            fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+            texto.pack(side="top", pady=5)
+            fp.pack(side="top")
+            comprobar = tk.Button(ventana_funcionalidad, text="Comprobar")
+            comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+            comprobar.pack(padx=5, pady=5)
+
+        def administrador(nombre_proceso):
+            pass
 
 
         '''print("\n\nMenú principal Concesionario")
