@@ -129,48 +129,48 @@ class Mecanico(Trabajador):
         return mechs
 
     @staticmethod
-    def mecanico_modif(auto):
-        input = 0
+    def mecanico_modif(auto,input):
+        
         salir = None
         especialidad = None
         mechs =[]
 
         while salir is None:
-            input = int(input())
+            
 
             if input == 1:
                 especialidad = "ModificacionPintura"
                 for mecanico in Mecanico.get_mecanicos():
                     if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
-                        mechs.add(mecanico)
+                        mechs.append(mecanico)
                     salir = "si"
             elif input == 2:
                 especialidad = "ModificacionLlantas"
                 for mecanico in Mecanico.get_mecanicos():
                     if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
-                        mechs.add(mecanico)
+                        mechs.append(mecanico)
                     salir = "si"
             elif input == 3:
                 especialidad = "ModificacionSonido"
                 for mecanico in Mecanico.get_mecanicos():
                     if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
-                        mechs.add(mecanico)
+                        mechs.append(mecanico)
                     salir = "si"
             elif input == 4:
                 especialidad = "ModificacionFrenos"
                 for mecanico in Mecanico.get_mecanicos():
                     if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
-                        mechs.add(mecanico)
+                        mechs.append(mecanico)
                     salir = "si"
             elif input == 5:
                 especialidad = "ModificacionEscape"
                 for mecanico in Mecanico.get_mecanicos():
                     if especialidad == mecanico.get_especialidad() and auto.get_marca() == mecanico.get_autos():
-                        mechs.add(mecanico)
+                        mechs.append(mecanico)
                     salir = "si"
             else:
                 print("\n¿Salir? (si/no)")
-                input()
+                
 
         return mechs
 

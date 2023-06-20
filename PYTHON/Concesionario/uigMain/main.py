@@ -1376,7 +1376,7 @@ if __name__ == "__main__":
                     info = f"El proceso elegido es {proceso_confirmado} \n"
                     info2 = f"Por favor, seleccione el Mecanico que lo va a atender \n"
                     j = 1
-                    mecanicos_encontrados = Mecanico.mecanico_disponible(cliente.get_auto(),int(( proceso_elegido+4)))
+                    mecanicos_encontrados = Mecanico.mecanico_modif(cliente.get_auto(),int(( proceso_elegido)+1))
                     texto1 = ""
                     indices = []
                     for c in mecanicos_encontrados:
@@ -1465,7 +1465,6 @@ if __name__ == "__main__":
                     global articulos_encontrados
                     global articulo_confirmado
                     global mecanico_confirmado
-                    global proceso_confirmado
                     global precio
                     global frame_procesos
                     global boton_confirmar
@@ -1473,7 +1472,7 @@ if __name__ == "__main__":
                     mecanico_confirmado.horario.pop(int(seleccionar_proceso.get())-1)
                     
                     precio=int(mecanico_confirmado.get_manoObra()+articulo_confirmado.get_precio())
-                    info = ("El Proceso a realizar es: " +" "+proceso_confirmado+" para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca")+ "\n"+ "Con el Mecanico "+ mecanico_confirmado.get_nombre() + " por un precio de: "+str(precio)+  "\n")
+                    info = ("El Proceso a realizar es: Modificacion de "+mecanico_confirmado.get_especialidad()+  " para su vehiculo que es un (a):  "+ fp.getValue("Auto/Marca")+ "\n"+ "Con el Mecanico "+ mecanico_confirmado.get_nombre() + " por un precio de: "+str(precio)+  "\n")
                     texto = info 
                     campo_texto.config(text=texto)
                     seleccionar_proceso.destroy()
@@ -1506,8 +1505,7 @@ if __name__ == "__main__":
 
 
                     
- 
-               
+
                 def confirmar_cliente(event):
                     global cliente
                     global combobox_lista_marca
