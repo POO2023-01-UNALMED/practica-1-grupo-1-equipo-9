@@ -64,7 +64,7 @@ class InventarioAuto:
     def get_autosporPrecio(cliente):
         autosPrecio = []
         for auto in InventarioAuto.get_autos_disponibles():
-            if cliente.presupuesto >= auto.precio:
+            if int(cliente.presupuesto)>=int(auto.precio):
                 autosPrecio.append(auto)
         autosPrecio.sort(key=lambda x: x.precio)
         return autosPrecio
