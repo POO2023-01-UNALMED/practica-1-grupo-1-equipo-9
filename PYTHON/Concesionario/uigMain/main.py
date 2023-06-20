@@ -972,14 +972,11 @@ if __name__ == "__main__":
             comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
             comprobar.pack(padx=5, pady=5)
 
+        
         def proceso_personalizar_auto(nombre_proceso):
             global etiqueta
             global window2
             global ventana_funcionalidad
-            if pregunta_taller is not None:
-                pregunta_taller.pack_forget()
-            opcion_taller_mecanicos.pack_forget()
-            opcion_asignar_vendedor.pack_forget()
             def confirmar_proceso(event):
                 global proceso_elegido
                 global seleccionar_proceso
@@ -1080,20 +1077,11 @@ if __name__ == "__main__":
             
             container= tk.Frame(ventana_funcionalidad)
             container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
-
-            # Crear la pregunta y opciones
-            pregunta_taller = tk.Label(container, text="¿Desea utilizar el taller con mecánicos o solo desea asignar un vendedor?")
-            pregunta_taller.pack(padx=5, pady=5)
-
-            opcion_taller_mecanicos = tk.Button(container, text="Utilizar taller con mecánicos")
-            opcion_taller_mecanicos.bind("<Button-1>", lambda event: utilizar_taller_mecanicos(event))
-
-            opcion_asignar_vendedor = tk.Button(container, text="Asignar vendedor")
-            opcion_asignar_vendedor.bind("<Button-1>", lambda event: asignar_vendedor(event))
-
-            opcion_taller_mecanicos.pack(padx=5, pady=5)
-            opcion_asignar_vendedor.pack(padx=5, pady=5)
             
+            
+            container = tk.Frame(ventana_funcionalidad)
+            container.pack(side='top', anchor='w', padx=120, pady=0, expand=False)
+
             def utilizar_taller_mecanicos(event):
             
                 def confirmar_cliente(event):
@@ -1210,9 +1198,28 @@ if __name__ == "__main__":
                 comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
                 comprobar.pack(padx=5, pady=5)
 
-        def asignar_vendedor(event):
+            def asignar_vendedor(event):
                 # Lógica para asignar un vendedor
                 print("Asignar vendedor")
+            
+            def seleccionar_funcion(event):
+                opcion_elegida = seleccionar_opcion.get()
+
+                if opcion_elegida == "Utilizar taller mecánicos":
+                    utilizar_taller_mecanicos(event)
+                elif opcion_elegida == "Asignar vendedor":
+                    asignar_vendedor(event)
+
+            # Crear la opción para que el usuario elija entre utilizar el taller de mecánicos o asignar un vendedor
+            seleccionar_opcion = ttk.Combobox(container)
+            seleccionar_opcion['values'] = ["Utilizar taller mecánicos", "Asignar vendedor"]
+            seleccionar_opcion.current(0)
+            seleccionar_opcion.pack(pady=10)
+
+            # Agregar un botón para confirmar la selección de opción
+            boton_elegir = tk.Button(container, text="Elegir", command=lambda: seleccionar_funcion(None))
+            boton_elegir.pack(pady=10)
+
 
 
         def stats(nombre_proceso):
@@ -1313,7 +1320,6 @@ if __name__ == "__main__":
                     dia_actual = fecha_actual.day
 
                     nombre_mes = fecha_actual.strftime("%B")
-                    print("El mes actual es:", nombre_mes)
 
                     def traducir_mes(mes_en_ingles):
                         meses = {
@@ -1353,7 +1359,7 @@ if __name__ == "__main__":
 
                     # metiendo la info a la plantilla 3
                     # infovendedores
-                    ventas=""
+                    ventass=""
                     ingresosautos=0
 
                     # para saber ingresos por venta de autos
@@ -1361,22 +1367,41 @@ if __name__ == "__main__":
                         ingresosautos += venta.get_ingreso()
 
                     # para hacer el string de ventas hechas por vendedores
-                    for venta in TransaccionVenta.get_transaccionesven():
-                        ventas += str(venta.get_vendedor().get_nombre()) + ": " + str(venta.get_ingreso()) 
-                        + ", el " + + " del total de ingresos por venta de autos" +"\n"
-                    if ventas=="":
+                    for venta1 in TransaccionVenta.get_transaccionesven():
+                        ventass += str(venta1.get_vendedor().get_nombre()) + ": " + str(venta1.get_ingreso()) \
+                        + ", el " + str((venta1.get_vendedor().ventas/len(TransaccionVenta.get_transaccionesven())*100)) \
+                        + " % del total de ingresos por concepto de venta de autos\n"
+
+                    if ventass=="":
                         infovendedores.config(
                             text="No se han realizado ventas de vehículos hasta el momento")
                     else:
-                        infovendedores.config(text=ventas)
+                        infovendedores.config(text=ventass)
 
                     # infoingresos (calcular suma de ingresos)
                     infoingresos.config(
                         text="Suma de ingresos: " + 
                         str(ingresosautos) + ", promedio de ingresos diarios en lo corrido del mes de "
-                        + traducir_mes(str(nombre_mes)) + ": " + str(ingresosautos/dia_actual))
+                        + traducir_mes(str(nombre_mes)) + ": " + str(round((ingresosautos/dia_actual),0)))
 
                 if opcion == "3":
+                    
+                    # Obtener la fecha y hora actual
+                    fecha_actual = datetime.datetime.now()
+
+                    # Obtener el mes de la fecha actual
+                    mes_actual = fecha_actual.month
+                    dia_actual = fecha_actual.day
+
+                    nombre_mes = fecha_actual.strftime("%B")
+
+                    def traducir_mes2(mes_en_ingles):
+                        meses = {
+                            'January': 'enero', 'February': 'febrero', 'March': 'marzo', 'April': 'abril',
+                            'May': 'mayo', 'June': 'junio', 'July': 'julio', 'August': 'agosto',
+                            'September': 'septiembre', 'October': 'octubre', 'November': 'noviembre', 'December': 'diciembre'
+                        }
+                        return meses[mes_en_ingles]
                     
                     etiqueta2.config(text="ESTADISTICAS DE VENTAS POR MARCA DE AUTO")
 
@@ -1421,8 +1446,45 @@ if __name__ == "__main__":
                     else:
                         infoventacarros.config(text=ventascarros)
 
+                    #infoventasmarca
+                    ventasToyota = 0
+                    ventasChevrolet = 0
+                    ventasMazda = 0
 
+                    sumaventasToyota = 0
+                    sumaventasChevrolet = 0
+                    sumaventasMazda = 0
 
+                    for ventacarro in TransaccionVenta.get_transaccionesven():
+                        if ventacarro.get_auto().get_marca()=="Toyota":
+                            ventasToyota+=1
+                            sumaventasToyota+=ventacarro.get_auto().get_precio()
+                        elif ventacarro.get_auto().get_marca()=="Chevrolet":
+                            ventasChevrolet+=1
+                            sumaventasChevrolet+=ventacarro.get_auto().get_precio()
+                        else :
+                            ventasMazda+=1
+                            sumaventasMazda+=ventacarro.get_auto().get_precio()
+
+                    sumaTotal = sumaventasToyota + sumaventasChevrolet + sumaventasMazda
+
+                    StringToyota="Mazda: " + str(sumaventasToyota) + ", "+ str(round((sumaventasToyota/sumaTotal)*100,2)) \
+                    + "% del total de ventas por concepto de venta de autos"
+                    StringChevrolet="Chevrolet: " + str(sumaventasChevrolet) + ", " + str(round((sumaventasChevrolet/sumaTotal)*100,2)) \
+                    + "% del total de ventas por concepto de venta de autos"
+                    StringMazda="Mazda: " + str(sumaventasMazda) +  ", " + str(round((sumaventasMazda/sumaTotal)*100,2)) \
+                    + "% del total de ventas por concepto de venta de autos"
+
+                    StringInfoventasmarca = StringToyota + "\n" + StringChevrolet + "\n" + StringMazda
+
+                    infoventasmarca.config(text=StringInfoventasmarca)
+
+                    # infoingresos (calcular suma de ingresos)
+                    infoingresos2.config(
+                        text="Suma de ingresos: "
+                        + str(sumaTotal) + ", promedio de ingresos diarios en lo corrido del mes de "
+                        + traducir_mes2(str(nombre_mes)) + ": " + str(round((sumaTotal/dia_actual),0)))
+                    
 
 
                     infoventacarros.config(text="")
