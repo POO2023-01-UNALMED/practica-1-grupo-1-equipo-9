@@ -1523,7 +1523,7 @@ if __name__ == "__main__":
                     frame_procesos.pack(side="top", anchor="center")
 
                     
-                    procesos=["ModificacionPintura","ModificacionLlantas","ModificacionSonido","ModificacionFrenos", "ModificacionEscape"]
+                    procesos=["Modificacion de pintura","Modificacion de llantas","Modificacion de sonido","Modificacion de frenos", "Modificacion de escape"]
 
                     texto_nombre_cliente = f"Nombre del cliente: {cliente.get_nombre()} \n"
                     texto_auto_cliente = f"Su Auto es: {cliente.get_auto().get_marca()}  {cliente.get_auto().get_modelo()} \n"
