@@ -1986,7 +1986,7 @@ if __name__ == "__main__":
                 global entrystats1
                 
                 cedula = entryadmin.get()
-                if cedula!="1":#"3355479":
+                if cedula!="3355479":
                     container.destroy()
                     lbno = tk.Label(zona_interaccion2, text="No es la cédula del admin", justify="left")
                     lbno.pack(side='top', anchor='w', padx=100, pady=10, expand=False)
@@ -2100,7 +2100,7 @@ if __name__ == "__main__":
                                    + str(len(TransaccionVenta.get_transaccionesven())) + 
                                    " ventas en el mes, promediando "
                                    + str((len(TransaccionVenta.get_transaccionesven()))/(len(Vendedor.get_vendedores())))
-                                   + " ventas por vendedor",
+                                   + " ventas por vendedor:",
                                    justify="left")
                     infovendedores=tk.Label(container_3, text="info de cada vendedor", justify="left")
                     info2_3=tk.Label(container_3,
@@ -2129,7 +2129,7 @@ if __name__ == "__main__":
                     # para hacer el string de ventas hechas por vendedores
                     for venta1 in TransaccionVenta.get_transaccionesven():
                         ventass += str(venta1.get_vendedor().get_nombre()) + ": " + str(venta1.get_ingreso()) \
-                        + ", el " + str((venta1.get_vendedor().ventas/len(TransaccionVenta.get_transaccionesven())*100)) \
+                        + ", el " + str(round((venta1.get_ingreso()/ingresosautos)*100,0)) \
                         + " % del total de ingresos por concepto de venta de autos\n"
 
                     if ventass=="":
@@ -2179,7 +2179,7 @@ if __name__ == "__main__":
                                    justify="left")
                     infoventacarros=tk.Label(container_4, text="info de cada venta de carro", justify="left")
 
-                    info2_4=tk.Label(container_4, text="Ventas ($) por marca de auto", justify="left")
+                    info2_4=tk.Label(container_4, text="Total de ingresos por concepto de venta de auto según la marca:", justify="left")
                     infoventasmarca=tk.Label(container_4, text="ventas por marca", justify="left")
 
                     infoingresos2=tk.Label(container_4,
@@ -2198,13 +2198,14 @@ if __name__ == "__main__":
                     # infoventacarros
                     ventascarros = ""
                     for ventacarro in TransaccionVenta.get_transaccionesven():
-                        ventascarros += Auto.info(ventacarro.get_auto()) + "\n"
-                    
-                    if ventascarros=="":
-                        infoventacarros.config(
-                            text="No se han realizado ventas de vehículos hasta el momento")
+                        ventascarros += ventacarro.get_auto().info() + "\n"
+
+                    if ventascarros == "":
+                        infoventacarros.config(text="No se han realizado ventas de vehículos hasta el momento")
                     else:
                         infoventacarros.config(text=ventascarros)
+
+                    print(ventascarros)
 
                     #infoventasmarca
                     ventasToyota = 0
@@ -2228,7 +2229,7 @@ if __name__ == "__main__":
 
                     sumaTotal = sumaventasToyota + sumaventasChevrolet + sumaventasMazda
 
-                    StringToyota="Mazda: " + str(sumaventasToyota) + ", "+ str(round((sumaventasToyota/sumaTotal)*100,2)) \
+                    StringToyota="Toyota: " + str(sumaventasToyota) + ", "+ str(round((sumaventasToyota/sumaTotal)*100,2)) \
                     + "% del total de ventas por concepto de venta de autos"
                     StringChevrolet="Chevrolet: " + str(sumaventasChevrolet) + ", " + str(round((sumaventasChevrolet/sumaTotal)*100,2)) \
                     + "% del total de ventas por concepto de venta de autos"
@@ -2247,8 +2248,7 @@ if __name__ == "__main__":
                     
 
 
-                    infoventacarros.config(text="")
-            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue", bg="red")
+            zona_interaccion = tk.LabelFrame(ventana_funcionalidad, relief="solid", highlightbackground="blue")
             zona_interaccion.pack(side="top", pady=10)
 
             # Agregar contenido a la zona de interacción para la muestra del nombre de procesos y consultas
@@ -2270,6 +2270,8 @@ if __name__ == "__main__":
             # label, entry y button de cedula admin
             lbadmin = tk.Label(container, text="Introduzca su cedula", justify="left")
             entryadmin = tk.Entry(container)
+
+
             botonadmin = tk.Button(container, text="enviar", command=botonadmin1)
             #botonadmin.bind("<botonadmin>", lambda event: botonadmin(entryadmin.get()))
             lbadmin.pack(side='left', padx=0, pady=0)
@@ -2346,13 +2348,262 @@ if __name__ == "__main__":
             global ventana_funcionalidad
             limpiar(ventana_funcionalidad)
 
+            def asignar_horarios(event):
+                pass
+
+            def anadir_articulo(event):
+                limpiar(ventana_funcionalidad)
+
+                def comprobar_cliente(event):
+                    global valor_calidad_articulo
+                    global valor_tipo_articulo
+                    global valor_especialidad_articulo
+                    global valor_tipoart_articulo
+                    global valor_tipov_articulo
+                    global valor_marca_articulo
+                    global valor_precio_articulo
+                    global valor_cantidad_articulo
+                    global valor_referencia_articulo
+                    global valor_marcav_articulo
+
+                    valor_calidad_articulo = fp.getValue("Calidad")
+                    valor_tipo_articulo = fp.getValue("Tipo")
+                    valor_especialidad_articulo = fp.getValue("Especialidad")
+                    valor_tipoart_articulo = fp.getValue("TipoArticulo")
+                    valor_tipov_articulo = fp.getValue("TipoVehiculo")
+                    valor_marca_articulo = fp.getValue("Marca")
+                    valor_precio_articulo = fp.getValue("Precio")##
+                    valor_cantidad_articulo = fp.getValue("Cantidad")##
+                    valor_referencia_articulo = fp.getValue("Referencia")##
+                    valor_marcav_articulo = fp.getValue("Marca Vehiculo")
+
+                    lista = [valor_calidad_articulo,valor_tipo_articulo,valor_especialidad_articulo,valor_tipoart_articulo,valor_tipov_articulo,valor_marca_articulo,valor_precio_articulo,valor_cantidad_articulo,valor_referencia_articulo,valor_marcav_articulo]
+
+                    if lista[6]=="":
+                        lista[6]=0
+                    if lista[7]=="":
+                        lista[7]=0
+                    if lista[8]=="":
+                        lista[8]=0
+
+                    int(lista[6])
+                    int(lista[7])
+                    int(lista[8])
+
+                    if Articulo.get_articuloPorReferencia(int(lista[8]))!=None:
+                        Exception(messagebox.showerror("Usuario ya registrado", "Esta cédula ya se encuentra registrada en el concesionario."))
+                        for i in fp.entries:
+                            i.delete(0, END)
+                    elif any((valor == "" or valor == 0) and indice != 8 for indice, valor in enumerate(lista)):
+                        messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
+                    else:
+                        Articulo(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9])
+                        messagebox.showinfo("Articulo registrado", "Ahora se encuentra registrado.")
+
+
+                criterios = ["Calidad","Tipo","Especialidad","TipoArticulo","TipoVehiculo","Marca", "Precio", "Cantidad", "Referencia", "Marca Vehiculo"]
+                valores_iniciales = ["","","","","","","","","",""]
+                habilitados = [True, True, True, True, True, True, True, True, True, True,]
+
+                texto = tk.Label(ventana_funcionalidad, text="Escriba sus datos para crear el registro del articulo")
+                fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+                texto.pack(side="top", pady=5)
+                fp.pack(side="top")
+                comprobar = tk.Button(ventana_funcionalidad, text="Comprobar")
+                comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+                comprobar.pack(padx=5, pady=5)
+
+
+            def anadir_auto(event):
+                limpiar(ventana_funcionalidad)
+
+                def comprobar_cliente(event):
+                    global valor_modelo_auto
+                    global valor_marca_auto
+                    global valor_precio_auto
+                    global valor_cilindraje_auto
+                    global valor_color_auto
+                    global valor_fullequipo_auto
+
+                    valor_modelo_auto = fp.getValue("Modelo")
+                    valor_marca_auto = fp.getValue("Marca")
+                    valor_precio_auto = fp.getValue("Precio")##
+                    valor_cilindraje_auto = fp.getValue("Cilindraje")##
+                    valor_color_auto = fp.getValue("Color")
+                    valor_fullequipo_auto = fp.getValue("FullEquipo")
+
+                    lista = [valor_modelo_auto,valor_marca_auto,valor_precio_auto,valor_cilindraje_auto,valor_color_auto,valor_fullequipo_auto]
+
+                    if lista[2]=="":
+                        lista[2]=0
+                    if lista[3]=="":
+                        lista[3]=0
+
+                    int(lista[2])
+                    int(lista[3])
+
+                    if any(valor == "" or valor == 0 for valor in lista):
+                        messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
+                    else:
+                        Auto(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5])
+                        messagebox.showinfo("Auto registrado", "Ahora se encuentra registrado.")
+
+                criterios = ["Modelo","Marca","Precio","Cilindraje","Color","FullEquipo"]
+                valores_iniciales = ["","","","","",""]
+                habilitados = [True, True, True, True, True, True]
+
+                texto = tk.Label(ventana_funcionalidad, text="Escriba sus datos para crear el registro del auto")
+                fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+                texto.pack(side="top", pady=5)
+                fp.pack(side="top")
+                comprobar = tk.Button(ventana_funcionalidad, text="Comprobar")
+                comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+                comprobar.pack(padx=5, pady=5)
+
+            def anadir_vendedor(event):
+                limpiar(ventana_funcionalidad)
+
+                def comprobar_cliente(event):
+                    global valor_nombre_vendedor
+                    global valor_cedula_vendedor
+                    global valor_telefono_vendedor
+                    global valor_correo_vendedor
+                    global valor_direccion_vendedor
+                    global valor_salario_vendedor
+                    global valor_banco_vendedor
+                    global valor_cuentabanco_vendedor
+                    global valor_puesto_vendedor
+
+                    valor_nombre_vendedor = fp.getValue("Nombre")
+                    valor_cedula_vendedor = fp.getValue("Cédula")##
+                    valor_telefono_vendedor = fp.getValue("Teléfono")##
+                    valor_correo_vendedor = fp.getValue("Correo")
+                    valor_direccion_vendedor = fp.getValue("Direccion")
+                    valor_salario_vendedor = fp.getValue("Salario")##
+                    valor_banco_vendedor = fp.getValue("Banco")
+                    valor_cuentabanco_vendedor = fp.getValue("Cuenta Banco")##
+                    valor_puesto_vendedor = fp.getValue("Puesto")
+
+                    lista = [valor_nombre_vendedor,valor_cedula_vendedor,valor_telefono_vendedor,valor_correo_vendedor,valor_direccion_vendedor,valor_salario_vendedor,valor_banco_vendedor,valor_cuentabanco_vendedor,valor_puesto_vendedor]
+
+                    if lista[1]=="":
+                        lista[1]=0
+                    if lista[2]=="":
+                        lista[2]=0
+                    if lista[5]=="":
+                        lista[5]=0
+                    if lista[7]=="":
+                        lista[7]=0
+
+                    int(lista[1])
+                    int(lista[2])
+                    int(lista[5])
+                    int(lista[7])
+
+                    if Vendedor.get_vendedorPorCedula(int(lista[1]))!=None:
+                        Exception(messagebox.showerror("Usuario ya registrado", "Esta cédula ya se encuentra registrada en el concesionario."))
+                        for i in fp.entries:
+                            i.delete(0, END)
+                    elif any(valor == "" or valor == 0 for valor in lista):
+                        messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
+                    else:
+                        Vendedor(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9])
+                        messagebox.showinfo("Vendedor registrado", "Ahora se encuentra registrado.")
+
+                criterios = ["Nombre","Cédula","Teléfono","Correo","Direccion","Salario", "Banco", "Cuenta Banco", "Puesto"]
+                valores_iniciales = ["","","","","","","","",""]
+                habilitados = [True, True, True, True, True, True, True, True, True]
+
+                texto = tk.Label(ventana_funcionalidad, text="Escriba sus datos para crear el registro del vendedor")
+                fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+                texto.pack(side="top", pady=5)
+                fp.pack(side="top")
+                comprobar = tk.Button(ventana_funcionalidad, text="Comprobar")
+                comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+                comprobar.pack(padx=5, pady=5)
+
+            def anadir_mecanico(event):
+                limpiar(ventana_funcionalidad)
+
+                def comprobar_cliente(event):
+                    global valor_nombre_mecanico
+                    global valor_cedula_mecanico
+                    global valor_telefono_mecanico
+                    global valor_correo_mecanico
+                    global valor_direccion_mecanico
+                    global valor_salario_mecanico
+                    global valor_banco_mecanico
+                    global valor_cuentabanco_mecanico
+                    global valor_autos_mecanico
+                    global valor_especialidad_mecanico
+                    global valor_manoobra_mecanico
+
+                    valor_nombre_mecanico = fp.getValue("Nombre")
+                    valor_cedula_mecanico = fp.getValue("Cédula")##
+                    valor_telefono_mecanico = fp.getValue("Teléfono")##
+                    valor_correo_mecanico = fp.getValue("Correo")
+                    valor_direccion_mecanico = fp.getValue("Direccion")
+                    valor_salario_mecanico = fp.getValue("Salario")##
+                    valor_banco_mecanico = fp.getValue("Banco")
+                    valor_cuentabanco_mecanico = fp.getValue("Cuenta Banco")##
+                    valor_autos_mecanico = fp.getValue("Autos")
+                    valor_especialidad_mecanico = fp.getValue("Especialidad")
+                    valor_manoobra_mecanico = fp.getValue("Mano Obra")##
+
+                    lista = [valor_nombre_mecanico,valor_cedula_mecanico,valor_telefono_mecanico,valor_correo_mecanico,valor_direccion_mecanico,valor_salario_mecanico,valor_banco_mecanico,valor_cuentabanco_mecanico,valor_autos_mecanico,valor_especialidad_mecanico,valor_manoobra_mecanico]
+
+                    if lista[1]=="":
+                        lista[1]=0
+                    if lista[2]=="":
+                        lista[2]=0
+                    if lista[5]=="":
+                        lista[5]=0
+                    if lista[7]=="":
+                        lista[7]=0
+                    if lista[10]=="":
+                        lista[10]=0
+
+                    int(lista[1])
+                    int(lista[2])
+                    int(lista[5])
+                    int(lista[7])
+                    int(lista[7])
+
+                    if Mecanico.get_mecanicoPorCedula(int(lista[1]))!=None:
+                        Exception(messagebox.showerror("Usuario ya registrado", "Esta cédula ya se encuentra registrada en el concesionario."))
+                        for i in fp.entries:
+                            i.delete(0, END)
+                    elif any(valor == "" or valor == 0 for valor in lista):
+                        messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
+                    else:
+                        Vendedor(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9], lista[10])
+                        messagebox.showinfo("Mecánico registrado", "Ahora se encuentra registrado.")
+
+                criterios = ["Nombre","Cédula","Teléfono","Correo","Direccion","Salario", "Banco", "Cuenta Banco", "Autos", "Especialidad", "Mano Obra"]
+                valores_iniciales = ["","","","","","","","","","",""]
+                habilitados = [True, True, True, True, True, True, True, True, True, True, True]
+
+                texto = tk.Label(ventana_funcionalidad, text="Escriba sus datos para crear el registro del mecanico")
+                fp = FieldFrame(ventana_funcionalidad,"Criterio", criterios, "Valor", valores_iniciales, habilitados)
+                texto.pack(side="top", pady=5)
+                fp.pack(side="top")
+                comprobar = tk.Button(ventana_funcionalidad, text="Comprobar")
+                comprobar.bind("<Button-1>", lambda event: comprobar_cliente(event))
+                comprobar.pack(padx=5, pady=5)
+
             def opciones_administrador(event):
+                limpiar(ventana_funcionalidad)
                 texto = tk.Label(ventana_funcionalidad, text="Seleccione una opción de administración")
                 boton1 = tk.Button(ventana_funcionalidad, text="Asignar horarios")
+                boton1.bind("<Button-1>", lambda event: asignar_horarios(event))
                 boton2 = tk.Button(ventana_funcionalidad, text="Añadir articulo")
+                boton2.bind("<Button-1>", lambda event: anadir_articulo(event))
                 boton3 = tk.Button(ventana_funcionalidad, text="Añadir auto")
+                boton3.bind("<Button-1>", lambda event: anadir_auto(event))
                 boton4 = tk.Button(ventana_funcionalidad, text="Añadir vendedor")
+                boton4.bind("<Button-1>", lambda event: anadir_vendedor(event))
                 boton5 = tk.Button(ventana_funcionalidad, text="Añadir mecánico")
+                boton5.bind("<Button-1>", lambda event: anadir_mecanico(event))
                 texto.pack(pady=5)
                 boton1.pack(pady=5)
                 boton2.pack(pady=5)
@@ -2366,7 +2617,7 @@ if __name__ == "__main__":
                 valor_cedula_admin = fp.getValue("Cédula")
                 admin = Vendedor.get_vendedorPorCedula(int(valor_cedula_admin))
                 if admin!=None and admin.get_puesto()=="admin":
-                    pass
+                    opciones_administrador(event)
                 else:
                     Exception(messagebox.showwarning("Acceso denegado","Usted no es administrador"))
 
