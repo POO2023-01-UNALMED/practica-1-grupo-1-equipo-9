@@ -194,7 +194,7 @@ if __name__ == "__main__":
             i += 1
             descripciones = [
                 "Jonatan: Risas contagiosas y calcetines desparejados. Siempre listo para hacer locuras. ¡Cuidado con su teoría de unicornios fluorescentes!",
-                "Santiago: Perdido en su propia casa, confunde frutas. Sentido del humor de un erizo resacoso. Siempre arranca sonrisas con chistes torcidos.",
+                "Santiago: Técnico en programación de software, 20 años, apasionado por el deporte, la tecnología y los videojuegos,Estudiante de 4 semestre de Ingenieria de Sistemas en la Universidad Nacional",
                 "Felipe, Tecnico en Linea de Avion, 24 años, apasionado por la Tecnologia, El campo y la Aviacion, Estudiante de 4 semestre de Ingenieria de Sistemas en la Universidad Nacional",
                 "Juan José: Administrador financiero, 22 años, apasionado por viajar, el futbol y la tecnología, estudiante de 6 semestre de Ingeniería de Sistemas en la Universidad Nacional"
             ]
