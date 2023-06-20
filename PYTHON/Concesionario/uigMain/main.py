@@ -1874,8 +1874,6 @@ if __name__ == "__main__":
                     else:
                         infoventacarros.config(text=ventascarros)
 
-                    print(ventascarros)
-
                     #infoventasmarca
                     ventasToyota = 0
                     ventasChevrolet = 0
@@ -2248,7 +2246,7 @@ if __name__ == "__main__":
                     elif any(valor == "" or valor == 0 for valor in lista):
                         messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                     else:
-                        Vendedor(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9])
+                        Vendedor(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8])
                         messagebox.showinfo("Vendedor registrado", "Ahora se encuentra registrado.")
 
                 criterios = ["Nombre","Cédula","Teléfono","Correo","Direccion","Salario", "Banco", "Cuenta Banco", "Puesto"]
@@ -2317,7 +2315,7 @@ if __name__ == "__main__":
                     elif any(valor == "" or valor == 0 for valor in lista):
                         messagebox.showwarning("Campos vacios", "Hay campos vacios, por favor llenelos.")
                     else:
-                        Vendedor(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9], lista[10])
+                        Mecanico(lista[0],lista[1],lista[2],lista[3],lista[4],lista[5],lista[6],lista[7],lista[8],lista[9], lista[10])
                         messagebox.showinfo("Mecánico registrado", "Ahora se encuentra registrado.")
 
                 criterios = ["Nombre","Cédula","Teléfono","Correo","Direccion","Salario", "Banco", "Cuenta Banco", "Autos", "Especialidad", "Mano Obra"]
