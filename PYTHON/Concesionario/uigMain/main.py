@@ -749,7 +749,7 @@ if __name__ == "__main__":
                 campo_texto.config(text=texto)
                 info2 = f"Por favor, seleccione la calidad del Articulo a instalar\n"
                 j = 1
-                calidad_encontrados = ["Basico","premium"]
+                calidad_encontrados = ["premium","Basico"]
                 texto1 = ""
                 indices = []
                 for c in calidad_encontrados:
@@ -785,7 +785,7 @@ if __name__ == "__main__":
                 print(proceso_confirmado)
                 
 
-                articulos=Inventario_Articulo.selector_calidad(marca,calidad_elegido)
+                articulos=Inventario_Articulo.selector_calidad(marca,calidad_elegido+1)
 
                 info = ("El Articulo es calidad : " +calidad_confirmado+" para su vehiculo que es un (a):  "+ marca_confirmado + "\n")
                 texto=info
