@@ -1277,35 +1277,43 @@ if __name__ == "__main__":
                 if opcion == "1":
                     etiqueta2.config(text="ESTADO DE RESULTADOS DEL CONCESIONARIO")
 
+                    datos=Vendedor.estResults([0,0,0,0])
                     container_resultados = tk.Frame(zona_interaccion2)
                     container_resultados.pack(side='top', anchor='w', padx=10, pady=10)
 
                     # Ventas Totales
-                    lb_ventas_totales = tk.Label(container_resultados, text="Ventas Totales: #")
+                    lb_ventas_totales = tk.Label(container_resultados, 
+                    text="Ventas Totales: " + str(datos[0]))
                     lb_ventas_totales.pack(side='top', anchor='w')
 
                     # Costo de Ventas
-                    lb_costo_ventas = tk.Label(container_resultados, text="Costo de Ventas: #")
+                    lb_costo_ventas = tk.Label(container_resultados, 
+                    text="Costo de Ventas: " + str(datos[1]))
                     lb_costo_ventas.pack(side='top', anchor='w')
 
                     # Utilidad Operativa
-                    lb_utilidad_operativa = tk.Label(container_resultados, text="UTILIDAD OPERATIVA: #")
+                    lb_utilidad_operativa = tk.Label(container_resultados, 
+                    text="UTILIDAD OPERATIVA: " + str(datos[0]-datos[1]))
                     lb_utilidad_operativa.pack(side='top', anchor='w')
 
                     # Gastos Operacionales y de Ventas
-                    lb_gastos_operacionales = tk.Label(container_resultados, text="Gastos Operacionales y de Ventas: #")
+                    lb_gastos_operacionales = tk.Label(container_resultados, 
+                    text="Gastos Operacionales y de Ventas: " + str(datos[2]))
                     lb_gastos_operacionales.pack(side='top', anchor='w')
 
                     # Utilidad antes de Impuestos
-                    lb_utilidad_impuestos = tk.Label(container_resultados, text="UTILIDAD ANTES DE IMPUESTOS: #")
+                    lb_utilidad_impuestos = tk.Label(container_resultados, 
+                    text="UTILIDAD ANTES DE IMPUESTOS: " + str(datos[0]-datos[1]-datos[2]))
                     lb_utilidad_impuestos.pack(side='top', anchor='w')
 
                     # Impuesto de Renta
-                    lb_impuesto_renta = tk.Label(container_resultados, text="Impuesto de Renta: #")
+                    lb_impuesto_renta = tk.Label(container_resultados, 
+                    text="Impuesto de Renta: " + str(datos[3]))
                     lb_impuesto_renta.pack(side='top', anchor='w')
 
                     # Utilidad Neta
-                    lb_utilidad_neta = tk.Label(container_resultados, text="UTILIDAD NETA: #")
+                    lb_utilidad_neta = tk.Label(container_resultados, 
+                    text="UTILIDAD NETA: " + str(datos[0]-datos[1]-datos[2]-datos[3]))
                     lb_utilidad_neta.pack(side='top', anchor='w')
 
 
@@ -1327,7 +1335,7 @@ if __name__ == "__main__":
                             'September': 'septiembre', 'October': 'octubre', 'November': 'noviembre', 'December': 'diciembre'
                         }
                         return meses[mes_en_ingles]
-    
+
                     etiqueta2.config(text="ESTADISTICAS DE VENTAS POR VENDEDOR")
                     ## plantilla base (3):
                     container_3=tk.Frame(zona_interaccion2)
